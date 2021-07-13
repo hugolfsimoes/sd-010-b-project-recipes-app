@@ -1,7 +1,5 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
-import App from '../App';
 import Footer from '../components/Footer';
 
 const testIdDrink = 'drinks-bottom-btn';
