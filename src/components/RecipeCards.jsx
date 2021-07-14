@@ -6,7 +6,7 @@ function RecipeCards({ history, recipes }) {
   const { pathname } = history.location;
   const newLocation = pathname.includes('comidas') ? 'comidas' : 'bebidas';
   return (
-    <section>
+    <section data-testid="card-section">
       {recipes.map((
         { strMealThumb, strDrinkThumb, strMeal, strDrink, idMeal, idDrink },
         idx,

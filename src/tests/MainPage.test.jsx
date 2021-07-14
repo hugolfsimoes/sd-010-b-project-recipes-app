@@ -1,8 +1,11 @@
+import { cleanup, screen, waitForElement } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 // import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderPath from './renderWithRouter';
+
+afterEach(cleanup);
 
 describe('1 - The route of MainPage', () => {
   it('Route must be "/comidas"', () => {
@@ -27,7 +30,7 @@ describe('2 - Must be a header with profile and search icons, and page-title', (
   });
 });
 
-describe('3 -The search button have to enable and search elements', () => {
+describe('3 -The search button have to enable and search elements have appears', () => {
   it('There is a search icon on page', () => {
     const { history, getByRole } = renderPath(<App />);
     history.push('/comidas');
@@ -35,7 +38,7 @@ describe('3 -The search button have to enable and search elements', () => {
     expect(searchIcon).toBeInTheDocument();
   });
 
-  it('There is search element fields after clicking search icon button', () => {
+  it('There are search element fields after clicking search icon button', () => {
     const { history, getByRole, getByLabelText } = renderPath(<App />);
     history.push('/comidas');
 
@@ -50,5 +53,32 @@ describe('3 -The search button have to enable and search elements', () => {
     expect(getByRole('radio', { name: /ingrediente/i })).toBeInTheDocument();
     expect(getByRole('radio', { name: /nome/i })).toBeInTheDocument();
     expect(getByRole('radio', { name: /primeira letra/i })).toBeInTheDocument();
+  });
+});
+
+describe('4 - MainPage quantity of recipe cards', () => {
+  it('Must show 12 recipe cards', async () => {
+    const { history, getByTestId } = await renderPath(<App />);
+    history.push('/comidas');
+
+    const recipeCards = await waitForElement(() => getByTestId('card-section'));
+    expect(recipeCards).toBeInTheDocument();
+  });
+});
+
+describe('5 - Must render a footer with some options', () => {
+  it('Rendering the footer', () => {
+    const { history, getByTestId } = renderPath(<App />);
+    history.push('/comidas');
+
+    const footer = getByTestId('footer');
+    expect(footer).toBeInTheDocument();
+  });
+
+  it('Footer must have three buttons wih src', () => {
+    const { history, getByRole } = renderPath(<App />);
+    history.push('/comidas/52977');
+
+    screen.debug();
   });
 });

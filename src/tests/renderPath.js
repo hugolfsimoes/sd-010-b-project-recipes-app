@@ -1,7 +1,6 @@
 import React from 'react';
-import 'mutationobserver-shim';
 import { Router } from 'react-router-dom';
-import { screen, render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { createBrowserHistory } from 'history';
 import App from '../App';
 
