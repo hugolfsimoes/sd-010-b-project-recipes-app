@@ -16,6 +16,8 @@ const localMock = {
   type: 'comida',
 };
 
+const favoriteRecipes = [{ id: '52977', type: 'comida', area: '', alcoholicOrNot: '' }];
+
 describe('Favorite Button', () => {
   describe('Display elements', () => {
     it('Should render a button with name "ícone de coração"', () => {
@@ -37,6 +39,10 @@ describe('Favorite Button', () => {
   });
 
   describe('Component behaviour', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('Should not have a favoriteRecipes key in localstorage', () => {
       const { history } = renderWithRouter(
         <LocalStorageMock item={ localMock }>
@@ -44,8 +50,8 @@ describe('Favorite Button', () => {
         </LocalStorageMock>,
       );
       history.push(path);
-      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      expect(favoriteRecipes).toEqual(null);
+      const favoriteRecipesKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      expect(favoriteRecipesKey).toEqual(null);
     });
 
     it('Create favoriteRecipes key in localstorage by clicking the heart button', () => {
@@ -55,10 +61,53 @@ describe('Favorite Button', () => {
         </LocalStorageMock>,
       );
       history.push(path);
+      const favoriteButton = getByRole('button', { name: /ícone de coração/i });
+      userEvent.click(favoriteButton);
+      // userEvent.click(favoriteButton);
+      const favoriteRecipesKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      expect(favoriteRecipesKey).toStrictEqual(favoriteRecipes);
+    });
+
+    it('Clicking in the heart 2 times with same recipe, should have empty array', () => {
+      const { history, getByRole } = renderWithRouter(
+        <LocalStorageMock item={ localMock }>
+          <App />
+        </LocalStorageMock>,
+      );
+      history.push(path);
+      const favoriteButton = getByRole('button', { name: /ícone de coração/i });
+      userEvent.click(favoriteButton);
+      userEvent.click(favoriteButton);
+      const favoriteRecipesKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      expect(favoriteRecipesKey).toStrictEqual([]);
+    });
+
+    it('Should update the favoriteRecipe key bye add 2 or more items', () => {
+      const { history, getByRole } = renderWithRouter(
+        <LocalStorageMock item={ localMock }>
+          <App />
+        </LocalStorageMock>,
+      );
+      history.push(path);
+      const favoriteButton = getByRole('button', { name: /ícone de coração/i });
+      userEvent.click(favoriteButton);
+      history.push('/comidas/52978');
+      userEvent.click(favoriteButton);
+      userEvent.click(favoriteButton);
+      const favoriteRecipesKey = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      expect(favoriteRecipesKey).toHaveLength(1);
+    });
+
+    it('Should render a black heart icon if the recipe is favorited', () => {
+      const { history, getByRole } = renderWithRouter(<App />);
+      history.push(path);
+      const favoriteButton = getByRole('button', { name: /ícone de coração/i });
       const heartImage = getByRole('img', { name: /ícone de coração/i });
-      userEvent.click(heartImage);
-      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      expect(favoriteRecipes).toStrictEqual(localMock);
+      expect(heartImage).toHaveAttribute('src', 'whiteHeartIcon.svg');
+      userEvent.click(favoriteButton);
+      expect(heartImage).toHaveAttribute('src', 'blackHeartIcon.svg');
+      userEvent.click(favoriteButton);
+      expect(heartImage).toHaveAttribute('src', 'whiteHeartIcon.svg');
     });
   });
 });

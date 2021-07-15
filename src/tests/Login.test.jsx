@@ -174,7 +174,7 @@ describe('4 - Some changes after clickin login button', () => {
     expect(inProgressRecipes).toStrictEqual([]);
   });
 
-  it('Path name must be "comidas"', () => {
+  it('Path name must be "comidas" after login', () => {
     const { getByRole, getByTestId, history } = renderWithRouter(<Login />);
     const emailInput = getByTestId(EMAIL_INPUT);
     const passwordInput = getByTestId(PASSWORD_INPUT);
