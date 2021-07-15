@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import store, { addRecipes, setFetchOnDone } from '../../context/store';
+import store, { addRecipes, setDoneLoading, setFetchOnDone } from '../../context/store';
 import { fetchAPI, EXPLORER_ING_MEALS, INGREDIENT_MEALS } from '../../services';
 
 export default function CardMealsIgredients() {
@@ -13,25 +13,27 @@ export default function CardMealsIgredients() {
       .then((response) => setDataCadsIgredientMeals(response.meals));
   }, []);
 
-  function setMeals(response) {
+  const getIngredients = async (id) => {
     const { drinks, categoriesMeals, categoriesDrinks } = recipes;
+    const LOADING_TIME = 2500;
+    const DONE_TIME = 1500;
+    const Meals = await fetchAPI(`${INGREDIENT_MEALS}${id}`);
     setRecipes(setFetchOnDone(false));
-    setRecipes(addRecipes(
-      response.meals, drinks, categoriesMeals, categoriesDrinks,
-    ));
-  }
-
-  function setIgredient(id) {
-    console.log(id);
-    fetchAPI(`${INGREDIENT_MEALS}${id}`)
-      .then((response) => {
-        setMeals(response);
-        history.push('/comidas');
-      });
-  }
+    setTimeout(() => {
+      setRecipes(
+        addRecipes(Meals.meals, drinks, categoriesMeals, categoriesDrinks),
+      );
+      setRecipes(setDoneLoading(undefined, true));
+      setTimeout(() => {
+        setRecipes(setDoneLoading(true));
+      }, DONE_TIME);
+    }, LOADING_TIME);
+    history.push('/comidas');
+    setRecipes(setFetchOnDone(false, undefined));
+  };
 
   const handleClick = ({ target: { id } }) => {
-    setIgredient(id);
+    getIngredients(id);
   };
 
   return (
@@ -40,35 +42,29 @@ export default function CardMealsIgredients() {
         <div>
           {dataCadsIgredientMeals.slice(0, '12')
             .map(({ idIngredient, strIngredient }, index) => (
-
-              <div
+              <button
+                type="button"
                 data-testid={ `${index}-ingredient-card` }
                 id={ strIngredient }
                 key={ idIngredient }
+                className="recipe"
                 onClick={ handleClick }
-                onKeyDown={ handleClick }
-                role="button"
-                tabIndex={ index }
               >
-                <div
-                  className="imgContainer"
+                <img
+                  src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
+                  alt={ strIngredient }
+                  data-testid={ `${index}-card-img` }
+                  id={ strIngredient }
+                  className="recipeImg"
+                />
+                <h4
+                  data-testid={ `${index}-card-name` }
+                  id={ strIngredient }
+                  className="recipeTitle"
                 >
-                  <img
-                    src={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
-                    alt={ strIngredient }
-                    data-testid={ `${index}-card-img` }
-                    id={ strIngredient }
-                    width="150px"
-                  />
-                  <span
-                    data-testid={ `${index}-card-name` }
-                    id={ strIngredient }
-                  >
-                    {strIngredient}
-
-                  </span>
-                </div>
-              </div>
+                  {strIngredient}
+                </h4>
+              </button>
             ))}
         </div>) : <h5>Loading...</h5>
   );

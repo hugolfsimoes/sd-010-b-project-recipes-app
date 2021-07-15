@@ -6,7 +6,7 @@ import Header from '../components/Header';
 export default function MealsIngredient() {
   return (
     <div>
-      <Header pageName="Explorar meals To Ingredients " />
+      <Header pageName="Explorar Ingredientes" />
       <CardMealsIgredients />
       <Footer />
     </div>
