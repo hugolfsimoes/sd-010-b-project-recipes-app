@@ -67,7 +67,6 @@ export default function CardDrinksIgredients() {
                 {strIngredient1}
               </h4>
             </button>
-
           ))}
         </div>) : <h5>Loading...</h5>
   );
