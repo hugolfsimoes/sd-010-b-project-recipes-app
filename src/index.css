@@ -666,8 +666,8 @@ justify-items: center;
   margin-bottom: 5px;
   background-color: var(--first-color);
   color: var(--first-color-lighten );
-  font-weight: 600;
   font-size: 1.25rem;
+  letter-spacing: 1px;
   text-align: center;
   border-radius: .5rem;
   transition: .3s;
@@ -848,6 +848,7 @@ justify-items: center;
 
 .buttonsRecipes:hover {
   color: var(--first-color-dark);
+  background-color: #fff;
   box-shadow: 1px 2px 8px var(--second-color);
 }
 
@@ -1208,7 +1209,7 @@ justify-items: center;
 
   /* RECIPE IN PROGRESS */
   .bottomInProgress a button {
-    width: 200px;
+    width: 250px;
     padding: 10px;
     margin-left: 3rem;
   }

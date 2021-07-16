@@ -94,7 +94,6 @@ export default function RecipeInProgress() {
             type="button"
             disabled={ disabledBtn }
             onClick={ addDoneRecipe }
-            style={ { cursor: 'pointer' } }
           >
             Finalizar Receita
           </button>
