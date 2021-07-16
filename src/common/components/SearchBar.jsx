@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-import store, { addRecipes } from '../../context/store';
+import store, { addRecipes, setFetchOnDone } from '../../context/store';
 import {
   INGREDIENT_MEALS,
   NAME_MEALS, FIRSTLETTER_MEALS, fetchAPI,
@@ -11,6 +12,7 @@ import {
 } from '../../services';
 
 export default function SearchBar() {
+  const history = useHistory();
   const { recipes, setRecipes } = useContext(store);
   const [searchBar, setSearchBar] = useState({
     input: '',
@@ -33,12 +35,20 @@ export default function SearchBar() {
     setRecipes(addRecipes(
       response.meals, drinks, categoriesMeals, categoriesDrinks,
     ));
+    if (response.meals.length === 1) {
+      setRecipes(setFetchOnDone(true));
+      history.push(`/comidas/${response.meals[0].idMeal}`);
+    }
   }
   function setDrinks(response) {
     const { meals, categoriesMeals, categoriesDrinks } = recipes;
     setRecipes(addRecipes(
       meals, response.drinks, categoriesMeals, categoriesDrinks,
     ));
+    if (response.drinks.length === 1) {
+      setRecipes(setFetchOnDone(true));
+      history.push(`/bebidas/${response.drinks[0].idDrink}`);
+    }
   }
 
   function setIgredient() {
@@ -147,7 +157,7 @@ export default function SearchBar() {
               name="rate"
               value="firstLetter"
             />
-            primeira letra
+            Primeira letra
           </label>
           <button
             type="button"
