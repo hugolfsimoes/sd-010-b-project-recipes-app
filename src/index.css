@@ -483,7 +483,7 @@ justify-items: center;
 }
 
 .slider {
-  position: relative;
+  /* position: relative; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -534,14 +534,31 @@ justify-items: center;
 }
 
 .slide {
-  display: none;
-  /* opacity: 0; */
+  /* display: none; */
+  /* visibility: hidden; */
+  opacity: 0;
+}
+
+.activeLeft{
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* display: block; */
+  /* visibility: visible; */
+  opacity: 1;
+  height: 380px;
+  border-radius: 10px;
+  transform: scale(1.08);
   transition: all 1.5s ease;
 }
 
-.active {
-  display: block;
-  /* opacity: 1; */
+.activeRight{
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* display: block; */
+  /* visibility: visible; */
+  opacity: 1;
   height: 380px;
   border-radius: 10px;
   transform: scale(1.08);
@@ -1386,21 +1403,6 @@ justify-items: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-
-  .slide {
-    display: none;
-    /* opacity: 0; */
-    transition: all 1.5s ease;
-  }
-
-  .active {
-    display: block;
-    /* opacity: 1; */
-    height: 380px;
-    border-radius: 10px;
-    transform: scale(1.08);
-    transition: all 1.5s ease;
   }
 
   /* RECIPE IN PROGRESS */

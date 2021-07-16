@@ -5,6 +5,7 @@ import store, { } from '../../context/store';
 export default function RecommendedRecipes() {
   const initialImgs = { firstImg: 0, secondImg: 1 };
   const [show, setShow] = useState(initialImgs);
+
   const {
     recipes: { recommendedRecipes, recommendedLimit },
   } = useContext(store);
@@ -38,14 +39,29 @@ export default function RecommendedRecipes() {
       }
     };
 
+    // const showRecommend = (index) => {
+    //   let NameClass = '';
+    //   if (index === firstImg) {
+    //     NameClass = 'slide activeLeft';
+    //   }
+    //   if (index === secondImg) {
+    //     NameClass = 'slide activeRight';
+    //   }
+    //   if (index !== firstImg && index !== secondImg) {
+    //     NameClass = 'slide';
+    //   }
+    //   return NameClass;
+    // };
+
     return (
       <div className="slider">
         <FaArrowAltCircleLeft className="left-arrow" onClick={ prevSlide } />
         {newRecipes.map((recipe, index) => (
           <div
             key={ index }
-            className={ (index === firstImg || index === secondImg) ? (
-              'slide active') : ('slide') }
+            className={ (index === firstImg) ? ('slide activeLeft') : (
+              index === secondImg) ? ('slide activeRight') : (
+                'slide') }
             data-testid={ `${index}-recomendation-card` }
           >
             <div
