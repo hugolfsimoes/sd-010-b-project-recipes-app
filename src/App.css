@@ -8,6 +8,7 @@ body {
 .tela-login {
   background: white;
   height: 100vh;
+  position: fixed;
   width: 100vw;
 }
 
@@ -261,7 +262,9 @@ body {
 
 /* Details */
 .card-details {
-  height: 100%;
+  background: linear-gradient(45deg, #ff4763, #ff4763, #ff3f29);
+  display: flex;
+  flex-direction: column;
 }
 
 .tela-details {
@@ -272,7 +275,7 @@ body {
   border-radius: 25px;
   box-shadow: 0.5px 0.5px 2px 0.5px black;
   margin: 10px auto;
-  max-width: 90%;
+  max-width: 90vw;
   overflow: hidden;
 }
 
@@ -305,6 +308,7 @@ body {
 }
 
 .recomendado {
+  color: #f7ecf7;
   text-align: center;
 }
 
