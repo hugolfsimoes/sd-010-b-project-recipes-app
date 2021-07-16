@@ -16,6 +16,8 @@ const localMock = {
   type: 'comida',
 };
 
+const WHITE_HEART_ICON = 'whiteHeartIcon.svg';
+
 const favoriteRecipes = [{ id: '52977', type: 'comida', area: '', alcoholicOrNot: '' }];
 
 describe('Favorite Button', () => {
@@ -34,7 +36,7 @@ describe('Favorite Button', () => {
     const heartImage = getByRole('img', { name: /ícone de coração/i });
     expect(heartImage).toBeInTheDocument();
     expect(heartImage).toHaveAttribute('alt', 'Ícone de coração');
-    expect(heartImage).toHaveAttribute('src', 'whiteHeartIcon.svg');
+    expect(heartImage).toHaveAttribute('src', WHITE_HEART_ICON);
     expect(heartImage).toHaveAttribute('class', 'small-btn');
   });
 
@@ -103,11 +105,11 @@ describe('Favorite Button', () => {
       history.push(path);
       const favoriteButton = getByRole('button', { name: /ícone de coração/i });
       const heartImage = getByRole('img', { name: /ícone de coração/i });
-      expect(heartImage).toHaveAttribute('src', 'whiteHeartIcon.svg');
+      expect(heartImage).toHaveAttribute('src', WHITE_HEART_ICON);
       userEvent.click(favoriteButton);
       expect(heartImage).toHaveAttribute('src', 'blackHeartIcon.svg');
       userEvent.click(favoriteButton);
-      expect(heartImage).toHaveAttribute('src', 'whiteHeartIcon.svg');
+      expect(heartImage).toHaveAttribute('src', WHITE_HEART_ICON);
     });
   });
 });

@@ -3,13 +3,13 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 // import userEvent from '@testing-library/user-event';
 import App from '../App';
-import renderPath from './renderWithRouter';
+import renderWithRouter from './renderWithRouter';
 
 afterEach(cleanup);
 
 describe('1 - The route of MainPage', () => {
   it('Route must be "/comidas"', () => {
-    const { history } = renderPath(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/comidas');
     expect(history.location.pathname).toBe('/comidas');
   });
@@ -17,7 +17,7 @@ describe('1 - The route of MainPage', () => {
 
 describe('2 - Must be a header with profile and search icons, and page-title', () => {
   it('Header shows the profile and search icons', () => {
-    const { history, getByRole, getByTestId } = renderPath(<App />);
+    const { history, getByRole, getByTestId } = renderWithRouter(<App />);
     history.push('/comidas');
     const profileIcon = getByRole('img', { name: /user frame/i });
     expect(profileIcon).toBeInTheDocument();
@@ -32,14 +32,14 @@ describe('2 - Must be a header with profile and search icons, and page-title', (
 
 describe('3 -The search button have to enable and search elements have appears', () => {
   it('There is a search icon on page', () => {
-    const { history, getByRole } = renderPath(<App />);
+    const { history, getByRole } = renderWithRouter(<App />);
     history.push('/comidas');
     const searchIcon = getByRole('button', { name: /search icon/i });
     expect(searchIcon).toBeInTheDocument();
   });
 
   it('There are search element fields after clicking search icon button', () => {
-    const { history, getByRole, getByLabelText } = renderPath(<App />);
+    const { history, getByRole, getByLabelText } = renderWithRouter(<App />);
     history.push('/comidas');
 
     const searchBtnIcon = getByRole('button', { name: /search icon/i });
@@ -58,7 +58,7 @@ describe('3 -The search button have to enable and search elements have appears',
 
 describe('4 - MainPage quantity of recipe cards', () => {
   it('Must show 12 recipe cards', async () => {
-    const { history, getByTestId } = await renderPath(<App />);
+    const { history, getByTestId } = await renderWithRouter(<App />);
     history.push('/comidas');
 
     const recipeCards = await waitForElement(() => getByTestId('card-section'));
@@ -68,7 +68,7 @@ describe('4 - MainPage quantity of recipe cards', () => {
 
 describe('5 - Must render a footer with some options', () => {
   it('Rendering the footer', () => {
-    const { history, getByTestId } = renderPath(<App />);
+    const { history, getByTestId } = renderWithRouter(<App />);
     history.push('/comidas');
 
     const footer = getByTestId('footer');
@@ -76,7 +76,7 @@ describe('5 - Must render a footer with some options', () => {
   });
 
   it('Footer must have three buttons wih src', () => {
-    const { history, getByRole } = renderPath(<App />);
+    const { history } = renderWithRouter(<App />);
     history.push('/comidas/52977');
 
     screen.debug();
