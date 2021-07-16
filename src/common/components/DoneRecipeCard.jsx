@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
-import store, { setFetchOnDone } from '../../context/store';
+import store, { directPage, setFetchOnDone } from '../../context/store';
 
 export default function DoneRecipeCard({ recipe, index }) { // Desestruturação de props
   const { setRecipes } = useContext(store);
@@ -36,9 +36,14 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
     </div>
   );
 
+  const handleClickCard = () => {
+    setRecipes(directPage(null));
+    setRecipes(setFetchOnDone(true));
+  };
+
   return (
     <div className="done-card">
-      <Link to={ `/${type}s/${id}` } onClick={ () => setRecipes(setFetchOnDone(true)) }>
+      <Link to={ `/${type}s/${id}` } onClick={ handleClickCard }>
         <img
           className="doneImg"
           src={ image }
