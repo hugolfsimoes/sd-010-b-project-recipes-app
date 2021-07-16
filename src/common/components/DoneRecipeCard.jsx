@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
-// comentário somente pra fazer um push que vai ajustar erros de Git.
+import store, { setFetchOnDone } from '../../context/store';
 
 export default function DoneRecipeCard({ recipe, index }) { // Desestruturação de props
+  const { setRecipes } = useContext(store);
   const {
     id,
     type,
@@ -37,7 +38,7 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
 
   return (
     <div className="done-card">
-      <Link to={ `/${type}s/${id}` }>
+      <Link to={ `/${type}s/${id}` } onClick={ () => setRecipes(setFetchOnDone(true)) }>
         <img
           className="doneImg"
           src={ image }
@@ -70,6 +71,16 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
 }
 
 DoneRecipeCard.propTypes = {
-  recipe: PropTypes.shape.isRequired,
+  recipe: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    area: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    doneDate: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
   index: PropTypes.number.isRequired,
 };
