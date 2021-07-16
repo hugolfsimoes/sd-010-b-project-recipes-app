@@ -1,11 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import store, { } from '../../context/store';
-// import { DRINKS, fetchAPI, MEALS } from '../../services';
-
-const initialImgs = { firstImg: 0, secondImg: 1 };
 
 export default function RecommendedRecipes() {
+  const initialImgs = { firstImg: 0, secondImg: 1 };
   const [show, setShow] = useState(initialImgs);
   const {
     recipes: { recommendedRecipes, recommendedLimit },
@@ -76,19 +74,6 @@ export default function RecommendedRecipes() {
 
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
-
-  // useEffect(() => {
-  //   const getRecommended = async () => {
-  //     if (foods) {
-  //       const Drinks = await fetchAPI(DRINKS);
-  //       setRecipes(addRecommended(Drinks.drinks));
-  //     } else {
-  //       const Meals = await fetchAPI(MEALS);
-  //       setRecipes(addRecommended(Meals.meals));
-  //     }
-  //   };
-  //   getRecommended();
-  // }, []);
 
   // ---------------------------------------------------------------------------------------------
 
