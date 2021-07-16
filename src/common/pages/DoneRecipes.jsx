@@ -15,14 +15,16 @@ export default function DoneRecipes() {
   return (
     <>
       <Header pageName="Receitas Feitas" />
-      <div className="mainContent">
-        <CategoryButton
-          foodOrDrink={ handleClickType }
-          setState={ setDoneRecipes }
-          clickAll={ handleClickAll }
-          path={ DONE_RECIPES }
-        />
-        <section className="recipes">
+      <div className="done-recipes">
+        <div className="done-buttons">
+          <CategoryButton
+            foodOrDrink={ handleClickType }
+            setState={ setDoneRecipes }
+            clickAll={ handleClickAll }
+            path={ DONE_RECIPES }
+          />
+        </div>
+        <section className="done-cards">
           { doneRecipes.map((recipe, i) => (
             <DoneRecipeCard
               recipe={ recipe }
