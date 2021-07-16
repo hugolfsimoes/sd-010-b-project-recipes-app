@@ -22,9 +22,7 @@ function ExpoFoodsIng(props) {
   return loading ? <Loading /> : (
     <div className="tela-explore">
       <HeadBar title="Ingredientes" />
-      <div className="tela-cards">
-        <IngredientsFoodsTab ingredients={ ingredients } />
-      </div>
+      <IngredientsFoodsTab ingredients={ ingredients } />
       <Footer />
     </div>
   );

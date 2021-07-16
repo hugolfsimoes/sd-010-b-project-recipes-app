@@ -15,7 +15,7 @@ function Progress(props) {
     ? MealAPI.getFoodById : DrinkApi.getDrinkById;
 
   return (
-    <div>
+    <div className="tela-progress">
       <DetailsProgress
         id={ id }
         fetchAPI={ API }

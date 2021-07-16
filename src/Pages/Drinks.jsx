@@ -42,16 +42,18 @@ function Drinks(props) {
         type="cocktail"
         categories={ categories.map((category) => category.strCategory) }
       />
-      <div className="items-list">
-        {mainDrinks.map((drink, index) => (
-          <Card
-            title="bebidas"
-            key={ index }
-            index={ index }
-            item={ drink }
-            type="drinks"
-          />
-        ))}
+      <div className="tela-cards">
+        <div className="items-list">
+          {mainDrinks.map((drink, index) => (
+            <Card
+              title="bebidas"
+              key={ index }
+              index={ index }
+              item={ drink }
+              type="drinks"
+            />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

@@ -9,7 +9,7 @@ export default function Copiado(props) {
     setTimeout(() => setIsCopy(false), twoSeconds);
   }, []);
   return (
-    <p className="copiado">
+    <p data-testid="share-btn" className="copiado">
       Link Copiado!
     </p>
   );
