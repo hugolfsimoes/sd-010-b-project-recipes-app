@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-import './components.css';
 import SearchFood from './SearchFood';
 
 function Header({ title, display }) {
@@ -16,7 +15,7 @@ function Header({ title, display }) {
 */
   return (
     <div className="header-body">
-      <div>
+      <div className="header-class">
 
         <a
           href="/perfil"

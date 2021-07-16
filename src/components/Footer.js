@@ -4,8 +4,6 @@ import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 
-import './components.css';
-
 function Footer() {
   return (
     <div data-testid="footer" className="footer-body">

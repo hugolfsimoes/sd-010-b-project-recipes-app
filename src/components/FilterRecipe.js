@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/Button';
 import { actionFilterList } from '../Redux/actions';
 import { fetchRecipeAllDrink,
   fetchRecipeAllFood,
@@ -54,19 +55,20 @@ function FilterRecipe({ list, dispRecipeFilter, recipeType }) {
   const NUMBER = 5;
   // console.log(type);
   return (
-    <div className="show-recipe">
-      <button
+    <div className="show-filter">
+      Filter
+      <Button
         type="button"
         onClick={ clickAPI }
         data-testid="All-category-filter"
         value="All"
       >
         All
-      </button>
+      </Button>
       { show
       && object[type].slice(0, NUMBER)
         .map((element, index) => (
-          <button
+          <Button
             onClick={ clickAPI }
             data-testid={ `${element.strCategory}-category-filter` }
             type="button"
@@ -75,7 +77,7 @@ function FilterRecipe({ list, dispRecipeFilter, recipeType }) {
           >
             {element.strCategory}
 
-          </button>)) }
+          </Button>)) }
     </div>
   );
 }

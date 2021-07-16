@@ -52,7 +52,7 @@ function RecipeList({ list, listAll, filterList }) {
                   ? element.strMealThumb : element.strDrinkThumb }
                 data-testid={ `${index}-card-img` }
                 alt={ type === 'meals' ? element.strMeal : element.strDrink }
-                width="20%"
+                width="100%"
               />
               <p data-testid={ `${index}-card-name` }>
                 { type === 'meals' ? element.strMeal : element.strDrink }

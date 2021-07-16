@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { connect } from 'react-redux';
+import Button from 'react-bootstrap/Button';
 import fetchRecipeFood, { fetchRecipeDrink } from '../services/recipeAPI';
 import actionList from '../Redux/actions';
 
@@ -99,14 +100,14 @@ function SearchFood({ recipe, dispRecipeList }) {
           Primeira letra
         </label>
       </div>
-      <button
+      <Button
         onClick={ clickAPI }
         type="button"
         data-testid="exec-search-btn"
       >
         Buscar
 
-      </button>
+      </Button>
     </div>
   );
 }
