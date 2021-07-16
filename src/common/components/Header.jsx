@@ -12,14 +12,16 @@ export default function Header({ pageName }) { // Desestruturação de props
   const [isRedirect, setIsRedirect] = useState(false); // Redirect Perfil
   const [showSearchBar, setBar] = useState(false); // state component to search
 
-  if (isRedirect) return <Redirect to="/perfil" />;
-
   const showSearch = () => {
-    if (pathname.includes('/explorar')) { setShow(true); }
+    if (pathname.includes('/explorar') || pathname.includes('/perfil')) {
+      setShow(true);
+    }
+    if (pathname.includes('/explorar/comidas/area')) { setShow(false); }
   };
 
-  useEffect(showSearch, []);
+  useEffect(showSearch, [pathname, show]);
 
+  if (isRedirect) return <Redirect to="/perfil" />;
   return (
     <>
       <header className="header">
@@ -35,19 +37,16 @@ export default function Header({ pageName }) { // Desestruturação de props
         >
           { pageName }
         </h1>
-        (show)?
-        <div>
-          <input
-            type="image"
-            onClick={ () => setBar(!showSearchBar) }
-            data-testid="search-top-btn"
-            src={ searchIcon }
-            alt="search"
-          />
-        </div>
-        :
-        {' '}
-        <div />
+        {(!show) ? (
+          <div>
+            <input
+              type="image"
+              onClick={ () => setBar(!showSearchBar) }
+              data-testid="search-top-btn"
+              src={ searchIcon }
+              alt="search"
+            />
+          </div>) : ('')}
       </header>
       <div>
         { !showSearchBar || <SearchBar />}

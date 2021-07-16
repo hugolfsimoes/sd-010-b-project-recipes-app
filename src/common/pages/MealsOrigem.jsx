@@ -24,7 +24,7 @@ export default function MealsOrigem() {
   if (loading) return (<h5>Loading...</h5>);
   return (
     <div>
-      <Header pageName="Por Local de Origem " />
+      <Header pageName="Explorar Origem" />
       <section className="mainContent">
         <label htmlFor="all">
           Selecione:

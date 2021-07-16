@@ -15,7 +15,7 @@ export default function ExploreMeals() {
   }
   return (
     <div>
-      <Header pageName="Explorar comidas" />
+      <Header pageName="Explorar Comidas" />
       <div className="explorerMealsContent">
         <Link to="/explorar/comidas/ingredientes">
           <button
