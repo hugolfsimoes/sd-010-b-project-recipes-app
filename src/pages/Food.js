@@ -40,7 +40,7 @@ const Food = ({ match }) => {
           {renderIngredients(meal)}
         </ul>
       </section>
-      <p data-testid="video">Video</p>
+      <h2 data-testid="video">Video</h2>
       <p data-testid="instructions">{meal.strInstructions}</p>
       <ShareButton url={ url } msgShare="Compartilhar" idTest="share-btn" />
       <FavoriteIcon recipe={ meal } idTest="favorite-btn" />

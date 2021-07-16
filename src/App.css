@@ -9,7 +9,7 @@
   }
 
   .recipe-photo {
-    width: 50vw;
+    width: 80vw;
   }
 
   .recipe h2 {
@@ -187,7 +187,8 @@ Ajuda Alessandra
   height: auto;
   opacity: 0.3;
   position: absolute;
-  width: 100%;
+  width: 50%;
+  padding-top: 100px;
 }
 
 .ingredient h1 {
@@ -196,12 +197,21 @@ Ajuda Alessandra
 }
 
 .ingredient ul {
-  text-align: center;
+  background: url('https://image.freepik.com/fotos-gratis/fundo-de-papel-de-espaco-de-design-texturizado_53876-42312.jpg');
+  background-size: cover;
   width: 100%;
 }
 
 .ingredient li {
-  background: #46d69f2c;
+  background: #46d69f19;
+  border-bottom:solid 1px rgb(230, 191, 173);
+  border-left:solid 1px red;
   font-family: Cookie , cursive;
   font-size: x-large;
+}
+
+.recipe p {
+  border-bottom:solid 1px lightblue;
+  text-decoration: overline;
+  text-decoration-color: rgb(230, 191, 173);
 }
