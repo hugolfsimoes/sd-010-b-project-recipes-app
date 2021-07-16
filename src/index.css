@@ -656,13 +656,27 @@ justify-items: center;
   color: var(--second-color) ;
 }
 
-.bottomInProgress a button {
+.bottomInProgress a button:disabled {
   width: 80%;
   padding: 1rem;
   margin-left: 3rem;
   margin-bottom: 5px;
   background-color: var(--first-color);
-  color: var(--first-color-lighten );
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: .5rem;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.bottomInProgress a button:enabled {
+  width: 80%;
+  padding: 1rem;
+  margin-left: 3rem;
+  margin-bottom: 5px;
+  color:var(--first-color-lighten);
+  background-color: var(--first-color);
   font-size: 1.25rem;
   letter-spacing: 1px;
   text-align: center;
@@ -673,7 +687,7 @@ justify-items: center;
 
 .bottomInProgress a button:hover {
   background-color: var(--first-color-dark);
-  color: #FFFF;
+  /* color: #FFFF; */
 }
 
 /*  ====================================================================================================================================*/
