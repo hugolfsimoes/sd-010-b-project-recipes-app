@@ -19,7 +19,6 @@ export default function ShareButton({ id, type, index, path, className }) { // d
 
   const renderButtons = () => (
     <button
-      className={ className }
       type="button"
       onClick={ whatToCopy }
     >
@@ -34,7 +33,7 @@ export default function ShareButton({ id, type, index, path, className }) { // d
   );
 
   return (
-    <div>
+    <div className={ className }>
       {renderButtons()}
       <div className={ !linkShare ? 'hideMsg' : 'showMsg' }>Link copiado!</div>
     </div>
@@ -42,7 +41,7 @@ export default function ShareButton({ id, type, index, path, className }) { // d
 }
 
 ShareButton.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   type: PropTypes.string,
   path: PropTypes.bool,
   index: PropTypes.number,

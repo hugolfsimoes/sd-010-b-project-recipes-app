@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
-// comentário somente pra fazer um push que vai ajustar erros de Git.
+import store, { directPage, setFetchOnDone } from '../../context/store';
 
 export default function DoneRecipeCard({ recipe, index }) { // Desestruturação de props
+  const { setRecipes } = useContext(store);
   const {
     id,
     type,
@@ -35,11 +36,16 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
     </div>
   );
 
+  const handleClickCard = () => {
+    setRecipes(directPage(null));
+    setRecipes(setFetchOnDone(true));
+  };
+
   return (
     <div className="done-card">
-      <Link to={ `/${type}s/${id}` }>
+      <Link to={ `/${type}s/${id}` } onClick={ handleClickCard }>
         <img
-          className="doneImg"
+          className="done-img"
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
@@ -64,12 +70,22 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
           </section>
         </div>
       </Link>
-      <ShareButton className="share-done" id={ id } type={ type } index={ index } path />
+      <ShareButton id={ id } type={ type } index={ index } path className="share-done" />
     </div>
   );
 }
 
 DoneRecipeCard.propTypes = {
-  recipe: PropTypes.shape.isRequired,
+  recipe: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    area: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    doneDate: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
   index: PropTypes.number.isRequired,
 };

@@ -15,21 +15,25 @@ export default function DoneRecipes() {
   return (
     <>
       <Header pageName="Receitas Feitas" />
-      <CategoryButton
-        foodOrDrink={ handleClickType }
-        setState={ setDoneRecipes }
-        clickAll={ handleClickAll }
-        path={ DONE_RECIPES }
-      />
-      <section className="recipes">
-        { doneRecipes.map((recipe, i) => (
-          <DoneRecipeCard
-            recipe={ recipe }
-            index={ i }
-            key={ i }
+      <div className="done-recipes">
+        <div className="done-buttons">
+          <CategoryButton
+            foodOrDrink={ handleClickType }
+            setState={ setDoneRecipes }
+            clickAll={ handleClickAll }
+            path={ DONE_RECIPES }
           />
-        )) }
-      </section>
+        </div>
+        <section className="done-cards">
+          { doneRecipes.map((recipe, i) => (
+            <DoneRecipeCard
+              recipe={ recipe }
+              index={ i }
+              key={ i }
+            />
+          )) }
+        </section>
+      </div>
     </>
   );
 }

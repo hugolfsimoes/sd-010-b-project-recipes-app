@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 import store, { } from '../../context/store';
-// import { DRINKS, fetchAPI, MEALS } from '../../services';
-
-const initialImgs = { firstImg: 0, secondImg: 1 };
 
 export default function RecommendedRecipes() {
+  const initialImgs = { firstImg: 0, secondImg: 1 };
   const [show, setShow] = useState(initialImgs);
+
   const {
     recipes: { recommendedRecipes, recommendedLimit },
   } = useContext(store);
@@ -40,14 +39,27 @@ export default function RecommendedRecipes() {
       }
     };
 
+    const showRecommend = (index) => {
+      let NameClass = '';
+      if (index === firstImg) {
+        NameClass = 'activeLeft';
+      }
+      if (index === secondImg) {
+        NameClass = 'activeRight';
+      }
+      if (index !== firstImg && index !== secondImg) {
+        NameClass = 'hidden';
+      }
+      return NameClass;
+    };
+
     return (
       <div className="slider">
         <FaArrowAltCircleLeft className="left-arrow" onClick={ prevSlide } />
         {newRecipes.map((recipe, index) => (
           <div
             key={ index }
-            className={ (index === firstImg || index === secondImg) ? (
-              'slide active') : ('slide') }
+            className={ showRecommend(index) }
             data-testid={ `${index}-recomendation-card` }
           >
             <div
@@ -76,19 +88,6 @@ export default function RecommendedRecipes() {
 
   // ---------------------------------------------------------------------------------------------
   // CICLOS DE VIDA
-
-  // useEffect(() => {
-  //   const getRecommended = async () => {
-  //     if (foods) {
-  //       const Drinks = await fetchAPI(DRINKS);
-  //       setRecipes(addRecommended(Drinks.drinks));
-  //     } else {
-  //       const Meals = await fetchAPI(MEALS);
-  //       setRecipes(addRecommended(Meals.meals));
-  //     }
-  //   };
-  //   getRecommended();
-  // }, []);
 
   // ---------------------------------------------------------------------------------------------
 
