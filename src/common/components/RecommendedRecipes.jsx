@@ -39,14 +39,29 @@ export default function RecommendedRecipes() {
       }
     };
 
+    const showRecommend = (index) => {
+      let NameClass = '';
+      if (index === firstImg) {
+        NameClass = 'activeLeft';
+      }
+      if (index === secondImg) {
+        NameClass = 'activeRight';
+      }
+      if (index !== firstImg && index !== secondImg) {
+        NameClass = 'hidden';
+      }
+      return NameClass;
+    };
+
     return (
       <div className="slider">
         <FaArrowAltCircleLeft className="left-arrow" onClick={ prevSlide } />
         {newRecipes.map((recipe, index) => (
           <div
             key={ index }
-            className={ (index === firstImg) || (index === secondImg) ? (
-              'slide active') : ('slide') }
+            // className={ (index === firstImg) || (index === secondImg) ? (
+            //   'slide active') : ('slide') }
+            className={ showRecommend(index) }
             data-testid={ `${index}-recomendation-card` }
           >
             <div

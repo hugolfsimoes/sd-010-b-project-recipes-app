@@ -533,13 +533,26 @@ justify-items: center;
   align-items: center;
 }
 
-.slide {
-  display: none;
+.hidden {
+  visibility: hidden;
+}
+
+.activeLeft {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  left: 4rem;
+  height: 380px;
+  border-radius: 10px;
+  transform: scale(1.08);
   transition: all 1.5s ease;
 }
 
-.active{
-  display: block;
+.activeRight {
+  visibility: visible;
+  position: absolute;
+  top: 0;
+  right: 4rem;
   height: 380px;
   border-radius: 10px;
   transform: scale(1.08);
