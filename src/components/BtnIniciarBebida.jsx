@@ -4,7 +4,7 @@ import './DetailsPage.css';
 // import 'App.css'
 
 function BtnIniciarBebida({ id }, { history }) {
-  const startedRecipes = JSON.parse(localStorage.getItem('startedRecipes'));
+  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const receitaIniciada = [];
   // const finishedRecipes = JSON.parse(localStorage.getItem('finishedRecipes'));
   // const receitaFinalizada = [];
@@ -12,7 +12,8 @@ function BtnIniciarBebida({ id }, { history }) {
   const startRecipe = () => {
     receitaIniciada.push(id);
     localStorage
-      .setItem('startedRecipes', JSON.stringify([...startedRecipes, ...receitaIniciada]));
+      .setItem('inProgressRecipes',
+        JSON.stringify([...inProgressRecipes, ...receitaIniciada]));
     history.push(`bebidas/${id}/in-progress`);
   };
 
@@ -25,7 +26,7 @@ function BtnIniciarBebida({ id }, { history }) {
 
   let btnText = 'Iniciar receita';
   const verifyLocalStorage = () => {
-    if (startedRecipes.includes(id)) {
+    if (inProgressRecipes.includes(id)) {
       btnText = 'Continuar receita';
     }
   };
