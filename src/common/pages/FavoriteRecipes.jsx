@@ -22,20 +22,22 @@ export default function FavoriteRecipes() {
   return (
     <div>
       <Header pageName="Receitas Favoritas" />
-      <CategoryButton
-        foodOrDrink={ handleClickType }
-        setState={ setFavoriteRecipes }
-        clickAll={ handleClickAll }
-        path={ FAVORITE_RECIPES }
-      />
-      { favoriteRecipes.map((recipe, i) => (
-        <FavoriteRecipeCard
-          recipe={ recipe }
-          index={ i }
-          handleLikeClick={ handleLikeClick }
-          key={ i }
+      <div className="fav-recipes">
+        <CategoryButton
+          foodOrDrink={ handleClickType }
+          setState={ setFavoriteRecipes }
+          clickAll={ handleClickAll }
+          path={ FAVORITE_RECIPES }
         />
-      )) }
+        { favoriteRecipes.map((recipe, i) => (
+          <FavoriteRecipeCard
+            recipe={ recipe }
+            index={ i }
+            handleLikeClick={ handleLikeClick }
+            key={ i }
+          />
+        )) }
+      </div>
     </div>
   );
 }
