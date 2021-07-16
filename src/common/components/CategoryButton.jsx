@@ -25,7 +25,7 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
 
     return (
       newCategories.map((category, index) => (
-        <div key={ index } className="categoriesBtns">
+        <div key={ index }>
           <button
             type="button"
             data-testid={ path
@@ -48,6 +48,7 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
         type="button"
         data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
         onClick={ clickAll }
+        className="all-button"
       >
         All
       </button>

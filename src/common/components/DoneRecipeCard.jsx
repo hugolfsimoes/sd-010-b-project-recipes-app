@@ -38,7 +38,7 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
     <div className="done-card">
       <Link to={ `/${type}s/${id}` }>
         <img
-          className="doneImg"
+          className="done-img"
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
