@@ -32,9 +32,11 @@ export default function Header({ pageName }) { // Desestruturação de props
           data-testid="profile-top-btn"
           src={ profileIcon }
           alt="perfil"
+          className="profile"
         />
         <h1
           data-testid="page-title"
+          className="title"
         >
           { pageName }
         </h1>
@@ -46,6 +48,7 @@ export default function Header({ pageName }) { // Desestruturação de props
               data-testid="search-top-btn"
               src={ searchIcon }
               alt="search"
+              className="search"
             />
           </div>) : ('')}
       </header>

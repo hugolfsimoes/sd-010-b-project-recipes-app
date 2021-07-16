@@ -963,7 +963,6 @@ justify-items: center;
 /* HEADER COMPONENT ===========================================================================================================*/
 .header {
   display: flex;
-  justify-content: space-around;
   align-items: center;
   height: 60px;
   margin: 0 5px;
@@ -971,6 +970,21 @@ justify-items: center;
   background-color: var(--first-color-lighten);
   color: var(--title-color);
   box-shadow: 0 2px 10px rgba(35,0,77,.2);
+}
+
+.header .profile {
+  position: relative;
+  left: 68px;
+}
+
+.header .search {
+  position: relative;
+  right: 37px;
+}
+
+.header .title {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*  ====================================================================================================================================*/
@@ -1240,6 +1254,15 @@ justify-items: center;
     margin-left: 3rem;
   }
 
+    /* HEADER COMPONENT */
+  .header .profile {
+    left: 77px;
+  }
+
+  .header .search {
+    right: 77px;
+  }
+
   /* SEARCHBAR COMPONENT */
   .mainContentSearchBar {
     margin-right: 11.5%;
@@ -1317,6 +1340,16 @@ justify-items: center;
   .activeRight {
     right: 8.3rem;
   }
+
+    /* HEADER COMPONENT */
+  .header .profile {
+    left: 92px;
+  }
+
+  .header .search {
+    right: 92px;
+  }
+
 }
 
 /* ============================================================================== */
@@ -1524,6 +1557,15 @@ justify-items: center;
 
   .buttonsInProfile button {
     cursor: pointer;
+  }
+
+    /* HEADER COMPONENT */
+  .header .profile {
+    left: 180px;
+  }
+
+  .header .search {
+    right: 180px;
   }
 
   /* SEARCHBAR COMPONENT */
