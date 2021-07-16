@@ -30,12 +30,22 @@ export default function SearchBar() {
   // _____________function para fazer map com referencia da pesquisa__________
   function setMeals(response) {
     const { drinks, categoriesMeals, categoriesDrinks } = recipes;
+    if (response.meals === null) {
+      return global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
+    }
     setRecipes(addRecipes(
       response.meals, drinks, categoriesMeals, categoriesDrinks,
     ));
   }
   function setDrinks(response) {
     const { meals, categoriesMeals, categoriesDrinks } = recipes;
+    if (response.drinks === null) {
+      return global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
+    }
     setRecipes(addRecipes(
       meals, response.drinks, categoriesMeals, categoriesDrinks,
     ));
