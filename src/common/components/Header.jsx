@@ -13,7 +13,8 @@ export default function Header({ pageName }) { // Desestruturação de props
   const [showSearchBar, setBar] = useState(false); // state component to search
 
   const showSearch = () => {
-    if (pathname.includes('/explorar') || pathname.includes('/perfil')) {
+    if (pathname.includes('/explorar') || pathname.includes('/perfil')
+    || pathname.includes('/receitas')) {
       setShow(true);
     }
     if (pathname.includes('/explorar/comidas/area')) { setShow(false); }
