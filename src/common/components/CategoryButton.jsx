@@ -45,6 +45,7 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
         type="button"
         data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
         onClick={ clickAll }
+        className="all-button"
       >
         All
       </button>

@@ -534,37 +534,17 @@ justify-items: center;
 }
 
 .slide {
-  /* display: none; */
-  /* visibility: hidden; */
-  opacity: 0;
+  display: none;
+  transition: all 1.5s ease;
 }
 
-.activeLeft{
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* display: block; */
-  /* visibility: visible; */
-  opacity: 1;
+.active{
+  display: block;
   height: 380px;
   border-radius: 10px;
   transform: scale(1.08);
   transition: all 1.5s ease;
 }
-
-.activeRight{
-  position: absolute;
-  top: 0;
-  right: 0;
-  /* display: block; */
-  /* visibility: visible; */
-  opacity: 1;
-  height: 380px;
-  border-radius: 10px;
-  transform: scale(1.08);
-  transition: all 1.5s ease;
-}
-
 
 /*  ====================================================================================================================================*/
 
@@ -1169,12 +1149,6 @@ justify-items: center;
 }
 
 /*  ====================================================================================================================================*/
-
-/* XXXXX ===========================================================================================================*/
-
-
-/*  ====================================================================================================================================*/
-
 
 /* ===== MEDIA QUERIES ================================================================================*/
 @media screen and (min-width: 576px){
