@@ -70,7 +70,7 @@ LikeButton.propTypes = {
   recipe: PropTypes.objectOf(PropTypes.string).isRequired,
   favPage: PropTypes.bool,
   index: PropTypes.number,
-  id: PropTypes.string,
+  id: PropTypes.number,
   clickFavBtn: PropTypes.func,
 };
 

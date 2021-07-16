@@ -41,7 +41,7 @@ export default function ShareButton({ id, type, index, path, className }) { // d
 }
 
 ShareButton.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   type: PropTypes.string,
   path: PropTypes.bool,
   index: PropTypes.number,
