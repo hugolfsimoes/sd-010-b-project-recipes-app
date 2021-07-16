@@ -700,7 +700,6 @@ justify-items: center;
 
 .bottomInProgress a button:hover {
   background-color: var(--first-color-dark);
-  /* color: #FFFF; */
 }
 
 /*  ====================================================================================================================================*/
@@ -1228,8 +1227,16 @@ justify-items: center;
   }
 
   /* RECIPE IN PROGRESS */
-  .bottomInProgress a button {
-    margin-left: 4rem;
+  .bottomInProgress a button:disabled {
+    width: 250px;
+    padding: 10px;
+    margin-left: 3rem;
+  }
+
+  .bottomInProgress a button:enabled {
+    width: 250px;
+    padding: 10px;
+    margin-left: 3rem;
   }
 
   /* SEARCHBAR COMPONENT */
@@ -1275,13 +1282,6 @@ justify-items: center;
   }
 
   .bottomDetails a button {
-    width: 250px;
-    padding: 10px;
-    margin-left: 3rem;
-  }
-
-  /* RECIPE IN PROGRESS */
-  .bottomInProgress a button {
     width: 250px;
     padding: 10px;
     margin-left: 3rem;
