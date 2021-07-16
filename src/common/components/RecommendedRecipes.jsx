@@ -59,8 +59,6 @@ export default function RecommendedRecipes() {
         {newRecipes.map((recipe, index) => (
           <div
             key={ index }
-            // className={ (index === firstImg) || (index === secondImg) ? (
-            //   'slide active') : ('slide') }
             className={ showRecommend(index) }
             data-testid={ `${index}-recomendation-card` }
           >
