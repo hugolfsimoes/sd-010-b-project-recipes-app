@@ -839,7 +839,7 @@ justify-items: center;
 /* FAVORITE RECIPES =================================== */
 .fav-recipes {
   display: grid;
-  
+  justify-items: center;
 }
 
 /* RECOMMENDED RECIPES COMPONENENT ===========================================================================================================*/
