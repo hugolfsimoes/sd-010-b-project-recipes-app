@@ -1,13 +1,14 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendedDrinks from './RecommendedDrinks';
 import './DetailsPage.css';
+import BtnIniciarComida from './BtnIniciarComida';
 
-function DetailsFoodPage({ match: { params } }) {
+function DetailsFoodPage({ match: { params }, history }) {
   // const [recipesFood, setRecipesFood] = useState([]);
   const { recipes, setRecipes } = useContext(ContextRecipes);
   const { id } = params;
@@ -108,19 +109,15 @@ function DetailsFoodPage({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <Link to={ `/comidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="button"
-        >
-          Iniciar Receita
-        </button>
-      </Link>
+      <BtnIniciarComida
+        history={ history }
+        id={ id }
+      />
     </section>);
 }
 
 DetailsFoodPage.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,

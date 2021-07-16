@@ -1,12 +1,13 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 // import shareIcon from '../images/shareIcon.svg';
 // import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import AllTagsFromDetailsDrinks from './AllTagsFromDetailsDrinks';
+import BtnIniciarBebida from './BtnIniciarBebida';
 
-function DetailsDrinkPage({ match: { params } }) {
+function DetailsDrinkPage({ match: { params }, history }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
   const { id } = params;
   useEffect(() => {
@@ -80,20 +81,16 @@ function DetailsDrinkPage({ match: { params } }) {
       :
       {' '}
       <AllTagsFromDetailsDrinks drinks={ drinks } />
-      <Link to={ `/bebidas/${id}/in-progress` }>
-        <button
-          type="button"
-          data-testid="start-recipe-btn"
-          className="button"
-        >
-          Iniciar Receita
-        </button>
-      </Link>
+      <BtnIniciarBebida
+        history={ history }
+        id={ id }
+      />
     </div>
   );
 }
 
 DetailsDrinkPage.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
