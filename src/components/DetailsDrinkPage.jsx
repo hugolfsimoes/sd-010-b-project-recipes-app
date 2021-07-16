@@ -1,10 +1,11 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 // import shareIcon from '../images/shareIcon.svg';
 // import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import AllTagsFromDetailsDrinks from './AllTagsFromDetailsDrinks';
+import BtnStartDrinkRecipe from './BtnStartDrinkRecipe';
 
 function DetailsDrinkPage({ match: { params } }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
@@ -80,7 +81,8 @@ function DetailsDrinkPage({ match: { params } }) {
       :
       {' '}
       <AllTagsFromDetailsDrinks drinks={ drinks } />
-      <Link to={ `/bebidas/${id}/in-progress` }>
+      <BtnStartDrinkRecipe id={ id } />
+      {/* <Link to={ `/bebidas/${id}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
@@ -88,7 +90,7 @@ function DetailsDrinkPage({ match: { params } }) {
         >
           Iniciar Receita
         </button>
-      </Link>
+      </Link> */}
     </div>
   );
 }

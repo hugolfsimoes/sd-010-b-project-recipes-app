@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import RecommendedDrinks from './RecommendedDrinks';
 import './DetailsPage.css';
+import BtnStartFoodRecipe from './BtnStartFoodRecipe';
 
 function DetailsFoodPage({ match: { params } }) {
   // const [recipesFood, setRecipesFood] = useState([]);
@@ -20,7 +21,6 @@ function DetailsFoodPage({ match: { params } }) {
     getRecipes();
   }, [id, setRecipes]);
 
-  console.log(recipes, id);
   if (recipes[0] === undefined) return <h1>Loading...</h1>;
   const listIngredients = Object.keys(recipes[0])
     .filter((recipe) => recipe.includes('Ingredient'));
@@ -53,13 +53,13 @@ function DetailsFoodPage({ match: { params } }) {
   const INDEX_NUMBER = 3;
   const urlVideo = recipes[0].strYoutube.split('/');
   urlVideo.splice(urlVideo.indexOf(INDEX_NUMBER), 1);
-  console.log(recipes[0]);
+  // console.log(recipes[0]);
   // urlVideo.forEach((u) => u.inclued)
   const urlVideo2 = recipes[0].strYoutube.split('/');
   const partUrl = urlVideo2[3].split('?');
   const partUrl2 = partUrl[1].split('=');
   partUrl2.shift();
-  console.log(partUrl2);
+  // console.log(partUrl2);
   let fullUrl = '';
 
   partUrl[0] = 'embed';
@@ -108,7 +108,8 @@ function DetailsFoodPage({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <Link to={ `/comidas/${id}/in-progress` }>
+      <BtnStartFoodRecipe id={ id } />
+      {/* <Link to={ `/comidas/${id}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
@@ -116,7 +117,7 @@ function DetailsFoodPage({ match: { params } }) {
         >
           Iniciar Receita
         </button>
-      </Link>
+      </Link> */}
     </section>);
 }
 
