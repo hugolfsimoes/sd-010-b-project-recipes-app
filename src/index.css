@@ -1215,6 +1215,14 @@ justify-items: center;
     right: 9.5rem;
   }
 
+  .activeLeft {
+    left: 12.3rem;
+  }
+  
+  .activeRight {
+    right: 12.3rem;
+  }
+
   .bottomDetails a button {
     margin-left: 4rem;
   }
@@ -1284,6 +1292,29 @@ justify-items: center;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  /* RECOMMENDED RECIPES COMPONENT */
+  .recommendedImg {
+    width: 250px;
+  }
+
+  .left-arrow {
+    top: 27%;
+    left: 3.5rem;
+  }
+  
+  .right-arrow {
+    top: 27%;
+    right: 3.5rem;
+  }
+
+  .activeLeft {
+    left: 8.3rem;
+  }
+  
+  .activeRight {
+    right: 8.3rem;
   }
 }
 
@@ -1402,58 +1433,39 @@ justify-items: center;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 
   .slider {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 850px;
+    margin-top: 2rem;
   }
 
   .recommendedImg {
     width: 300px;
     margin: 30px;
     border-radius: 40px;
-    filter: drop-shadow(5px 10px 15px rgba(8,9,13,.4));
   }
 
   .recommendedTitle {
     margin-top: -10px;
-    font-family: var(--body-font);
-    font-size: var(--h3-font-size);
-    color: var(--title-color);
   }
 
   .left-arrow {
-    position: absolute;
-    top: 40%;
+    top: 35%;
     left: 3px;
-    font-size: 3rem;
-    color: #000;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1;
   }
 
   .right-arrow {
-    position: absolute;
-    top: 40%;
+    top: 35%;
     right: 3px;
-    font-size: 3rem;
-    color: #000;
-    cursor: pointer;
-    user-select: none;
-    z-index: 1;
   }
 
-  .imgTitle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .activeLeft {
+    left: 3rem;
+  }
+  
+  .activeRight {
+    right: 3rem;
   }
 
   /* RECIPE IN PROGRESS */
