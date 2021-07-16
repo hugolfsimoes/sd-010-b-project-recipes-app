@@ -10,7 +10,6 @@ import CarroselBebidas from '../Components/CarroselBebidas';
 import BeverageAPI from '../services/BeverageRecipesAPI';
 import MealRecipesAPI from '../services/MealRecipesAPI';
 
-import '../styles/Buttons.css';
 import Loading from '../Components/Loading';
 
 const FoodDetails = (props) => {

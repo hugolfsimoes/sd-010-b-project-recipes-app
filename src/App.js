@@ -17,16 +17,8 @@ import FavoriteRecipes from './Pages/FavoriteRecipes';
 import RecipesMade from './Pages/RecipesMade';
 import Progress from './Pages/Progress';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/cards.css';
-import './styles/details.css';
+
 import './App.css';
-import './styles/login.css';
-import './styles/foods.css';
-import './styles/Header.css';
-import './styles/profile.css';
-import './styles/font.css';
-import './styles/FavoriteRecipes.css';
-import './styles/notFound.css';
 
 import Loading from './Components/Loading';
 

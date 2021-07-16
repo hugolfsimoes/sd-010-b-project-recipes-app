@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { getDrinks } from '../redux/actions';
 import API from '../services/BeverageRecipesAPI';
-import '../styles/Explore.css';
 
 function IngredientsDrinksTab(props) {
   const { getSelectedIng, ingredients } = props;

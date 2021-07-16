@@ -6,7 +6,6 @@ import HeadBar from '../Components/HeadBar';
 import Footer from '../Components/Footer';
 import { getRandom } from '../redux/actions';
 import MealRecipes from '../services/MealRecipesAPI';
-import '../styles/Explore.css';
 
 function ExploreFoods(props) {
   const { surpriseFood, shouldRedirect, food } = props;

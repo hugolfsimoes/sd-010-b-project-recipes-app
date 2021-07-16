@@ -6,7 +6,6 @@ import Footer from '../Components/Footer';
 import IngredientsDrinksTab from '../Components/IngredientsDrinksTab';
 import BeverageRecipesAPI from '../services/BeverageRecipesAPI';
 import { getIngredient } from '../redux/actions';
-import '../styles/Explore.css';
 import Loading from '../Components/Loading';
 
 function ExpoDrinksIng(props) {

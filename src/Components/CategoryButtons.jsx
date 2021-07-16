@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { getCategory, actionSortCategoriesFood,
   actionSortCategoriesDrink } from '../redux/actions';
 
-import '../styles/Buttons.css';
-
 function CategoryButtons(props) {
   const { categories, listCategory, type,
     setMainFoods, setMainDrinks, foodCategories,

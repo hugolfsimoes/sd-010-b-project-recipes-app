@@ -6,7 +6,6 @@ import Footer from '../Components/Footer';
 import IngredientsFoodsTab from '../Components/IngredientsFoodsTab';
 import { getIngredient } from '../redux/actions';
 import MealRecipesAPI from '../services/MealRecipesAPI';
-import '../styles/Explore.css';
 import Loading from '../Components/Loading';
 
 function ExpoFoodsIng(props) {
