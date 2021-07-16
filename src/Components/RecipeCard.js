@@ -75,10 +75,12 @@ class RecipeCard extends React.Component {
     });
   }
 
-  renderRecipes(recipes) {
+  renderRecipes(recipes, searchBar) {
     const { recipeType, history } = this.props;
     const numeroMaximoDeReceitas = 12;
-    console.log(recipes);
+    if (searchBar && recipes.length === 1) {
+      history.push(`/${recipeType}/${recipes[0].idMeal || recipes[0].idDrink}`);
+    }
     return recipes
       .map((recipe, index) => {
         if (index < numeroMaximoDeReceitas) {
@@ -122,13 +124,12 @@ class RecipeCard extends React.Component {
     } if (searchBarIngredient) {
       isSearchBar = searchBarIngredient;
     }
-    console.log(isSearchBar);
     const receitas = recipes.length && !isFetching
       ? this.renderRecipes(selectedCategory === 'All'
         ? recipes : recipesByIngredients)
       : <h1>Loading...</h1>;
 
-    const evaluator = isSearchBar ? this.renderRecipes(isSearchBar) : receitas;
+    const evaluator = isSearchBar ? this.renderRecipes(isSearchBar, true) : receitas;
 
     return (
       <main>
