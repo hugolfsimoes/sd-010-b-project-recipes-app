@@ -1,0 +1,31 @@
+.container-buttons-default {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  padding-top: 20vw;
+  width: 100vw;
+}
+
+.button-default {
+  background-color: transparent;
+  border: 1px solid #ab444b;
+  color: black;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 30px 100px;
+}
+
+/* stylelint-disable */
+.button-default:focus {
+  background-color: #ab444b !important;
+  border: #ab444b !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.button-default:hover {
+  background-color: #ab444b;
+  border-color: #ab444b !important;
+}
+/* stylelint-enable */
