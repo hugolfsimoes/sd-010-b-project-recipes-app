@@ -10,10 +10,25 @@
 }
 
 .category-buttons {
-  background-color: #614343;
-  border: #614343;
+  background-color: transparent;
+  border: 1px solid #ab444b;
+  border-radius: 8px;
   height: 30px;
   margin-top: 10px;
   width: 100px;
 }
 
+.category-buttons:focus {
+  background-color: #ab444b;
+  outline: none;
+}
+
+.button-more {
+  background-color: transparent;
+  border: 1px solid #ab444b;
+  border-radius: 8px;
+  float: right;
+  font-weight: 700;
+  margin: 0 30px 80px 0;
+  padding: 8px;
+}

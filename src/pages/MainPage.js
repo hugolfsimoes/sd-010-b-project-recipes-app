@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useRouteMatch, Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import RecipesContext from '../context/RecipesContext';
@@ -19,7 +19,9 @@ const FIVE = 5;
 const LOADER_TIMER = 3000;
 const CATEGORY_LOADER = 2000;
 
+/*eslint-disable */ 
 export default function MainPage() {
+/* eslint-enable */
   const { path } = useRouteMatch();
 
   const [searchId, firstKey, domain] = path.includes('comidas')
@@ -107,22 +109,24 @@ export default function MainPage() {
           <Header />
           <section className="container-buttons">
             {categoriesList.map((category) => (
-              <Button
+              <button
+                type="button"
                 className="category-buttons"
                 data-testid={ `${category.strCategory}-category-filter` }
                 key={ category.strCategory }
                 onClick={ () => handleCategoryFilter(category.strCategory) }
               >
                 {category.strCategory.replace(/\W/g, ' ')}
-              </Button>))}
-            <Button
+              </button>))}
+            <button
+              type="button"
               className="category-buttons"
               data-testid="All-category-filter"
               onClick={ handleAllClick }
             >
               All
 
-            </Button>
+            </button>
           </section>
 
           {isLoadingCat ? (<OtherLoader />)
@@ -134,8 +138,16 @@ export default function MainPage() {
               >
                 <Card mealOrDrink={ item } index={ i } testId="recipe" />
               </Link>)))}
+          {!isLoadingCat ? (
+            <button
+              className="button-more"
+              type="button"
+              onClick={ handleMoreCards }
+            >
+              More Recipes
 
-          <button type="button" onClick={ handleMoreCards }>More Recipes</button>
+            </button>) : null}
+
           <Footer />
         </section>
       )
