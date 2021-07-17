@@ -5,7 +5,7 @@ import { // useParams,
 } from 'react-router-dom';
 
 import { Navbar, Container } from 'react-bootstrap';
-import profileIcon from '../images/profileIcon.svg';
+import { ImUser } from 'react-icons/im';
 import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import '../styles/header.css';
@@ -42,11 +42,7 @@ export default function Header() {
           <Navbar className="container-header">
             <Container>
               <Link to="/perfil">
-                <img
-                  data-testid="profile-top-btn"
-                  src={ profileIcon }
-                  alt="profile-icon"
-                />
+                <ImUser size={ 40 } color="#ec9953" />
               </Link>
               <Navbar.Brand href="/">
                 <h1 class-name="title-header" data-testid="page-title">{ getTitle() }</h1>
@@ -78,9 +74,11 @@ export default function Header() {
         <Navbar className="container-header">
           <Container>
             <Link to="/perfil">
-              <img data-testid="profile-top-btn" src={ profileIcon } alt="" />
+              <ImUser size={ 40 } color="#ec9953" />
             </Link>
-            <h1 className="search-icon" data-testid="page-title">{ getTitle() }</h1>
+            <Navbar.Brand>
+              <h1 className="title-header" data-testid="page-title">{ getTitle() }</h1>
+            </Navbar.Brand>
           </Container>
         </Navbar>
       );

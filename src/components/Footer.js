@@ -1,37 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { GiKnifeFork } from 'react-icons/gi';
+import { BiDrink } from 'react-icons/bi';
+import { MdExplore } from 'react-icons/md';
 
-import DrinkIcon from '../images/drinkIcon.svg';
-import ExploreIcon from '../images/exploreIcon.svg';
-import MealIcon from '../images/mealIcon.svg';
 import '../styles/footer.css';
 
 function Footer() {
   return (
     <footer className="footer-container" data-testid="footer">
       <Link to="/bebidas">
-        <img
-          className="footer-image"
-          data-testid="drinks-bottom-btn"
-          src={ DrinkIcon }
-          alt="drinks"
-        />
+        <BiDrink size={ 40 } color="#ec9953" />
       </Link>
       <Link to="/explorar">
-        <img
-          className="footer-image"
-          data-testid="explore-bottom-btn"
-          src={ ExploreIcon }
-          alt="explorar"
-        />
+        <MdExplore size={ 40 } color="#ec9953" />
       </Link>
       <Link to="/comidas">
-        <img
-          className="footer-image"
-          data-testid="food-bottom-btn"
-          src={ MealIcon }
-          alt="comidas"
-        />
+        <GiKnifeFork size={ 40 } color="#ec9953" />
       </Link>
     </footer>
   );
