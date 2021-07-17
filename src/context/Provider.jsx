@@ -100,7 +100,7 @@ function Provider({ children }) {
     handleFood,
     foodsAPI,
     drinksAPI,
-    idFood,
+    // idFood,
     idDrinks,
     setFoodEndPoint,
     setDrinkEndpoint,
