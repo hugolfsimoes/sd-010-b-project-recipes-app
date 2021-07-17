@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 // import RenderButtons from './RenderButtons';
 
@@ -8,6 +8,7 @@ const foodDrinkButtons = [{ strCategory: 'Food' }, { strCategory: 'Drink' }];
 
 export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   clickAll, path }) { // Desestruturação de props
+  const [active, setActive] = useState(false);
   const { recipes: { foods, categoriesMeals,
     categoriesDrinks, categoriesLimit } } = useContext(store);
 
@@ -40,17 +41,43 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   };
 
   return (
-    <div className="categoriesBtns">
-      <button
-        type="button"
-        data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
-        onClick={ clickAll }
-        className="all-button"
-      >
-        All
-      </button>
-      {renderButtons()}
-    </div>
+  // <div className="categoriesBtns">
+  //   <button
+  //     type="button"
+  //     data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
+  //     onClick={ clickAll }
+  //     // className="all-button"
+  //   >
+  //     All
+  //   </button>
+  //   {renderButtons()}
+  // </div>
+
+    <section className="mainContent">
+      <div className={ (active) ? 'icon iconActive' : 'icon' }>
+        <button
+          type="button"
+          onClick={ () => setActive(!active) }
+          className="hamburguer"
+        >
+          <div />
+        </button>
+      </div>
+      <div className={ (!active) && 'menuClose' }>
+        <div className="containerBtns">
+          <div className={ (active) ? 'categoriesBtns' : 'titleClose' }>
+            <button
+              type="button"
+              data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
+              onClick={ clickAll }
+            >
+              All
+            </button>
+            {renderButtons()}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
