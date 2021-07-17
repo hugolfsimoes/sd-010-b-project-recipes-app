@@ -25,7 +25,7 @@
 }
 
 .button-search {
-  background-color: #a9754b;
+  background-color: #f48234;
   border: none;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -33,6 +33,10 @@
   padding: 0;
   text-align: center;
   width: 100px;
+}
+
+.button-search:focus {
+  border: none;
 }
 
 .radio-inputs {
