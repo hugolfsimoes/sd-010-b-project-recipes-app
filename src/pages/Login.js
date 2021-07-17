@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import RecipesContext from '../context/RecipesContext';
 import { saveUserEmail } from '../storage/localStorage';
-import Logo from '../images/man-chef.svg';
+import Logo from '../images/logoAppReceitas.png';
 import '../styles/login.css';
 
 const REGEX_EMAIL = /\S+@\S+\.\S+/;
@@ -43,6 +43,7 @@ export default function Login() {
             name="email"
             type="email"
             data-testid="email-input"
+            autoComplete="none"
             onChange={ handleInputChange }
           />
           <Form.Text className="text-label-down">

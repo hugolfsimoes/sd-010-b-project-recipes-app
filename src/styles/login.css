@@ -1,10 +1,10 @@
 .container-login {
-  background-color: #ec9953;
+  background-color: #ab444b;
   display: flex;
   flex-direction: column;
   font-weight: 700;
   height: 100vh;
-  padding-top: 20vw;
+  padding-top: 10vw;
   width: 100vw;
 }
 
@@ -25,44 +25,62 @@
 }
 
 .button-submit {
-  background-color: #614343;
-  border: 1px solid #614343;
+  background-color: transparent;
+  border: 1px solid #ec9953;
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 1px;
+  height: 35px;
+  letter-spacing: 1.3px;
   margin: 20px auto;
   width: 100px;
 }
 
 .button-submit:disabled {
   background-color: transparent;
-  border: 1px solid #614343;
-  box-shadow: 0 5px 25px -4px #614343;
-  color: #614343;
-}
-
-.button-submit:hover {
-  background-color: #614343;
-  border: 1px solid #614343;
-  font-size: 18px;
+  border: 1px solid #ec9953;
+  box-shadow: 0 5px 25px -4px #ec9953;
+  color: #ec9953;
 }
 
 .inputs {
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #ab444b;
-  border-right: 2px solid #ab444b;
+  border-bottom: 2px solid #ec9953;
+  border-right: 2px solid #ec9953;
+  color: white;
+  font-size: 1rem;
 }
 
 .labels {
+  color: white;
+  font-size: 1rem;
   margin: 0;
 }
 
 .text-label-down {
-  color: #fbfaf2;
+  color: #ec9953;
 }
 
 .inputs:focus {
-  border-bottom: 2px solid #8257e6;
+  background-color: transparent;
+  border-bottom: 3px solid #ec9953;
+  border-right: 3px solid #ec9953;
+  box-shadow: none;
+  color: white;
   outline: none;
+}
+
+
+@media ( min-width : 600px ) {
+
+  .button-submit:hover {
+    background-color: #614343;
+    border: 1px solid #614343;
+    cursor: not-allowed;
+    font-size: 18px;
+  }
+
+  .container-login {
+    background-color: aqua;
+  }
 }
