@@ -65,6 +65,5 @@ function ExploreArea() {
     </>
   );
 }
-// concerta caquinha no github
 
 export default ExploreArea;
