@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clipboard from 'clipboard-copy';
 import { Link } from 'react-router-dom';
-import Header from '../Components/Header';
+import profileIcon from '../images/profileIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
@@ -30,7 +30,16 @@ function FavoriteRecipes() {
 
   return (
     <div className="favorite-recipes-main-container">
-      <Header title="Receitas Favoritas" />
+      <header className="header-container">
+        <div>
+          <Link to="/perfil">
+            <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
+          </Link>
+        </div>
+        <div>
+          <h1 data-testid="page-title">Receitas Favoritas</h1>
+        </div>
+      </header>
       <section className="button-category-favorite-recipes-container">
         <button
           type="button"

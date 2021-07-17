@@ -13,7 +13,7 @@ export default function DetailsProgress(props) {
   const savedRecipe = JSON.parse(localStorage.getItem('inProgressRecipes'));
   const { id, fetchAPI, type, setDisabled } = props;
   const recipe = type === 'Meal' ? 'meals' : 'cocktails';
-  console.log(savedRecipe);
+  // console.log(savedRecipe);
   const obj = savedRecipe ? savedRecipe[recipe][id].reduce((acc, curr) => ({
     ...acc,
     [curr]: ['striped', true],
@@ -27,7 +27,7 @@ export default function DetailsProgress(props) {
   const [isFavorite, setIsFavorite] = React.useState(isFavoriteIcon(id));
 
   function copyLink() {
-    console.log(clipboard.info);
+    // console.log(clipboard.info);
     setIsCopy(true);
   }
 
