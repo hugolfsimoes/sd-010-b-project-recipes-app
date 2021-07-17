@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // import RenderButtons from './RenderButtons';
 
@@ -8,7 +8,9 @@ const foodDrinkButtons = [{ strCategory: 'Food' }, { strCategory: 'Drink' }];
 
 export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   clickAll, path }) { // Desestruturação de props
-  const [active, setActive] = useState(false);
+  const [minWidth, setMinWidth] = useState(false);
+  const [iconActive, setActive] = useState(true);
+
   const { recipes: { foods, categoriesMeals,
     categoriesDrinks, categoriesLimit } } = useContext(store);
 
@@ -40,41 +42,48 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
     );
   };
 
-  return (
-  // <div className="categoriesBtns">
-  //   <button
-  //     type="button"
-  //     data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
-  //     onClick={ clickAll }
-  //     // className="all-button"
-  //   >
-  //     All
-  //   </button>
-  //   {renderButtons()}
-  // </div>
+  const checkWidthScreen = () => {
+    const MIN_WIDTH = 576;
+    const screenWidth = window.screen.width;
 
-    <section className="mainContent">
-      <div className={ (active) ? 'icon iconActive' : 'icon' }>
+    if (screenWidth >= MIN_WIDTH) {
+      setMinWidth(true);
+    } else {
+      setMinWidth(false);
+    }
+  };
+
+  // ---------------------------------------------------------------------------------------------
+  // CICLOS DE VIDA
+  useEffect(checkWidthScreen, []);
+  window.addEventListener('resize', () => checkWidthScreen());
+
+  // ---------------------------------------------------------------------------------------------
+
+  return (
+    <section>
+      <div className={ (iconActive) ? 'icon iconActive' : 'icon' }>
         <button
           type="button"
-          onClick={ () => setActive(!active) }
+          onClick={ () => setActive(!iconActive) }
           className="hamburguer"
         >
           <div />
         </button>
       </div>
-      <div className={ (!active) && 'menuClose' }>
-        <div className="containerBtns">
-          <div className={ (active) ? 'categoriesBtns' : 'titleClose' }>
-            <button
-              type="button"
-              data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
-              onClick={ clickAll }
-            >
-              All
-            </button>
-            {renderButtons()}
-          </div>
+      <div className={ (iconActive || minWidth) ? 'containerBtns' : 'menuClose' }>
+        <div
+          className={ (iconActive || minWidth) ? (
+            'categoriesBtns') : ('menuClose') }
+        >
+          <button
+            type="button"
+            data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
+            onClick={ clickAll }
+          >
+            All
+          </button>
+          {renderButtons()}
         </div>
       </div>
     </section>

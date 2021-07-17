@@ -258,16 +258,17 @@ button {
   padding: 8px;
 }
 
+.categoriesBtns button:first-child {
+  border-radius: 1rem 1rem 0 0;
+}
+
 .categoriesBtns button:last-child {
   border-bottom: none;
   border-radius: 0 0 1rem 1rem;
 }
 
-.categoriesBtns button:first-child {
-  border-radius: 1rem 1rem 0 0;
-}
-
 .icon {
+  opacity: 1;
   position: absolute;
   top: 4.7rem;
   right: 35px;
@@ -339,11 +340,7 @@ button {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.menuClose {
-  visibility: hidden;
-}
-
-.titleClose button{
+.menuClose button {
   visibility: hidden;
 }
 
@@ -1298,6 +1295,15 @@ button {
   }
 
   /* RECIPES PAGE */
+  .icon {
+    /* visibility: hidden; */
+    opacity: 0;
+  }
+
+  .containerBtns {
+    box-shadow: none;
+  }
+
   .categoriesBtns {
     display: grid;
     grid-template-columns: repeat(2, max-content);
@@ -1321,6 +1327,15 @@ button {
     box-shadow: 1px 2px 8px var(--second-color);
     padding: 6px;
   }
+  
+  .categoriesBtns button:first-child {
+    border-radius: 1rem;
+  }
+
+  .categoriesBtns button:last-child {
+    border-radius: 1rem;
+  }
+  
 
   /* RECIPE DETAIL */
   /* RECOMMENDED RECIPES COMPONENT */
@@ -1506,6 +1521,7 @@ button {
   /* RECIPES PAGE */
   .categoriesBtns {
     display: flex;
+    flex-direction: row;
   }
   
   .categoriesBtns button {
