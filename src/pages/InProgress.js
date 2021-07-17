@@ -48,6 +48,7 @@ export default function InProgress() {
   }
 
   const listFormated = handleIngredientsData();
+
   useEffect(() => {
     if (validateCheckBox === listFormated.length) {
       setDisabled(false);

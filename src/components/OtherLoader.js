@@ -1,11 +1,12 @@
 import React from 'react';
+import plateGif from '../images/plate.gif';
 import panGif from '../images/pan.gif';
-import '../styles/loading.css';
+import '../styles/otherLoader.css';
 
-function OtherLoader() {
+function OtherLoader({ category }) {
   return (
     <div className="loader">
-      <img src={ panGif } alt="Loader" />
+      <img src={ category === 'Dessert' ? plateGif : panGif } alt="Loader" />
     </div>
   );
 }

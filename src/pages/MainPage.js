@@ -39,6 +39,7 @@ export default function MainPage() {
   const [categoriesList, setCategoriesList] = useState([]);
   const [renderer, setRenderer] = useState([]);
   const [toggle, setToggle] = useState({ status: false, category: '' });
+  const [categorySelect, setCatSelect] = useState('All');
 
   useEffect(() => {
     if (ingredientsResults.length === 0) {
@@ -77,6 +78,7 @@ export default function MainPage() {
 
   async function handleCategoryFilter(category) {
     setLoaderCat(true);
+    setCatSelect(category);
     if (toggle.category === category) {
       setToggle({ status: false, category: '' });
       setRenderer(dataResult.filter((_e, index) => index < limit));
@@ -125,7 +127,7 @@ export default function MainPage() {
             </Button>
           </section>
 
-          {isLoadingCat ? (<OtherLoader />)
+          {isLoadingCat ? (<OtherLoader category={ categorySelect } />)
             : (renderer.map((item, i) => (
               <Link
                 className="link-card"

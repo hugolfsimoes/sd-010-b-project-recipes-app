@@ -18,7 +18,6 @@ export default function Profile() {
 
   const clickButton = ({ target: { name } }) => {
     const domain = name === 'login' ? '' : name;
-    console.log(`/${domain}`);
     history.push(`/${domain}`);
   };
 
