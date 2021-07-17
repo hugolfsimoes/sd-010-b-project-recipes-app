@@ -10,15 +10,17 @@
   border: none;
 }
 
-.search-icon {
-  width: 8vw;
-}
-
 .title-header {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .container-header-search {
   background-color: #ab444b;
   width: 100vw;
 }
+
+/* stylelint-disable */
+.container {
+  justify-content: space-evenly ! important;
+}
+/* stylelint-enable */
