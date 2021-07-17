@@ -30,14 +30,31 @@ export default function FavoritesRecipes() {
   return (
     <>
       <Header />
-      <Button onClick={ handleAllBtn } data-testid="filter-by-all-btn">All</Button>
-      <Button onClick={ handleFoodBtn } data-testid="filter-by-food-btn">Food</Button>
-      <Button
-        onClick={ handleDrinksBtn }
-        data-testid="filter-by-drink-btn"
-      >
-        Drinks
-      </Button>
+      <section className="container-buttons-default">
+        <Button
+          className="button-default"
+          onClick={ handleAllBtn }
+          data-testid="filter-by-all-btn"
+        >
+          All
+
+        </Button>
+        <Button
+          className="button-default"
+          onClick={ handleFoodBtn }
+          data-testid="filter-by-food-btn"
+        >
+          Food
+
+        </Button>
+        <Button
+          className="button-default"
+          onClick={ handleDrinksBtn }
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </Button>
+      </section>
       { renderer && renderer.map((item, i) => (
         <CardFavorit key={ i } mealOrDrink={ item } index={ i } />
       ))}

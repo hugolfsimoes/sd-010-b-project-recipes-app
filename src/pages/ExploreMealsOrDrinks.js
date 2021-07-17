@@ -43,24 +43,26 @@ function ExploreFoods() {
   return (
     <>
       <Header />
-      <Link to={ ingridientPath }>
-        <Button variant="primary" data-testid="explore-by-ingredient">
-          Por Ingredientes
-        </Button>
-      </Link>
-      {verifyPath && (
-        <Link to="/explorar/comidas/area">
-          <Button variant="primary" data-testid="explore-by-area">
-            Por Local de Origem
+      <section className="container-buttons-default">
+        <Link to={ ingridientPath }>
+          <Button className="button-default" data-testid="explore-by-ingredient">
+            Por Ingredientes
           </Button>
-        </Link>)}
-      <Button
-        variant="primary"
-        data-testid="explore-surprise"
-        onClick={ handleSurpriseMe }
-      >
-        Me Surpreenda!
-      </Button>
+        </Link>
+        {verifyPath && (
+          <Link to="/explorar/comidas/area">
+            <Button className="button-default" data-testid="explore-by-area">
+              Por Local de Origem
+            </Button>
+          </Link>)}
+        <Button
+          className="button-default"
+          data-testid="explore-surprise"
+          onClick={ handleSurpriseMe }
+        >
+          Me Surpreenda!
+        </Button>
+      </section>
       <Footer />
     </>
   );

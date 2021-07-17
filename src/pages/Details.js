@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Carousel } from 'react-bootstrap';
 import { useParams, useRouteMatch, useHistory } from 'react-router-dom';
+// import { BsFillExclamationTriangleFill } from 'react-icons/bs';
+
 import Card from '../components/Card';
 import VideoPlayer from '../components/VideoPlayer';
 import { saveFavoriteRecipe } from '../storage/localStorage';
@@ -73,8 +75,9 @@ export default function Details() {
   return (
     (!singleContent[0]) ? (<Loading />)
       : (
-        <>
+        <section className="container-details">
           <img
+            className="image-details"
             data-testid="recipe-photo"
             src={ singleContent[0][imgSrc] }
             alt={ singleContent[0][title] }
@@ -83,28 +86,40 @@ export default function Details() {
           <div className="recipe-heading-container">
             <div className="info-heading">
               <h3 data-testid="recipe-title">{singleContent[0][title]}</h3>
-              <p data-testid="recipe-category">
+              <p
+                className="category-recipe"
+                data-testid="recipe-category"
+              >
                 {
                   firstKey === 'drinks'
                     ? singleContent[0].strAlcoholic
                     : singleContent[0].strCategory
                 }
+                {' '}
+                {/* <BsFillExclamationTriangleFill color="red" /> */}
               </p>
             </div>
-            <Button>
-              <img data-testid="share-btn" src={ shareIcon } alt="Favorit" />
-            </Button>
-            <Button
-              onClick={
-                () => handleFavorite(favorit, setFavorit, path, singleContent[0])
-              }
-            >
-              <img
-                data-testid="favorite-btn"
-                src={ favorit.imagem }
-                alt=""
-              />
-            </Button>
+            <section>
+              <button
+                type="button"
+                className="button-share-favorite"
+              >
+                <img data-testid="share-btn" src={ shareIcon } alt="Favorit" />
+              </button>
+              <button
+                type="button"
+                className="button-share-favorite"
+                onClick={
+                  () => handleFavorite(favorit, setFavorit, path, singleContent[0])
+                }
+              >
+                <img
+                  data-testid="favorite-btn"
+                  src={ favorit.imagem }
+                  alt=""
+                />
+              </button>
+            </section>
           </div>
           <div className="ingredients-container">
             <h4>
@@ -112,7 +127,10 @@ export default function Details() {
             </h4>
             {handleIngredientsData(ingredientsList).map((string, i) => (
               <div key={ i }>
-                <p data-testid={ `${i}-ingredient-name-and-measure` }>
+                <p
+                  className="amount-recipe"
+                  data-testid={ `${i}-ingredient-name-and-measure` }
+                >
                   { string }
                 </p>
               </div>
@@ -156,6 +174,6 @@ export default function Details() {
           >
             Iniciar Receita
           </Button>
-        </>)
+        </section>)
   );
 }

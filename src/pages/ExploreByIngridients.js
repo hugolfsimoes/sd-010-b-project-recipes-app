@@ -37,11 +37,15 @@ export default function ExploreByIngridients() {
           to={ homePath }
           key={ i }
         >
-          <section>
-            <p data-testid={ `${i}-card-name` }>
+          <section className="container-card">
+            <p
+              className="title-ingidients"
+              data-testid={ `${i}-card-name` }
+            >
               {item[secondKey]}
             </p>
             <img
+              className="image-card"
               width="150px"
               data-testid={ `${i}-card-img` }
               src={ `https://www.${domain}.com/images/ingredients/${item[secondKey]}-Small.png` }
