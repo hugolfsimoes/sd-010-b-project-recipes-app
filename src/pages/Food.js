@@ -41,9 +41,11 @@ const Food = ({ match }) => {
         </ul>
       </section>
       <h2 data-testid="video">Video</h2>
-      <p data-testid="instructions">{meal.strInstructions}</p>
-      <ShareButton url={ url } msgShare="Compartilhar" idTest="share-btn" />
-      <FavoriteIcon recipe={ meal } idTest="favorite-btn" />
+      <p data-testid="instructions" className="instructions">{meal.strInstructions}</p>
+      <div className="sharedFavoriteButton">
+        <ShareButton url={ url } msgShare="Compartilhar" idTest="share-btn" />
+        <FavoriteIcon recipe={ meal } idTest="favorite-btn" />
+      </div>
       {!checkRecypeId(id) && (
         <button
           className="footer"

@@ -59,16 +59,16 @@ const FoodProgress = ({ match }) => {
       <label
         className={ findSelecteds(key) && 'checked' }
         data-testid={ `${idx}-ingredient-step` }
-        htmlFor="ingredient"
+        htmlFor={ `ingredient-${idx}` }
         key={ `${key} - ${ingredient}` }
       >
-        {ingredient}
         <input
           onClick={ () => handleSelect(key) }
           defaultChecked={ findSelecteds(key) }
           type="checkbox"
-          id="ingredient"
+          id={ `ingredient-${idx}` }
         />
+        {ingredient}
       </label>
     ));
   };
@@ -102,6 +102,8 @@ const FoodProgress = ({ match }) => {
 
   const addRecipeDone = () => {
     const { idMeal, strArea, strCategory, strMeal, strMealThumb, strTags } = meal;
+    // const tags = strTags;
+    // if (strTags !== null) strTags.split(',');
     const tags = strTags.split(',');
     const data = new Date();
     const recipe = {
@@ -119,41 +121,50 @@ const FoodProgress = ({ match }) => {
   };
 
   return (
-    <div>
+    <div className="in-progress">
       <h2 data-testid="recipe-title">{meal.strMeal}</h2>
       <h3 data-testid="recipe-category">{meal.strCategory}</h3>
-      <img data-testid="recipe-photo" src={ meal.strMealThumb } alt={ meal.strMeal } />
-      Ingredientes:
-      {renderCheckBox()}
-      <p data-testid="video">Video</p>
+      <img
+        data-testid="recipe-photo"
+        className="recipe-photo"
+        src={ meal.strMealThumb }
+        alt={ meal.strMeal }
+      />
+      <div className="in-progress-ingredient">
+        Ingredientes:
+        {renderCheckBox()}
+      </div>
+      <p data-testid="video"><strong>Video</strong></p>
       <p data-testid="instructions">{meal.strInstructions}</p>
-      <p data-testid="0-recomendation-card">recomendation</p>
-      <button
-        onClick={ () => copy(`http://localhost:3000/comidas/${id}`).then(() => {
-          setMsgCopy(true);
-        }) }
-        type="button"
-        data-testid="share-btn"
-      >
-        {msgCopy ? 'Link copiado!' : 'Compartilhar'}
-      </button>
-      <button onClick={ addFavorite } type="button">
-        <img
-          data-testid="favorite-btn"
-          src={ blackOrWhite(iconFavorit) }
-          alt={ blackOrWhite(iconFavorit) }
-        />
-      </button>
-      <Link to="/receitas-feitas">
+      <p data-testid="0-recomendation-card"><strong>Recomendation</strong></p>
+      <footer>
         <button
+          onClick={ () => copy(`http://localhost:3000/comidas/${id}`).then(() => {
+            setMsgCopy(true);
+          }) }
           type="button"
-          disabled={ selecteds.length !== quantIngred }
-          data-testid="finish-recipe-btn"
-          onClick={ addRecipeDone }
+          data-testid="share-btn"
         >
-          Finalizar Receita
+          {msgCopy ? 'Link copiado!' : 'Compartilhar'}
         </button>
-      </Link>
+        <button onClick={ addFavorite } type="button">
+          <img
+            data-testid="favorite-btn"
+            src={ blackOrWhite(iconFavorit) }
+            alt={ blackOrWhite(iconFavorit) }
+          />
+        </button>
+        <Link to="/receitas-feitas">
+          <button
+            type="button"
+            disabled={ selecteds.length !== quantIngred }
+            data-testid="finish-recipe-btn"
+            onClick={ addRecipeDone }
+          >
+            Finalizar Receita
+          </button>
+        </Link>
+      </footer>
     </div>
   );
 };

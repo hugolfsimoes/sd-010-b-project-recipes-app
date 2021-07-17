@@ -29,6 +29,7 @@ const Drink = ({ match }) => {
       <h3 data-testid="recipe-category">{drink.strAlcoholic}</h3>
       <img
         data-testid="recipe-photo"
+        className="recipe-photo"
         src={ drink.strDrinkThumb }
         alt={ drink.strDrink }
       />

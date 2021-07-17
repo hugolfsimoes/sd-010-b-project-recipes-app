@@ -22,9 +22,10 @@ const Categories = ({ food }) => {
   };
 
   return (
-    <div>
+    <div className="buttons-container">
       {filter.map(({ strCategory }) => (
         <button
+          className="buttons-cattegory"
           onClick={ () => toggle(strCategory) }
           type="button"
           key={ strCategory }
@@ -34,6 +35,7 @@ const Categories = ({ food }) => {
         </button>
       ))}
       <button
+        className="buttons-cattegory"
         onClick={ () => setRecipes({}) }
         type="button"
         data-testid="All-category-filter"

@@ -18,12 +18,13 @@ function RecipesMade() {
       const { id, category, doneDate, name, tags = [], image, area, alcoholicOrNot,
         type } = item;
       return (
-        <div key={ `${index} - ${name}` }>
+        <div key={ `${index} - ${name}` } className="recipes-made">
           <p>{tags}</p>
           <Link to={ `${type}s/${id}` }>
             <button
+              className="recipe-img-btn"
               data-testid={ `${index}-horizontal-image` }
-              src={ image }
+              style={ { background: `url(${image})`, backgroundSize: 'cover' } }
               alt="Receita"
               type="button"
             />
@@ -53,7 +54,7 @@ function RecipesMade() {
 
   return (
     <div>
-      Receitas feitas
+      {/* <button type="button" data-testid="filter-by-all-btn">{}</button> */}
       <Header title="Receitas Feitas" />
       <button
         type="button"
@@ -76,7 +77,9 @@ function RecipesMade() {
       >
         Drinks
       </button>
-      {dones && renderCards()}
+      <section className="paper-background">
+        {dones && renderCards()}
+      </section>
     </div>
   );
 }

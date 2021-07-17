@@ -8,12 +8,14 @@ const SearchDrinks = () => {
   return (
     <div>
       <Header title="Explorar Bebidas" />
-      <Link data-testid="explore-by-ingredient" to="/explorar/bebidas/ingredientes">
-        Por Ingredientes
-      </Link>
-      <Link data-testid="explore-surprise" to="/bebidas/178319">
-        Me Surpreenda!
-      </Link>
+      <div className="explore">
+        <Link data-testid="explore-by-ingredient" to="/explorar/bebidas/ingredientes">
+          Por Ingredientes
+        </Link>
+        <Link data-testid="explore-surprise" to="/bebidas/178319">
+          Me Surpreenda!
+        </Link>
+      </div>
       <Footer />
     </div>
   );

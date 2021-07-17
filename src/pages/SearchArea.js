@@ -38,7 +38,11 @@ const SearchArea = () => {
       <Header title="Explorar Origem" search />
       <h1>Search Area</h1>
       {dropBox()}
-      <button type="button" data-testid="All-option" onClick={ () => setFilter('') }>
+      <button
+        type="button"
+        data-testid="All-option"
+        onClick={ () => setFilter('') }
+      >
         All
       </button>
       <RecipeCard recipes={ mealsFilter } />

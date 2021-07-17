@@ -15,7 +15,7 @@ const IngredientsCard = ({ ingredients }) => {
       <button
         type="button"
         key={ `${index} - ${ingredientName}` }
-        className="cards"
+        className="cards search-area-btn"
         data-testid={ `${index}-ingredient-card` }
         onClick={ () => setSearchOp({
           option: 'ingredient',

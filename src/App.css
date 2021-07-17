@@ -7,13 +7,21 @@
   .ingredient ul {
     top: 450px;
   }
+  
+  .grade {
+    margin-bottom: 0;
+  }
+
+  .cards {
+    height: 90vw;
+  }
 
   .recipe-photo {
     width: 80vw;
   }
 
   .recipe h2 {
-    background: #6a8b4183;
+    background: rgb(17, 165, 153);
   }
 
   .ingredient img {
@@ -21,21 +29,28 @@
     opacity: 0.3;
     position: relative;
   }
+
 }
 
 * {
   box-sizing: border-box;
-  font-family: Lemon Tuesday , Arial , sans-serif;
+  font-family: Arial , sans-serif;
   padding: 2px;
   text-align: center;
 }
 
 body {
+  background-color: #ccc;
   overflow-x: hidden;
 }
 
+h1 {
+  font-family: Cookie , cursive;
+}
+
 .hero-container {
-  background-color: #6a8b41;
+  background: linear-gradient( 185deg , rgb(17, 165, 153), rgba(17, 165, 153, 0.72));
+  border-radius: 10px 10px 0 0;
 }
 
 .hero-container > h1 {
@@ -44,28 +59,43 @@ body {
 }
 
 .cards {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background: rgba(232, 217, 191, 0.755);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.59);
   margin: 5px;
   transition: 0.3s;
-  width: 350px;
+  width: 100vh;
 }
 
 .cards img {
-  width: 100%;
+  width: 40vh;
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.cards:hover {
+  background: rgb(232, 217, 191);
+}
+
+.cards a, .cards a:hover {
+  text-decoration: none;
 }
 
 .container {
+  color: rgba(44, 106, 186, 0.878);
+  font-size: 40px;
   padding: 2px 16px;
+}
+
+.container p {
+  align-items: center;
+  display: flex;
+  font-family: Cookie , cursive;
+  justify-content: center;
 }
 
 .footer {
   bottom: 0;
   color: white;
   left: 0;
+  margin-top: 1rem;
   position: fixed;
   text-align: center;
   width: 100%;
@@ -73,13 +103,25 @@ body {
 
 .grade {
   display: flex;
-  flex-flow: wrap;
-  flex-direction: row;
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+body::after {
+  content: "";
+  background: url('https://as2.ftcdn.net/v2/jpg/00/75/16/23/1000_F_75162363_0XcORTEAnwx2KDxnVZAdnhVGzbxI44rv.jpg');
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
 .meals {
   align-items: center;
-  background: #0fa36b;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -89,10 +131,10 @@ body {
   width: 100%;
 }
 
-.rocksGlass {
+/* .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
+ }  */
 
 /*
 #iceLeft {
@@ -108,9 +150,7 @@ body {
 */
 
 .meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
+  color: rgb(17, 165, 153);
   font-size: 3em;
   font-weight: 900;
 }
@@ -168,8 +208,9 @@ Ajuda Alessandra
 
 
 .recipe h2 {
-  color: #7b3c15;
-  text-shadow: 1px 4px 12px rgba(0, 0, 0, 0.83);
+  color: #ffffffb8;
+  font-family: Cookie , cursive;
+  text-shadow: 1px 4px 12px #212529;
 }
 
 .recipe h3 {
@@ -183,6 +224,11 @@ Ajuda Alessandra
   text-shadow: -2px -2px 6px rgba(99, 97, 97, 0.54);
 }
 
+.instructions {
+  margin: 0 20px;
+  text-align: justify;
+}
+
 .ingredient img {
   height: auto;
   opacity: 0.3;
@@ -192,6 +238,7 @@ Ajuda Alessandra
 }
 
 .ingredient h1 {
+  background-color: #f5deb385;
   color: #7b3c15;
   font-size: 30px;
 }
@@ -214,4 +261,121 @@ Ajuda Alessandra
   border-bottom:solid 1px lightblue;
   text-decoration: overline;
   text-decoration-color: rgb(230, 191, 173);
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+
+/* Button login */
+.buttons-cattegory {
+  /* background: rgb(17, 165, 153);
+   border: 10px solid white; */
+   border-radius: 8px;
+   margin: 1px;
+   font-size: .8rem;
+  /* color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 20px; */
+} 
+
+button {
+  background: rgb(17, 165, 153);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 20px;
+}
+
+.loginButton {
+  background: rgb(17, 165, 153);
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 20px;
+}
+
+.divLogin {
+  background-image: url('./images/905800396912a2d.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sharedFavoriteButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.sharedFavoriteButton button {
+  border-radius: 8px;
+}
+
+.in-progress p {
+  background: url('https://image.freepik.com/fotos-gratis/fundo-de-papel-de-espaco-de-design-texturizado_53876-42312.jpg');
+  font-family: Cookie , cursive;
+  font-size: 24px;
+  text-decoration: overline;
+  text-decoration-color: rgb(127, 214, 243);
+}
+
+.in-progress-ingredient {
+  background: rgba(216, 150, 148, 0.308);
+}
+
+.in-progress footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.paper-background {
+  background: url('https://image.freepik.com/fotos-gratis/fundo-de-papel-de-espaco-de-design-texturizado_53876-42312.jpg');
+}
+
+.paper-background p {
+  font-family: Cookie , cursive;
+}
+
+.recipes-made p {
+  font-size: 24px;
+}
+
+.recipe-img-btn {
+  height: 20rem;
+  width: 70%;
+}
+
+.search-ing-grade {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.search-area-btn {
+  width: 50vh;
+}
+
+.profile {
+  margin: 2px; 
+}
+
+.profile p {
+  font-family: Cookie , cursive;
+  font-size: 28px;
+}
+
+.explore {
+  display: flex;
+  justify-content: center;
+}
+
+.explore a {
+  background-color: rgba(255, 228, 196, 0.624);
+  color: rgba(77, 65, 50, 0.871);
+  font-family: Cookie , cursive;
+  font-size: x-large;
 }

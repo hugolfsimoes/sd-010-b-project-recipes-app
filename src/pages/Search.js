@@ -6,13 +6,15 @@ import Footer from '../components/Footer';
 const Search = () => (
   <div>
     <Header title="Explorar" />
-    <Link data-testid="explore-food" to="/explorar/comidas">
-      Explorar Comidas
-    </Link>
+    <div className="explore">
+      <Link data-testid="explore-food" to="/explorar/comidas">
+        Explorar Comidas
+      </Link>
 
-    <Link data-testid="explore-drinks" to="/explorar/bebidas">
-      Explorar Bebidas
-    </Link>
+      <Link data-testid="explore-drinks" to="/explorar/bebidas">
+        Explorar Bebidas
+      </Link>
+    </div>
     <Footer />
   </div>
 );

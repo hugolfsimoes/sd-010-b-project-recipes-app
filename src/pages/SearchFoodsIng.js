@@ -11,7 +11,9 @@ const SearchFoodsIng = () => {
   return (
     <div>
       <Header title="Explorar Ingredientes" />
-      <IngredientsCard ingredients={ ingredients } />
+      <div className="search-ing-grade">
+        <IngredientsCard ingredients={ ingredients } />
+      </div>
       <Footer />
     </div>
   );
