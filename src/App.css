@@ -233,10 +233,10 @@ Ajuda Alessandra
   border-bottom: solid 1px lightblue;
   color: #6a8b41;
   font-family: Cookie , cursive;
+  font-size: x-large;
   text-decoration: overline;
   text-decoration-color: rgb(230, 191, 173);
   text-shadow: -2px -2px 6px rgba(99, 97, 97, 0.54);
-  font-size: x-large;
 }
 
 .instructions {
@@ -281,8 +281,8 @@ Ajuda Alessandra
 /* Button login */
 .buttons-cattegory {
   border-radius: 8px;
-  margin: 1px;
   font-size: 0.8rem;
+  margin: 1px;
 }
 
 button {
