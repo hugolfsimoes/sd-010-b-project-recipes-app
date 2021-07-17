@@ -20,23 +20,6 @@ function Provider({ children }) {
   const [endpointMaster, setEndPointMaster] = useState({ pointAPI: '', pointURL: '' });
   const [idMaster, setIdMaster] = useState('');
   const [masterAPI, setMasterAPI] = useState('');
-  // useEffect(() => {
-  //   const getFood = async (endpoints) => {
-  //     const limit = 12;
-  //     const { meals } = await fetch(endpoints).then((response) => response.json());
-  //     if (meals === null) {
-  //       return (
-  //         global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros')
-  //       );
-  //     }
-  //     if (meals.length <= 1) {
-  //       setIdFood(meals[0].idMeal);
-  //     }
-  //     const result = meals.slice(0, limit);
-  //     setfoodsAPI(result);
-  //   };
-  //   getFood(foodEndpoint);
-  // }, [foodEndpoint]);
 
   useEffect(() => {
     const getPoint = async (endpoints) => {
