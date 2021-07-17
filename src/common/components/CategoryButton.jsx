@@ -1,46 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import RenderButtons from './RenderButtons';
-
-import store from '../../context/store';
-
-const foodDrinkButtons = [{ strCategory: 'Food' }, { strCategory: 'Drink' }];
+import RenderButtons from './RenderButtons';
 
 export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   clickAll, path }) { // Desestruturação de props
   const [minWidth, setMinWidth] = useState(false);
   const [iconActive, setActive] = useState(true);
-
-  const { recipes: { foods, categoriesMeals,
-    categoriesDrinks, categoriesLimit } } = useContext(store);
-
-  const renderButtons = () => {
-    let newCategories;
-    if (path) {
-      newCategories = foodDrinkButtons;
-    } else {
-      newCategories = (foods) ? (
-        categoriesMeals.slice(0, categoriesLimit)) : (
-        categoriesDrinks.slice(0, categoriesLimit));
-    }
-
-    return (
-      newCategories.map((category, index) => (
-        <button
-          key={ index }
-          type="button"
-          data-testid={ path
-            ? `filter-by-${category.strCategory.toLowerCase()}-btn`
-            : `${category.strCategory}-category-filter` }
-          onClick={ path
-            ? (() => foodOrDrink(category.strCategory, path, setState))
-            : (() => clickCategory(category)) }
-        >
-          {category.strCategory}
-        </button>
-      ))
-    );
-  };
 
   const checkWidthScreen = () => {
     const MIN_WIDTH = 576;
@@ -61,16 +26,14 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   // ---------------------------------------------------------------------------------------------
   if (path) {
     return (
-      <div className="categoriesBtnsDone">
-        <button
-          type="button"
-          data-testid="filter-by-all-btn"
-          onClick={ clickAll }
-          className="all-button"
-        >
-          All
-        </button>
-        {renderButtons()}
+      <div className={ (!minWidth) ? 'categoriesBtnsDone' : 'categoriesBtns' }>
+        <RenderButtons
+          clickCategory={ clickCategory }
+          foodOrDrink={ foodOrDrink }
+          setState={ setState }
+          clickAll={ clickAll }
+          path={ path }
+        />
       </div>
     );
   }
@@ -90,14 +53,13 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
           className={ (iconActive || minWidth) ? (
             'categoriesBtns') : ('menuClose') }
         >
-          <button
-            type="button"
-            data-testid="All-category-filter"
-            onClick={ clickAll }
-          >
-            All
-          </button>
-          {renderButtons()}
+          <RenderButtons
+            clickCategory={ clickCategory }
+            foodOrDrink={ foodOrDrink }
+            setState={ setState }
+            clickAll={ clickAll }
+            path={ path }
+          />
         </div>
       </div>
     </section>
