@@ -1,11 +1,11 @@
 import React from 'react';
-import panGif from '../images/pan.gif';
+import panela from '../images/panela.gif';
 import '../styles/loading.css';
 
 function OtherLoader() {
   return (
     <div className="loader">
-      <img src={ panGif } alt="Loader" />
+      <img src={ panela } alt="Loader" />
     </div>
   );
 }
