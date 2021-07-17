@@ -44,7 +44,7 @@ function BtnStartFoodRecipe(id) {
 
   return (
     <div>
-      <Link to={ `/comidas/${recipeIndex[0]}/in-progress` }>
+      <Link to={ `/bebidas/${recipeIndex[0]}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
