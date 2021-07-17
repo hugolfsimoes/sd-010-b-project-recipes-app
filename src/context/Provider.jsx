@@ -3,23 +3,30 @@ import PropTypes from 'prop-types';
 import AppContext from './AppContext';
 
 function Provider({ children }) {
-  const [foodsAPI, setfoodsAPI] = useState('');
-  const [drinksAPI, setDrinksAPI] = useState('');
-  const [search, setSearch] = useState('');
+  const [masterAPI, setMasterAPI] = useState('');
+  const [endpointMaster, setEndPointMaster] = useState({ pointAPI: '', pointURL: '' });
+  const [idMaster, setIdMaster] = useState('');
   const [radio, setRadio] = useState('');
-  const [foodEndpoint, setFoodEndPoint] = useState('');
-  const [drinkEndpoint, setDrinkEndpoint] = useState('');
-  // const [idFood, setIdFood] = useState('');
-  const [idDrinks, setIdDrinks] = useState('');
-  const [category, setCategories] = useState();
-  const [categoryDrink, setCategoriesDrink] = useState();
   const [doneRecipesList, setDoneRecipesList] = useState([]);
   const [favoriteRecipesList, setFavoriteRecipesList] = useState([]);
   const [detailsRecipe, setDetailsRecipe] = useState();
   const [countCheck, setCountCheck] = useState(0);
-  const [endpointMaster, setEndPointMaster] = useState({ pointAPI: '', pointURL: '' });
-  const [idMaster, setIdMaster] = useState('');
-  const [masterAPI, setMasterAPI] = useState('');
+
+  const triggerDrink = {
+    ingredient: (ingredient) => setEndPointMaster({ pointAPI: `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`, pointURL: 'drink' }),
+    name: (name) => setEndPointMaster({ pointAPI: `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${name}`, pointURL: 'drink' }),
+    firstLetter: (letter) => setEndPointMaster({ pointAPI: `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`, pointURL: 'drink' }),
+    all: () => setEndPointMaster({ pointAPI: 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=', pointURL: 'drink' }),
+    category: (strCategory) => setEndPointMaster({ pointAPI: `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${strCategory}`, pointURL: 'drink' }),
+  };
+
+  const triggerFood = {
+    ingredient: (ingredient) => setEndPointMaster({ pointAPI: `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`, pointURL: 'food' }),
+    name: (name) => setEndPointMaster({ pointAPI: `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`, pointURL: 'food' }),
+    firstLetter: (letter) => setEndPointMaster({ pointAPI: `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`, pointURL: 'food' }),
+    all: () => setEndPointMaster({ pointAPI: 'https://www.themealdb.com/api/json/v1/1/search.php?s=', pointURL: 'food' }),
+    category: (strCategory) => setEndPointMaster({ pointAPI: `https://www.themealdb.com/api/json/v1/1/filter.php?c=${strCategory}`, pointURL: 'food' }),
+  };
 
   useEffect(() => {
     const getPoint = async (endpoints) => {
@@ -42,78 +49,13 @@ function Provider({ children }) {
     getPoint(endpointMaster);
   }, [endpointMaster]);
 
-  useEffect(() => {
-    const getDrink = async (endpoints) => {
-      const limit = 12;
-      const { drinks } = await fetch(endpoints).then((response) => response.json());
-      if (drinks === null) {
-        return (
-          global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-        );
-      }
-      if (drinks.length <= 1) {
-        setIdDrinks(drinks[0].idDrink);
-      }
-      const result = drinks.slice(0, limit);
-      setDrinksAPI(result);
-    };
-    getDrink(drinkEndpoint);
-  }, [drinkEndpoint]);
-
-  const getCategories = async () => {
-    const limit = 5;
-    const meals = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list').then((r) => r.json());
-    const result = meals.meals.slice(0, limit);
-    setCategories(result);
-  };
-  const getCategoriesDrink = async () => {
-    const limit = 5;
-    const { drinks } = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list').then((r) => r.json());
-    const result = drinks.slice(0, limit);
-    setCategoriesDrink(result);
-  };
-  useEffect(() => {
-    getCategories();
-    getCategoriesDrink();
-  }, []);
-
-  const handleFood = async () => {
-    if (radio === 'firstLetter' && search.length > 1) {
-      return (
-        global.alert('Sua busca deve conter somente 1 (um) caracter')
-      );
-    }
-    if (radio === 'ingredient') {
-      setFoodEndPoint(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`);
-    }
-    if (radio === 'name') {
-      setFoodEndPoint(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
-    }
-    if (radio === 'firstLetter' && search.length <= 1) {
-      setFoodEndPoint(`https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`);
-    }
-  };
-
   const contextValue = {
     radio,
     setRadio,
-    handleFood,
-    foodsAPI,
-    drinksAPI,
-    // idFood,
-    idDrinks,
-    setFoodEndPoint,
-    setDrinkEndpoint,
-    category,
-    categoryDrink,
-    setfoodsAPI,
-    foodEndpoint,
     doneRecipesList,
     setDoneRecipesList,
     favoriteRecipesList,
     setFavoriteRecipesList,
-    setSearch,
-    search,
     detailsRecipe,
     setDetailsRecipe,
     countCheck,
@@ -122,6 +64,8 @@ function Provider({ children }) {
     setEndPointMaster,
     endpointMaster,
     masterAPI,
+    triggerDrink,
+    triggerFood,
   };
 
   return (

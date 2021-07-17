@@ -167,7 +167,7 @@ export default function RecipesDetails({ match: { params: { id } } }) {
         setDetailsRecipe(drinks);
       };
       getDetails(id);
-      setFoodEndPoint('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+      // setFoodEndPoint('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     }
     if (location.pathname === `/comidas/${id}`) {
       const getDetails = async (detailID) => {
@@ -175,7 +175,7 @@ export default function RecipesDetails({ match: { params: { id } } }) {
         setDetailsRecipe(meals);
       };
       getDetails(id);
-      setDrinkEndpoint('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      // setDrinkEndpoint('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
     }
   }, [id, location, setDetailsRecipe, setFoodEndPoint, setDrinkEndpoint]);
 
