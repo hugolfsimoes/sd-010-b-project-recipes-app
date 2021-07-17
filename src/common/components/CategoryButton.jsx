@@ -65,7 +65,7 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
       </div>
       <div className={ (!active) && 'menuClose' }>
         <div className="containerBtns">
-          <div className="categoriesBtns">
+          <div className={ (active) ? 'categoriesBtns' : 'titleClose' }>
             <button
               type="button"
               data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
