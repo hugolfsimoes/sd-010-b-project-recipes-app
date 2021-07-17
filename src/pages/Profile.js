@@ -26,33 +26,40 @@ export default function Profile() {
     return (
       <>
         <Header />
-        <p data-testid="profile-email">
-          { userEmail }
-        </p>
-        <Button
-          data-testid="profile-done-btn"
-          name="receitas-feitas"
-          onClick={ clickButton }
-          type="button"
-        >
-          Receitas Feitas
-        </Button>
-        <Button
-          data-testid="profile-favorite-btn"
-          type="button"
-          name="receitas-favoritas"
-          onClick={ clickButton }
-        >
-          Receitas Favoritas
-        </Button>
-        <Button
-          data-testid="profile-logout-btn"
-          type="button"
-          name="login"
-          onClick={ (e) => { clickButton(e); localStorage.clear(); } }
-        >
-          Sair
-        </Button>
+        <section className="container-buttons-default">
+          <p data-testid="profile-email">
+            Olá,
+            {' '}
+            <strong>{ userEmail }</strong>
+          </p>
+          <Button
+            className="button-default"
+            data-testid="profile-done-btn"
+            name="receitas-feitas"
+            onClick={ clickButton }
+            type="button"
+          >
+            Receitas Feitas
+          </Button>
+          <Button
+            className="button-default"
+            data-testid="profile-favorite-btn"
+            type="button"
+            name="receitas-favoritas"
+            onClick={ clickButton }
+          >
+            Receitas Favoritas
+          </Button>
+          <Button
+            className="button-default"
+            data-testid="profile-logout-btn"
+            type="button"
+            name="login"
+            onClick={ (e) => { clickButton(e); localStorage.clear(); } }
+          >
+            Sair
+          </Button>
+        </section>
         <Footer />
       </>
     );
