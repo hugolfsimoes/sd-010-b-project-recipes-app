@@ -28,6 +28,10 @@ function ExpoFoodArea(props) {
   }, [foods]);
 
   async function handlechange({ target: { value } }) {
+    /* if (value === 'All') {
+      api.getByDefault()
+        .then((res) => setListFood(res));
+    } */
     await infoFoods(value, api.foodsArea);
   }
   return locals.length === 0 ? <div> loading... </div> : (
@@ -37,7 +41,7 @@ function ExpoFoodArea(props) {
         data-testid="explore-by-area-dropdown"
         onChange={ handlechange }
       >
-        <option data-testid="All-option">All</option>
+        <option value="All" data-testid="All-option">All</option>
 
         {locals.length !== 0
         && locals.map((local) => (
