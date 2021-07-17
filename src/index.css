@@ -828,6 +828,27 @@ button {
   padding: 7px;
 }
 
+.categoriesBtnsDone button {
+  display: grid;
+  justify-items: center;
+  color: var(--title-color);
+  font-size: var(--h3-font-size);
+  min-width: 8rem;
+  width: max-content;
+  margin: 5px 5px 0 5px;
+  padding: 4px;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(35,0,77,.2);
+  cursor: pointer;
+  transition: .3s;
+}
+
+.categoriesBtnsDone button:hover {
+  color: var(--first-color-dark);
+  box-shadow: 1px 2px 8px var(--second-color);
+  padding: 6px;
+}
+
 .all-button {
   border-radius: 40px;
   box-shadow: 0 2px 10px rgba(35,0,77,.2);

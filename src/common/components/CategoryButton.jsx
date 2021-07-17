@@ -59,7 +59,21 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   window.addEventListener('resize', () => checkWidthScreen());
 
   // ---------------------------------------------------------------------------------------------
-
+  if (path) {
+    return (
+      <div className="categoriesBtnsDone">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ clickAll }
+          className="all-button"
+        >
+          All
+        </button>
+        {renderButtons()}
+      </div>
+    );
+  }
   return (
     <section>
       <div className={ (iconActive) ? 'icon iconActive' : 'icon' }>
@@ -78,7 +92,7 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
         >
           <button
             type="button"
-            data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
+            data-testid="All-category-filter"
             onClick={ clickAll }
           >
             All
