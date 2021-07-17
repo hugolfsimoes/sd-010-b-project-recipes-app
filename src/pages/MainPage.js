@@ -33,15 +33,16 @@ export default function MainPage() {
     ingredientsResults,
   } = useContext(RecipesContext);
 
-  const [isLoading, setLoader] = useState(true);
+  const [isLoading, setLoader] = useState(false);
   const [isLoadingCat, setLoaderCat] = useState(false);
   const [dataResult, setDataResult] = useState([]);
   const [categoriesList, setCategoriesList] = useState([]);
   const [renderer, setRenderer] = useState([]);
   const [toggle, setToggle] = useState({ status: false, category: '' });
-  const [categorySelect, setCatSelect] = useState('All');
+  const [categorySelected, setCatSelect] = useState('All');
 
   useEffect(() => {
+    setLoader(true);
     if (ingredientsResults.length === 0) {
       getRandomData(domain)
         .then((res) => {
@@ -59,20 +60,22 @@ export default function MainPage() {
   }, [limit, firstKey, domain, ingredientsResults]);
 
   useEffect(() => {
-    setLoader(true);
     if (searchResult && searchResult.length > 1) {
+      setLoaderCat(true);
+      setCatSelect('All');
       setRenderer(searchResult.filter((_e, index) => index < limit));
-      setTimeout(() => { setLoader(false); }, LOADER_TIMER);
     }
+    setTimeout(() => { setLoaderCat(false); }, LOADER_TIMER);
   }, [searchResult, limit]);
 
   useEffect(() => {
-    setLoader(true);
     if (ingredientsResults.length) {
+      setLoaderCat(true);
+      setCatSelect('All');
       getDataIngredients(domain, ingredientsResults).then((res) => {
         setRenderer(res[firstKey].filter((_e, index) => index < limit));
       });
-      setTimeout(() => { setLoader(false); }, LOADER_TIMER);
+      setTimeout(() => { setLoaderCat(false); }, LOADER_TIMER);
     }
   }, [ingredientsResults, domain, firstKey, limit]);
 
@@ -94,6 +97,7 @@ export default function MainPage() {
 
   function handleAllClick() {
     setLoaderCat(true);
+    setCatSelect('All');
     setRenderer(dataResult.filter((_e, index) => index < limit));
     setTimeout(() => { setLoaderCat(false); }, CATEGORY_LOADER);
   }
@@ -127,7 +131,7 @@ export default function MainPage() {
             </Button>
           </section>
 
-          {isLoadingCat ? (<OtherLoader category={ categorySelect } />)
+          {isLoadingCat ? (<OtherLoader category={ categorySelected } />)
             : (renderer.map((item, i) => (
               <Link
                 className="link-card"
