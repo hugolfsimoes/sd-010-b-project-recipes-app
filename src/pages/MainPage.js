@@ -131,7 +131,7 @@ export default function MainPage() {
             : (renderer.map((item, i) => (
               <Link
                 className="link-card"
-                key={ item[searchId] }
+                key={ i }
                 to={ `${path}/${item[searchId]}` }
               >
                 <Card mealOrDrink={ item } index={ i } testId="recipe" />
