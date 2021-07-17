@@ -48,10 +48,10 @@ export default function RenderButtons({ clickCategory, foodOrDrink,
     );
   };
   return (
-    <>
+    <div>
       {renderBtnAll()}
       {renderButtons()}
-    </>
+    </div>
   );
 }
 
@@ -60,12 +60,12 @@ RenderButtons.propTypes = {
   clickAll: PropTypes.func.isRequired,
   foodOrDrink: PropTypes.func,
   setState: PropTypes.func,
-  path: PropTypes.bool,
+  path: PropTypes.string,
 };
 
 RenderButtons.defaultProps = {
   clickCategory: undefined,
   foodOrDrink: () => console.log('nothing to do!'),
   setState: () => console.log('no state to set'),
-  path: false,
+  path: undefined,
 };
