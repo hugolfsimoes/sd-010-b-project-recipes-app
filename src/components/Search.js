@@ -1,28 +1,11 @@
 import React, { useContext } from 'react';
 import { Form } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
 import AppContext from '../context/AppContext';
-import BtnFoods from './BtnFoods';
-import BtnDrinks from './BtnDrinks';
+import BtnSearch from './BtnSearch';
 
 export default function Search() {
   const { setSearch, search,
     setRadio } = useContext(AppContext);
-  const location = useLocation();
-  const URL = location.pathname === '/bebidas';
-
-  // const routes = () => {
-  //   if (location.pathname === '/bebidas') {
-  //     return (
-  //       <BtnDrinks />
-  //     );
-  //   }
-  //   if (location.pathname === '/comidas') {
-  //     return (
-  //       <BtnFoods />
-  //     );
-  //   }
-  // };
 
   return (
     <div>
@@ -60,8 +43,7 @@ export default function Search() {
           />
         </Form.Group>
       </Form>
-      {/* {routes()} */}
-      {URL ? <BtnDrinks /> : <BtnFoods />}
+      <BtnSearch />
     </div>
   );
 }

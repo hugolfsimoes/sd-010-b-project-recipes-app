@@ -17,13 +17,16 @@ function Provider({ children }) {
   const [favoriteRecipesList, setFavoriteRecipesList] = useState([]);
   const [detailsRecipe, setDetailsRecipe] = useState();
   const [countCheck, setCountCheck] = useState(0);
+  const [endpointMaster, setEndPointMaster] = useState({ pointAPI: '', pointURL: '' });
+  const [idMaster, setIdMaster] = useState('');
+  const [masterAPI, setMasterAPI] = useState('');
   useEffect(() => {
     const getFood = async (endpoints) => {
       const limit = 12;
       const { meals } = await fetch(endpoints).then((response) => response.json());
       if (meals === null) {
         return (
-          global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
+          global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros')
         );
       }
       if (meals.length <= 1) {
@@ -34,6 +37,27 @@ function Provider({ children }) {
     };
     getFood(foodEndpoint);
   }, [foodEndpoint]);
+
+  useEffect(() => {
+    const getPoint = async (endpoints) => {
+      const limit = 12;
+      const data = await fetch(endpoints.pointAPI);
+      const resp = await data.json();
+      const result = resp[endpoints.pointURL === 'food' ? 'meals' : 'drinks'];
+      console.log('result', result);
+      if (result === null) {
+        return (
+          global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
+        );
+      }
+      if (result.length <= 1) {
+        const pathID = result[0][endpoints.pointURL === 'food' ? 'idMeal' : 'idDrink'];
+        setIdMaster(pathID);
+      }
+      setMasterAPI(result.slice(0, limit));
+    };
+    getPoint(endpointMaster);
+  }, [endpointMaster]);
 
   useEffect(() => {
     const getDrink = async (endpoints) => {
@@ -87,32 +111,10 @@ function Provider({ children }) {
     }
   };
 
-  const handleDrink = async () => {
-    if (search === '') {
-      return (
-        global.alert('por favor, digite alguma coisa na busca')
-      );
-    }
-    if (radio === 'firstLetter' && search.length > 1) {
-      global.alert('Sua busca deve conter somente 1 (um) caracter');
-    }
-    if (radio === 'ingredient') {
-      setDrinkEndpoint(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${search}`);
-    }
-    if (radio === 'name') {
-      console.log(search);
-      setDrinkEndpoint(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`);
-    }
-    if (radio === 'firstLetter' && search.length <= 1) {
-      setDrinkEndpoint(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${search}`);
-    }
-  };
-
   const contextValue = {
     radio,
     setRadio,
     handleFood,
-    handleDrink,
     foodsAPI,
     drinksAPI,
     idFood,
@@ -128,10 +130,15 @@ function Provider({ children }) {
     favoriteRecipesList,
     setFavoriteRecipesList,
     setSearch,
+    search,
     detailsRecipe,
     setDetailsRecipe,
     countCheck,
     setCountCheck,
+    idMaster,
+    setEndPointMaster,
+    endpointMaster,
+    masterAPI,
   };
 
   return (

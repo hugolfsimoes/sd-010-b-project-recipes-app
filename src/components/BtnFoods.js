@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import AppContext from '../context/AppContext';
 
+// INATIVO
+
 export default function BtnFoods() {
   const { handleFood, foodsAPI, idFood } = useContext(AppContext);
   const history = useHistory();
