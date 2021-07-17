@@ -9,7 +9,7 @@ function Provider({ children }) {
   const [radio, setRadio] = useState('');
   const [foodEndpoint, setFoodEndPoint] = useState('');
   const [drinkEndpoint, setDrinkEndpoint] = useState('');
-  const [idFood, setIdFood] = useState('');
+  // const [idFood, setIdFood] = useState('');
   const [idDrinks, setIdDrinks] = useState('');
   const [category, setCategories] = useState();
   const [categoryDrink, setCategoriesDrink] = useState();
