@@ -811,7 +811,6 @@ button {
 /* DONE RECIPE PAGE ===========================================================================================================*/
 .done-recipes {
   display: grid;
-  /* margin: 0 10px; */
   justify-items: center;
 }
 
@@ -858,18 +857,6 @@ button {
   color: var(--title-color);
 }
 
-/* .done-buttons div button {
-  border-radius: 40px;
-  box-shadow: 0 2px 10px rgba(35,0,77,.2);
-  margin-top: 1rem;
-  width: 5rem;
-}
-.done-buttons div button:hover {
-  color: var(--title-color);
-  box-shadow: 0px 10px 20px 2px rgb(0 0 0 / 30%);
-  padding: 7px;
-} */
-
 .done-card {
   display: flex;
   flex-direction: row;
@@ -903,12 +890,12 @@ button {
   margin: 10px 5px;
 }
 
-.done-category {
+.done-category {  /* Usada tbm nos cards da página de Receitas Favoritas */
   font-size: var(--small-font-size);
   color: var(--first-color-light);
 }
 
-.done-name {
+.done-name {  /* Usada tbm nos cards da página de Receitas Favoritas */
   font-size: var(--h1-font-size);
   color: var(--first-color);
 }
@@ -942,8 +929,7 @@ button {
   cursor: pointer;
   display: flex;
   margin: 20px 5px 0 5px;
-  /* min-width: 333px; */
-  /* overflow-y: hidden; */
+  overflow-y: hidden;
   width: 333px;
 }
 
@@ -959,8 +945,6 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-
-  /* align-items: center; */
 }
 
 .fav-buttons {
