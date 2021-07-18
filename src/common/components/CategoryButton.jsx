@@ -9,7 +9,8 @@ export default function CategoryButton({ clickCategory, foodOrDrink, setState,
 
   const checkWidthScreen = () => {
     const MIN_WIDTH = 576;
-    const screenWidth = window.screen.width;
+    const screenWidth = window.innerWidth;
+    // https://cursos.alura.com.br/forum/topico-como-executar-uma-funcao-do-javascript-se-a-janela-do-browser-diminuir-de-800px-41605
 
     if (screenWidth >= MIN_WIDTH) {
       setMinWidth(true);
