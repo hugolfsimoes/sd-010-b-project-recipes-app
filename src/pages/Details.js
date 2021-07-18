@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Button, Carousel } from 'react-bootstrap';
 import { useParams, useRouteMatch, useHistory } from 'react-router-dom';
 import Card from '../components/Card';
@@ -12,11 +12,12 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 import { getDataById, getRandomData } from '../services/apiRequest';
 import Loading from '../components/Loading';
+import RecipesContext from '../context/RecipesContext';
 
 const SIX = 6;
-const LOADER_TIMER = 3000;
-function handleIngredientsData(Lista) {
-  const ingredientFormated = Lista.map((el, i, arr) => (
+const LOADER_TIMER = 2000;
+function handleIngredientsData(List) {
+  const ingredientFormated = List.map((el, i, arr) => (
     (el[0].includes('Ingredient')) && ([`${el[1]
       + arr.filter((elt) => elt[0] === (`strMeasure${i + 1}`))
         .map((result) => (` - ${result[1]}`))}`,
@@ -28,17 +29,18 @@ function handleRecipeInProgress(history, path, id) {
   history.push(`${path.replace(':id', `${id}`)}/in-progress`);
 }
 
-function handleFavorite(state, setState, path, content) {
-  setState((prevState) => ({ status: !state.status,
+function handleFavorite(fvoritState, setFavoritState, path, content) {
+  setFavoritState((prevState) => ({ status: !fvoritState.status,
     imagem: prevState.imagem === whiteHeartIcon ? blackHeartIcon : whiteHeartIcon }));
   saveFavoriteRecipe(path, content);
-  // saveFavoritRecipes(path, singleContent[0], favorit.status);
 }
 
 export default function Details() {
   const history = useHistory();
   const { path } = useRouteMatch();
   const { id } = useParams();
+
+  const { favorites, readFavoritesFromStorage } = useContext(RecipesContext);
 
   const [domain, firstKey, imgSrc, title, recDomain, recFirstKey] = path
     .includes('comidas')
@@ -48,8 +50,9 @@ export default function Details() {
   const [singleContent, setSingleContent] = useState([]);
   const [ingredientsList, setIngridientsList] = useState([]);
   const [recomendations, setRecomentation] = useState([]);
-  const [favorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
+  const [isFavorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
   const [isLoading, setLoader] = useState(true);
+  const [copy, setCopy] = useState(false);
 
   useEffect(() => {
     getDataById(domain, id).then((res) => {
@@ -57,7 +60,7 @@ export default function Details() {
 
       const list = Object.entries(res[firstKey][0]).filter((el) => (
         (el[0].includes('Ingredient')
-          || el[0].includes('Measure')) && el[1]) && el[1] !== ' ');
+        || el[0].includes('Measure')) && el[1]) && el[1] !== ' ');
       setIngridientsList(list);
     });
 
@@ -70,15 +73,16 @@ export default function Details() {
   }, [id, domain, firstKey, recDomain, recFirstKey]);
 
   useEffect(() => {
-    if (localStorage.getItem('favoriteRecipes')) {
-      const arrayFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      setFavorit({
-        status: arrayFavorit.find((el) => el.id === id),
-        imagem: arrayFavorit.find((el) => el.id === id)
-          ? blackHeartIcon : whiteHeartIcon });
-    }
-  }, [id]);
+    setFavorit({
+      status: favorites.find((el) => el.id === id),
+      imagem: favorites.find((el) => el.id === id)
+        ? blackHeartIcon : whiteHeartIcon });
+  }, [favorites, id, readFavoritesFromStorage]);
 
+  function handleShare() {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => setCopy(true));
+  }
   return (
     isLoading ? (<Loading />)
       : (
@@ -100,17 +104,18 @@ export default function Details() {
                 }
               </p>
             </div>
-            <Button>
-              <img data-testid="share-btn" src={ shareIcon } alt="Favorit" />
+            <Button onClick={ handleShare }>
+              { !copy ? (<img data-testid="share-btn" src={ shareIcon } alt="" />)
+                : (<p data-testid="share-btn">Link copiado!</p>)}
             </Button>
             <Button
               onClick={
-                () => handleFavorite(favorit, setFavorit, path, singleContent[0])
+                () => handleFavorite(isFavorit, setFavorit, path, singleContent[0])
               }
             >
               <img
                 data-testid="favorite-btn"
-                src={ favorit.imagem }
+                src={ isFavorit.imagem }
                 alt=""
               />
             </Button>

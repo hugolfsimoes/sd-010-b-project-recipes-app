@@ -95,7 +95,7 @@ export default function MainPage() {
         </Button>))}
       <Button data-testid="All-category-filter" onClick={ handleAllClick }>All</Button>
       {renderer.map((item, i) => (
-        <Link key={ item[searchId] } to={ `${path}/${item[searchId]}` }>
+        <Link key={ i } to={ `${path}/${item[searchId]}` }>
           <Card mealOrDrink={ item } index={ i } testId="recipe" />
         </Link>))}
       <button type="button" onClick={ handleMoreCards }>More Recipes</button>

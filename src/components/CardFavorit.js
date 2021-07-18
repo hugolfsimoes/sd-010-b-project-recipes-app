@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -8,9 +8,9 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
 import { changeFavoritStatus } from '../storage/localStorage';
+import RecipesContext from '../context/RecipesContext';
 
 export default function CardFavorit({ mealOrDrink, index }) {
-  const [favorit, setFavorit] = useState({ status: true, imagem: blackHeartIcon });
   const {
     id,
     type,
@@ -21,11 +21,20 @@ export default function CardFavorit({ mealOrDrink, index }) {
     category,
     doneDate,
     tags } = mealOrDrink;
+  const [isFavorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
+
+  const { favorites, readFavoritesFromStorage } = useContext(RecipesContext);
+
+  useEffect(() => {
+    setFavorit({
+      status: favorites.find((el) => el.id === id),
+      imagem: favorites.find((el) => el.id === id)
+        ? blackHeartIcon : whiteHeartIcon });
+  }, [favorites, id, readFavoritesFromStorage]);
 
   function handleFavorite() {
-    setFavorit((prevState) => ({ status: !favorit.status,
-      imagem: prevState.imagem === blackHeartIcon ? whiteHeartIcon : blackHeartIcon }));
     changeFavoritStatus(mealOrDrink);
+    readFavoritesFromStorage();
   }
 
   async function handleShare() {
@@ -68,7 +77,7 @@ export default function CardFavorit({ mealOrDrink, index }) {
       <Button onClick={ handleFavorite }>
         <img
           data-testid={ `${index}-horizontal-favorite-btn` }
-          src={ favorit.imagem }
+          src={ isFavorit.imagem }
           alt={ name }
         />
       </Button>

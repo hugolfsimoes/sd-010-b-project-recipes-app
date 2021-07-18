@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Header from '../components/Header';
 import CardFavorit from '../components/CardFavorit';
+import RecipesContext from '../context/RecipesContext';
 
 export default function FavoritesRecipes() {
   const [renderer, setRenderer] = useState([]);
   const [allFavorit, setAllFavorit] = useState([]);
 
+  const { favorites } = useContext(RecipesContext);
+
   useEffect(() => {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    setAllFavorit(favoriteRecipes);
-    setRenderer(favoriteRecipes);
-  }, []);
+    if (favorites) {
+      setAllFavorit(favorites);
+      setRenderer(favorites);
+    }
+  }, [favorites]);
 
   function handleAllBtn() {
     setRenderer(allFavorit);

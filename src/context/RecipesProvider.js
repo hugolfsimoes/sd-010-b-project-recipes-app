@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import RecipesContext from './RecipesContext';
@@ -9,6 +9,19 @@ export default function RecipesProvider({ children }) {
   const [userInfo, setInfo] = useState({ email: '' });
   const [limit, setLimit] = useState(TWELVE);
   const [ingredientsResults, setIngredientsResults] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  function readFavoritesFromStorage() {
+    if (localStorage.getItem('favoriteRecipes')) {
+      const arrayFavorit = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      setFavorites(arrayFavorit);
+    }
+  }
+
+  useEffect(() => {
+    readFavoritesFromStorage();
+  }, []);
+
   const context = {
     setInfo,
     userInfo,
@@ -18,7 +31,9 @@ export default function RecipesProvider({ children }) {
     setLimit,
     ingredientsResults,
     setIngredientsResults,
-
+    favorites,
+    setFavorites,
+    readFavoritesFromStorage,
   };
 
   return (

@@ -1,12 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { useParams, useRouteMatch, useHistory } from 'react-router-dom';
+import { saveFavoriteRecipe, saveFinished } from '../storage/localStorage';
 
 import { getDataById } from '../services/apiRequest';
-import { saveFinished } from '../storage/localStorage';
 
 import shareIcon from '../images/shareIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+
+import RecipesContext from '../context/RecipesContext';
+
+function handleIngredientsData(list) {
+  return list.map((el, i, arr) => (
+    (el[0].includes('Ingredient')) && ([`${el[1]
+      + arr.filter((elt) => elt[0] === (`strMeasure${i + 1}`))
+        .map((result) => (` - ${result[1]}`))}`,
+    ]))).filter((fil) => fil);
+}
+
+function handleFavoriteBtn(favoritState, setFavoritState, path, content) {
+  setFavoritState((prevState) => ({ status: !favoritState.status,
+    imagem: prevState.imagem === whiteHeartIcon ? blackHeartIcon : whiteHeartIcon }));
+  saveFavoriteRecipe(path, content);
+}
+
+function handleFinished(history, path, content) {
+  const date = new Date();
+  saveFinished(content, path, date);
+  history.push('/receitas-feitas');
+}
 
 export default function InProgress() {
   const { path } = useRouteMatch();
@@ -18,6 +41,10 @@ export default function InProgress() {
   const [isDisabled, setDisabled] = useState(true);
   const [renderer, setRenderer] = useState([]);
   const [ingredientsList, setIngridientsList] = useState([]);
+  const [isFavorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
+  const [copy, setCopy] = useState(false);
+
+  const { favorites, readFavoritesFromStorage } = useContext(RecipesContext);
 
   const [domain, firstKey, imgSrc, title] = path.includes('comidas')
     ? ['themealdb', 'meals', 'strMealThumb', 'strMeal']
@@ -35,15 +62,14 @@ export default function InProgress() {
     });
   }, [id, domain, firstKey]);
 
-  function handleIngredientsData() {
-    return ingredientsList.map((el, i, arr) => (
-      (el[0].includes('Ingredient')) && ([`${el[1]
-        + arr.filter((elt) => elt[0] === (`strMeasure${i + 1}`))
-          .map((result) => (` - ${result[1]}`))}`,
-      ]))).filter((fil) => fil);
-  }
-  const listFormated = handleIngredientsData();
+  useEffect(() => {
+    setFavorit({
+      status: favorites.find((el) => el.id === id),
+      imagem: favorites.find((el) => el.id === id)
+        ? blackHeartIcon : whiteHeartIcon });
+  }, [favorites, id, readFavoritesFromStorage]);
 
+  const listFormated = handleIngredientsData(ingredientsList);
   useEffect(() => {
     if (validateCheckBox === listFormated.length) {
       setDisabled(false);
@@ -67,14 +93,10 @@ export default function InProgress() {
   }
 
   function handleShare() {
-    return global.alert('Link copiado!');
+    navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''))
+      .then(() => setCopy(true));
   }
 
-  function handleFinished() {
-    const date = new Date();
-    saveFinished(renderer[0], path, date);
-    history.push('/receitas-feitas');
-  }
   return (
     !renderer[0] ? (<h1>Loading...</h1>)
       : (
@@ -88,16 +110,23 @@ export default function InProgress() {
           <p data-testid="recipe-title">{renderer[0][title]}</p>
 
           <Button onClick={ handleShare }>
-            <img data-testid="share-btn" src={ shareIcon } alt="" />
+            { !copy ? (<img data-testid="share-btn" src={ shareIcon } alt="" />)
+              : (<p data-testid="share-btn">Link copiado!</p>)}
           </Button>
 
-          <Button>
-            <img data-testid="favorite-btn" src={ whiteHeartIcon } alt="" />
+          <Button
+            onClick={ () => handleFavoriteBtn(isFavorit, setFavorit, path, renderer[0]) }
+          >
+            <img
+              data-testid="favorite-btn"
+              src={ isFavorit.imagem }
+              alt=""
+            />
           </Button>
 
           <p data-testid="recipe-category">{ renderer[0].strCategory }</p>
 
-          {handleIngredientsData().map((item, i) => (
+          {handleIngredientsData(ingredientsList).map((item, i) => (
             <label key={ item } htmlFor={ `${i}-ingredient-step` }>
               <p
                 data-testid={ `${i}-ingredient-step` }
@@ -119,7 +148,7 @@ export default function InProgress() {
 
           <Button
             data-testid="finish-recipe-btn"
-            onClick={ handleFinished }
+            onClick={ () => handleFinished(history, path, renderer[0]) }
             disabled={ isDisabled }
           >
             Finalizar Receita
