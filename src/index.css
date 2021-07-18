@@ -1095,6 +1095,10 @@ button {
   box-shadow: 0 2px 10px rgba(35,0,77,.2);
 }
 
+.profile {
+  width: 40px;
+}
+
 .header .profile {
   position: relative;
   left: 10px;
