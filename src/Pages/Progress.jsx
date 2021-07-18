@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -12,18 +12,25 @@ import Footer from '../Components/Footer';
 
 function Progress(props) {
   const { match: { params: { id } } } = props;
-  const { setDrinkDone, checked } = props;
+  const { setDrinkDone, setFoodDone, checked } = props;
   const strType = window.location.href.includes('comidas') ? 'Meal' : 'Drink';
   const [disabled, setDisabled] = React.useState(false);
+  const [typeDone, setTypeDone] = useState('');
 
   const API = window.location.href.includes('comidas')
     ? MealAPI.getFoodById : DrinkApi.getDrinkById;
 
-  const { cocktails } = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  const doneId = Object.keys(cocktails);
+  // const {cocktails}  = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  // const doneId = Object.keys(cocktails);
 
   useEffect(() => {
-    setDrinkDone(doneId);
+    if (strType === 'Meal') {
+      setFoodDone(id);
+      setTypeDone('Comidas');
+    } else {
+      setDrinkDone(id);
+      setTypeDone('Drinks');
+    }
   }, []);
 
   return (
@@ -38,7 +45,7 @@ function Progress(props) {
         <button
           type="button"
           data-testid="finish-recipe-btn"
-          onClick={ () => { setDoneRecipes(checked, 'Drinks'); } }
+          onClick={ () => { setDoneRecipes(checked, typeDone); } }
           disabled={ disabled }
         >
           Finalizar receita
@@ -53,12 +60,13 @@ Progress.propTypes = PropTypes.shape({}).isRequired;
 
 const mapStateToProps = (state) => ({
   item: state.details.item,
-  checked: state.done.[0],
+  checked: state.done[0],
   redirect: state.details.shouldRedirect,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setDrinkDone: (value) => dispatch(GetRecipesDone(value, DrinkApi.getDrinkById)),
+  setFoodDone: (value) => dispatch(GetRecipesDone(value, MealAPI.getFoodById)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progress);

@@ -27,7 +27,7 @@ export default function DetailsProgress(props) {
   const [isFavorite, setIsFavorite] = React.useState(isFavoriteIcon(id));
 
   function copyLink() {
-    // console.log(clipboard.info);
+    console.log(clipboard.info);
     setIsCopy(true);
   }
 

@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import clipboard from 'clipboard-copy';
 import Footer from '../Components/Footer';
+import shareIcon from '../images/shareIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import '../styles/Done.css';
 
 export default function RecipesMade() {
-  const itensDone = localStorage.getItem('doneRecipes');
+  const [copy, setCopy] = useState(false);
+  const itensDone = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+  const [DoneRecipes, setDoneRecipes] = useState(itensDone);
 
-  return (
+  function filterRecipes(option) {
+    const filterSelected = !option
+      ? itensDone
+      : itensDone.filter((recipe) => option === recipe.type);
+    setDoneRecipes(filterSelected);
+  }
+
+  function copyLinkRecipe(recipe) {
+    clipboard(`http://localhost:3000/${recipe.type}s/${recipe.id}`);
+    setCopy(true);
+  }
+
+  return DoneRecipes.length === 0 ? <div> loading... </div> : (
     <>
       <header className="header-container">
         <div>
@@ -18,40 +35,66 @@ export default function RecipesMade() {
           <h1 data-testid="page-title">Receitas Feitas</h1>
         </div>
       </header>
-      <section className="button-category-favorite-recipes-container">
+      <section className="Done-Recipes">
         <button
           type="button"
           data-testid="filter-by-all-btn"
+          onClick={ () => filterRecipes('') }
         >
           All
         </button>
         <button
           type="button"
           data-testid="filter-by-food-btn"
+          onClick={ () => filterRecipes('Comidas') }
         >
-          Comidas
+          Food
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
+          onClick={ () => filterRecipes('Drinks') }
         >
-          Bebidas
+          Drink
         </button>
       </section>
       <main>
-        {itensDone.map((item, index) => (
+        {DoneRecipes.map((item, index) => (
           <>
-            <img alt="a" data-testid={ `${index}-horizontal-image` } />
-            <p data-testid={ `${index}-horizontal-top-text` }>texto</p>
-            <p data-testid={ `${index}-horizontal-name` }>{item.nome}</p>
+            <Link
+              to={ `/${item.type}s/${item.id}` }
+            >
+              <img
+                alt={ item.name }
+                width="100"
+                src={ item.image }
+                data-testid={ `${index}-horizontal-image` }
+              />
+            </Link>
+            {item.type === 'Comidas'
+              ? <p data-testid={ `${index}-horizontal-top-text` }>{`${item.area} - ${item.category}`}</p>
+              : <p data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</p>}
+            <Link
+              to={ `/${item.type}s/${item.id}` }
+              data-testid={ `${index}-horizontal-name` }
+            >
+              {item.name}
+            </Link>
             <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
             <button
               type="button"
-              data-testid={ `${index}-horizontal-share-btn` }
+              onClick={ () => copyLinkRecipe(item) }
             >
-              compartilhar
+              <img
+                src={ shareIcon }
+                alt="Share Button"
+                data-testid={ `${index}-horizontal-share-btn` }
+              />
+              {copy && <p>Link copiado!</p>}
             </button>
-            <p data-testid={ `${index}-tagName-horizontal-tag` }>{item.tags}</p>
+            { item.tags.length === null ? <p>nada</p> : item.tags.map((tag) => (
+              <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
+            ))}
           </>
         ))}
       </main>
