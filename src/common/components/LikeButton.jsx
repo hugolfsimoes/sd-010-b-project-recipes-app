@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { getStorage, infoFavorite, setStorage } from '../../functions';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.png';
+import whiteHeartIcon from '../../images/whiteHeartIcon.png';
 import store from '../../context/store';
 
 export default function LikeButton({ recipe,
