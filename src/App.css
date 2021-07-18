@@ -133,11 +133,12 @@ flex-wrap: wrap;
 .login-input {
   border-radius: 50%;
   font-size:30px;
-  color: #264653;
+  color:whitesmoke !important;
 }
 
 .button-entrar-app {
-  color:#264653;
+  color:#2a9d8f;
+  font-family: cursive;
   border-style:none !important;
   border-radius: 14px !important;
   width:100% !important;
