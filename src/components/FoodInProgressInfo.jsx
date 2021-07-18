@@ -55,42 +55,48 @@ class FoodInProgressInfo extends Component {
       renderFavorite,
     } = this.props;
     return (
-      <section>
-        <img
-          src={ detailsRecipe[0].strMealThumb }
-          alt="Imagem da Bebida"
-          data-testid="recipe-photo"
-          width="350"
-        />
-        <h1 data-testid="recipe-title">{detailsRecipe[0].strMeal}</h1>
-        <p>{copyLink ? 'Link copiado!' : null}</p>
-        <button
-          type="button"
-          onClick={ onClickShare }
-        >
-          <img data-testid="share-btn" src={ shareIcon } alt="Compartilhar" />
-        </button>
-        <button
-          type="button"
-          onClick={ onClickFavoriteIcon }
-        >
-          {renderFavorite()}
-        </button>
-        <p data-testid="recipe-category">
-          {`Categoria: ${detailsRecipe[0].strCategory}`}
-        </p>
-        <p data-testid="instructions">
-          {`Instrução: ${detailsRecipe[0].strInstructions}`}
+      <section className="detail-main-section">
+        <section className="header-detail-section">
+          <img
+            src={ detailsRecipe[0].strMealThumb }
+            alt="Imagem da Bebida"
+            data-testid="recipe-photo"
+            width="350"
+            className="detail-img"
+          />
+          <h1 data-testid="recipe-title">{detailsRecipe[0].strMeal}</h1>
+          <p data-testid="recipe-category">
+            {`${detailsRecipe[0].strCategory}`}
+          </p>
+          <div>
+            <p>{copyLink ? 'Link copiado!' : null}</p>
+            <button
+              type="button"
+              onClick={ onClickShare }
+            >
+              <img data-testid="share-btn" src={ shareIcon } alt="Compartilhar" />
+            </button>
+            <button
+              type="button"
+              onClick={ onClickFavoriteIcon }
+            >
+              {renderFavorite()}
+            </button>
+          </div>
+        </section>
+        <h3>Instruções</h3>
+        <p data-testid="instructions" className="instructions">
+          { detailsRecipe[0].strInstructions }
         </p>
         <h3>Ingredientes</h3>
         <ul>{renderIngredients()}</ul>
-
         <Link to="/receitas-feitas">
           <button
             disabled={ setDisable }
             data-testid="finish-recipe-btn"
             type="button"
             onClick={ this.onClickFinishRecipe }
+            className="start-recipe-btn"
           >
             Finalizar receita
           </button>

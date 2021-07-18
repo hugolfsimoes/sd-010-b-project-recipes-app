@@ -202,22 +202,24 @@ class FoodRecipe extends React.Component {
           width="150px"
           className="detail-img"
         />
-        <div className="header-detail-section">
+        <section className="header-detail-section">
           <h1 data-testid="recipe-title">{detailsRecipe[0].strMeal}</h1>
           <p data-testid="recipe-category">{detailsRecipe[0].strCategory}</p>
-          <p>{copyLink ? 'Link copiado!' : null}</p>
-          <button
-            data-testid="share-btn"
-            type="button"
-            onClick={ this.onClickShare }
-          >
-            <img src={ shareIcon } alt="Compartilhar" />
-          </button>
-          <button type="button" onClick={ this.onClickFavoriteIcon }>
-            {this.renderFavorite()}
-          </button>
-        </div>
-        <h2>Ingredientes</h2>
+          <div>
+            <p>{copyLink ? 'Link copiado!' : null}</p>
+            <button
+              data-testid="share-btn"
+              type="button"
+              onClick={ this.onClickShare }
+            >
+              <img src={ shareIcon } alt="Compartilhar" />
+            </button>
+            <button type="button" onClick={ this.onClickFavoriteIcon }>
+              {this.renderFavorite()}
+            </button>
+          </div>
+        </section>
+        <h3>Ingredientes</h3>
         <ul>{this.renderIngredients()}</ul>
         <div className="hr" />
         <p data-testid="instructions" className="instructions">

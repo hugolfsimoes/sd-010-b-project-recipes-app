@@ -66,7 +66,7 @@ class FoodIngredients extends React.Component {
   render() {
     return (
       <section>
-        <Header title="Ingredientes" />
+        <Header title="Explorar Ingredientes" />
         {this.renderCards()}
         <Footer />
       </section>

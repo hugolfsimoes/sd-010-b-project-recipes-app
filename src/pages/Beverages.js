@@ -91,7 +91,11 @@ class Beverages extends React.Component {
         if (index <= maxNumberOfCards) {
           return (
             <Link to={ `/bebidas/${drink.idDrink}` } key={ index }>
-              <div key={ index } data-testid={ `${index}-recipe-card` } className="main-cards-div">
+              <div
+                key={ index }
+                data-testid={ `${index}-recipe-card` }
+                className="main-cards-div"
+              >
                 <h3 data-testid={ `${index}-card-name` }>
                   { drink.strDrink }
                 </h3>

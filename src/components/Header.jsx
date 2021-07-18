@@ -23,7 +23,7 @@ class Header extends React.Component {
 
   renderSearchButton() {
     const { title } = this.props;
-    if (title === 'Comidas' || title === 'Bebidas' || title === 'Explorar Origem' || title === 'Ingredientes') {
+    if (title === 'Comidas' || title === 'Bebidas' || title === 'Explorar Origem') {
       return (
         <button type="button" onClick={ this.onClickSearchBtn } className="header-icon">
           <img

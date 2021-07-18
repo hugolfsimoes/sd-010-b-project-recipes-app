@@ -240,7 +240,7 @@
 
 .header-detail-section {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
 }
 
 .detail-main-section h1 {
@@ -253,15 +253,14 @@
 }
 
 .detail-main-section p {
-  align-self: flex-end;
   color: #a6a29f;
   font-family: Poppins , sans-serif;
   font-size: 16px;
   letter-spacing: -0.17px;
-  margin: 12px;
+  margin: 0 12px 12px;
 }
 
-.detail-main-section h2 {
+.detail-main-section h3 {
   color: #3f3e3e;
   font-family: Poppins , sans-serif;
   font-size: 32px;
@@ -282,6 +281,7 @@
   font-size: 16px;
   font-weight: 300;
   list-style: none;
+  margin-bottom: 50px;
   padding: 12px;
   text-align: start;
 }
@@ -323,6 +323,11 @@
   margin-left: 12px;
   position: fixed;
   width: 328px;
+}
+
+.start-recipe-btn:disabled {
+  background-color: #f5f0eb;
+  color: #a6a29f;
 }
 
 /* COMPONENTE RECOMMENDED */
@@ -390,4 +395,9 @@
   margin: auto;
   overflow-y: scroll;
   width: 328px;
+}
+
+/* IN PROGRESS */
+.detail-main-section input {
+  margin-right: 12px;
 }

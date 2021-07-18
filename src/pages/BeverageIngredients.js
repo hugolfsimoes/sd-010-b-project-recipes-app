@@ -70,7 +70,7 @@ class BeverageIngredients extends React.Component {
   render() {
     return (
       <section>
-        <Header title="Ingredientes" />
+        <Header title="Explorar Ingredientes" />
         <div className="ingredients-card-div">
           {this.renderCards()}
         </div>
