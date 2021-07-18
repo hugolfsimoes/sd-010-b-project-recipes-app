@@ -48,10 +48,10 @@ export default function RenderButtons({ clickCategory, foodOrDrink,
     );
   };
   return (
-    <div>
+    <>
       {renderBtnAll()}
       {renderButtons()}
-    </div>
+    </>
   );
 }
 
