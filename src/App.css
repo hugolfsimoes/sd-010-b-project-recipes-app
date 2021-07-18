@@ -410,8 +410,8 @@ button {
 /* EXPLORAR */
 .explore button {
   border: none;
-  padding: 0;
   height: 200px;
+  padding: 0;
 }
 
 .explore-meal-img {
