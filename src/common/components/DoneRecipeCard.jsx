@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
 import store, { directPage, setFetchOnDone } from '../../context/store';
 
+import { mealInfo, drinkInfo } from '../../functions';
+
 export default function DoneRecipeCard({ recipe, index }) { // Desestruturação de props
   const { setRecipes } = useContext(store);
   const {
@@ -17,24 +19,6 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
     doneDate,
     tags,
   } = recipe;
-
-  const mealInfo = () => (
-    <div
-      className="done-category"
-      data-testid={ `${index}-horizontal-top-text` }
-    >
-      {`${area} - ${category}`}
-    </div>
-  );
-
-  const drinkInfo = () => (
-    <div
-      className="done-category"
-      data-testid={ `${index}-horizontal-top-text` }
-    >
-      {`${alcoholicOrNot}`}
-    </div>
-  );
 
   const handleClickCard = () => {
     setRecipes(directPage(null));
@@ -51,7 +35,8 @@ export default function DoneRecipeCard({ recipe, index }) { // Desestruturação
           data-testid={ `${index}-horizontal-image` }
         />
         <div className="done-card-text">
-          {type === 'bebida' ? drinkInfo() : mealInfo()}
+          {type === 'bebida'
+            ? drinkInfo(index, alcoholicOrNot) : mealInfo(index, area, category)}
           <div
             className="done-name"
             data-testid={ `${index}-horizontal-name` }
