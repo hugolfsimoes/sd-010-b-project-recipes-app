@@ -86,7 +86,7 @@ class Comidas extends Component {
       match,
     } = this.props;
     return (
-      <section>
+      <section className="food-wrap">
         <Header location={ location } />
         <main className="food-main">
           <ButtonCategories

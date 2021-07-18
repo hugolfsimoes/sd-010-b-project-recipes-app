@@ -117,7 +117,7 @@ export class ExplorarComidasBebidas extends Component {
     const { location } = this.props;
     const { isRedirect, type, id } = this.state;
     const PAGE_LOCATION = location.pathname.includes('comida');
-    // console.log(type);
+    console.log(PAGE_LOCATION);
     return (
       <div>
         <Header location={ location } />

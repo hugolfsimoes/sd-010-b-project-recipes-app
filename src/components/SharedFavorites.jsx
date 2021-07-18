@@ -47,10 +47,9 @@ class SharedFavorites extends Component {
         },
       ];
 
-      console.log(recovery);
-
       return localStorage.setItem('favoriteRecipes', JSON.stringify(recipe));
     }
+
     if (favIcon) {
       console.log('sou verdadeiro', id, page);
 
@@ -92,7 +91,7 @@ class SharedFavorites extends Component {
         <button
           className="details-btn-favorite"
           type="button"
-          // data-testid="favorite-btn"
+          data-testid="favorite-btn"
           onClick={ this.handleFavClick }
         >
           <img src={ favIconColor } data-testid="favorite-btn" alt={ favIconColor } />

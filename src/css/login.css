@@ -143,6 +143,7 @@
 
 .form-btn-enable {
   background-color: var(--crl-Primary);
+  border: none;
   border-radius: 25px;
   color: var(--crl-White);
   font-size: var(--font-size-p2);
@@ -155,6 +156,7 @@
 
 .form-btn-disable {
   background-color: #169256;
+  border: none;
   border-radius: 25px;
   color: var(--crl-White);
   font-size: var(--font-size-p2);
