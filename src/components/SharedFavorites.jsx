@@ -91,7 +91,7 @@ class SharedFavorites extends Component {
         <button
           className="details-btn-favorite"
           type="button"
-          // data-testid="favorite-btn"
+          data-testid="favorite-btn"
           onClick={ this.handleFavClick }
         >
           <img src={ favIconColor } data-testid="favorite-btn" alt={ favIconColor } />
