@@ -2,16 +2,16 @@
   text-decoration: line-through;
 }
 
-/*TELA DE LOGIN*/
+/* TELA DE LOGIN */
 .button-login {
-  background-color: #ea1D2C;
+  background-color: #ea1d2c;
   border: none;
   border-radius: 5px;
-  color: #f5f0eB;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-  font-family: "Poppis", sans-serif;
-  font-weight: bold;
+  color: #f5f0eb;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
   font-size: 18px;
+  font-weight: 700;
   height: 45px;
   margin-top: 20px;
   width: 225px;
@@ -31,17 +31,17 @@
 }
 
 .label-login {
-  color: #A6A29F;
-  font-family: 'Poppins';
+  color: #a6a29f;
+  font-family: Poppins , sans-serif;
   font-weight: 700;
 }
 
-::-webkit-input-placeholder {
+/* ::input-placeholder {
   color: #a6a29f;
-  font-family: "Poppins";
+  font-family: Poppins , sans-serif;
   font-size: 14px;
   font-weight: 200;
-}
+} */
 
 /* COMPONENTE HEADER */
 .header {
@@ -55,8 +55,8 @@
 
 .header h1 {
   color: #3f3e3e;
+  font-family: Poppins , sans-serif;
   font-size: 32px;
-  font-family: "Poppins";
   font-weight: 700;
   margin: 0;
 }
@@ -78,9 +78,9 @@
   border: none;
   border-radius: 2px;
   box-sizing: border-box;
-  color: #F5F0EB;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-  font-family: "Poppins";
+  color: #f5f0eb;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
   font-size: 16px;
   font-weight: 700;
   height: 30px;
@@ -103,11 +103,10 @@
 
 .main-cards-div {
   display: flex;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
   flex-direction: column;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
   height: 150px;
-  margin-bottom: 16px;
-  margin: auto;
+  margin: 16px auto;
   overflow: hidden;
   position: relative;
   text-align: end;
@@ -121,8 +120,9 @@
 }
 
 .main-card-background {
-  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 26%, rgba(0,0,0,0) 100%); 
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
   height: 150px;
+  margin-bottom: 16px;
   position: absolute;
   width: 328px;
   z-index: 2;
@@ -131,9 +131,9 @@
 .main-cards-div h3 {
   bottom: 0;
   color: #f7f7f7;
-  font-family: "Poppins";
-  font-weight: 200;
+  font-family: Poppins , sans-serif;
   font-size: 22px;
+  font-weight: 200;
   position: absolute;
   right: 16px;
   z-index: 3;
@@ -156,7 +156,7 @@
 }
 
 /* COMPONENTE SEARCHBAR */
-.searchBar-form{
+.searchBar-form {
   align-items: space-between;
   display: flex;
   flex-wrap: wrap;
@@ -170,12 +170,12 @@
   align-items: center;
   color: #333;
   display: flex;
+  font-family: Poppins , sans-serif;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Poppins";
   justify-content: space-evenly;
+  margin-bottom: 0;
   margin-top: 16px;
-  margin-bottom: 0px;
   width: 100%;
 }
 
@@ -186,12 +186,12 @@
 
 .searchBar-input {
   background-color: #f5f0eb;
-  border-radius: 10px;
   border: none;
+  border-radius: 10px;
   color: #717171;
+  font-family: Poppins , sans-serif;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Poppins";
   height: 45px;
   margin-right: 30px;
   text-align: center;
@@ -203,8 +203,8 @@
   border: none;
   border-radius: 5px;
   color: #f5f0eb;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-  font-family: "Poppins";
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
   font-size: 16px;
   font-weight: 700;
   height: 45px;
@@ -213,11 +213,11 @@
 
 /* BEVERAGES */
 .drinks-btn {
-  overflow: hidden;
-  min-width: 90px;
   margin: 8px;
-  white-space:nowrap;
-  width: 15.5ch
+  min-width: 90px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 15.5ch;
 }
 
 .drink-cards-section {
@@ -233,8 +233,8 @@
 
 /* detail */
 .detail-img {
-  border-radius: 0 0 50px 0;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 0 0 50px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
   width: 100%;
 }
 
@@ -245,9 +245,9 @@
 
 .detail-main-section h1 {
   color: #3f3e3e;
+  font-family: Poppins , sans-serif;
   font-size: 32px;
   font-weight: 400;
-  font-family: "Poppins";
   margin: 12px;
   text-align: start;
 }
@@ -255,36 +255,32 @@
 .detail-main-section p {
   align-self: flex-end;
   color: #a6a29f;
-  font-family: "Poppins";
+  font-family: Poppins , sans-serif;
   font-size: 16px;
   letter-spacing: -0.17px;
   margin: 12px;
 }
 
-.detail-main-section p:first-child {
-  font-weight: 300;
-}
-
 .detail-main-section h2 {
-  color: #3F3E3E ;
+  color: #3f3e3e;
+  font-family: Poppins , sans-serif;
   font-size: 32px;
   font-weight: 700;
-  font-family: "Poppins";
   margin: 12px;
   text-align: start;
 }
 
-.detail-main-section button {
-  border: none;
+.header-detail-section button {
   background-color: white;
+  border: none;
   margin-left: 12px;
 }
 
 .detail-main-section ul {
   color: #a6a29f;
-  font-family: "Poppins";
-  font-weight: 300;
+  font-family: Poppins , sans-serif;
   font-size: 16px;
+  font-weight: 300;
   list-style: none;
   padding: 12px;
   text-align: start;
@@ -293,9 +289,9 @@
 .instructions {
   align-self: flex-end;
   color: #a6a29f;
-  font-family: "Poppins";
-  font-weight: 400;
+  font-family: Poppins , sans-serif;
   font-size: 16px;
+  font-weight: 400;
   letter-spacing: -0.17px;
   margin: 12px;
 }
@@ -308,22 +304,23 @@
   width: 14px;
 }
 
-.video{
+.video {
   margin: auto;
   width: max-content;
 }
 
 .start-recipe-btn {
-  background-color: #ea1d2c !important;
+  background-color: #ea1d2c;
   border: none;
   border-radius: 5px;
   bottom: 0;
   color: #f5f0eb;
-  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
-  font-family: "Poppins";
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
   font-size: 16px;
   font-weight: 700;
   height: 45px;
+  margin-left: 12px;
   position: fixed;
   width: 328px;
 }
@@ -337,7 +334,7 @@
 
 .recommended-cards-title {
   color: #717171;
-  font-family: "Poppins";
+  font-family: Poppins , sans-serif;
   font-size: 32px;
   font-weight: 700;
   line-height: 48px;
@@ -363,7 +360,6 @@
 }
 
 /* INGREDIENTES */
-
 .ingredient-btn {
   border: none;
   font-size: 25px;
@@ -378,7 +374,7 @@
 }
 
 .drinks-ingredient-btn div {
-  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 15%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
   width: 150px;
 }
 
@@ -389,7 +385,9 @@
 .ingredients-card-div {
   display: flex;
   flex-wrap: wrap;
+  height: 500px;
   justify-content: space-between;
   margin: auto;
+  overflow-y: scroll;
   width: 328px;
 }

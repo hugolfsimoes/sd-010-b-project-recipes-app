@@ -207,7 +207,7 @@ class BeverageRecipe extends React.Component {
           >
             <img src={ shareIcon } alt="Compartilhar" />
           </button>
-          <button type="button" onClick={ this.onClickFavoriteIcon }>
+          <button type="button" onClick={ this.onClickFavoriteIcon } className="details-icon">
             {this.renderFavorite()}
           </button>
         </div>
