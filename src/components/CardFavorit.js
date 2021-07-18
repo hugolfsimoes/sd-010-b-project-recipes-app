@@ -71,11 +71,13 @@ export default function CardFavorit({ mealOrDrink, index }) {
       <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
 
       <Button onClick={ handleShare }>
-        {!copy ? (<img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt={ name }
-        />)
+        {!copy
+          ? (
+            <img
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+              alt={ name }
+            />)
           : (<p data-testid={ `${index}-horizontal-share-btn` }>Link copiado!</p>)}
       </Button>
 
