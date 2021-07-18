@@ -92,6 +92,7 @@ export default function InProgress() {
     }
   }
 
+  // Source: https://stackoverflow.com/questions/39501289/in-reactjs-how-to-copy-text-to-clipboard
   function handleShare() {
     navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''))
       .then(() => setCopy(true));

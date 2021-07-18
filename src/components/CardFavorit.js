@@ -22,6 +22,7 @@ export default function CardFavorit({ mealOrDrink, index }) {
     doneDate,
     tags } = mealOrDrink;
   const [isFavorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
+  const [copy, setCopy] = useState(false);
 
   const { favorites, readFavoritesFromStorage } = useContext(RecipesContext);
 
@@ -37,8 +38,11 @@ export default function CardFavorit({ mealOrDrink, index }) {
     readFavoritesFromStorage();
   }
 
-  async function handleShare() {
-    return global.alert('Link copiado!');
+  function handleShare() {
+    const destination = type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`;
+    const linkAdress = window.location.href.replace('/receitas-favoritas', destination);
+    navigator.clipboard.writeText(linkAdress)
+      .then(() => setCopy(true));
   }
 
   return (
@@ -67,11 +71,12 @@ export default function CardFavorit({ mealOrDrink, index }) {
       <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
 
       <Button onClick={ handleShare }>
-        <img
+        {!copy ? (<img
           data-testid={ `${index}-horizontal-share-btn` }
           src={ shareIcon }
           alt={ name }
-        />
+        />)
+          : (<p data-testid={ `${index}-horizontal-share-btn` }>Link copiado!</p>)}
       </Button>
 
       <Button onClick={ handleFavorite }>
