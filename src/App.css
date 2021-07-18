@@ -436,7 +436,7 @@ button {
   height: 200px;
 }
 
-/* Explore Food */
+/* Explore FOOD */
 .explore-food .main-cards-div {
   height: 140px;
 }
@@ -448,4 +448,10 @@ button {
 
 .explore-food button {
   border: none;
+}
+
+/* EXPLORE BEVERAGES */
+.explore-drinks img {
+  bottom: 0;
+  height: 200px;
 }
