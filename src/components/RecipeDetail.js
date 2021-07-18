@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import copy from 'clipboard-copy';
+import Button from 'react-bootstrap/Button';
 import { redirectPage, copyLink, favoriteClick, help } from '../helper/functions';
 import useRecipeDetail from '../helper/useRecipeDetail';
 import shareIcon from '../images/shareIcon.svg';
@@ -47,45 +48,50 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
   const arrayButton = arrayDone.filter((element) => element.id === idRecipe);
   console.log(arrayButton);
   return (
-    <div>
-
+    <div className="detail">
       <img
-        width="140"
+        width="100%"
         alt={ typeRecipe === 'food' ? list.strMeal : list.strDrink }
         src={ typeRecipe === 'food' ? list.strMealThumb : list.strDrinkThumb }
         data-testid="recipe-photo"
       />
 
-      <p
-        data-testid="recipe-title"
-      >
-        { typeRecipe === 'food' ? list.strMeal : list.strDrink }
+      <div className="icones">
+        <p
+          data-testid="recipe-title"
+        >
+          { typeRecipe === 'food' ? list.strMeal : list.strDrink }
 
+        </p>
+        <div className="link">
+          <img
+            style={ { padding: '10px' } }
+            role="presentation"
+            onClick={ () => copyLink(copy, setShow, typeRecipe, idRecipe) }
+            type="button"
+            data-testid="share-btn"
+            src={ shareIcon }
+            alt="Share Icon"
+            width="50px"
+          />
+          {show && <p>Link copiado!</p>}
+        </div>
+        <img
+          src={ favorite ? blackHeartIcon : whiteHeartIcon }
+          alt="No Favorite"
+          width="30px"
+          onClick={ () => favoriteClick({
+            arrayFavorite, list, favorite, typeRecipe, idRecipe, setFavorite }) }
+          type="button"
+          role="presentation"
+          data-testid="favorite-btn"
+        />
+      </div>
+      <p className="instruction" data-testid="recipe-category">
+        { typeRecipe === 'food' ? `Category: ${list.strCategory}` : `Category: ${list.strAlcoholic}` }
       </p>
-      <img
-        style={ { padding: '10px' } }
-        role="presentation"
-        onClick={ () => copyLink(copy, setShow, typeRecipe, idRecipe) }
-        type="button"
-        data-testid="share-btn"
-        src={ shareIcon }
-        alt="Share Icon"
-      />
-      <p>{show && 'Link copiado!'}</p>
-      <img
-        src={ favorite ? blackHeartIcon : whiteHeartIcon }
-        alt="No Favorite"
-        onClick={ () => favoriteClick({
-          arrayFavorite, list, favorite, typeRecipe, idRecipe, setFavorite }) }
-        type="button"
-        role="presentation"
-        data-testid="favorite-btn"
-      />
-      <p data-testid="recipe-category">
-        { typeRecipe === 'food' ? list.strCategory : list.strAlcoholic }
-      </p>
-      <p className="instruction" data-testid="instructions">{list.strInstructions}</p>
-      <ul>
+      <p className="instruction parts" data-testid="instructions">{list.strInstructions}</p>
+      <ul className="parts">
         {leng.map((ing, index) => (
           <li
             className="instruction"
@@ -99,6 +105,7 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
       </ul>
       { typeRecipe === 'food'
       && <iframe
+        className="video parts"
         data-testid="video"
         width="260"
         height="200"
@@ -111,7 +118,7 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
         clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />}
-      <div className="recipe-list">
+      <div className="recipe-list parts">
         { reco.map((item, index) => (
           <div
             data-testid={ `${index}-recomendation-card` }
@@ -134,15 +141,15 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
       </div>
       { arrayButton.length === 0
       && (
-        <button
+        <Button
           onClick={ () => redirectPage(history, idRecipe, typeRecipe) }
-          className="start-recipe"
+          className="start-recipe parts"
           type="button"
           value={ button }
           data-testid="start-recipe-btn"
         >
           {button}
-        </button>)}
+        </Button>)}
 
     </div>
 

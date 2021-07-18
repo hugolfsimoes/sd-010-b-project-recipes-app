@@ -19,6 +19,7 @@
 
 .meals {
   align-items: center;
+  background-color: #FAF2E9;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -36,6 +37,54 @@
 .header-body {
   display: flex;
   flex-direction: column;
+}
+
+.detail {
+  position: relative;
+  top: -130px;
+  width: 100%;
+  height: 100%;
+}
+
+.detail1 {
+  position: relative;
+  width: 100%;
+  top: -105px;
+  height: 100%;
+}
+
+.lista{
+  margin-top: 30px;
+  margin-left: 110px !important;
+  margin-right: 10px !important;
+}
+
+.icones {
+  display: flex;
+  height: 50px;
+  margin: 20px;
+}
+
+.name {
+  margin-top: 10px;
+  color: tomato;
+  font-size: 16px;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+}
+
+.icones p {
+  width: 80%;
+  position: relative;
+}
+
+.video {
+  margin-left: 50px;
+  margin-right: 50px;
+  border: solid 10px #FF7B52;
 }
 
 .show-recipe {
@@ -204,9 +253,11 @@
 }
 
 .papai p {
-  display: inline-block;
   margin: 0;
-  width: 50px;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
 }
 
 
@@ -239,8 +290,77 @@
   margin-bottom: 8px;
 }
 
+.explore-ingredients {
+  background-image: url('/ingredients1.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-ingret {
+  background-image: url('/ingredients2.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.ingrets {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  padding: 10px 5px;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border: none !important;
+  box-shadow: 0 0 10px rgb(158, 157, 157) !important;
+  background-color: #577647;
+}
+
+.ingrets img {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.ingrets p {
+  width: 60px;
+  text-align: center;
+  font-size: 8px;
+  color: bisque;
+}
+
+.ingrets1 {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  padding: 15px 2px;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border: none !important;
+  box-shadow: 0 0 10px rgb(158, 157, 157) !important;
+  background-color: #577647;
+}
+
+.ingrets1 img {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.ingrets1 p {
+  width: 60px;
+  text-align: center;
+  font-size: 8px;
+  color: bisque;
+}
+
 .instruction {
-  font-size: 2px;
+  font-size: 15px;
+  margin: 10px;
+}
+
+.parts {
+  margin-top: 40px;
 }
 
 .meals > .logo {
@@ -252,6 +372,10 @@
 }
 
 .start-recipe {
+  margin-left: 110px;
+  margin-right: 110px;
+  margin-bottom: 5px;
+  background-color:teal !important;
   bottom: 0;
   position: fixed;
 }
@@ -291,7 +415,9 @@
 .div-cards-ingredients {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
+  margin-top: 50px;
+  margin-left: 45px;
+  margin-right: 45px;
   width: 80%;
 
 }
@@ -320,11 +446,6 @@
   width: 100%;
 }
 
-.app-receitas {
-  
-}
-
-
 .app-login input {
   margin-left: 5px;
   position: relative;
@@ -342,6 +463,22 @@
   margin-left: 20px;
   position: relative;
   top: 566px;
+}
+
+.explore-country {
+  background-image: url('/map.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-country select {
+  width: 120px;
+  margin-top: 40px;
+  border-color: #577647 !important;
+  background-color: white;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 @keyframes shake {
