@@ -8,7 +8,6 @@ import { GetRecipesDone } from '../redux/actions';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
 import { setDoneRecipes } from '../services/services';
-import Footer from '../Components/Footer';
 
 function Progress(props) {
   const { match: { params: { id } } } = props;
@@ -51,7 +50,6 @@ function Progress(props) {
           Finalizar receita
         </button>
       </Link>
-      <Footer />
     </>
   );
 }

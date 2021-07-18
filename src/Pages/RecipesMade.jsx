@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import clipboard from 'clipboard-copy';
-import Footer from '../Components/Footer';
 import shareIcon from '../images/shareIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import '../styles/Done.css';
@@ -99,7 +98,6 @@ export default function RecipesMade() {
         ))}
       </main>
 
-      <Footer />
     </>
   );
 }
