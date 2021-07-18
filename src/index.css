@@ -1483,6 +1483,13 @@ button {
     justify-content: center;
     flex-wrap: wrap;
   }
+  
+  /* DONE RECIPE PAGE ==================================== */
+  .fav-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
   /* RECOMMENDED RECIPES COMPONENT */
   .recommendedImg {
