@@ -818,14 +818,7 @@ button {
 .done-buttons div div button {
   border-radius: 40px;
   box-shadow: 0 2px 10px rgba(35,0,77,.2);
-  margin-top: 1rem;
   width: 5rem;
-}
-
-.done-buttons div div button:hover {
-  color: var(--title-color);
-  box-shadow: 0px 10px 20px 2px rgb(0 0 0 / 30%);
-  padding: 7px;
 }
 
 .categoriesBtnsDone button {
@@ -941,6 +934,47 @@ button {
 .fav-recipes {
   display: grid;
   justify-items: center;
+}
+
+.fav-card {
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(35,0,77,.2);
+  cursor: pointer;
+  display: flex;
+  margin: 20px 5px 0 5px;
+  /* min-width: 333px; */
+  /* overflow-y: hidden; */
+  width: 333px;
+}
+
+.fav-image {
+  border-radius: 40px;
+  box-shadow: 0 2px 10px rgba(35,0,77,.2);
+  filter: drop-shadow(5px 10px 15px rgba(8,9,13,.4));
+  margin: 10px;
+  width: 130px; 
+}
+
+.fav-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  /* align-items: center; */
+}
+
+.fav-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 183px;
+}
+
+.fav-card-text {
+  color: var(--third-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px 5px;
 }
 
 /* =========================================================================================================================*/
@@ -1086,7 +1120,7 @@ button {
 
 .header .profile {
   position: relative;
-  left: 68px;
+  left: 10px;
 }
 
 .header .search {

@@ -50,19 +50,19 @@ export const handleClickType = (type, key, setState) => {
 };
 
 export const mealInfo = (index, area, category) => (
-  <p
-    className="doneCategory"
+  <div
+    className="done-category"
     data-testid={ `${index}-horizontal-top-text` }
   >
     {`${area} - ${category}`}
-  </p>
+  </div>
 );
 
 export const drinkInfo = (index, alcoholicOrNot) => (
-  <p
-    className="doneCategory"
+  <div
+    className="done-category"
     data-testid={ `${index}-horizontal-top-text` }
   >
     {`${alcoholicOrNot}`}
-  </p>
+  </div>
 );

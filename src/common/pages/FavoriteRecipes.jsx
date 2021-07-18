@@ -29,14 +29,16 @@ export default function FavoriteRecipes() {
           clickAll={ handleClickAll }
           path={ FAVORITE_RECIPES }
         />
-        { favoriteRecipes.map((recipe, i) => (
-          <FavoriteRecipeCard
-            recipe={ recipe }
-            index={ i }
-            handleLikeClick={ handleLikeClick }
-            key={ i }
-          />
-        )) }
+        <section className="fav-container">
+          { favoriteRecipes.map((recipe, i) => (
+            <FavoriteRecipeCard
+              recipe={ recipe }
+              index={ i }
+              handleLikeClick={ handleLikeClick }
+              key={ i }
+            />
+          )) }
+        </section>
       </div>
     </div>
   );
