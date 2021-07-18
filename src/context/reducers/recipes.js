@@ -1,6 +1,6 @@
 import { ADD_RECIPES, DIRECT_PAGE,
   ADD_RD_LOADING, SET_FETCHON_DONE,
-  ADD_RD_RR_LOADING, SET_DONE_LOADING, ADD_RD_FETCHON } from '../store';
+  ADD_RD_RR_LOADING, SET_DONE_LOADING, ADD_REC_DETAILS } from '../store';
 
 const recipesReducer = (state, { type, payload }) => { // Desestruturação do Action
   switch (type) {
@@ -20,8 +20,8 @@ const recipesReducer = (state, { type, payload }) => { // Desestruturação do A
   case ADD_RD_LOADING: { const { recipeDetail, loading } = payload;
     return { ...state, recipeDetail, loading };
   }
-  case ADD_RD_FETCHON: { const { recipeDetail, fetchOn } = payload;
-    return { ...state, recipeDetail, fetchOn };
+  case ADD_REC_DETAILS: { const { recipeDetail } = payload;
+    return { ...state, recipeDetail };
   }
   case ADD_RD_RR_LOADING: {
     const { recipeDetail, recommendedRecipes, loading } = payload;

@@ -2,16 +2,16 @@ import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchAPI, SUPRISE_ME_DRINKS } from '../../services/index';
-import store, { addRecDetailsFetchOn } from '../../context/store';
+import store, { addRecDetails, setFetchOnDone } from '../../context/store';
 import Footer from '../components/Footer';
 
 export default function ExploreMeals() {
   const history = useHistory();
   const { setRecipes } = useContext(store);
   async function handleClic() {
+    setRecipes(setFetchOnDone(true));
     const drinksDetails = await fetchAPI(SUPRISE_ME_DRINKS);
-    console.log(drinksDetails.drinks[0].idDrink);
-    setRecipes(addRecDetailsFetchOn(drinksDetails.drinks, true));
+    setRecipes(addRecDetails(drinksDetails.drinks[0]));
     history.push(`/bebidas/${drinksDetails.drinks[0].idDrink}`);
   }
   return (

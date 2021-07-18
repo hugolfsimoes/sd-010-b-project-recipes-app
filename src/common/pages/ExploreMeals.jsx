@@ -3,14 +3,15 @@ import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { fetchAPI, SUPRISE_ME_MEALS } from '../../services/index';
-import store, { addRecDetailsFetchOn } from '../../context/store';
+import store, { addRecDetails, setFetchOnDone } from '../../context/store';
 
 export default function ExploreMeals() {
   const history = useHistory();
   const { setRecipes } = useContext(store);
   async function handleClic() {
+    setRecipes(setFetchOnDone(true));
     const mealsDetails = await fetchAPI(SUPRISE_ME_MEALS);
-    setRecipes(addRecDetailsFetchOn(mealsDetails.meals, true));
+    setRecipes(addRecDetails(mealsDetails.meals[0]));
     history.push(`/comidas/${mealsDetails.meals[0].idMeal}`);
   }
   return (
