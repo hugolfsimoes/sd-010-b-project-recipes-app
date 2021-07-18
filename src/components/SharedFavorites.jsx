@@ -47,10 +47,9 @@ class SharedFavorites extends Component {
         },
       ];
 
-      console.log(recovery);
-
       return localStorage.setItem('favoriteRecipes', JSON.stringify(recipe));
     }
+
     if (favIcon) {
       console.log('sou verdadeiro', id, page);
 

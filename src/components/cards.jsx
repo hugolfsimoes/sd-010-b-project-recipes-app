@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/cards.css';
 
 export default function Cards({ id, img, title, index, url }) {
-  // const { id, img, title, index, url } = this.props;
   return (
     <Link to={ `${url}/${id}` }>
       <Card
