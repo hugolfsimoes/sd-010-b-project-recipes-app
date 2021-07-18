@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import store, { setFetchOnDone } from '../../context/store';
 import drinkIcon from '../../images/drinkIcon.png';
-import exploreIcon from '../../images/exploreIcon.svg';
+import exploreIcon from '../../images/exploreIcon.png';
 import mealIcon from '../../images/mealIcon.png';
 
 export default function Footer() {
