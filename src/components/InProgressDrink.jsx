@@ -107,7 +107,7 @@ function InProgressDrink({ match: { params } }) {
       /> */}
       <h3>Recomendadas</h3>
       <RecommendedFood />
-      <Link to=" ">
+      <Link to="/receitas-feitas">
         <button
           type="button"
           disabled={ isDisable }

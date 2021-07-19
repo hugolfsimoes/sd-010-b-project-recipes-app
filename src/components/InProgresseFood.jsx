@@ -106,7 +106,7 @@ function InProgressFood({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <Link to=" ">
+      <Link to="/receitas-feitas">
         <button
           type="button"
           data-testid="finish-recipe-btn"
