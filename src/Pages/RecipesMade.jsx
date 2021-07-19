@@ -22,7 +22,8 @@ export default function RecipesMade() {
     setCopy(true);
   }
 
-  return DoneRecipes.length === 0 ? <div> loading... </div> : (
+  // return DoneRecipes.length === 0 ? <div> loading... </div> : (
+  return (
     <>
       <header className="header-container">
         <div>
@@ -45,14 +46,14 @@ export default function RecipesMade() {
         <button
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ () => filterRecipes('Comidas') }
+          onClick={ () => filterRecipes('comida') }
         >
           Food
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ () => filterRecipes('Drinks') }
+          onClick={ () => filterRecipes('bebida') }
         >
           Drink
         </button>
@@ -64,15 +65,17 @@ export default function RecipesMade() {
               to={ `/${item.type}s/${item.id}` }
             >
               <img
+                id={ index }
                 alt={ item.name }
                 width="100"
                 src={ item.image }
                 data-testid={ `${index}-horizontal-image` }
               />
             </Link>
-            {item.type === 'Comidas'
-              ? <p data-testid={ `${index}-horizontal-top-text` }>{`${item.area} - ${item.category}`}</p>
-              : <p data-testid={ `${index}-horizontal-top-text` }>{item.alcoholicOrNot}</p>}
+            <p data-testid={ `${index}-horizontal-top-text` }>
+              { item.type === 'bebida'
+                ? item.alcoholicOrNot : `${item.area} - ${item.category}`}
+            </p>
             <Link
               to={ `/${item.type}s/${item.id}` }
               data-testid={ `${index}-horizontal-name` }

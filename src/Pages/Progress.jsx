@@ -25,10 +25,10 @@ function Progress(props) {
   useEffect(() => {
     if (strType === 'Meal') {
       setFoodDone(id);
-      setTypeDone('Comidas');
+      setTypeDone('comida');
     } else {
       setDrinkDone(id);
-      setTypeDone('Drinks');
+      setTypeDone('bebida');
     }
   }, []);
 
