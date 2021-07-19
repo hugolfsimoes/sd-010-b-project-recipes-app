@@ -10,8 +10,19 @@ import '../App.css';
 
 function InProgressFood({ match: { params } }) {
   const [checked, setchecked] = useState({});
+  const [isDisable, setIsDisable] = useState(true);
   const { recipes, setRecipes } = useContext(ContextRecipes);
   const { id } = params;
+
+  const listIngredients = Object.entries(recipes[0] || {})
+    .filter((recipe) => recipe[0].includes('Ingredient') && recipe[1]);
+
+  const ingredientsFinal = listIngredients.map((valor) => valor[1]);
+
+  const listMeasures = Object.entries(recipes[0] || {})
+    .filter((recipe) => recipe[0].includes('Measure') && recipe[1]);
+
+  const measuresFinal = listMeasures.map((valor) => valor[1]);
 
   useEffect(() => {
     const getRecipes = () => {
@@ -22,16 +33,17 @@ function InProgressFood({ match: { params } }) {
     getRecipes();
   }, [id, setRecipes]);
 
+  useEffect(() => {
+    if (Object.keys(checked).length === ingredientsFinal.length
+      && Object.values(checked).every((value) => value)) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+    console.log(isDisable);
+  }, [checked]);
+
   if (recipes[0] === undefined) return <h1>Loading...</h1>;
-  const listIngredients = Object.entries(recipes[0])
-    .filter((recipe) => recipe[0].includes('Ingredient') && recipe[1]);
-
-  const ingredientsFinal = listIngredients.map((valor) => valor[1]);
-
-  const listMeasures = Object.entries(recipes[0])
-    .filter((recipe) => recipe[0].includes('Measure') && recipe[1]);
-
-  const measuresFinal = listMeasures.map((valor) => valor[1]);
 
   const INDEX_NUMBER = 3;
   const urlVideo = recipes[0].strYoutube.split('/');
@@ -94,10 +106,11 @@ function InProgressFood({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <Link to=" ">
+      <Link to="/receitas-feitas">
         <button
           type="button"
           data-testid="finish-recipe-btn"
+          disabled={ isDisable }
           className="button"
         >
           Finalizar Receita
