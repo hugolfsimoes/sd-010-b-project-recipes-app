@@ -10,8 +10,20 @@ import '../App.css';
 
 function InProgressDrink({ match: { params } }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
+  const [isDisable, setIsDisable] = useState(true);
   const [checked, setchecked] = useState({});
   const { id } = params;
+
+  const listIngredients = Object.entries(drinks[0] || {})
+    .filter((recipe) => recipe[0].includes('Ingredient') && recipe[1]);
+
+  const ingredientsFinal = listIngredients.map((valor) => valor[1]);
+
+  const listMeasures = Object.entries(drinks[0] || {})
+    .filter((recipe) => recipe[0].includes('Measure') && recipe[1]);
+
+  const measuresFinal = listMeasures.map((valor) => valor[1]);
+
   useEffect(() => {
     const getRecipes = () => {
       fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
@@ -22,17 +34,17 @@ function InProgressDrink({ match: { params } }) {
     getRecipes();
   }, [id, setDrinks, setIsLoading]);
 
+  useEffect(() => {
+    if (Object.keys(checked).length === ingredientsFinal.length
+      && Object.values(checked).every((value) => value)) {
+      setIsDisable(false);
+    } else {
+      setIsDisable(true);
+    }
+    console.log(isDisable);
+  }, [checked]);
+
   if (drinks[0] === undefined) return <h1>Carregando...</h1>;
-
-  const listIngredients = Object.entries(drinks[0])
-    .filter((recipe) => recipe[0].includes('Ingredient') && recipe[1]);
-
-  const ingredientsFinal = listIngredients.map((valor) => valor[1]);
-
-  const listMeasures = Object.entries(drinks[0])
-    .filter((recipe) => recipe[0].includes('Measure') && recipe[1]);
-
-  const measuresFinal = listMeasures.map((valor) => valor[1]);
 
   /* const INDEX_NUMBER = 3;
   const urlVideo = drinks[0].strYoutube.split('/');
@@ -98,6 +110,7 @@ function InProgressDrink({ match: { params } }) {
       <Link to=" ">
         <button
           type="button"
+          disabled={ isDisable }
           data-testid="finish-recipe-btn"
           className="button"
         >
