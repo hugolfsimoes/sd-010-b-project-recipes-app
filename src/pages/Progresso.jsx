@@ -204,7 +204,8 @@ class Progresso extends Component {
           </section>
           <Link to="/receitas-feitas">
             <button
-              className={ count !== recipesLength ? 'details-btn-startRecipe disabled' : 'details-btn-startRecipe' }
+              className={ count !== recipesLength
+                ? 'details-btn-startRecipe disabled' : 'details-btn-startRecipe' }
               type="button"
               data-testid="finish-recipe-btn"
               onClick={ () => {

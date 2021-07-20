@@ -151,11 +151,13 @@
   height: 3.5rem;
   margin-top: 2.5rem;
   outline: none;
+  transition: background-color 500ms ease-in-out;
+  transition-delay: 500ms;
   width: 20.43rem;
 }
 
 .form-btn-disable {
-  background-color: #169256;
+  background-color: #e3fff8;
   border: none;
   border-radius: 25px;
   color: var(--crl-White);

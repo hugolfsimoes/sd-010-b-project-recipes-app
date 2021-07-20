@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import copy from 'clipboard-copy';
+import { CgPentagonRight } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-// import { Col, Container, Row } from 'react-bootstrap';
+import '../css/doneRecipes.css';
 
 class DoneRecipes extends Component {
   constructor(props) {
@@ -52,9 +53,10 @@ class DoneRecipes extends Component {
   render() {
     const { doneRecipes, ids } = this.state;
     return (
-      <section>
-        <section>
+      <section className="done-recipes-main">
+        <section className="list-btn">
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterAll }
             data-testid="filter-by-all-btn"
@@ -62,6 +64,7 @@ class DoneRecipes extends Component {
             All
           </button>
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterFoods }
             data-testid="filter-by-food-btn"
@@ -69,6 +72,7 @@ class DoneRecipes extends Component {
             Food
           </button>
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterDrinks }
             data-testid="filter-by-drink-btn"
@@ -80,19 +84,21 @@ class DoneRecipes extends Component {
           doneRecipes.map(({
             type, name, id, image, area, category, alcoholicOrNot, doneDate, tags,
           }, index) => (
-            <Card key={ name } className="favorite-card">
+            <Card key={ name } className="done-card">
               <Link to={ `${type}s/${id}` }>
-                <Card.Img
-                  className="favorite-card-img"
-                  data-testid={ `${index}-horizontal-image` }
-                  src={ image }
-                />
+                <div className="img-content">
+                  <Card.Img
+                    className="done-card-img"
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ image }
+                  />
+                </div>
               </Link>
-              <Card.Body className="favorite-card-body">
+              <Card.Body className="done-card-body">
                 <Link to={ `${type}s/${id}` }>
                   <Card.Subtitle
                     data-testid={ `${index}-horizontal-top-text` }
-                    className="favorite-card-subtitle"
+                    className="done-card-subtitle"
                   >
                     {
                       (type === 'comida') ? `${area} - ${category}`
@@ -100,20 +106,21 @@ class DoneRecipes extends Component {
                     }
                   </Card.Subtitle>
                   <Card.Title
-                    className="favorite-card-title"
+                    className="done-card-title"
                     data-testid={ `${index}-horizontal-name` }
                   >
                     { name }
                   </Card.Title>
                 </Link>
-                <section className="favorite-buttons">
+                <section className="done-buttons">
                   <button
                     type="button"
-                    className="favorite-btn-share"
+                    className="done-btn-share"
                     onClick={ () => copy(`http://localhost:3000/${type}s/${id}`)
                       .then(() => this.renderMsg(id)) }
                   >
                     <img
+                      className="img-share"
                       data-testid={ `${index}-horizontal-share-btn` }
                       src={ shareIcon }
                       alt={ shareIcon }
@@ -121,16 +128,23 @@ class DoneRecipes extends Component {
                   </button>
                   {ids.includes(id) && <p>Link copiado!</p>}
                 </section>
-                <Card.Text data-testid={ `${index}-horizontal-done-date` }>
+                <Card.Text
+                  className="done-date"
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
                   {doneDate}
                 </Card.Text>
                 {
                   tags !== '' && tags.map((el) => (
                     <Card.Text
+                      className="tag-content"
                       key={ el }
                       data-testid={ `${index}-${el}-horizontal-tag` }
                     >
-                      {el}
+                      <div className="done-tag">
+                        <CgPentagonRight />
+                        {el}
+                      </div>
                     </Card.Text>))
                 }
               </Card.Body>
