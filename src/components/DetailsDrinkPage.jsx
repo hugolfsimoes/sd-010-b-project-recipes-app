@@ -72,16 +72,16 @@ function DetailsDrinkPage({ match: { params } }) {
   //   // fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // }
 
-  const setLocalStorage = () => {
-    localStorage.setItem('inProgressRecipes', JSON.stringify({
-      meals: {},
-      cocktails: {},
-    }));
-    localStorage.setItem('doneRecipes', JSON.stringify([]));
-    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
-  };
+  // const setLocalStorage = () => {
+  //   localStorage.setItem('inProgressRecipes', JSON.stringify({
+  //     meals: {},
+  //     cocktails: {},
+  //   }));
+  //   localStorage.setItem('doneRecipes', JSON.stringify([]));
+  //   localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+  // };
 
-  setLocalStorage();
+  // setLocalStorage();
 
   return (
     <div>
