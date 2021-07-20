@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Footer, Header } from '../components';
-// import { getRandomIdMeal } from '../services';
 
 function ExploreMealsOrDrinks({ history }) {
   const { pathname } = history.location;
-  // const idMeal = async () => {
-  //   const id = await getRandomIdMeal();
-  //   return id;
-  // };
   const renderExploreMeals = () => (
-    <>
+    <section>
       <Link to="/explorar/comidas/ingredientes">
         <p data-testid="explore-by-ingredient">
           Por Ingredientes
@@ -29,11 +24,11 @@ function ExploreMealsOrDrinks({ history }) {
           Me Surpreenda!
         </p>
       </Link>
-    </>
+    </section>
   );
 
   const renderExploreDrinks = () => (
-    <>
+    <section>
       <Link to="/explorar/bebidas/ingredientes">
         <p data-testid="explore-by-ingredient">
           Por Ingredientes
@@ -45,7 +40,7 @@ function ExploreMealsOrDrinks({ history }) {
           Me Surpreenda!
         </p>
       </Link>
-    </>
+    </section>
   );
 
   return (
