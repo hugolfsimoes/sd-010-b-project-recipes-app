@@ -45,8 +45,10 @@
 
 .ingredients-row {
   align-items: center;
+  color: var(--crl-Main-Text);
   display: flex;
   font-size: var(--font-size-p2);
+  font-weight: 500;
   justify-content: flex-start;
   margin: 1rem;
 }

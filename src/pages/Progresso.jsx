@@ -9,7 +9,6 @@ import '../css/progress.css';
 import Instructions from '../components/Instructions';
 import DetailsHeader from '../components/DetailsHeader';
 import identification from '../helper/dictionaryApi';
-import SharedFavorites from '../components/SharedFavorites';
 
 class Progresso extends Component {
   constructor(props) {
@@ -183,14 +182,12 @@ class Progresso extends Component {
     const { allIngredients, count, recipesLength } = this.state;
 
     return (
-      <section>
+      <section className="page-progress">
         { details.strIngredient1 !== undefined && this.test() }
-        <DetailsHeader data={ details } />
-        <button type="button" onClick={ () => history.goBack() }>voltar</button>
-        <SharedFavorites id={ id } page={ page } />
+        <DetailsHeader data={ details } page={ page } id={ id } history={ history } />
         <section className="details-content">
           <section>
-            <h3>Ingredients</h3>
+            <h3 className="details-title">Ingredients</h3>
             <span className="details-ingredients">
               <Ingredients
                 data={ details }
@@ -200,14 +197,14 @@ class Progresso extends Component {
             </span>
           </section>
           <section data-testid="instructions">
-            <h3>Instructions</h3>
-            <span className="details-intructions-text">
+            <h3 className="details-title">Instructions</h3>
+            <span className="details-intructions">
               <Instructions data={ details } />
             </span>
           </section>
           <Link to="/receitas-feitas">
             <button
-              className="details-btn-startRecipe"
+              className={ count !== recipesLength ? 'details-btn-startRecipe disabled' : 'details-btn-startRecipe' }
               type="button"
               data-testid="finish-recipe-btn"
               onClick={ () => {

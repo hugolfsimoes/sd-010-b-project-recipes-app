@@ -81,6 +81,8 @@
   outline: none;
   padding: 0.56rem;
   position: fixed;
+  transition: background-color 500ms ease-in-out;
+  transition-delay: 500ms;
   width: 16.43rem;
 }
 
