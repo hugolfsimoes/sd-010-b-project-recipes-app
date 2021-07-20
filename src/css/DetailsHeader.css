@@ -61,7 +61,7 @@
 }
 
 .recipe-header-content {
-  align-items: flex-end;
+  align-items: center;
   background-color: var(--crl-White);
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;

@@ -40,8 +40,7 @@ class Ingredients extends Component {
         {
           dictionary.Ingredients.map((ingredient, index) => (
             (data[ingredient[0]] !== null && data[ingredient[0]] !== '') ? (
-              <label
-                htmlFor={ `checkbox-${index}` }
+              <div
                 className="ingredients-row"
                 id={ `input-${index}` }
                 key={ index }
@@ -54,11 +53,19 @@ class Ingredients extends Component {
                 {
                   this.checkIngredient(data[ingredient[0]], index)
                 }
-                <div className="ingredients-measures">{data[ingredient[1]]}</div>
-                <div className="ingredients-name" id={ `ingredient-${index}` }>
-                  {data[ingredient[0]]}
-                </div>
-              </label>
+                {/* código do checkbox retirado do link https://codepen.io/avstorm/pen/vYYBxRM?editors=1100 */}
+                <label className="checkbox" htmlFor={ `checkbox-${index}` }>
+                  <span>
+                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                      <polyline points="1 5 4 8 11 1" />
+                    </svg>
+                  </span>
+                  <div className="ingredients-measures">{data[ingredient[1]]}</div>
+                  <div className="ingredients-name" id={ `ingredient-${index}` }>
+                    {data[ingredient[0]]}
+                  </div>
+                </label>
+              </div>
             ) : null
           ))
         }
@@ -80,7 +87,7 @@ Ingredients.propTypes = {
 
 export default connect(mapStateToProps)(Ingredients);
 
-{/* <div
+{ /* <div
                 className="ingredients-row"
                 id={ `input-${index}` }
                 key={ index }
@@ -99,4 +106,4 @@ export default connect(mapStateToProps)(Ingredients);
                 <div className="ingredients-name" id={ `ingredient-${index}` }>
                   {data[ingredient[0]]}
                 </div>
-              </div> */}
+              </div> */ }
