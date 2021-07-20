@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import store, { setFetchOnDone } from '../../context/store';
-import drinkIcon from '../../images/drinkIcon.png';
-import exploreIcon from '../../images/exploreIcon.png';
-import mealIcon from '../../images/mealIcon.png';
+import drinkIcon from '../../images/drinkIcon.svg';
+import exploreIcon from '../../images/exploreIcon.svg';
+import mealIcon from '../../images/mealIcon.svg';
 
 export default function Footer() {
   const { setRecipes } = useContext(store);
