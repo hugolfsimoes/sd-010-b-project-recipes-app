@@ -31,26 +31,45 @@ class Profile extends React.Component {
     return (
       <section>
         <Header title="Perfil" />
-        <p data-testid="profile-email">
+        <p
+          className="profile-email"
+          data-testid="profile-email"
+        >
           { this.renderEmail() }
         </p>
-        <Link to="/receitas-feitas">
-          <button data-testid="profile-done-btn" type="button">
-            Receitas Feitas
+        <hr />
+        <div className="container-btn-profile">
+          <div className="btn-profile">
+            <Link to="/receitas-feitas">
+              <button
+                className="btn-done"
+                data-testid="profile-done-btn"
+                type="button"
+              >
+                Receitas Feitas
+              </button>
+            </Link>
+          </div>
+          <div className="btn-profile">
+            <Link to="/receitas-favoritas">
+              <button
+                className="btn-favorite"
+                data-testid="profile-favorite-btn"
+                type="button"
+              >
+                Receitas Favoritas
+              </button>
+            </Link>
+          </div>
+          <button
+            type="button"
+            data-testid="profile-logout-btn"
+            onClick={ this.onClickLogOut }
+            className="button-login"
+          >
+            Sair
           </button>
-        </Link>
-        <Link to="/receitas-favoritas">
-          <button data-testid="profile-favorite-btn" type="button">
-            Receitas Favoritas
-          </button>
-        </Link>
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ this.onClickLogOut }
-        >
-          Sair
-        </button>
+        </div>
         <Footer />
       </section>
     );

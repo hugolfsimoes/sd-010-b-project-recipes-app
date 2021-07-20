@@ -462,7 +462,7 @@ button {
 }
 
 
-/*RECEITAS FAVORITAS*/
+/*RECEITAS FAVORITAS && RECEITAS PRONTAS*/
 
 .img-favorite {
   margin-top: 32px;
@@ -508,3 +508,37 @@ button {
   text-align: center;
   color: #3f3e3e;
 }
+
+/*PAGINA DE PERFIL*/
+
+.profile-email {
+  text-align: center;
+}
+
+.container-btn-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  padding-bottom: 10px;
+}
+
+.btn-profile {
+  margin-bottom: 20px;
+}
+
+.btn-done, .btn-favorite {
+  background-color: #a02331;
+  border: none;
+  border-radius: 5px;
+  color: #f5f0eb;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  font-family: Poppins , sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  height: 45px;
+  margin-top: 20px;
+  width: 225px;
+}
+
