@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { requestFoodById } from '../../helpers/requests';
+import { requestMealById } from '../../helpers/requests';
 import ButtonShare from '../../components/ButtonShare/ButtonShare';
 import ButtonFavorite from '../../components/ButtonFavorite/ButtonFavorite';
 
@@ -12,7 +12,7 @@ function FoodInProgress({ match }) {
 
   useEffect(() => {
     (async function request() {
-      const resolve = await requestFoodById(id);
+      const resolve = await requestMealById(id);
       setData(resolve);
     }());
     const getStorage = localStorage.getItem('meals');
