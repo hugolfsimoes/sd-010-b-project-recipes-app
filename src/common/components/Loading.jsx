@@ -27,7 +27,7 @@ export default function Loading({ loading }) {
   return (
     <div style={ { marginTop: '10rem' } }>
       {!loading ? (
-        <Lottie options={ loadingAnimation } height={ 120 } width={ 120 } />
+        <Lottie options={ loadingAnimation } height={ 420 } width={ 420 } />
       ) : (
         <Lottie options={ doneAnimation } height={ 120 } width={ 120 } />
       )}
