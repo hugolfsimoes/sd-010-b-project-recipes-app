@@ -19,6 +19,7 @@ function DrinkInProgress({ match }) {
     }());
     const getStorage = localStorage.getItem('cocktails');
     if (!getStorage) localStorage.setItem('cocktails', JSON.stringify([]));
+    console.log(id);
   }, [id]);
 
   useEffect(() => {
