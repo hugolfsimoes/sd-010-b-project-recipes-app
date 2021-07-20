@@ -1,0 +1,15 @@
+#category-done-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 8px;
+}
+
+#category-done-buttons button {
+  background-color: transparent;
+  border: 2px solid #F59600;
+  border-radius: 10px;
+  padding: 7px 25px;
+  color: #F59600;
+  font-size: 15px;
+  font-weight: 800;
+}

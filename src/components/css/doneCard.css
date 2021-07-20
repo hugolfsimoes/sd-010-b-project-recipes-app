@@ -1,0 +1,76 @@
+#doneRecipesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #EBE7E7;
+  min-height: 100vh;
+}
+
+#doneRecipeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  width: 60%;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+#doneRecipeCard a {
+  width: 120px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#doneRecipeCard a p {
+  text-align: center;
+  margin: 0;
+}
+
+#doneRecipeCard a img {
+  width: 100%;
+}
+
+#doneRecipeCard button {
+  background-color: transparent;
+  padding: 8px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px 4px #EBE7E7;
+  outline: none;
+  margin: 15px;
+}
+
+#linkDoneRecipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#linkDoneRecipe img {
+  border-radius: 20px;
+  height: 80%;
+}
+
+#shareBtn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  font-size: 20px;
+  padding: 4px;
+  transition: .4s all ease-in-out;
+}
+
+#buttonShareContainer {
+  margin: 4px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: .4s all ease-in-out;
+}

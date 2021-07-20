@@ -1,0 +1,24 @@
+#ingredientContainer {
+  background-color: #EBE7E7;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ingredient {
+  background-color: #FFFFFF;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 40px 0;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+.ingredient p {
+  text-align: center;
+  font-weight: 900;
+  color: rgb(53, 53, 53);
+}

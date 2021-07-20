@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ShareBtn from './ShareBtn';
+import './css/doneCard.css';
 
 function DoneCard({ filter }) {
   const [showCopiedMsg, setShowCopiedMsg] = useState(false);
@@ -33,26 +34,9 @@ function DoneCard({ filter }) {
     );
   };
 
-  const filterTags = (tags, index) => {
-    if (tags !== '') {
-      const resultado = String(tags).split(',');
-      return (
-        resultado.map((tag) => (
-          <p
-            key={ index }
-            data-testid={ `${index}-${tag}-horizontal-tag` }
-          >
-            { tag }
-          </p>
-        ))
-      );
-    }
-    return '';
-  };
-
   return (
-    <section>
-      {showCopiedMsg && <span>Link copiado!</span>}
+    <section id="doneRecipesContainer">
+      {showCopiedMsg && <span id="">Link copiado!</span>}
       {filtered().map((
         { id,
           type,
@@ -61,12 +45,13 @@ function DoneCard({ filter }) {
           area,
           category,
           alcoholicOrNot,
-          tags,
-          doneDate,
         },
         index,
       ) => (
-        <section key={ index }>
+        <section
+          key={ index }
+          id="doneRecipeCard"
+        >
           <hr />
           <Link to={ `${type}s/${id}` }>
             <img
@@ -82,10 +67,6 @@ function DoneCard({ filter }) {
             {renderTopText(type, area, category, alcoholicOrNot)}
           </span>
 
-          <p data-testid={ `${index}-horizontal-done-date` }>
-            {`Feita em: ${doneDate || ''}`}
-          </p>
-          {filterTags(tags, index)}
           <ShareBtn
             showCopiedMsg={ setShowCopiedMsg }
             testId={ `${index}-horizontal-share-btn` }

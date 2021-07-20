@@ -8,6 +8,7 @@ import { getIngredientsMealsList,
   getFilterIngredientListDrink } from '../services';
 import { Footer, Header } from '../components';
 import { renderFiltered, updateRecipes } from '../actions';
+import "./css/ingredientsListStyle.css";
 
 function ExploreIngredients({ history, shouldRenderFiltered, updateFiltered }) {
   const { pathname } = history.location;
@@ -50,42 +51,53 @@ function ExploreIngredients({ history, shouldRenderFiltered, updateFiltered }) {
     `https://www.thecocktaildb.com/images/ingredients/${name}-Small.png`);
 
   const renderMealsIngredients = () => (
-    ingredientsMeals.map((item, index) => (
-      <section
-        key={ index }
-        data-testid={ `${index}-ingredient-card` }
-        onClick={ () => setChoiceIngredMeal(item.strIngredient) }
-        onKeyDown={ () => history.push('/comidas') }
-        role="button"
-        tabIndex={ 0 }
-      >
-        <Link to="/comidas">
+    <article
+      id="ingredientContainer"
+    >
+      {ingredientsMeals.map((item, index) => (
+        <section
+          key={ index }
+          data-testid={ `${index}-ingredient-card` }
+          onClick={ () => setChoiceIngredMeal(item.strIngredient) }
+          onKeyDown={ () => history.push('/comidas') }
+          role="button"
+          tabIndex={ 0 }
+          className="ingredient"
+        >
+          <Link to="/comidas">
+            <p data-testid={ `${index}-card-name` }>
+              {item.strIngredient}
+            </p>
+
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ ingredientImgMeal(item.strIngredient) }
+              alt={ item.strIngredient }
+            />
+          </Link>
+        </section>))}
+    </article>
+  );
+
+  const renderDrinksIngredients = () => (
+    <article id="ingredientContainer">
+      {ingredientsDrinks.map((item, index) => (
+        <section
+          key={ index }
+          data-testid={ `${index}-ingredient-card` }
+          className="ingredient"
+        >
           <p data-testid={ `${index}-card-name` }>
-            {item.strIngredient}
+            {item.strIngredient1}
           </p>
 
           <img
             data-testid={ `${index}-card-img` }
-            src={ ingredientImgMeal(item.strIngredient) }
-            alt={ item.strIngredient }
+            src={ ingredientImgDrink(item.strIngredient1) }
+            alt={ item.strIngredient1 }
           />
-        </Link>
-      </section>))
-  );
-
-  const renderDrinksIngredients = () => (
-    ingredientsDrinks.map((item, index) => (
-      <section key={ index } data-testid={ `${index}-ingredient-card` }>
-        <p data-testid={ `${index}-card-name` }>
-          {item.strIngredient1}
-        </p>
-
-        <img
-          data-testid={ `${index}-card-img` }
-          src={ ingredientImgDrink(item.strIngredient1) }
-          alt={ item.strIngredient1 }
-        />
-      </section>))
+        </section>))}
+    </article>
   );
 
   return (

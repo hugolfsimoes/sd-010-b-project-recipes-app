@@ -1,0 +1,86 @@
+#root {
+  height: 100vh;
+  background-color: #EBE7E7;
+}
+
+#fatherFavoriteButtons {
+  background-color: #EBE7E7;
+}
+
+#favoriteButtons {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+#favoriteButtons section {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  margin: 20px 0;
+  padding: 10%;
+}
+
+#favoriteButtons section a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#favoriteButtons section a img {
+  height: 20vh;
+  width: auto;
+}
+
+#copiedLink {
+  position: absolute;
+}
+
+#favoriteRecipeInfo {
+  border-radius: 20px;
+  margin: 20px;
+}
+#favoriteRecipeInfo button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 4px 4px #EBE7E7;
+}
+
+#favoriteRecipeInfo p {
+  margin: 0;
+}
+
+.favoriteRecipe {
+  display: flex;
+  background-color: #ffffff;
+  width: 90%;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.favoriteRecipe div {
+  width: 50%;
+}
+
+.favoriteRecipe div img {
+  height: 70%;
+  width: 70%;
+  border-radius: 10px;
+}
+
+#favoriteRecipeImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#favoriteRecipeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
