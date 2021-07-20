@@ -74,8 +74,8 @@ function DetailsDrinkPage({ match: { params } }) {
 
   // const setLocalStorage = () => {
   //   localStorage.setItem('inProgressRecipes', JSON.stringify({
-  //     meals: {},
-  //     cocktails: {},
+  //     meals: { ...meals },
+  //     cocktails: { ...cocktails },
   //   }));
   //   localStorage.setItem('doneRecipes', JSON.stringify([]));
   //   localStorage.setItem('favoriteRecipes', JSON.stringify([]));

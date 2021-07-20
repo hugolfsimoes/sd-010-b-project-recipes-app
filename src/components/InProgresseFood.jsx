@@ -13,7 +13,7 @@ function InProgressFood({ match: { params } }) {
   const [isDisable, setIsDisable] = useState(true);
   const { recipes, setRecipes } = useContext(ContextRecipes);
   const { id } = params;
-
+  console.log(id, 'ID INPROGRESS');
   const listIngredients = Object.entries(recipes[0] || {})
     .filter((recipe) => recipe[0].includes('Ingredient') && recipe[1]);
 
@@ -61,6 +61,34 @@ function InProgressFood({ match: { params } }) {
   fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // // }, [setRecipes, id]);
 
+  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  const receitaFinalizada = [];
+
+  const finishRecipe = () => {
+    receitaFinalizada.push(id);
+    localStorage
+      .setItem('doneRecipes',
+        JSON.stringify([...doneRecipes, ...receitaFinalizada]));
+  };
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const receitaFavoritada = [];
+  const favoriteRecipe = () => {
+    receitaFavoritada.push(id);
+    localStorage
+      .setItem('favoriteRecipes',
+        JSON.stringify([...favoriteRecipes, ...receitaFavoritada]));
+  };
+
+  const shareRecipe = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    global.alert('Link copiado!');
+  };
+
   return (
     <section>
       <img
@@ -70,8 +98,20 @@ function InProgressFood({ match: { params } }) {
         data-testid="recipe-photo"
       />
       <p data-testid="recipe-title">{ recipes[0] && recipes[0].strMeal }</p>
-      <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      <img src={ whiteHeartIcon } alt="Share" data-testid="favorite-btn" />
+      <input
+        type="image"
+        src={ whiteHeartIcon }
+        alt="Favorite recipe"
+        data-testid="favorite-btn"
+        onClick={ favoriteRecipe }
+      />
+      <input
+        type="image"
+        src={ shareIcon }
+        alt="Share recipe"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      />
       <p data-testid="recipe-category">{ recipes[0].strCategory }</p>
       <h3>Ingredientes</h3>
       { ingredientsFinal
@@ -112,6 +152,7 @@ function InProgressFood({ match: { params } }) {
           data-testid="finish-recipe-btn"
           disabled={ isDisable }
           className="button"
+          onClick={ finishRecipe }
         >
           Finalizar Receita
         </button>

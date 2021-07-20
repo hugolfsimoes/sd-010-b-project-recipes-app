@@ -62,6 +62,25 @@ function InProgressDrink({ match: { params } }) {
   fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // // }, [setRecipes, id]); */
 
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const receitaFavoritada = [];
+  const favoriteRecipe = () => {
+    receitaFavoritada.push(id);
+    localStorage
+      .setItem('favoriteRecipes',
+        JSON.stringify([...favoriteRecipes, ...receitaFavoritada]));
+  };
+
+  const shareRecipe = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    global.alert('Link copiado!');
+  };
+
   return (
     <section>
       <img
@@ -71,8 +90,20 @@ function InProgressDrink({ match: { params } }) {
         data-testid="recipe-photo"
       />
       <p data-testid="recipe-title">{drinks[0] && drinks[0].strDrink }</p>
-      <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      <img src={ whiteHeartIcon } alt="Share" data-testid="favorite-btn" />
+      <input
+        type="image"
+        src={ whiteHeartIcon }
+        alt="Favorite recipe"
+        data-testid="favorite-btn"
+        onClick={ favoriteRecipe }
+      />
+      <input
+        type="image"
+        src={ shareIcon }
+        alt="Share recipe"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      />
       <p data-testid="recipe-category">{ drinks[0].strAlcoholic }</p>
       <h3>Ingredientes</h3>
       { ingredientsFinal

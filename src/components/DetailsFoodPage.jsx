@@ -71,14 +71,32 @@ function DetailsFoodPage({ match: { params } }) {
 
   // const setLocalStorage = () => {
   //   localStorage.setItem('inProgressRecipes', JSON.stringify({
-  //     meals: {},
-  //     cocktails: {},
+  //     meals: { ...meals },
+  //     cocktails: { ...cocktails },
   //   }));
   //   localStorage.setItem('doneRecipes', JSON.stringify([]));
   //   localStorage.setItem('favoriteRecipes', JSON.stringify([]));
   // };
 
   // setLocalStorage();
+  const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const receitaFavoritada = [];
+  const favoriteRecipe = () => {
+    receitaFavoritada.push(id);
+    localStorage
+      .setItem('favoriteRecipes',
+        JSON.stringify([...favoriteRecipes, ...receitaFavoritada]));
+  };
+
+  const shareRecipe = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    global.alert('Link copiado!');
+  };
 
   return (
     <section>
@@ -89,8 +107,20 @@ function DetailsFoodPage({ match: { params } }) {
         data-testid="recipe-photo"
       />
       <p data-testid="recipe-title">{ recipes[0] && recipes[0].strMeal }</p>
-      <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      <img src={ whiteHeartIcon } alt="Share" data-testid="favorite-btn" />
+      <input
+        type="image"
+        src={ whiteHeartIcon }
+        alt="Favorite recipe"
+        data-testid="favorite-btn"
+        onClick={ favoriteRecipe }
+      />
+      <input
+        type="image"
+        src={ shareIcon }
+        alt="Share recipe"
+        data-testid="share-btn"
+        onClick={ shareRecipe }
+      />
       <p data-testid="recipe-category">{ recipes[0].strCategory }</p>
       <h3>Ingredientes</h3>
       <ul>
