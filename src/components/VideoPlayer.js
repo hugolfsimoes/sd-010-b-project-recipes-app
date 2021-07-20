@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/video.css';
+
 function VideoPlayer({ videoLink, testID, recipeTitle }) {
   return (
     <div className="video-player">
@@ -14,8 +16,6 @@ function VideoPlayer({ videoLink, testID, recipeTitle }) {
           picture-in-picture"
         allowFullScreen
         frameBorder="0"
-        width="853"
-        height="480"
         src={ videoLink }
         title={ recipeTitle }
       />
