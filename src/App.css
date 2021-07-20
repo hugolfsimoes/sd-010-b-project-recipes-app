@@ -504,7 +504,7 @@ button {
   align-items: center;
 }
 
-.link-copy {
+.link-copy, .date-done, .tag-done {
   text-align: center;
   color: #3f3e3e;
 }
