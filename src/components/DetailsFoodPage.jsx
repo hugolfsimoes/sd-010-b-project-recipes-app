@@ -69,6 +69,17 @@ function DetailsFoodPage({ match: { params } }) {
   // // }, [setRecipes, id]);
   // // console.log(id, recipes);
 
+  const setLocalStorage = () => {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      meals: {},
+      cocktails: {},
+    }));
+    localStorage.setItem('doneRecipes', JSON.stringify([]));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+  };
+
+  setLocalStorage();
+
   return (
     <section>
       <img

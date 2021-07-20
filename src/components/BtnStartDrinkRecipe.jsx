@@ -4,23 +4,20 @@ import './DetailsPage.css';
 import { Link } from 'react-router-dom';
 // import 'App.css'
 
-function BtnStartFoodRecipe(id) {
-  const recipeIndex = Object.values(id);
+function BtnStartDrinkRecipe(drinks, ingredients) {
+  const { id } = drinks.drinks;
+  console.log(id, 'BTN');
+  // const { id } = params;
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
-  // const receitaIniciada = [];
-  // const finishedRecipes = JSON.parse(localStorage.getItem('finishedRecipes'));
-  // const receitaFinalizada = [];
 
   const startRecipe = () => {
-    // receitaIniciada.push(recipeIndex[0]);
-    const idRecipe = recipeIndex[0];
     localStorage
       .setItem('inProgressRecipes',
         JSON.stringify({
           ...inProgressRecipes,
           cocktails: {
             ...inProgressRecipes.cocktails,
-            [idRecipe]: [],
+            [id]: ingredients,
           },
         }));
   };
@@ -35,7 +32,7 @@ function BtnStartFoodRecipe(id) {
   // const btnText = 'Iniciar Receita';
   const verifyLocalStorage = () => {
     if (inProgressRecipes) {
-      if (Object.keys(inProgressRecipes.cocktails).includes(recipeIndex[0])) {
+      if (Object.keys(inProgressRecipes.cocktails).includes(id)) {
         return 'Continuar Receita';
       }
       return 'Iniciar Receita';
@@ -44,7 +41,7 @@ function BtnStartFoodRecipe(id) {
 
   return (
     <div>
-      <Link to={ `/bebidas/${recipeIndex[0]}/in-progress` }>
+      <Link to={ `/bebidas/${id}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
@@ -58,8 +55,9 @@ function BtnStartFoodRecipe(id) {
   );
 }
 
-BtnStartFoodRecipe.propTypes = {
-  // id: PropTypes.string.isRequired,
-};
+// BtnStartDrinkRecipe.propTypes = {
+//   id: PropTypes.string.isRequired,
+//   ingredients: PropTypes.arrayOf.isRequired,
+// };
 
-export default BtnStartFoodRecipe;
+export default BtnStartDrinkRecipe;

@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import './DetailsPage.css';
 import RecommendedFood from './RecommendedFood';
+import BtnStartDrinkRecipe from './BtnStartDrinkRecipe';
 
 function AllTagsFromDetailsDrinks(drinks) {
-  // console.log(drinks);
   const listIngredients = Object.keys(drinks.drinks[0])
     .filter((drink) => drink.includes('Ingredient'));
   const ingredients = [];
@@ -79,15 +79,12 @@ function AllTagsFromDetailsDrinks(drinks) {
       <p data-testid="instructions">{ drinks.drinks[0].strInstructions }</p>
       <h3>Recomendadas</h3>
       <RecommendedFood />
+      <BtnStartDrinkRecipe drinks={ drinks } ingredients={ ingredientsFinal } />
     </section>);
 }
 
-AllTagsFromDetailsDrinks.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }),
-  }),
-}.isRequired;
+// AllTagsFromDetailsDrinks.propTypes = {
+//   id: PropTypes.string.isRequired,
+// };
 
 export default AllTagsFromDetailsDrinks;

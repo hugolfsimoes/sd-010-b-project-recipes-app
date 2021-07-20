@@ -5,7 +5,6 @@ import ContextRecipes from '../context/contextRecipes';
 // import shareIcon from '../images/shareIcon.svg';
 // import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import AllTagsFromDetailsDrinks from './AllTagsFromDetailsDrinks';
-import BtnStartDrinkRecipe from './BtnStartDrinkRecipe';
 
 function DetailsDrinkPage({ match: { params } }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
@@ -22,7 +21,7 @@ function DetailsDrinkPage({ match: { params } }) {
 
   if (drinks[0] === undefined) return <h1>Carregando...</h1>;
 
-  console.log(id, drinks);
+  console.log(id, 'DETAILS');
 
   // let ingredientsFinal = [];
   // let measuresFinal = [];
@@ -73,15 +72,20 @@ function DetailsDrinkPage({ match: { params } }) {
   //   // fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // }
 
+  const setLocalStorage = () => {
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      meals: {},
+      cocktails: {},
+    }));
+    localStorage.setItem('doneRecipes', JSON.stringify([]));
+    localStorage.setItem('favoriteRecipes', JSON.stringify([]));
+  };
+
+  setLocalStorage();
+
   return (
     <div>
-      isLoading === true ?
-      {' '}
-      <h1>Carregando...</h1>
-      :
-      {' '}
-      <AllTagsFromDetailsDrinks drinks={ drinks } />
-      <BtnStartDrinkRecipe id={ id } />
+      <AllTagsFromDetailsDrinks drinks={ drinks } id={ id } />
       {/* <Link to={ `/bebidas/${id}/in-progress` }>
         <button
           type="button"
