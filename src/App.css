@@ -463,7 +463,6 @@ button {
 
 
 /* RECEITAS FAVORITAS && RECEITAS PRONTAS */
-
 .img-favorite {
   border-radius: 100%;
   margin-top: 32px;
@@ -484,8 +483,8 @@ button {
 }
 
 .text-recipe {
-  margin-top: 20px;
   color: #3f3e3e;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -511,14 +510,13 @@ button {
 }
 
  /* PAGINA DE PERFIL */
-
 .profile-email {
   text-align: center;
 }
 
 .container-btn-profile {
-  display: flex;
   align-items: center;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 80px;
