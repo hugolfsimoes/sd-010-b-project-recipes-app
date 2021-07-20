@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { requestFoodById } from '../../helpers/requests';
 import ButtonShare from '../../components/ButtonShare/ButtonShare';
 import ButtonFavorite from '../../components/ButtonFavorite/ButtonFavorite';
@@ -7,7 +7,6 @@ import ButtonFavorite from '../../components/ButtonFavorite/ButtonFavorite';
 function FoodInProgress({ match }) {
   const { url } = match;
   const [data, setData] = useState([]);
-  const [atualiza, setAtualiza] = useState(true);
   const [food, setFood] = useState({});
   const { params: { id } } = match;
 
@@ -112,4 +111,9 @@ function FoodInProgress({ match }) {
     </div>
   );
 }
+
+FoodInProgress.propTypes = {
+  match: PropTypes.objectOf.isRequired,
+};
+
 export default FoodInProgress;

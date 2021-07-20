@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { requestDrinkById } from '../../helpers/requests';
 import ButtonShare from '../../components/ButtonShare/ButtonShare';
 import ButtonFavorite from '../../components/ButtonFavorite/ButtonFavorite';
-import { Link } from 'react-router-dom';
 
 function DrinkInProgress({ match }) {
   const { url } = match;
@@ -112,5 +112,9 @@ function DrinkInProgress({ match }) {
     </div>
   );
 }
+
+DrinkInProgress.propTypes = {
+  match: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 
 export default DrinkInProgress;

@@ -22,8 +22,6 @@ import FoodInProgress from './pages/FoodInProgress/FoodInProgress';
 import DrinkInProgress from './pages/DrinkInProgress/DrinkInProgress';
 import './app.css';
 
-const test = '';
-
 function App() {
   return (
     <Provider>
