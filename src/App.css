@@ -462,24 +462,24 @@ button {
 }
 
 
-/*RECEITAS FAVORITAS && RECEITAS PRONTAS*/
+/* RECEITAS FAVORITAS && RECEITAS PRONTAS */
 
 .img-favorite {
-  margin-top: 32px;
   border-radius: 100%;
+  margin-top: 32px;
   width: 60%;
 }
 
 .container-img-favorite {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .container-btn {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .text-recipe {
@@ -500,8 +500,8 @@ button {
 
 .container-share-favorite {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .link-copy, .date-done, .tag-done {
@@ -509,7 +509,7 @@ button {
   color: #3f3e3e;
 }
 
-/*PAGINA DE PERFIL*/
+ /* PAGINA DE PERFIL */
 
 .profile-email {
   text-align: center;
@@ -518,8 +518,8 @@ button {
 .container-btn-profile {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   margin-top: 80px;
   padding-bottom: 10px;
 }
