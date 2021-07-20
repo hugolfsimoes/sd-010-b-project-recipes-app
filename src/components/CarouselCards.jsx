@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Group26 from '../images/Group26.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/cards.css';
+import '../css/CarouselCards.css';
 
 export default function CarouselCards({ id, img, title, index, url, subTitle }) {
   const [isRedirect, setIsRedirect] = useState(false);
@@ -14,19 +15,29 @@ export default function CarouselCards({ id, img, title, index, url, subTitle }) 
   };
   return (
     <Card
+      className="carousel-card-content "
       data-testid={ `${index}-recomendation-card` }
       onClick={ redirectRecipe }
     >
-      <Card.Img
-        variant="top"
-        src={ img }
-        data-testid={ `${index}-card-img` }
-      />
+      <div className="carousel-img-content">
+        <img className="group-26" src={ Group26 } alt={ Group26 } />
+        <div className="img-wrap">
+          <Card.Img
+            className="carousel-card-img"
+            variant="top"
+            src={ img }
+            data-testid={ `${index}-card-img` }
+          />
+        </div>
+      </div>
       <Card.Body>
-        <Card.Subtitle>{ subTitle }</Card.Subtitle>
-        <Card.Title data-testid={ `${index}-recomendation-title` }>
+        <Card.Title
+          className="carousel-title"
+          data-testid={ `${index}-recomendation-title` }
+        >
           { title }
         </Card.Title>
+        <Card.Subtitle className="carousel-subtitle">{ subTitle }</Card.Subtitle>
       </Card.Body>
       { isRedirect && <Redirect to={ `${url}/${id}` } />}
     </Card>

@@ -59,7 +59,6 @@ class login extends Component {
 
   render() {
     const { userEmail, userPassword, btnDisable, errors, validate } = this.state;
-    console.log(userPassword.length);
     return (
       <section className="main-form">
         <form className="form-login">

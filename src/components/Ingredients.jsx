@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import { connect } from 'react-redux';
 
-import { VscCircleOutline } from 'react-icons/vsc';
-import Table from 'react-bootstrap/Table';
 import identification from '../helper/dictionaryApi';
+import '../css/Ingredients.css';
 
 class Ingredients extends Component {
   checkIngredient(param, index) {
-    const { func, state } = this.props;
+    const { func, state, isStart } = this.props;
     const ourState = state || [];
     const element = document.getElementById(`input-${index}`);
     if (ourState.includes(param)) {
       return (
         <input
+          className="ingredients-check"
           checked
           id={ `checkbox-${index}` }
           onChange={ () => func(param, element, 'checked') }
@@ -23,50 +22,46 @@ class Ingredients extends Component {
       );
     }
     return (
-      <label htmlFor={ `checkbox-${index}` }>
-        <input
-          onChange={ () => func(param, element, '') }
-          type="checkbox"
-          id={ `checkbox-${index}` }
-        />
-      </label>);
+      <input
+        className="ingredients-check"
+        onChange={ () => func(param, element, '') }
+        type="checkbox"
+        id={ `checkbox-${index}` }
+        disabled={ !isStart }
+      />
+    );
   }
 
   render() {
     const { data, isStart } = this.props;
     const dictionary = identification(data);
     return (
-      <section>
-        <Table responsive="sm">
-          <tbody>
-            {
-              dictionary.Ingredients.map((ingredient, index) => (
-                (data[ingredient[0]] !== null && data[ingredient[0]] !== '') ? (
-                  <tr
-                    id={ `input-${index}` }
-                    key={ index }
-                    data-testid={
-                      isStart === true
-                        ? `${index}-ingredient-step`
-                        : `${index}-ingredient-name-and-measure`
-                    }
-                  >
-                    <td>
-                      {isStart === true
-                        ? this.checkIngredient(data[ingredient[0]], index)
-                        : <VscCircleOutline />}
-
-                    </td>
-                    <td id={ `ingredient-${index}` } width="50%">
-                      {data[ingredient[0]]}
-                    </td>
-                    <td>{data[ingredient[1]]}</td>
-                  </tr>
-                ) : null
-              ))
-            }
-          </tbody>
-        </Table>
+      <section className="ingredients-content">
+        {
+          dictionary.Ingredients.map((ingredient, index) => (
+            (data[ingredient[0]] !== null && data[ingredient[0]] !== '') ? (
+              <label
+                htmlFor={ `checkbox-${index}` }
+                className="ingredients-row"
+                id={ `input-${index}` }
+                key={ index }
+                data-testid={
+                  isStart === true
+                    ? `${index}-ingredient-step`
+                    : `${index}-ingredient-name-and-measure`
+                }
+              >
+                {
+                  this.checkIngredient(data[ingredient[0]], index)
+                }
+                <div className="ingredients-measures">{data[ingredient[1]]}</div>
+                <div className="ingredients-name" id={ `ingredient-${index}` }>
+                  {data[ingredient[0]]}
+                </div>
+              </label>
+            ) : null
+          ))
+        }
       </section>
     );
   }
@@ -84,3 +79,24 @@ Ingredients.propTypes = {
 };
 
 export default connect(mapStateToProps)(Ingredients);
+
+{/* <div
+                className="ingredients-row"
+                id={ `input-${index}` }
+                key={ index }
+                data-testid={
+                  isStart === true
+                    ? `${index}-ingredient-step`
+                    : `${index}-ingredient-name-and-measure`
+                }
+              >
+                <div className="ingredients-check">
+                  {
+                    this.checkIngredient(data[ingredient[0]], index)
+                  }
+                </div>
+                <div className="ingredients-measures">{data[ingredient[1]]}</div>
+                <div className="ingredients-name" id={ `ingredient-${index}` }>
+                  {data[ingredient[0]]}
+                </div>
+              </div> */}

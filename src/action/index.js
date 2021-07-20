@@ -19,6 +19,7 @@ export const FAV_ICON_COLOR = 'FAV_ICON_COLOR';
 export const START_RECIPE = 'START_RECIPE';
 export const CHECK_PAGE = 'CHECK_PAGE';
 export const CHECK_INGREDIENTS = 'CHECK_INGREDIENTS';
+export const LINK = 'LINK';
 export const addFavicon = (favIcon) => ({ type: FAV_ICON, favIcon });
 export const faviconColor = (color) => ({ type: FAV_ICON_COLOR, color });
 export const addEmail = (email) => ({ type: USER_EMAIL, email });

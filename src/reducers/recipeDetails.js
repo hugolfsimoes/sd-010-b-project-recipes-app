@@ -4,6 +4,7 @@ import {
   START_RECIPE,
   CHECK_PAGE,
   CHECK_INGREDIENTS,
+  LINK,
 } from '../action';
 
 const INITIAL_STATE = {
@@ -14,6 +15,7 @@ const INITIAL_STATE = {
   isStart: false,
   isDrink: false,
   ingredients: [],
+  link: false,
 };
 
 const recipeDetails = (state = INITIAL_STATE, action) => {
@@ -42,6 +44,11 @@ const recipeDetails = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       ingredients: action.ingredients,
+    };
+  case LINK:
+    return {
+      ...state,
+      link: action.link,
     };
   default:
     return state;

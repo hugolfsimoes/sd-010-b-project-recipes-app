@@ -1,47 +1,87 @@
+.page-details {
+  align-items: center;
+  color: var(--crl-Main-Text);
+  display: flex;
+  flex-direction: column;
+}
+
 .details-content {
-  flex-grow: 1;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-bottom: 120px;
-  padding: 0.56rem;
+  padding: 1rem 1.5rem;
 }
 
-.details-btn-share, .details-btn-favorite {
-  height: 26px;
-  margin: 0.3rem;
-  width: 26px;
+.details-content:before {
+  background-color: var(--crl-Outline);
+  content: '';
+  display: block;
+  height: 0.06rem;
+  margin-bottom: 1.3rem;
+  width: 20.43rem;
 }
 
-.details-btn-share img, .details-btn-favorite img {
-  width: 100%;
+.details-title {
+  font-size: var(--font-size-h2);
+  font-weight: 700;
+  margin-bottom: 1.3rem;
 }
 
-.recipe-details h3 {
-  font-size: 1.6rem;
+.details-instruction-content {
+  width: 19.5rem;
 }
 
-.details-intructions-text {
-  font-size: 1rem;
+.details-intructions {
+  font-size: var(--font-size-p2);
+  text-align: justify;
 }
 
-.details-ingredients {
-  font-size: 1.3rem;
+.details-intructions:after {
+  background-color: var(--crl-Outline);
+  content: '';
+  display: block;
+  height: 0.06rem;
+  margin-bottom: 1.3rem;
+  width: 20.43rem;
 }
 
 .video {
-  background-color: darkgray;
   height: 160px;
+  margin-bottom: 1.3rem;
   text-align: center;
-  width: 341px;
+  width: 312px;
+}
+
+.details-video:after {
+  background-color: var(--crl-Outline);
+  content: '';
+  display: block;
+  height: 0.06rem;
+  margin: 1.3rem 0;
+  width: 20.43rem;
+}
+
+.details-Recommended {
+  width: 19.5rem;
 }
 
 .details-btn-startRecipe {
+  background-color: var(--crl-Primary);
+  border: none;
+  border-radius: 32px;
   bottom: 0;
-  font-size: 1.8rem;
-  height: 4.75rem;
-  margin-bottom: 1.2rem;
-  margin-top: 3.1rem;
+  color: var(--crl-White);
+  font-size: var(--font-size-p1);
+  font-weight: 700;
+  height: 3.5rem;
+  left: 48.5px;
+  margin-bottom: 2.3rem;
+  outline: none;
   padding: 0.56rem;
   position: fixed;
-  width: 21.2rem;
+  width: 16.43rem;
 }
 
 .invisible {
