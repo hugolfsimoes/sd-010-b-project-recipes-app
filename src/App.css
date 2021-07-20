@@ -467,7 +467,7 @@ button {
 .img-favorite {
   margin-top: 32px;
   border-radius: 100%;
-  width: 80%;
+  width: 60%;
 }
 
 .container-img-favorite {
@@ -502,4 +502,9 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.link-copy {
+  text-align: center;
+  color: #3f3e3e;
 }

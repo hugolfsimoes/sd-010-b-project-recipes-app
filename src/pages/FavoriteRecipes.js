@@ -74,7 +74,7 @@ class FavoriteRecipes extends React.Component {
           <Link className="link-favorite" to={ link }>
             <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
           </Link>
-          <p>{ copyLink ? 'Link copiado!' : null }</p>
+          <p className="link-copy">{ copyLink ? 'Link copiado!' : null }</p>
           <div className="container-share-favorite">
             <button
               type="button"
