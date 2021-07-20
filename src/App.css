@@ -460,3 +460,46 @@ button {
   bottom: 0;
   height: 200px;
 }
+
+
+/*RECEITAS FAVORITAS*/
+
+.img-favorite {
+  margin-top: 32px;
+  border-radius: 100%;
+  width: 80%;
+}
+
+.container-img-favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-recipe {
+  margin-top: 20px;
+  text-align: center;
+  color: #3f3e3e;
+}
+
+.link-favorite {
+  text-align: center;
+  color: #a02331;
+}
+
+.share-btn, .favorite-btn {
+  background-color: white;
+  border: none;
+}
+
+.container-share-favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
