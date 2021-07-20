@@ -108,7 +108,7 @@ function DetailsFoodPage({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <BtnStartFoodRecipe id={ id } />
+      <BtnStartFoodRecipe id={ id } ingredients={ ingredientsFinal } />
       {/* <Link to={ `/comidas/${id}/in-progress` }>
         <button
           type="button"
