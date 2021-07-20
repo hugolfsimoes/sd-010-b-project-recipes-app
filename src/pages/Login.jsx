@@ -30,8 +30,7 @@ function Login() {
   };
 
   const handleChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name, value } = target;
     setLoginInfo((oldState) => ({
       ...oldState,
       [name]: value,
