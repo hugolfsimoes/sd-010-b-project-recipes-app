@@ -168,7 +168,7 @@ export default function Details() {
             ))}
           </Carousel>
           <Button
-            className="start-recipe-btn"
+            className="start-recipe-btn button-init"
             onClick={ () => handleRecipeInProgress(history, path, id) }
             data-testid="start-recipe-btn"
           >
