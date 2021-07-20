@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { addFavicon, faviconColor } from '../action';
 import copy from 'clipboard-copy';
 import identification from '../helper/dictionaryApi';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import '../css/SharedFavorites.css';
+import { isLink } from '../action/details';
 
 class SharedFavorites extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class SharedFavorites extends Component {
     this.state = {
       favIcon: false,
       favIconColor: whiteHeartIcon,
-      link: false,
     };
     this.handleFavClick = this.handleFavClick.bind(this);
     this.renderState = this.renderState.bind(this);
@@ -75,26 +75,35 @@ class SharedFavorites extends Component {
   }
 
   render() {
-    const { favIconColor, link } = this.state;
-    const { page, id } = this.props;
+    const { favIconColor, favIcon } = this.state;
+    const { page, id, link } = this.props;
     return (
-      <section>
+      <section className="sec-share-fav">
         <button
-          className="details-btn-share"
+          className="details-btn btn-share"
           type="button"
           onClick={ () => copy(`http://localhost:3000/${page}/${id}`)
-            .then(() => this.setState({ link: true })) }
+            .then(() => link(true)) }
         >
-          <img data-testid="share-btn" src={ shareIcon } alt={ shareIcon } />
+          <img
+            className="img-share"
+            data-testid="share-btn"
+            src={ shareIcon }
+            alt={ shareIcon }
+          />
         </button>
-        {link && <p>Link copiado!</p>}
         <button
-          className="details-btn-favorite"
+          className={ favIcon ? 'details-btn btn-active' : 'details-btn' }
           type="button"
           data-testid="favorite-btn"
           onClick={ this.handleFavClick }
         >
-          <img src={ favIconColor } data-testid="favorite-btn" alt={ favIconColor } />
+          <img
+            className={ favIcon ? 'img-favorite-active' : 'img-favorite' }
+            data-testid="favorite-btn"
+            src={ favIconColor }
+            alt={ favIconColor }
+          />
         </button>
       </section>
     );
@@ -104,22 +113,16 @@ class SharedFavorites extends Component {
 const mapStateToProps = (state) => ({
   details: state.recipeDetails.details,
 });
-export default connect(mapStateToProps)(SharedFavorites);
 
-// const mapDispatchToProps = (dispatch) => ({
-//   addFavIcon: (favIcon) => dispatch(addFavicon(favIcon)),
-//   colorFavIcon: (color) => dispatch(faviconColor(color)),
-// });
+const mapDispatchToProps = (dispatch) => ({
+  link: (bool) => dispatch(isLink(bool)),
+});
 
-// const mapStateToProps = (state) => ({
-//   getFavIcon: state.recipeDetails.favIcon,
-//   getFavIconColor: state.recipeDetails.favIconColor,
-// });
+export default connect(mapStateToProps, mapDispatchToProps)(SharedFavorites);
 
 SharedFavorites.propTypes = {
   details: PropTypes.shape.isRequired,
   page: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  link: PropTypes.bool.isRequired,
 };
-
-// export default SharedFavorites;

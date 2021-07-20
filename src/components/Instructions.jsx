@@ -8,7 +8,7 @@ class Instructions extends Component {
     const dictionary = identification(data);
     return (
       <section data-testid="instructions">
-        <p>{data[dictionary.Instructions]}</p>
+        <span>{data[dictionary.Instructions]}</span>
       </section>
     );
   }

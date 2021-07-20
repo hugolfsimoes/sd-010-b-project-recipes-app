@@ -6,13 +6,13 @@ import '../css/Details.css';
 import Instructions from '../components/Instructions';
 import Ingredients from '../components/Ingredients';
 import DetailsHeader from '../components/DetailsHeader';
-import SharedFavorites from '../components/SharedFavorites';
 
 import { fetchDrinkDetails, fetchFoodDetails,
   startRecipe, getFoodDetails, fetchDrinksRecipes, fetchFoodRecipes } from '../action';
 import CardMeals from '../components/CardsMeals';
 import CardsDrinks from '../components/CardsDrinks';
 import InstrutionVideo from '../components/InstrutionVideo';
+import Modal from '../components/Modal';
 
 class Detalhes extends Component {
   constructor(props) {
@@ -137,30 +137,42 @@ class Detalhes extends Component {
 
   render() {
     const { startedRecipe, finishedRecipe } = this.state;
-    const { details, isDrink, match: { params: { page, id } }, history } = this.props;
+    const {
+      details,
+      isDrink,
+      match: { params: { page, id } },
+      history,
+      link,
+    } = this.props;
     return (
       <section className="page-details">
-        <DetailsHeader data={ details } />
-        <button type="button" onClick={ () => history.goBack() }>voltar</button>
-        <SharedFavorites id={ id } page={ page } />
+        {
+          link && <Modal history={ history }><p>Link copiado!</p></Modal>
+        }
+        <DetailsHeader data={ details } page={ page } id={ id } history={ history } />
         <section className="details-content">
           <section>
-            <h3>Ingredients</h3>
+            <h3 className="details-title">Ingredients</h3>
             <span className="details-ingredients">
               <Ingredients data={ details } />
             </span>
           </section>
-          <section data-testid="instructions">
-            <h3>Instructions</h3>
-            <span className="details-intructions-text">
+          <section className="details-instruction-content" data-testid="instructions">
+            <h3 className="details-title">Instructions</h3>
+            <span className="details-intructions">
               <Instructions data={ details } />
             </span>
           </section>
           {
-            isDrink === false && <InstrutionVideo data={ details } />
+            isDrink === false && (
+              <section className="details-video">
+                <h3 className="details-title">Video</h3>
+                <InstrutionVideo data={ details } />
+              </section>
+            )
           }
-          <section>
-            <h3>Recomendadas</h3>
+          <section className="details-Recommended">
+            <h3 className="details-title">Recomendadas</h3>
             {
               isDrink === false ? <CardsDrinks /> : <CardMeals />
             }
@@ -188,6 +200,7 @@ const mapStateToProps = (state) => ({
   isDrink: state.recipeDetails.isDrink,
   drinks: state.drinkCategories.drinks,
   meals: state.foodCategories.meals,
+  link: state.recipeDetails.link,
 });
 
 Detalhes.propTypes = {
@@ -199,8 +212,9 @@ Detalhes.propTypes = {
   reboot: PropTypes.func.isRequired,
   details: PropTypes.shape.isRequired,
   match: PropTypes.shape.isRequired,
-  history: PropTypes.shape.isRequired,
   isDrink: PropTypes.bool.isRequired,
+  link: PropTypes.bool.isRequired,
+  history: PropTypes.shape.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detalhes);
