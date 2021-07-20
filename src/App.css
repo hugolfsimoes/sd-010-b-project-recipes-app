@@ -469,7 +469,6 @@ button {
   width: 60%;
 }
 
-
 .container-img-favorite {
   align-items: center;
   display: flex;
@@ -509,7 +508,7 @@ button {
   text-align: center;
 }
 
- /* PAGINA DE PERFIL */
+/* PAGINA DE PERFIL */
 .profile-email {
   text-align: center;
 }
