@@ -19,11 +19,12 @@ function ExploreIngredientsDrink() {
   }, []);
 
   return (
-    <div>
+    <div className="explore-ingret">
       <Header title="Explorar Ingredientes" display="false" />
       <div className="div-cards-ingredients">
         {ingredients.length > 0 && ingredients.map((ingredient, index) => (
           <div
+            className="ingrets1"
             role="presentation"
             data-testid={ `${index}-ingredient-card` }
             key={ ingredient.idIngredient }

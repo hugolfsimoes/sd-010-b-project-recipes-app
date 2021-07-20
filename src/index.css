@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF2E9 !important;
 }
 
 code {
@@ -17,66 +18,3 @@ code {
   padding: 0;
 }
 
-.meals {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
-}
-
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
-}
-
-.header-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.show-recipe {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.main-food-class {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-
-.papai {
-  width: 100px;
-  display: flex;
-}
-
-.papai p {
-  display: inline-block;
-  width: 50px;
-  margin: 0;
-}
-
-
-.search {
-  display: flex;
-  flex-direction: column;
-}
-
-.search button {
-  width: 100px;
-}
-
-.div-explore-food-drink {
-  display: flex;
-  flex-direction: column;
-
-}

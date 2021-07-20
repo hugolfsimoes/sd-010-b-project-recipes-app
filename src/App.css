@@ -15,11 +15,12 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .meals {
   align-items: center;
-  background: #0fa36b;
+  background-color: #FAF2E9;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -39,55 +40,364 @@
   flex-direction: column;
 }
 
-.show-recipe {
-  display: flex;
-  flex-wrap: wrap;
+
+
+.detail {
+  position: relative;
+  top: -130px;
+  width: 100%;
+  height: 100%;
 }
 
+.detail1 {
+  position: relative;
+  width: 100%;
+  top: -105px;
+  height: 100vh;
+}
 
-.main-food-class {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-around;
+.detail-img {
   width: 100%;
 }
 
 
-.papai {
+.lista {
+  margin-top: 30px;
+  margin-left: 20%;
+  padding-bottom: 50px;
+}
+
+.icones {
   display: flex;
-  width: 100px;
+  height: 50px;
+  margin: 20px;
 }
 
-.papai p {
-  display: inline-block;
-  margin: 0;
-  width: 50px;
+.name {
+  margin-top: 10px;
+  color: tomato;
+  font-size: 16px;
 }
 
-
-.search {
+.link {
   display: flex;
   flex-direction: column;
 }
 
+.icones p {
+  width: 80%;
+  position: relative;
+}
+
+.video {
+  border: solid 10px #FF7B52;
+  width: 100%;
+}
+
+.show-recipe {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.show-filter {
+  border-radius: 5px;
+  margin: 5px;
+  border: solid 2px #FF7B52;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.filter-text {
+  font-size: 18px;
+  font-weight: 900;
+  color: black;
+  width: 100%;
+  text-align: center;
+}
+
+.show-filter button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  margin: 10px;
+}
+
+.explorar-app {
+  background-image: url('/explorar.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  margin-top: 20px;
+  height: 80px;
+}
+
+.explorar-food-app {
+  background-image: url('/foodexplore.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-food {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-food button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  margin-top: 20px;
+  height: 60px;
+}
+
+.explorar-drink-app {
+  background-image: url('/drinkexplore.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-drink {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-drink button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  margin-top: 20px;
+  height: 60px;
+}
+
+.footer-body {
+  background-color: #467B76;
+  overflow: hidden;
+  display: flex !important;
+  justify-content: space-around;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  bottom: 0;
+}
+
+.loading-app {
+  background-image: url('/loading.png');
+  background-size: cover;
+  height: 640px;
+  text-align: center;
+  width: 360px;
+}
+
+.profile-app {
+  background-image: url('/profile.png');
+  background-size: cover;
+  height: 100vh;
+  text-align: center;
+  width: 100%
+}
+
+.profile-app p {
+  margin-top: 30px;
+}
+
+
+.profile {
+  margin: 60px;
+  margin-top: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  margin-top: 20px;
+  height: 50px;
+}
+
+.loading-app object {
+  margin-top: 280px;
+}
+
+.main-food-class {
+  background-image: url('/receitas.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.header-class {
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  margin: 5px;
+}
+
+
+.header-title {
+  font-size: 25px;
+  font-weight: 900;
+  color: black;
+}
+
+.papai {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background-color: #FF7B52;
+  border: none !important;
+}
+
+.papai img {
+  border-radius: 5px;
+}
+
+.papai p {
+  margin: 0;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 100%;
+}
+
+
+.search {
+  border: solid 2px #577647;
+  margin: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.search input {
+  border: solid 2px #577647;
+  margin: 5px;
+}
+
+.search label {
+  background-color: #577647;
+  color: antiquewhite;
+  border-radius: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-right: 5px;
+}
+
 .search button {
   width: 100px;
+  background-color: #577647 !important;
+  border-color: #577647;
+  margin-bottom: 8px;
+}
+
+.explore-ingredients {
+  background-image: url('/ingredients1.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-ingret {
+  background-image: url('/ingredients2.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.ingrets {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  padding: 10px 5px;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border: none !important;
+  box-shadow: 0 0 10px rgb(158, 157, 157) !important;
+  background-color: #577647;
+}
+
+.ingrets img {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.ingrets p {
+  width: 60px;
+  text-align: center;
+  font-size: 8px;
+  color: bisque;
+}
+
+.ingrets1 {
+  display: flex;
+  flex-direction: column;
+  border-radius: 50%;
+  padding: 15px 2px;
+  width: 70px;
+  height: 70px;
+  margin: 10px;
+  border: none !important;
+  box-shadow: 0 0 10px rgb(158, 157, 157) !important;
+  background-color: #577647;
+}
+
+.ingrets1 img {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.ingrets1 p {
+  width: 60px;
+  text-align: center;
+  font-size: 8px;
+  color: bisque;
 }
 
 .instruction {
-  font-size: 2px;
+  font-size: 15px;
+  margin: 10px;
 }
 
-.meals > .logo {
+.parts {
+  margin-top: 40px;
+}
+
+.meals>.logo {
   animation: shake 1.5s infinite ease;
   color: aliceblue;
-  font-family: Montserrat , sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 3em;
   font-weight: 900;
 }
 
 .start-recipe {
+  margin-left: 90px;
+  margin-right: 110px;
+  margin-bottom: 5px;
+  background-color: teal !important;
   bottom: 0;
   position: fixed;
 }
@@ -108,7 +418,7 @@
 }
 
 
-.recipe-card > img {
+.recipe-card>img {
   border-radius: 0.6rem;
   height: 200px;
   object-fit: fill;
@@ -116,7 +426,7 @@
   width: 40vw;
 }
 
-.recipe-card > p {
+.recipe-card>p {
   overflow: hidden;
   padding-bottom: 15px;
   text-overflow: ellipsis;
@@ -127,7 +437,9 @@
 .div-cards-ingredients {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
+  margin-top: 50px;
+  margin-left: 45px;
+  margin-right: 45px;
   width: 80%;
 
 }
@@ -144,11 +456,177 @@
   text-decoration: line-through;
 }
 
-.doneRecipes {
-  display: flex;
-  font-size: 4px;
+
+.app-login {
+  background-image: url('/Veganas.png');
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
 }
 
+.login-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.password-login {
+  margin-left: 10px !important;
+  width: 160px;
+}
+
+.login-content input {
+  width: 100%;
+  background-color: #c7dbbc;
+  font-size: 20px;
+}
+
+.app-login button {
+  background-color: #246e67 !important;
+  width: auto;
+  padding: 10px 30px;
+  margin-bottom: 10px;
+  font-weight: 900;
+}
+
+.explore-country {
+  background-image: url('/map.png');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.explore-country select {
+  width: 120px;
+  margin-top: 40px;
+  border-color: #577647 !important;
+  background-color: white;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.recipe-done {
+  background-image: url('/receitas.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.done-filters {
+  margin: 5px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.done-filters button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  height: 50px;
+  width: 80px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.doneRecipes {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.done-img {
+  width: 30px;
+  flex-grow: 2;
+}
+
+.infomations-done {
+  display: flex;
+  flex-grow: 4;
+}
+
+.doneRecipes p {
+  font-size: 14px;
+  width: 10px;
+  flex-grow: 4;
+}
+
+.icon-share {
+  width: 2px;
+  flex-grow: 1;
+}
+
+
+.recipe-favorite {
+  background-image: url('/receitas.png');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.favorite-filters {
+  margin: 5px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.favorite-filters button {
+  background-color: #FF7B52 !important;
+  border-color: #FF7B52;
+  height: 50px;
+  width: 80px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
+.favoriteRecipes {
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.favorite-img {
+  width: 30px;
+  flex-grow: 2;
+}
+
+.infomations-favorite {
+  display: flex;
+  flex-grow: 4;
+}
+
+.favoriteRecipes p {
+  font-size: 14px;
+  width: 10px;
+  flex-grow: 4;
+}
+
+.icons-favorite {
+  height: 100%;
+  width: 1px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.favorite-share {
+  width: 25px;
+}
+
+.heart-share {
+  width: 25px;
+}
 
 @keyframes shake {
 
@@ -179,4 +657,3 @@
     transform: rotate(-10deg);
   }
 }
-

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
@@ -21,35 +22,36 @@ export default function Profile() {
   /*
   const email = localStorage.getItem('user', 'value').split('"')[3]; */
   return (
-    <div>
+    <div className="profile-app">
       <Header title="Perfil" display="false" />
       {email
       && (
         <p data-testid="profile-email">
           {email.split('"')[3]}
         </p>)}
-
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ () => history.push('/receitas-feitas') }
-      >
-        Receitas Feitas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ () => history.push('/receitas-favoritas') }
-      >
-        Receitas Favoritas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handeClickLogOut }
-      >
-        Sair
-      </button>
+      <div className="profile">
+        <Button
+          type="Button"
+          data-testid="profile-done-btn"
+          onClick={ () => history.push('/receitas-feitas') }
+        >
+          Receitas Feitas
+        </Button>
+        <Button
+          type="Button"
+          data-testid="profile-favorite-btn"
+          onClick={ () => history.push('/receitas-favoritas') }
+        >
+          Receitas Favoritas
+        </Button>
+        <Button
+          type="Button"
+          data-testid="profile-logout-btn"
+          onClick={ handeClickLogOut }
+        >
+          Sair
+        </Button>
+      </div>
       <Footer />
     </div>
   );

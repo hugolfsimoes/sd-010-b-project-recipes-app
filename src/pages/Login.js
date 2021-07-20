@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import Button from 'react-bootstrap/Button';
 
 function Login() {
   const [isDisable, setisDisable] = useState(true);
@@ -32,25 +33,38 @@ function Login() {
   }
 
   return (
-    <div>
-      <input
-        type="email"
-        onChange={ (e) => setEmail(e.target.value) }
-        data-testid="email-input"
-      />
-      <input
-        type="password"
-        onChange={ (e) => setPassword(e.target.value) }
-        data-testid="password-input"
-      />
-      <button
-        type="button"
-        onClick={ onclick }
-        disabled={ isDisable }
-        data-testid="login-submit-btn"
-      >
-        Entrar
-      </button>
+    <div className="app-login">
+
+      <div className="login-content">
+        <div className="input-group mb-3">
+
+          <input
+            className="form-control"
+            type="email"
+            onChange={ (e) => setEmail(e.target.value) }
+            data-testid="email-input"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div className="input-group mb-3">
+          <input
+            className="form-control"
+            type="password"
+            onChange={ (e) => setPassword(e.target.value) }
+            data-testid="password-input"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <Button
+          type="button"
+          onClick={ onclick }
+          disabled={ isDisable }
+          data-testid="login-submit-btn"
+        >
+          Entrar
+        </Button>
+      </div>
     </div>
   );
 }

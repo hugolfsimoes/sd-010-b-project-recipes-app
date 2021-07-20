@@ -37,77 +37,92 @@ export default function FavoriteRecipes() {
   }
   return (
 
-    <div>
-      <Header title="Receitas Favoritas" classname="displaynone" />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => filterFavorites('all') }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => filterFavorites('comidas') }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => filterFavorites('bebidas') }
-      >
-        Drinks
-      </button>
+    <div className="recipe-favorite">
+      <Header title="Receitas Favoritas" classname="false" />
+      <div className="favorite-filters">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => filterFavorites('all') }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => filterFavorites('comidas') }
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => filterFavorites('bebidas') }
+        >
+          Drinks
+        </button>
+      </div>
 
-      { newFavoriteRecipies.map((recipe, index) => (
-        <div key={ recipe.id } style={ { border: 'solid black 2px' } }>
-          <img
-            role="presentation"
-            data-testid={ `${index}-horizontal-image` }
-            style={ { width: '20px' } }
-            src={ recipe.image }
-            alt={ `Imagem da receita ${recipe.name}` }
-            onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
-          />
-          <p data-testid={ `${index}-horizontal-top-text` } style={ { padding: '20px' } }>
-            { recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
-              : recipe.alcoholicOrNot}
-          </p>
-          <p
-            role="presentation"
-            onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
-            data-testid={ `${index}-horizontal-name` }
-            style={ { padding: '20px' } }
-          >
-            {recipe.name}
-          </p>
-          <button
-            onClick={ () => handleClickClipBoard(recipe.type, recipe.id) }
-            type="button"
+      <div className="all-recepe-favorite">
+        { newFavoriteRecipies.map((recipe, index) => (
+          <div
+            className="favoriteRecipes"
+            key={ recipe.id }
+            style={ { border: 'solid black 2px' } }
           >
 
             <img
-              style={ { padding: '20px' } }
-              src={ shareIcon }
-              alt="Ícone para compartilhar"
-              data-testid={ `${index}-horizontal-share-btn` }
+              className="favorite-img"
+              role="presentation"
+              data-testid={ `${index}-horizontal-image` }
+              style={ { width: '20px' } }
+              src={ recipe.image }
+              alt={ `Imagem da receita ${recipe.name}` }
+              onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
             />
-          </button>
 
-          {show && (
-            <p>Link copiado!</p>
-          )}
-          <img
-            role="presentation"
-            src={ blackHeartIcon }
-            alt="Ícone para compartilhar"
-            data-testid={ `${index}-horizontal-favorite-btn` }
-            onClick={ () => removeFavorite(recipe) }
-          />
-        </div>
-      ))}
+            <div className="infomations-favorite">
+              <p
+                data-testid={ `${index}-horizontal-top-text` }
+                style={ { padding: '20px' } }
+              >
+                { recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
+                  : recipe.alcoholicOrNot}
+              </p>
+              <p
+                role="presentation"
+                onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
+                data-testid={ `${index}-horizontal-name` }
+                style={ { padding: '20px' } }
+              >
+                {recipe.name}
+              </p>
+            </div>
+            <div className="icons-favorite">
+              <img
+                className="favorite-share"
+                role="presentation"
+                src={ shareIcon }
+                alt="Ícone para compartilhar"
+                data-testid={ `${index}-horizontal-share-btn` }
+                onClick={ () => handleClickClipBoard(recipe.type, recipe.id) }
+              />
+
+              {show && (
+                <p>Link copiado!</p>
+              )}
+              <img
+                className="heart-share"
+                role="presentation"
+                src={ blackHeartIcon }
+                alt="Ícone para compartilhar"
+                data-testid={ `${index}-horizontal-favorite-btn` }
+                onClick={ () => removeFavorite(recipe) }
+              />
+            </div>
+          </div>
+        ))}
+      </div>
 
     </div>
   );

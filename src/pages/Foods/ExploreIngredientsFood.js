@@ -19,11 +19,12 @@ export default function ExploreIngredientsFood() {
   }, []);
 
   return (
-    <div>
+    <div className="explore-ingredients">
       <Header title="Explorar Ingredientes" display="false" />
       <div className="div-cards-ingredients">
         {ingredients.length > 0 && ingredients.map((ingredient, index) => (
           <div
+            className="ingrets"
             role="presentation"
             data-testid={ `${index}-ingredient-card` }
             key={ ingredient.idIngredient }
@@ -33,7 +34,7 @@ export default function ExploreIngredientsFood() {
           >
             <img
               data-testid={ `${index}-card-img` }
-              width="20px"
+              width="30px"
               src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
               alt=""
             />

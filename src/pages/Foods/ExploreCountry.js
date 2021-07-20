@@ -34,7 +34,7 @@ export default function ExploreCountry() {
     getRecepies();
   }, [countrySelected]);
   return (
-    <div>
+    <div className="explore-country">
       <Header title="Explorar Origem" display="true" />
       <select
         data-testid="explore-by-area-dropdown"
@@ -67,7 +67,7 @@ export default function ExploreCountry() {
               src={ element.strMealThumb }
               data-testid={ `${index}-card-img` }
               alt={ element.strMeal }
-              width="20%"
+              width="100%"
             />
             <p data-testid={ `${index}-card-name` }>
               { element.strMeal}

@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
-import './components.css';
 import SearchFood from './SearchFood';
 
 function Header({ title, display }) {
@@ -16,12 +15,13 @@ function Header({ title, display }) {
 */
   return (
     <div className="header-body">
-      <div>
+      <div className="header-class">
 
         <a
           href="/perfil"
         >
           <img
+            className="icon-perfil"
             data-testid="profile-top-btn"
             src={ profileIcon }
             alt="profile icon"
@@ -29,24 +29,23 @@ function Header({ title, display }) {
           />
         </a>
 
-        <div data-testid="page-title">
+        <div data-testid="page-title" className="header-title">
           {title}
         </div>
-        {
-          display === 'true'
+        <div>
+          {
+            display === 'true'
         && (
-          <div
-            role="button"
-          >
-            <img
-              data-testid="search-top-btn"
-              src={ searchIcon }
-              alt="search icon"
-              onClick={ () => setIsSerching(!isSerching) }
-              role="presentation"
-            />
-          </div>)
-        }
+          <img
+            className="icon-search"
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            alt="search icon"
+            onClick={ () => setIsSerching(!isSerching) }
+            role="presentation"
+          />)
+          }
+        </div>
       </div>
       {isSerching && <SearchFood recipe={ title } />}
     </div>

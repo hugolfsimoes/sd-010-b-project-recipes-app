@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchRecipeRandomDrink } from '../../services/recipeAPI';
@@ -23,23 +24,23 @@ export default function ExploreDrink() {
     func();
   }, [change]);
   return (
-    <div>
+    <div className="explorar-drink-app">
       <Header title="Explorar Bebidas" display="false" />
-      <div className="div-explore-food-drink">
-        <button
+      <div className="explore-drink">
+        <Button
           type="button"
           data-testid="explore-by-ingredient"
           onClick={ () => history.push('/explorar/bebidas/ingredientes') }
         >
           Por Ingredientes
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           data-testid="explore-surprise"
           onClick={ handleClickRandomRecipe }
         >
           Me Surpreenda!
-        </button>
+        </Button>
       </div>
       <Footer />
     </div>
