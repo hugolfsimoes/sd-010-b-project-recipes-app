@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
+import store, { setFetchOnDone } from '../../context/store';
+import { getStorage, setStorage } from '../../functions';
 import RecipeIngredients from './RecipeIngredients';
 import LikeButton from './LikeButton';
 import ShareButton from './ShareButton';
 import RecommendedRecipes from './RecommendedRecipes';
-import store, { setFetchOnDone } from '../../context/store';
-import { getStorage, setStorage } from '../../functions';
+import RenderButtonHome from './RenderButtonHome';
 
 export default function RenderDetails({ btnFinish, id }) {
   const [inProgress] = useState(() => getStorage('inProgressRecipes'));
@@ -31,6 +32,7 @@ export default function RenderDetails({ btnFinish, id }) {
       {/* -------------------------------------------------------------------------- */}
       <div className="box topDetails">
         <div className="titleDetails">
+          <RenderButtonHome />
           <div className="titleCategory">
             <h1 data-testid="recipe-title">
               { recipeDetail.strMeal || recipeDetail.strDrink }

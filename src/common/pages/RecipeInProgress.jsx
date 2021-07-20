@@ -11,6 +11,7 @@ import RecipeIngredients from '../components/RecipeIngredients';
 import LikeButton from '../components/LikeButton';
 import ShareButton from '../components/ShareButton';
 import Loading from '../components/Loading';
+import RenderButtonHome from '../components/RenderButtonHome';
 
 export default function RecipeInProgress() {
   const { id } = useParams();
@@ -51,6 +52,7 @@ export default function RecipeInProgress() {
       {/* -------------------------------------------------------------------------- */}
       <div className="boxInProg topInProgress">
         <div className="titleInProgress">
+          <RenderButtonHome />
           <div className="titleCategory">
             <h1 data-testid="recipe-title">
               { recipeDetail.strMeal || recipeDetail.strDrink }
