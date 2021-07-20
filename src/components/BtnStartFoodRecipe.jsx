@@ -4,23 +4,23 @@ import './DetailsPage.css';
 import { Link } from 'react-router-dom';
 // import 'App.css'
 
-function BtnStartFoodRecipe(id) {
+function BtnStartFoodRecipe({ id, ingredients }) {
+  if (id === undefined || ingredients === undefined) return console.log('DEU RUIM');
+  console.log(ingredients, 'ingredients');
   const recipeIndex = Object.values(id);
+  const ingreds = Object.values(ingredients);
   const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
   // const receitaIniciada = [];
   // const finishedRecipes = JSON.parse(localStorage.getItem('finishedRecipes'));
   // const receitaFinalizada = [];
-
   const startRecipe = () => {
-    // receitaIniciada.push(recipeIndex[0]);
-    const idRecipe = recipeIndex[0];
     localStorage
       .setItem('inProgressRecipes',
         JSON.stringify({
           ...inProgressRecipes,
           meals: {
             ...inProgressRecipes.meals,
-            [idRecipe]: [],
+            [id]: ingreds,
           },
         }));
   };
@@ -41,10 +41,9 @@ function BtnStartFoodRecipe(id) {
       return 'Iniciar Receita';
     }
   };
-
   return (
     <div>
-      <Link to={ `/comidas/${recipeIndex[0]}/in-progress` }>
+      <Link to={ `/comidas/${id}/in-progress` }>
         <button
           type="button"
           data-testid="start-recipe-btn"
@@ -59,7 +58,8 @@ function BtnStartFoodRecipe(id) {
 }
 
 BtnStartFoodRecipe.propTypes = {
-  // id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  ingredients: PropTypes.arrayOf().isRequired,
 };
 
 export default BtnStartFoodRecipe;

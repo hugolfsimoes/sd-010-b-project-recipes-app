@@ -33,8 +33,9 @@ function DetailsFoodPage({ match: { params } }) {
       }
     }
   }
-
+  const arrayFinal = [];
   const ingredientsFinal = ingredients.filter((ing) => ing !== '');
+  ingredientsFinal.forEach((ingredient) => arrayFinal.push(ingredient));
 
   const listMeasures = Object.keys(recipes[0])
     .filter((recipe) => recipe.includes('Measure'));
@@ -68,7 +69,7 @@ function DetailsFoodPage({ match: { params } }) {
   fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // // }, [setRecipes, id]);
   // // console.log(id, recipes);
-
+  // console.log(typeof (arrayFinal), 'TYPE OF INGREDIENTS FINAL');
   return (
     <section>
       <img
@@ -108,7 +109,7 @@ function DetailsFoodPage({ match: { params } }) {
       />
       <h3>Recomendadas</h3>
       <RecommendedDrinks />
-      <BtnStartFoodRecipe id={ id } />
+      <BtnStartFoodRecipe id={ id } ingredients={ [...arrayFinal] } />
       {/* <Link to={ `/comidas/${id}/in-progress` }>
         <button
           type="button"
