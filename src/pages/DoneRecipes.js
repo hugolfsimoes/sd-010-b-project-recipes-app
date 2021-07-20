@@ -9,6 +9,7 @@ class DoneRecipes extends React.Component {
   constructor() {
     super();
     this.state = {
+      allRecipes: [],
       doneRecipes: [],
       copyLink: false,
     };
@@ -34,6 +35,7 @@ class DoneRecipes extends React.Component {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
     if (doneRecipes) {
       return this.setState({
+        allRecipes: doneRecipes,
         doneRecipes,
       });
     }
@@ -48,37 +50,51 @@ class DoneRecipes extends React.Component {
       return (
         <section key={ recipe.id }>
           <Link to={ link }>
-            <img
-              data-testid={ `${index}-horizontal-image` }
-              src={ recipe.image }
-              alt={ recipe.name }
-              width="180"
-            />
+            <div className="container-img-favorite">
+              <img
+                data-testid={ `${index}-horizontal-image` }
+                src={ recipe.image }
+                alt={ recipe.name }
+                className="img-favorite"
+              />
+            </div>
           </Link>
-          <p data-testid={ `${index}-horizontal-top-text` }>
+          <p className="text-recipe" data-testid={ `${index}-horizontal-top-text` }>
             {recipe.type === 'comida' ? recipeInfo : recipe.alcoholicOrNot }
           </p>
-          <Link to={ link }>
+          <Link className="link-favorite" to={ link }>
             <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
           </Link>
-          <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-          <p>{ copyLink ? 'Link copiado!' : null }</p>
-          <button
-            type="button"
-            onClick={ () => this.onClickShare(link) }
+          <p
+            className="date-done"
+            data-testid={ `${index}-horizontal-done-date` }
           >
-            <img
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
-              alt="Compartilhar"
-            />
-          </button>
+            {recipe.doneDate}
+          </p>
+          <p className="link-copy">{ copyLink ? 'Link copiado!' : null }</p>
+          <div className="container-share-favorite">
+            <button
+              type="button"
+              onClick={ () => this.onClickShare(link) }
+              className="share-btn"
+            >
+              <img
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareIcon }
+                alt="Compartilhar"
+              />
+            </button>
+          </div>
           {recipe.tags.map((tag, twoTag) => {
             if (twoTag > 2 || tag === null) {
               return null;
             }
             return (
-              <div data-testid={ `${index}-${tag}-horizontal-tag` } key={ tag }>
+              <div
+                className="tag-done"
+                data-testid={ `${index}-${tag}-horizontal-tag` }
+                key={ tag }
+              >
                 {tag}
               </div>
             );
@@ -89,8 +105,8 @@ class DoneRecipes extends React.Component {
   }
 
   renderFilterDoneRecipe(type) {
-    const { doneRecipes } = this.state;
-    const filter = doneRecipes.filter((recipe) => recipe.type === type);
+    const { allRecipes } = this.state;
+    const filter = allRecipes.filter((recipe) => recipe.type === type);
     this.setState({
       doneRecipes: filter,
     });
@@ -100,27 +116,32 @@ class DoneRecipes extends React.Component {
     return (
       <section>
         <Header title="Receitas Feitas" />
-        <button
-          data-testid="filter-by-all-btn"
-          type="button"
-          onClick={ this.getDoneRecipes }
-        >
-          All
-        </button>
-        <button
-          data-testid="filter-by-food-btn"
-          type="button"
-          onClick={ () => this.renderFilterDoneRecipe('comida') }
-        >
-          Food
-        </button>
-        <button
-          data-testid="filter-by-drink-btn"
-          type="button"
-          onClick={ () => this.renderFilterDoneRecipe('bebida') }
-        >
-          Drinks
-        </button>
+        <div className="container-btn">
+          <button
+            data-testid="filter-by-all-btn"
+            type="button"
+            onClick={ this.getDoneRecipes }
+            className="main-btn"
+          >
+            All
+          </button>
+          <button
+            data-testid="filter-by-food-btn"
+            type="button"
+            onClick={ () => this.renderFilterDoneRecipe('comida') }
+            className="main-btn"
+          >
+            Food
+          </button>
+          <button
+            data-testid="filter-by-drink-btn"
+            type="button"
+            onClick={ () => this.renderFilterDoneRecipe('bebida') }
+            className="main-btn"
+          >
+            Drinks
+          </button>
+        </div>
         {this.renderDoneRecipes()}
       </section>
     );

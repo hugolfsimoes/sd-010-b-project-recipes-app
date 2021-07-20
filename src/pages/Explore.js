@@ -8,12 +8,22 @@ class Explore extends React.Component {
     return (
       <section>
         <Header title="Explorar" />
-        <Link to="/explorar/comidas">
-          <button type="button" data-testid="explore-food">Explorar Comidas</button>
-        </Link>
-        <Link to="/explorar/bebidas">
-          <button type="button" data-testid="explore-drinks">Explorar Bebidas</button>
-        </Link>
+        <section className="explore-cards-section">
+          <Link to="/explorar/comidas" className="explore">
+            <button type="button" data-testid="explore-food" className="main-cards-div">
+              <h3>Explorar Comidas</h3>
+              <div className="explore-meal-img" />
+              <div className="main-card-background explore-background" />
+            </button>
+          </Link>
+          <Link to="/explorar/bebidas" className="explore">
+            <button type="button" data-testid="explore-drinks" className="main-cards-div">
+              <h3>Explorar Bebidas</h3>
+              <div className="explore-drinks-img" />
+              <div className="main-card-background explore-background" />
+            </button>
+          </Link>
+        </section>
         <Footer />
       </section>
     );

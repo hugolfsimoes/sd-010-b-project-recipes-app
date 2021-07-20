@@ -20,10 +20,9 @@ class BeverageIngredients extends React.Component {
     this.fetchBeverages();
   }
 
-  handleIngredientName({ target }) {
+  handleIngredientName(ingredient) {
     const { addIngredientsRedux } = this.props;
-    addIngredientsRedux(target.alt);
-    console.log(target.alt);
+    addIngredientsRedux(ingredient);
   }
 
   async fetchBeverages() {
@@ -45,11 +44,13 @@ class BeverageIngredients extends React.Component {
                 type="button"
                 key={ index }
                 data-testid={ `${index}-ingredient-card` }
-                onClick={ this.handleIngredientName }
+                onClick={ () => this.handleIngredientName(drink.strIngredient1) }
+                className="main-cards-div drinks-ingredient-btn"
               >
                 <h3 data-testid={ `${index}-card-name` }>
                   { drink.strIngredient1 }
                 </h3>
+                <div className="main-card-background" />
                 <img
                   src={ `https://www.thecocktaildb.com/images/ingredients/${drink.strIngredient1}-Small.png` }
                   alt={ drink.strIngredient1 }
@@ -69,7 +70,9 @@ class BeverageIngredients extends React.Component {
     return (
       <section>
         <Header title="Explorar Ingredientes" />
-        {this.renderCards()}
+        <div className="ingredients-card-div">
+          {this.renderCards()}
+        </div>
         <Footer />
       </section>
     );

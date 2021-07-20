@@ -21,31 +21,55 @@ class Profile extends React.Component {
     history.push('/');
   }
 
+  renderEmail() {
+    const userEmail = JSON.parse(localStorage.getItem('user'));
+    if (userEmail) return userEmail.email;
+    return null;
+  }
+
   render() {
-    console.log(JSON.parse(localStorage.getItem('email')));
     return (
       <section>
         <Header title="Perfil" />
-        <p data-testid="profile-email">
-          {JSON.parse(localStorage.getItem('user')).email}
-        </p>
-        <Link to="/receitas-feitas">
-          <button data-testid="profile-done-btn" type="button">
-            Receitas Feitas
-          </button>
-        </Link>
-        <Link to="/receitas-favoritas">
-          <button data-testid="profile-favorite-btn" type="button">
-            Receitas Favoritas
-          </button>
-        </Link>
-        <button
-          type="button"
-          data-testid="profile-logout-btn"
-          onClick={ this.onClickLogOut }
+        <p
+          className="profile-email"
+          data-testid="profile-email"
         >
-          Sair
-        </button>
+          { this.renderEmail() }
+        </p>
+        <hr />
+        <div className="container-btn-profile">
+          <div className="btn-profile">
+            <Link to="/receitas-feitas">
+              <button
+                className="btn-done"
+                data-testid="profile-done-btn"
+                type="button"
+              >
+                Receitas Feitas
+              </button>
+            </Link>
+          </div>
+          <div className="btn-profile">
+            <Link to="/receitas-favoritas">
+              <button
+                className="btn-favorite"
+                data-testid="profile-favorite-btn"
+                type="button"
+              >
+                Receitas Favoritas
+              </button>
+            </Link>
+          </div>
+          <button
+            type="button"
+            data-testid="profile-logout-btn"
+            onClick={ this.onClickLogOut }
+            className="button-login"
+          >
+            Sair
+          </button>
+        </div>
         <Footer />
       </section>
     );

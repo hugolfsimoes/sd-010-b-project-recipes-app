@@ -20,9 +20,9 @@ class FoodIngredients extends React.Component {
     this.fetchFood();
   }
 
-  handleIngredientName({ target }) {
+  handleIngredientName(ingredient) {
     const { addIngredientsRedux } = this.props;
-    addIngredientsRedux(target.alt);
+    addIngredientsRedux(ingredient);
   }
 
   async fetchFood() {
@@ -43,9 +43,11 @@ class FoodIngredients extends React.Component {
               <button
                 type="button"
                 data-testid={ `${index}-ingredient-card` }
-                onClick={ this.handleIngredientName }
+                onClick={ () => this.handleIngredientName(food.strIngredient) }
+                className="main-cards-div ingredient-btn"
               >
                 <h3 data-testid={ `${index}-card-name` }>{ food.strIngredient }</h3>
+                <div className="main-card-background" />
                 <img
                   src={ `https://www.themealdb.com/images/ingredients/${food.strIngredient}-Small.png` }
                   alt={ food.strIngredient }
