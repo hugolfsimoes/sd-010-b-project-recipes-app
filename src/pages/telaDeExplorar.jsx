@@ -19,7 +19,7 @@ export class TelaDeExplorar extends Component {
     const { location } = this.props;
 
     return (
-      <div>
+      <section>
         <Header location={ location } />
         <section className="explorer-screen-main">
           <Link to="/explorar/comidas">
@@ -44,7 +44,7 @@ export class TelaDeExplorar extends Component {
           </Link>
         </section>
         <Footer />
-      </div>
+      </section>
     );
   }
 }

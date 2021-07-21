@@ -7,6 +7,8 @@ import Header from '../../components/header';
 import Footer from '../../components/footer';
 import { fetchRamdomRecipe, getSearchBarResponse } from '../../action';
 
+import '../../css/TelaDeExplorar.css';
+
 export class ExplorarComidasBebidas extends Component {
   constructor(props) {
     super(props);
@@ -45,15 +47,12 @@ export class ExplorarComidasBebidas extends Component {
     const { getDetailsRecipe } = this.props;
     const { id, should } = this.state;
     console.log(should);
-    console.log(getDetailsRecipe, 'updateState');
-    console.log(getDetailsRecipe.length, 'updateState');
 
     if (!id && getDetailsRecipe.idMeal !== undefined && param === 'comidas') {
       console.log('entrei');
 
       return this.setState({ id: getDetailsRecipe.idMeal },
         () => this.verifyToRedirect('comidas'));
-      // return this.verifyToRedirect();
     }
     if (!id && getDetailsRecipe.idDrink !== undefined && param === 'bebidas') {
       console.log('bebidas');
@@ -66,9 +65,6 @@ export class ExplorarComidasBebidas extends Component {
     const { id } = this.state;
     const { getDetailsRecipe } = this.props;
 
-    // console.log('verify');
-    // console.log(id);
-    // console.log(getDetailsRecipe.idMeal);
     if (getDetailsRecipe.idMeal === id && param === 'comidas') {
       console.log('entrei no redirect');
       console.log(id);
@@ -84,9 +80,10 @@ export class ExplorarComidasBebidas extends Component {
   renderButtons(param) {
     const { location } = this.props;
     return (
-      <div>
+      <section className="explorer-filter">
         <Link to={ `/explorar/${param}/ingredientes` }>
           <button
+            className="btn-filters"
             data-testid="explore-by-ingredient"
             type="button"
           >
@@ -97,6 +94,7 @@ export class ExplorarComidasBebidas extends Component {
         && (
           <Link to="/explorar/comidas/area">
             <button
+              className="btn-filters"
               data-testid="explore-by-area"
               type="button"
             >
@@ -104,29 +102,32 @@ export class ExplorarComidasBebidas extends Component {
             </button>
           </Link>)}
         <button
+          className="btn-filters"
           data-testid="explore-surprise"
           onClick={ this.handleApi }
           type="button"
         >
           Me Surpreenda!
         </button>
-      </div>);
+      </section>);
   }
 
   render() {
     const { location } = this.props;
     const { isRedirect, type, id } = this.state;
     const PAGE_LOCATION = location.pathname.includes('comida');
-    console.log(PAGE_LOCATION);
+
     return (
-      <div>
+      <section>
         <Header location={ location } />
-        { PAGE_LOCATION === true ? this.renderButtons('comidas')
-          : this.renderButtons('bebidas') }
-        { type !== undefined && this.updateState(type)}
-        { isRedirect && <Redirect to={ `/${type}/${id}` } />}
+        <section className="explorer-content">
+          { PAGE_LOCATION === true ? this.renderButtons('comidas')
+            : this.renderButtons('bebidas') }
+          { type !== undefined && this.updateState(type)}
+          { isRedirect && <Redirect to={ `/${type}/${id}` } />}
+        </section>
         <Footer />
-      </div>
+      </section>
     );
   }
 }
@@ -138,13 +139,10 @@ ExplorarComidasBebidas.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => ({
-  // getRamdomRecipe: state.exploreScreen.recipe,
-  // getDetailsRecipe: state.recipeDetails.details,
   getDetailsRecipe: state.recipeDetails.details,
 
 });
 const mapDispatchToProps = (dispatch) => ({
-  // sendRamdomRecipe: (e) => dispatch(getRamdomRecipe(e)),
   hasSearchBar: (e) => dispatch(getSearchBarResponse(e)),
   fetchApi: (e, a) => dispatch(fetchRamdomRecipe(e, a)),
 });
