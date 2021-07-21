@@ -1275,7 +1275,8 @@ Os ícones dos botões podem ser encontrados em `src/images/whiteHeartIcon.svg` 
 
 ### 46 - Salve as receitas favoritas no `localStorage` na chave `favoriteRecipes`
 
-  * As receitas feitas devem ser salvas em `localStorage` na chave `favoriteRecipes` no formato `[{ id, type, area, category, alcoholicOrNot, name, image }]`.
+  * O formato deve ser `[{ id, type, area, category, alcoholicOrNot, name, image }]`.
+  * As receitas feitas devem ser salvas em `localStorage` na chave `favoriteRecipes` no formato `[{ id, type, area, category, alcoholicOrNot, name, image, doneDate, tags }]`.
 
   O que será verificado:
   ```
