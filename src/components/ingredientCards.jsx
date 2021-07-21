@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { Redirect } from 'react-router';
+import Group26 from '../images/Group26.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/cards.css';
+import '../css/IngredientCards.css';
 
 class IngredientCards extends Component {
   constructor(props) {
@@ -35,10 +36,7 @@ class IngredientCards extends Component {
   updateState() {
     const { item } = this.props;
     const { id } = this.state;
-    // console.log(item, 'updateState');
-    console.log(item.length);
-    console.log(id);
-    console.log(id.length);
+
     if (item.length !== 0 && id.length !== 0) {
       console.log('pão');
       return this.setState({ isRedirect: true });
@@ -49,24 +47,37 @@ class IngredientCards extends Component {
     const { img, title, index, url } = this.props;
     const { isRedirect, type } = this.state;
     return (
-      <div>
+      <section>
         <Card
+          className="ingredient-card"
           data-testid={ `${index}-ingredient-card` }
           onClick={ this.handleApi }
         >
-
-          <Card.Img
-            variant="top"
-            src={ img }
-            data-testid={ `${index}-card-img` }
-          />
-          <Card.Body>
-            <Card.Title data-testid={ `${index}-card-name` }>{ title }</Card.Title>
-          </Card.Body>
+          <div className="img-content">
+            <img className="group-26" src={ Group26 } alt={ Group26 } />
+            <div className="img-wrap">
+              <div className="img-container">
+                <Card.Img
+                  className="ingredient-img"
+                  variant="top"
+                  src={ img }
+                  data-testid={ `${index}-card-img` }
+                />
+              </div>
+            </div>
+          </div>
+          {/* <div className="img-content">
+            <div className="div-shadow">
+              <div className="img-container" />
+            </div>
+          </div> */}
+          <Card.Title className="card-name" data-testid={ `${index}-card-name` }>
+            { title }
+          </Card.Title>
         </Card>
         { type !== undefined && this.updateState()}
         { isRedirect && <Redirect to={ url } />}
-      </div>
+      </section>
     );
   }
 }

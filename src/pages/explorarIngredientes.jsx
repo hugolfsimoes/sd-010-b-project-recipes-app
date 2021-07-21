@@ -26,7 +26,6 @@ export class explorarIngredientes extends Component {
     const { location,
       fetchApiByIngredient, fetchApiDrinksByingredient, meals, drinks } = this.props;
 
-    console.log(param, 'entrei no render');
     if (location.pathname.includes('comida')) {
       return param.map((el, index) => (
         <IngredientCards
@@ -60,7 +59,9 @@ export class explorarIngredientes extends Component {
     return (
       <div>
         <Header location={ location } />
-        { getApiIngredient.length !== 0 && this.renderElements(getApiIngredient)}
+        <section className="ingredient-container">
+          { getApiIngredient.length !== 0 && this.renderElements(getApiIngredient)}
+        </section>
         <Footer />
       </div>
     );
