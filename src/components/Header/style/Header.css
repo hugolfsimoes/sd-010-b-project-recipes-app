@@ -17,6 +17,7 @@ label {
 }
 
 .header {
+  background-color: wheat;
   display: flex;
   height: fit-content;
   justify-content: space-around;

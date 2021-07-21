@@ -13,7 +13,7 @@ function MealsRecipes() {
   }, []);
 
   return (
-    <div>
+    <div className="recipes">
       <Recipes type="comidas" />
     </div>
   );

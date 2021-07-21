@@ -12,7 +12,7 @@ export default function FoodCard({ recipes, order, type, isRecomm }) {
     <a
       href={ to }
     >
-      <div key={ recipes[name] } data-testid={ `${order}-recipe-card` }>
+      <div key={ recipes[name] } data-testid={ `${order}-recipe-card` } className="card">
         <img
           src={ recipes[urlImage] }
           alt={ recipes[name] }

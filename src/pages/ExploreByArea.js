@@ -45,7 +45,6 @@ function ExploreByArea() {
     <div className="exploreArea">
       { redirectToRecipeDetails
         && <Redirect to={ `/comidas/${recipeDetails.idMeal}` } /> }
-      ExploreArea
       <select
         data-testid="explore-by-area-dropdown"
         onChange={ filterByArea }
@@ -60,30 +59,32 @@ function ExploreByArea() {
         )) }
       </select>
       <br />
-      { recipes.slice(0, maxCards).map(({ idMeal, strMeal, strMealThumb }, index) => (
-        <label
-          data-testid={ `${index}-recipe-card` }
-          key={ index }
-          htmlFor={ strMeal }
-          className="optionIngredients"
-        >
-          <input
-            type="radio"
-            onClick={ () => lookDetailsRecipe({ idMeal, strMeal, strMealThumb }) }
-            id={ strMeal }
-            className="search-icon-radio"
-          />
-          <img
-            data-testid={ `${index}-card-img` }
-            src={ strMealThumb }
-            alt={ strMeal }
-            className="cardImage"
-          />
-          <p data-testid={ `${index}-card-name` }>
-            { strMeal }
-          </p>
-        </label>
-      )) }
+      <div className="explore-list">
+        { recipes.slice(0, maxCards).map(({ idMeal, strMeal, strMealThumb }, index) => (
+          <label
+            data-testid={ `${index}-recipe-card` }
+            key={ index }
+            htmlFor={ strMeal }
+            className="optionIngredients"
+          >
+            <input
+              type="radio"
+              onClick={ () => lookDetailsRecipe({ idMeal, strMeal, strMealThumb }) }
+              id={ strMeal }
+              className="search-icon-radio"
+            />
+            <img
+              data-testid={ `${index}-card-img` }
+              src={ strMealThumb }
+              alt={ strMeal }
+              className="cardImage"
+            />
+            <p data-testid={ `${index}-card-name` }>
+              { strMeal }
+            </p>
+          </label>
+        )) }
+      </div>
     </div>
   );
 }
