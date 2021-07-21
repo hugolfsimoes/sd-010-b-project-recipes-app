@@ -86,24 +86,3 @@ Ingredients.propTypes = {
 };
 
 export default connect(mapStateToProps)(Ingredients);
-
-{ /* <div
-                className="ingredients-row"
-                id={ `input-${index}` }
-                key={ index }
-                data-testid={
-                  isStart === true
-                    ? `${index}-ingredient-step`
-                    : `${index}-ingredient-name-and-measure`
-                }
-              >
-                <div className="ingredients-check">
-                  {
-                    this.checkIngredient(data[ingredient[0]], index)
-                  }
-                </div>
-                <div className="ingredients-measures">{data[ingredient[1]]}</div>
-                <div className="ingredients-name" id={ `ingredient-${index}` }>
-                  {data[ingredient[0]]}
-                </div>
-              </div> */ }

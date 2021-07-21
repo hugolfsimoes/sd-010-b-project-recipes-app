@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import copy from 'clipboard-copy';
+import { CgPentagonRight } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-// import { Col, Container, Row } from 'react-bootstrap';
+import Modal from './Modal';
+import { isLink } from '../action/details';
+import '../css/doneRecipes.css';
 
 class DoneRecipes extends Component {
   constructor(props) {
@@ -12,12 +17,10 @@ class DoneRecipes extends Component {
 
     this.state = {
       doneRecipes: [],
-      ids: [],
     };
     this.handleFilterFoods = this.handleFilterFoods.bind(this);
     this.handleFilterDrinks = this.handleFilterDrinks.bind(this);
     this.handleFilterAll = this.handleFilterAll.bind(this);
-    this.renderMsg = this.renderMsg.bind(this);
   }
 
   componentDidMount() {
@@ -45,16 +48,17 @@ class DoneRecipes extends Component {
     });
   }
 
-  renderMsg(id) {
-    this.setState({ ids: id });
-  }
-
   render() {
-    const { doneRecipes, ids } = this.state;
+    const { doneRecipes } = this.state;
+    const { history, link, islink } = this.props;
     return (
-      <section>
-        <section>
+      <section className="done-recipes-main">
+        {
+          link && <Modal history={ history }><p>Link copiado!</p></Modal>
+        }
+        <section className="list-btn">
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterAll }
             data-testid="filter-by-all-btn"
@@ -62,6 +66,7 @@ class DoneRecipes extends Component {
             All
           </button>
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterFoods }
             data-testid="filter-by-food-btn"
@@ -69,6 +74,7 @@ class DoneRecipes extends Component {
             Food
           </button>
           <button
+            className="filter-btn"
             type="button"
             onClick={ this.handleFilterDrinks }
             data-testid="filter-by-drink-btn"
@@ -80,19 +86,21 @@ class DoneRecipes extends Component {
           doneRecipes.map(({
             type, name, id, image, area, category, alcoholicOrNot, doneDate, tags,
           }, index) => (
-            <Card key={ name } className="favorite-card">
+            <Card key={ name } className="done-card">
               <Link to={ `${type}s/${id}` }>
-                <Card.Img
-                  className="favorite-card-img"
-                  data-testid={ `${index}-horizontal-image` }
-                  src={ image }
-                />
+                <div className="img-content">
+                  <Card.Img
+                    className="done-card-img"
+                    data-testid={ `${index}-horizontal-image` }
+                    src={ image }
+                  />
+                </div>
               </Link>
-              <Card.Body className="favorite-card-body">
+              <Card.Body className="done-card-body">
                 <Link to={ `${type}s/${id}` }>
                   <Card.Subtitle
                     data-testid={ `${index}-horizontal-top-text` }
-                    className="favorite-card-subtitle"
+                    className="done-card-subtitle"
                   >
                     {
                       (type === 'comida') ? `${area} - ${category}`
@@ -100,94 +108,67 @@ class DoneRecipes extends Component {
                     }
                   </Card.Subtitle>
                   <Card.Title
-                    className="favorite-card-title"
+                    className="done-card-title"
                     data-testid={ `${index}-horizontal-name` }
                   >
                     { name }
                   </Card.Title>
                 </Link>
-                <section className="favorite-buttons">
+                <section className="done-buttons">
                   <button
                     type="button"
-                    className="favorite-btn-share"
+                    className="done-btn-share"
                     onClick={ () => copy(`http://localhost:3000/${type}s/${id}`)
-                      .then(() => this.renderMsg(id)) }
+                      .then(() => islink(true)) }
                   >
                     <img
+                      className="img-share"
                       data-testid={ `${index}-horizontal-share-btn` }
                       src={ shareIcon }
                       alt={ shareIcon }
                     />
                   </button>
-                  {ids.includes(id) && <p>Link copiado!</p>}
                 </section>
-                <Card.Text data-testid={ `${index}-horizontal-done-date` }>
+                <Card.Text
+                  className="done-date"
+                  data-testid={ `${index}-horizontal-done-date` }
+                >
                   {doneDate}
                 </Card.Text>
                 {
                   tags !== '' && tags.map((el) => (
                     <Card.Text
+                      className="tag-content"
                       key={ el }
                       data-testid={ `${index}-${el}-horizontal-tag` }
                     >
-                      {el}
+                      <div className="done-tag">
+                        <CgPentagonRight />
+                        {el}
+                      </div>
                     </Card.Text>))
                 }
               </Card.Body>
             </Card>
           ))
         }
-        {/* { doneRecipes.map((elem, index) => (
-          <Card
-            key={ index }
-            style={ {
-              width: '21.5rem',
-              height: '12rem',
-              justifyContent: 'center',
-            } }
-          >
-            <Container>
-              <Row style={ { alignItems: 'center' } }>
-                <Col xs={ 4 }>
-                  <Link to={ `/${elem.type}/${elem.id}` }>
-                    <Card.Img
-                      style={ { width: '6.8rem' } }
-                      src={ elem.image }
-                      data-testid={ `${index}-horizontal-image` }
-                    />
-                  </Link>
-                </Col>
-                <Col xs={ 8 } style={ { textAlign: 'center' } }>
-                  <Card.Text>
-                    { elem.alcoholicOrNot }
-                  </Card.Text>
-                  <Card.Text>
-                    { elem.area }
-                  </Card.Text>
-                  <Link to={ `/${elem.type}/${elem.id}` }>
-                    <Card.Title
-                      data-testid={ `${index}-horizontal-name` }
-                    >
-                      { elem.name }
-                    </Card.Title>
-                  </Link>
-                  <Card.Text data-testid={ `${index}-horizontal-top-text` }>
-                    { elem.category }
-                  </Card.Text>
-                  <Card.Text data-testid={ `${index}-horizontal-done-date` }>
-                    { `Feito em: ${elem.doneDate}` }
-                  </Card.Text>
-                  <Card.Text data-testid={ `${index}-horizontal-tag` }>
-                    { elem.tags }
-                  </Card.Text>
-                </Col>
-              </Row>
-            </Container>
-          </Card>
-        ))} */}
       </section>
     );
   }
 }
 
-export default DoneRecipes;
+const mapDispatchToProps = (dispatch) => ({
+  islink: (bool) => dispatch(isLink(bool)),
+});
+
+const mapStateToProps = (state) => ({
+  link: state.recipeDetails.link,
+});
+
+DoneRecipes.propTypes = {
+  link: PropTypes.bool.isRequired,
+  history: PropTypes.shape.isRequired,
+  islink: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DoneRecipes);

@@ -5,7 +5,7 @@ import Header from '../components/header';
 import { getSearchBarResponse } from '../action/index';
 import DoneRecipes from '../components/DoneRecipes';
 
-export class ReceitasFeitas extends Component {
+class ReceitasFeitas extends Component {
   componentDidMount() {
     const { hasSearchBar } = this.props;
 
@@ -13,12 +13,12 @@ export class ReceitasFeitas extends Component {
   }
 
   render() {
-    const { location } = this.props;
+    const { location, history } = this.props;
 
     return (
       <div>
         <Header location={ location } />
-        <DoneRecipes />
+        <DoneRecipes history={ history } />
       </div>
     );
   }

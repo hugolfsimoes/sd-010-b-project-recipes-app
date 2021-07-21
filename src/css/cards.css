@@ -1,39 +1,3 @@
-:root {
-
-  /* COLOR STYLES */
-
-  --crl-Primary: #1fcc79;
-
-  --crl-Secondary: #ff6464;
-
-  --crl-Tertiary: #fec0a0;
-
-  --crl-Main-Text: #3e5481;
-
-  --crl-Secondary-Text: #9fa5c0;
-
-  --crl-Outline: #d0dbea;
-
-  --crl-form: #f4f5f7;
-
-  --crl-White: white;
-
-  /* FONT STYLES */
-
-  --font-size-h1: 1.37rem;
-
-  --font-size-h2: 1.06rem;
-
-  --font-size-h3: 0.93rem;
-
-  --font-size-p1: 1.06rem;
-
-  --font-size-p2: 0.93rem;
-
-  --font-size-s: 0.75rem;
-
-}
-
 .principal-card-content {
   align-items: center;
   background-color: var(--crl-Tertiary);
@@ -79,5 +43,9 @@
   font-weight: 700;
   margin-bottom: 0.6rem;
   text-align: center;
+  text-decoration: none;
+}
+
+a:hover {
   text-decoration: none;
 }

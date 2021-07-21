@@ -25,6 +25,7 @@
     "react-redux": "^7.2.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
+    "react-scrolllock": "^5.0.1",
     "react-slick": "^0.28.1",
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.0",
