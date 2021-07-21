@@ -23,15 +23,13 @@
 
 /* código retirado do link https://codepen.io/avstorm/pen/vYYBxRM?editors=1100 */
 .ingredients-check {
-  z-index: 0;
+  opacity: 0;
 }
 
 .checkbox {
-  background-color: white;
+  align-items: center;
   cursor: pointer;
   display: flex;
-  left: 28px;
-  position: absolute;
 }
 
 .checkbox span {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowBack, IoMdHome } from 'react-icons/io';
 
 import '../css/DetailsHeader.css';
 import identification from '../helper/dictionaryApi';
@@ -43,6 +43,13 @@ class DetailsHeader extends Component {
           onClick={ () => history.goBack() }
         >
           <IoIosArrowBack />
+        </button>
+        <button
+          type="button"
+          className="goHome"
+          onClick={ () => history.push('/comidas') }
+        >
+          <IoMdHome />
         </button>
       </section>
     );

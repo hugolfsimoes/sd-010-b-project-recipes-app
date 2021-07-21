@@ -73,8 +73,8 @@ class Progresso extends Component {
   onClick(param, element, boolean) {
     const { allIngredients } = this.state;
     if (allIngredients.includes(param) && boolean === 'checked') {
-      console.log(element);
       element.classList.remove('riscado');
+      console.log(element);
 
       return this.setState({
         allIngredients: allIngredients.filter((el) => el !== param),

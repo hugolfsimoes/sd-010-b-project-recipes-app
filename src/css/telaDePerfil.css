@@ -1,37 +1,3 @@
-:root {
-
-  /* COLOR STYLES */
-
-  --crl-Primary: #1fcc79;
-
-  --crl-Secondary: #ff6464;
-
-  --crl-Main-Text: #2e3e5c;
-
-  --crl-Secondary-Text: #9fa5c0;
-
-  --crl-Outline: #d0dbea;
-
-  --crl-form: #f4f5f7;
-
-  --crl-White: white;
-
-  /* FONT STYLES */
-
-  --font-size-h1: 1.37rem;
-
-  --font-size-h2: 1.06rem;
-
-  --font-size-h3: 0.93rem;
-
-  --font-size-p1: 1.06rem;
-
-  --font-size-p2: 0.93rem;
-
-  --font-size-s: 0.75rem;
-
-}
-
 .profile-screen-btn {
   display: flex;
   flex-direction: column;
@@ -61,6 +27,7 @@
 
 .buttons-perfil {
   background: var(--crl-Primary);
+  border: none;
   border-radius: 32px;
   color: white;
   font-size: var(--font-size-p2);
@@ -68,6 +35,7 @@
   height: 56px;
   letter-spacing: 0.007em;
   line-height: 18px;
+  outline: none;
   margin: 0.5rem;
   padding: 19px 32px;
   position: relative;

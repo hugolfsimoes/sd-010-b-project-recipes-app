@@ -12,6 +12,7 @@ class Ingredients extends Component {
     const element = document.getElementById(`input-${index}`);
     if (ourState.includes(param)) {
       return (
+        // <label htmlFor={ `checkbox-${index}` }>
         <input
           className="ingredients-check"
           checked
@@ -19,16 +20,19 @@ class Ingredients extends Component {
           onChange={ () => func(param, element, 'checked') }
           type="checkbox"
         />
+        // </label>
       );
     }
     return (
-      <input
-        className="ingredients-check"
-        onChange={ () => func(param, element, '') }
-        type="checkbox"
-        id={ `checkbox-${index}` }
-        disabled={ !isStart }
-      />
+      <label htmlFor={ `checkbox-${index}` }>
+        <input
+          className="ingredients-check"
+          onChange={ () => func(param, element, '') }
+          type="checkbox"
+          id={ `checkbox-${index}` }
+          disabled={ !isStart }
+        />
+      </label>
     );
   }
 
@@ -50,10 +54,7 @@ class Ingredients extends Component {
                     : `${index}-ingredient-name-and-measure`
                 }
               >
-                {
-                  this.checkIngredient(data[ingredient[0]], index)
-                }
-                {/* código do checkbox retirado do link https://codepen.io/avstorm/pen/vYYBxRM?editors=1100 */}
+                {this.checkIngredient(data[ingredient[0]], index)}
                 <label className="checkbox" htmlFor={ `checkbox-${index}` }>
                   <span>
                     <svg width="12px" height="9px" viewbox="0 0 12 9">

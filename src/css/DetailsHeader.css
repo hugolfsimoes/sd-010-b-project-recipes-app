@@ -14,14 +14,29 @@
   background-color: rgba(255, 255, 255, 0.3);
   border: none;
   border-radius: 50%;
-  color: var(--crl-White);
+  color: #146354;
   font-size: 1.5rem;
-  height: 3.5rem;
+  height: 2.5rem;
   left: 24px;
   outline: none;
   position: absolute;
   top: 24px;
-  width: 3.5rem;
+  width: 2.5rem;
+}
+
+.goHome {
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  color: #146354;
+  font-size: 1.5rem;
+  height: 2.5rem;
+  outline: none;
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  width: 2.5rem;
 }
 
 .recipe-header-content {
