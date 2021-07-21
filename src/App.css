@@ -85,3 +85,7 @@ footer {
 .checked {
   text-decoration: line-through;
 }
+
+.share {
+  display: none;
+}
