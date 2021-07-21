@@ -17,6 +17,7 @@ class IngredientCards extends Component {
     };
     this.updateState = this.updateState.bind(this);
     this.handleApi = this.handleApi.bind(this);
+    this.imgContainer = this.imgContainer.bind(this);
   }
 
   componentWillUnmount() {
@@ -43,6 +44,19 @@ class IngredientCards extends Component {
     }
   }
 
+  imgContainer(img, index) {
+    return (
+      <div className="img-container">
+        <Card.Img
+          className="ingredient-img"
+          variant="top"
+          src={ img }
+          data-testid={ `${index}-card-img` }
+        />
+      </div>
+    );
+  }
+
   render() {
     const { img, title, index, url } = this.props;
     const { isRedirect, type } = this.state;
@@ -56,21 +70,9 @@ class IngredientCards extends Component {
           <div className="img-content">
             <img className="group-26" src={ Group26 } alt={ Group26 } />
             <div className="img-wrap">
-              <div className="img-container">
-                <Card.Img
-                  className="ingredient-img"
-                  variant="top"
-                  src={ img }
-                  data-testid={ `${index}-card-img` }
-                />
-              </div>
+              {this.imgContainer(img, index)}
             </div>
           </div>
-          {/* <div className="img-content">
-            <div className="div-shadow">
-              <div className="img-container" />
-            </div>
-          </div> */}
           <Card.Title className="card-name" data-testid={ `${index}-card-name` }>
             { title }
           </Card.Title>

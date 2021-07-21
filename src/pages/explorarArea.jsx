@@ -7,7 +7,9 @@ import Cards from '../components/cards';
 import { fetchArea, fetchFoodRecipes, getSearchBarResponse } from '../action';
 import fetchFoodRecipesByArea from '../services/servicesApi';
 
-export class ExplorarArea extends Component {
+import '../css/ExplorarArea.css';
+
+class ExplorarArea extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -33,30 +35,34 @@ export class ExplorarArea extends Component {
     return (
       <div>
         <Header location={ location } />
-        console.log(location);
-        <select onChange={ this.handleChange } data-testid="explore-by-area-dropdown">
-          <option data-testid="All-option">
-            All
-          </option>
-          {country && country.map((el, index) => (
-            <option data-testid={ `${el.strArea}-option` } key={ index }>
-              {el.strArea}
-            </option>))}
-        </select>
-        <section>
-          { meals.length !== 0
-              && meals.map((measl, index) => (
-                <Cards
-                  url="/comidas"
-                  id={ measl.idMeal }
-                  key={ index }
-                  img={ measl.strMealThumb }
-                  title={ measl.strMeal }
-                  index={ index }
-                />
-              ))}
+        <section className="ex-area-content">
+          <select
+            className='select'
+            onChange={ this.handleChange }
+            data-testid="explore-by-area-dropdown"
+          >
+            <option data-testid="All-option">
+              All
+            </option>
+            {country && country.map((el, index) => (
+              <option data-testid={ `${el.strArea}-option` } key={ index }>
+                {el.strArea}
+              </option>))}
+          </select>
+          <section className="ex-area-cards">
+            { meals.length !== 0
+                && meals.map((measl, index) => (
+                  <Cards
+                    url="/comidas"
+                    id={ measl.idMeal }
+                    key={ index }
+                    img={ measl.strMealThumb }
+                    title={ measl.strMeal }
+                    index={ index }
+                  />
+                ))}
+          </section>
         </section>
-        area
         <Footer />
       </div>
     );
