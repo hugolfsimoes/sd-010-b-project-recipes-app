@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Header from '../Components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import favoriteRecipes from '../favoriteRecipes';
@@ -113,6 +115,7 @@ export default class ReceitasFavoritas extends Component {
 
   renderFavRecipes(favRecipes) {
     const { linkCopied } = this.state;
+
     const recipes = favRecipes
       .map(({ id, type, area, alcoholicOrNot, image,
         name, category }, index) => {
@@ -174,8 +177,10 @@ export default class ReceitasFavoritas extends Component {
 
   render() {
     const { favoriteRecipes: AllRecipes, filtered } = this.state;
+    const { location: { pathname } } = this.props;
     return (
       <div>
+        <Header pathname={ pathname } />
         <main>
           <button
             type="button"
@@ -205,3 +210,9 @@ export default class ReceitasFavoritas extends Component {
     );
   }
 }
+
+ReceitasFavoritas.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }).isRequired,
+};

@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 
 import recipes from './recipes';
-import testReducer from './testReducer';
+import fetch from './fetch';
+import randomRecipe from './randomRecipe';
+import progressRecipe from './progressRecipe';
 
 const rootReducer = combineReducers({
   recipes,
-  testReducer,
+  fetch,
+  randomRecipe,
+  progressRecipe,
 });
 
 export default rootReducer;
