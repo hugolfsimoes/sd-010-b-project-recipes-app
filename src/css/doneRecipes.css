@@ -31,6 +31,7 @@
 .done-card {
   align-items: center;
   background-color: var(--crl-White);
+  border-color: var(--crl-Outline);
   border-radius: 8px;
   display: flex;
   flex-direction: row;

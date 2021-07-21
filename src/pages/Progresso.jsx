@@ -9,6 +9,7 @@ import '../css/progress.css';
 import Instructions from '../components/Instructions';
 import DetailsHeader from '../components/DetailsHeader';
 import identification from '../helper/dictionaryApi';
+import Modal from '../components/Modal';
 
 class Progresso extends Component {
   constructor(props) {
@@ -178,12 +179,13 @@ class Progresso extends Component {
   }
 
   render() {
-    const { details, match: { params: { page, id } }, history } = this.props;
+    const { details, match: { params: { page, id } }, history, link } = this.props;
     const { allIngredients, count, recipesLength } = this.state;
 
     return (
       <section className="page-progress">
         { details.strIngredient1 !== undefined && this.test() }
+        {link && <Modal history={ history }><p>Link copiado!</p></Modal>}
         <DetailsHeader data={ details } page={ page } id={ id } history={ history } />
         <section className="details-content">
           <section>
@@ -230,6 +232,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   details: state.recipeDetails.details,
+  link: state.recipeDetails.link,
 });
 
 Progresso.propTypes = {
@@ -239,6 +242,7 @@ Progresso.propTypes = {
   details: PropTypes.shape.isRequired,
   match: PropTypes.shape.isRequired,
   history: PropTypes.shape.isRequired,
+  link: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Progresso);
