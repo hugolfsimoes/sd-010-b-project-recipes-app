@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 function BtnStartFoodRecipe(id) {
   const recipeIndex = Object.values(id);
-  const inProgressRecipes = JSON.parse(localStorage.getItem('inProgressRecipes'));
+  const inProgressRecipes = JSON
+    .parse(localStorage.getItem('inProgressRecipes')) || { cocktails: {}, meals: {} };
   // const receitaIniciada = [];
   // const finishedRecipes = JSON.parse(localStorage.getItem('finishedRecipes'));
   // const receitaFinalizada = [];

@@ -53,14 +53,13 @@ function InProgressDrink({ match: { params } }) {
 
   // let doneRecipesDrinks = [];
 
-
   const date = new Date();
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
   const fullDate = `${day}/ ${month}/ ${year}`;
   useEffect(() => {
-    const getAllDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    const getAllDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
     localStorage
       .setItem('doneRecipes', JSON
         .stringify([...getAllDoneRecipes, ...doneRecipesDrinks]));
