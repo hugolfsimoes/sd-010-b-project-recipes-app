@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,15 @@ export default function CardRecipesDone({ mealOrDrink, index }) {
     category,
     doneDate,
     tags } = mealOrDrink;
+
+  const [copy, setCopy] = useState(false);
+
+  function handleShare() {
+    const destination = type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`;
+    const linkAdress = window.location.href.replace('/receitas-feitas', destination);
+    navigator.clipboard.writeText(linkAdress)
+      .then(() => setCopy(true));
+  }
 
   return (
     <div data-testid={ `${index}-horizontal-card` }>
@@ -42,12 +51,15 @@ export default function CardRecipesDone({ mealOrDrink, index }) {
 
       <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
 
-      <Button>
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt={ name }
-        />
+      <Button onClick={ handleShare }>
+        {!copy
+          ? (
+            <img
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+              alt={ name }
+            />)
+          : (<p data-testid={ `${index}-horizontal-share-btn` }>Link copiado!</p>)}
       </Button>
 
       {typeof tags === 'object' && tags.length > 0

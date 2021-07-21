@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button } from 'react-bootstrap';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import { fetchAPI } from '../services/apiRequest';
@@ -9,18 +9,7 @@ export default function SearchBar() {
   const { path } = useRouteMatch();
   const history = useHistory();
   const [filter, setFilter] = useState({ content: '', URL: '' });
-  // const [show, setShow] = useState(false);
-  const { setSearchResult, searchResult, setLimit } = useContext(RecipesContext);
-
-  useEffect(() => {
-    const targetId = path === '/comidas' ? 'idMeal' : 'idDrink';
-    function redirectorOneResult() {
-      history.push(`${path}/${searchResult[0][targetId]}`);
-    }
-    if (searchResult && searchResult.length === 1) {
-      redirectorOneResult();
-    }
-  }, [path, history, searchResult]);
+  const { setSearchResult, setLimit } = useContext(RecipesContext);
 
   function handleChange({ target }) {
     const { id, value, type } = target;
@@ -44,6 +33,7 @@ export default function SearchBar() {
 
   async function handleClick() {
     const domain = path === '/bebidas' ? 'thecocktaildb' : 'themealdb';
+    const targetId = path === '/comidas' ? 'idMeal' : 'idDrink';
 
     const { content, URL: { name, link } } = filter;
     if (content.length > 1 && name === 'char') {
@@ -51,28 +41,22 @@ export default function SearchBar() {
     }
 
     const data = await fetchAPI(link(domain, content));
-    console.log(data);
     const firstKey = (path === '/bebidas') ? 'drinks' : 'meals';
+    if (data[firstKey] && data[firstKey].length === 1) {
+      history.push(`${path}/${data[firstKey][0][targetId]}`);
+    }
     if (!data[firstKey]) {
       global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
     }
     if (content !== '' && URL !== '') {
       setSearchResult(data[firstKey]);
     }
+
     setLimit(TWELVE);
   }
 
   return (
     <div className="search-container">
-      {/* <Alert
-        data-testid="alert"
-        variant="danger"
-        show={ show }
-        onClose={ () => setShow(false) }
-        dismissible
-      >
-        Upss, deu ruím!!!
-      </Alert> */}
       <input
         type="text"
         data-testid="search-input"

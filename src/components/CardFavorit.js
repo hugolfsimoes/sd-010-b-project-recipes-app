@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+
+import { changeFavoritStatus } from '../storage/localStorage';
+import RecipesContext from '../context/RecipesContext';
 
 export default function CardFavorit({ mealOrDrink, index }) {
   const {
@@ -18,6 +21,29 @@ export default function CardFavorit({ mealOrDrink, index }) {
     category,
     doneDate,
     tags } = mealOrDrink;
+  const [isFavorit, setFavorit] = useState({ status: false, imagem: whiteHeartIcon });
+  const [copy, setCopy] = useState(false);
+
+  const { favorites, readFavoritesFromStorage } = useContext(RecipesContext);
+
+  useEffect(() => {
+    setFavorit({
+      status: favorites.find((el) => el.id === id),
+      imagem: favorites.find((el) => el.id === id)
+        ? blackHeartIcon : whiteHeartIcon });
+  }, [favorites, id, readFavoritesFromStorage]);
+
+  function handleFavorite() {
+    changeFavoritStatus(mealOrDrink);
+    readFavoritesFromStorage();
+  }
+
+  function handleShare() {
+    const destination = type === 'comida' ? `/comidas/${id}` : `/bebidas/${id}`;
+    const linkAdress = window.location.href.replace('/receitas-favoritas', destination);
+    navigator.clipboard.writeText(linkAdress)
+      .then(() => setCopy(true));
+  }
 
   return (
     <div data-testid={ `${index}-horizontal-card` }>
@@ -44,18 +70,21 @@ export default function CardFavorit({ mealOrDrink, index }) {
 
       <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
 
-      <Button>
-        <img
-          data-testid={ `${index}-horizontal-share-btn` }
-          src={ shareIcon }
-          alt={ name }
-        />
+      <Button onClick={ handleShare }>
+        {!copy
+          ? (
+            <img
+              data-testid={ `${index}-horizontal-share-btn` }
+              src={ shareIcon }
+              alt={ name }
+            />)
+          : (<p data-testid={ `${index}-horizontal-share-btn` }>Link copiado!</p>)}
       </Button>
 
-      <Button>
+      <Button onClick={ handleFavorite }>
         <img
           data-testid={ `${index}-horizontal-favorite-btn` }
-          src={ blackHeartIcon }
+          src={ isFavorit.imagem }
           alt={ name }
         />
       </Button>

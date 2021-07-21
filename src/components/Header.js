@@ -11,13 +11,9 @@ import SearchBar from './SearchBar';
 
 export default function Header() {
   const { path } = useRouteMatch();
-  const [isHidden, setHidden] = useState(true);
+  const [showSearch, setShowSearch] = useState(true);
 
   // Source: https://stackoverflow.com/questions/26574388/boolean-logic-in-switch-case-statement-java/26574416
-
-  // function dinamicSearchBar() {
-  //   setHidden(!(isHidden));
-  // }
 
   function getTitle() {
     const title = path.replace(/\W/g, ' ')
@@ -37,23 +33,32 @@ export default function Header() {
     case '/bebidas':
     case '/explorar/comidas/area':
       return (
-        <Navbar bg="dark" variant="dark">
-          <Container>
-            <Link to="/perfil">
-              <img data-testid="profile-top-btn" src={ profileIcon } alt="profile-icon" />
-            </Link>
-            <Navbar.Brand href="/">
-              <h1 data-testid="page-title">{ getTitle() }</h1>
-            </Navbar.Brand>
-            <button
-              type="button"
-              onClick={ () => setHidden(!(isHidden)) }
-            >
-              <img data-testid="search-top-btn" src={ searchIcon } alt="search-icon" />
-            </button>
-            {!isHidden && (<SearchBar />)}
-          </Container>
-        </Navbar>);
+        <>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <Link to="/perfil">
+                <img
+                  data-testid="profile-top-btn"
+                  src={ profileIcon }
+                  alt="profile-icon"
+                />
+              </Link>
+              <Navbar.Brand href="/">
+                <h1 data-testid="page-title">{ getTitle() }</h1>
+              </Navbar.Brand>
+              <button
+                type="button"
+                onClick={ () => setShowSearch(!(showSearch)) }
+              >
+                <img data-testid="search-top-btn" src={ searchIcon } alt="search-icon" />
+              </button>
+            </Container>
+          </Navbar>
+          {!showSearch && (
+            <div>
+              <SearchBar />
+            </div>)}
+        </>);
     case '/explorar':
     case '/explorar/comidas':
     case '/explorar/comidas/ingredientes':
