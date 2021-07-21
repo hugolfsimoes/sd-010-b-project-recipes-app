@@ -19,7 +19,6 @@ function ExploreMeals() {
     <main>
       { redirectToRecipeDetails
         && <Redirect to={ `/comidas/${recipeDetails.idMeal}` } /> }
-      ExploreFood
       <Link
         to="/explorar/comidas/ingredientes"
         data-testid="explore-by-ingredient"

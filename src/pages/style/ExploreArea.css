@@ -1,3 +1,25 @@
 .exploreArea {
-  margin-top: 40px;
+  margin: 40px 0;
+}
+
+.explore-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.explore-list label {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  text-align: center;
+}
+
+.explore-list label img {
+  width: 100px;
+}
+
+.explore-list label p {
+  width: 200px;
 }

@@ -1,3 +1,11 @@
 .imageRecipes {
   height: 100px;
 }
+
+.card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}

@@ -5,15 +5,17 @@ form {
   position: fixed;
   right: 13%;
   width: fit-content;
+  z-index: 1;
 }
 
 .search-content {
+  background-color: white;
   display: flex;
   flex-direction: column;
   margin-top: 36px;
   position: fixed;
   right: 13%;
-  width: fit-content;
+  width: 15.3%;
 }
 
 .search-parameters {

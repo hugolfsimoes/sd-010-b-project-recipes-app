@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Redirect } from 'react-router';
 import RecipesContext from '../context/RecipesContext';
+import './style/login.css';
 
 function Login() {
   const { setUser } = useContext(RecipesContext);
@@ -34,26 +35,28 @@ function Login() {
   };
 
   return (
-    <div>
-      { redirectToComidas && <Redirect to="/comidas" /> }
-      <input
-        onChange={ (event) => handleChange(event, setEmail) }
-        type="email"
-        data-testid="email-input"
-      />
-      <input
-        type="password"
-        data-testid="password-input"
-        onChange={ (event) => handleChange(event, setPassword) }
-      />
-      <button
-        type="button"
-        onClick={ buttonLogin }
-        data-testid="login-submit-btn"
-        disabled={ !buttonAbled }
-      >
-        Entrar
-      </button>
+    <div className="div1">
+      <div className="div2">
+        { redirectToComidas && <Redirect to="/comidas" /> }
+        <input
+          onChange={ (event) => handleChange(event, setEmail) }
+          type="email"
+          data-testid="email-input"
+        />
+        <input
+          type="password"
+          data-testid="password-input"
+          onChange={ (event) => handleChange(event, setPassword) }
+        />
+        <button
+          type="button"
+          onClick={ buttonLogin }
+          data-testid="login-submit-btn"
+          disabled={ !buttonAbled }
+        >
+          Entrar
+        </button>
+      </div>
     </div>
   );
 }
