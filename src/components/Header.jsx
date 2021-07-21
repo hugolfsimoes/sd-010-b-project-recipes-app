@@ -61,8 +61,8 @@ function Header({ pathname, newRecipes }) {
 }
 
 Header.propTypes = {
-  pathname: PropTypes.string.isRequired,
-  newRecipes: PropTypes.func.isRequired,
-};
+  pathname: PropTypes.string,
+  newRecipes: PropTypes,
+}.isRequered;
 
 export default Header;
