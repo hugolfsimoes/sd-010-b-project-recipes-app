@@ -7,9 +7,10 @@ import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import useFetchRecipesApi from '../utils/useFetchRecipesApi';
 import { handleDoneRecipes,
-  handleFavorite } from '../helpers/handleStorageKeys';
-import useIsFavorite from '../utils/useIsFavorite';
+  handleFavorite,
+  handleIsStored } from '../helpers/handleStorageKeys';
 import IngredientsCheckList from '../components/IngredientsCheckList';
+import RecipeDetailsCard from '../components/RecipeDetailsCard';
 
 export default function RecipeInProgress() {
   const bottomFixed = {
@@ -20,8 +21,8 @@ export default function RecipeInProgress() {
   const history = useHistory();
   const { id } = useParams();
   const [setRecipeUrl] = useFetchRecipesApi();
-  const [isFavorite, setIsFavorite] = useIsFavorite(id);
-  const { recipes, setIdProgress, isDisable } = useContext(RecipeContext);
+  const { recipes, isFavorite, setIsFavorite,
+    setIdProgress, isDisable } = useContext(RecipeContext);
   const { strArea, strCategory, strMeal, strMealThumb, strAlcoholic, strDrink,
     strDrinkThumb, strInstructions, strTags } = recipes[0] || [];
   const [isCopy, setIsCopy] = useState(false);
@@ -60,22 +61,24 @@ export default function RecipeInProgress() {
 
   useEffect(() => {
     setIdProgress(id);
+    setIsFavorite(handleIsStored({ id, storageKey: 'favoriteRecipes' }));
   }, []);
 
-  function handleShare() {
-    const url = window.location.href
-      .split('/')
-      .filter((baseUrl) => baseUrl !== 'in-progress') // usar slice
-      .join('/');
-    clipboardCopy(url);
-    setIsCopy(true);
-  }
+  // function handleShare() {
+  //   const url = window.location.href
+  //     .split('/')
+  //     .filter((baseUrl) => baseUrl !== 'in-progress') // usar slice
+  //     .join('/');
+  //   clipboardCopy(url);
+  //   setIsCopy(true);
+  // }
 
   return (
     <div>
       {recipes.length > 0 && (
         <div>
-          <h2 data-testid="recipe-title">{ name }</h2>
+          <RecipeDetailsCard />
+          {/* <h2 data-testid="recipe-title">{ name }</h2>
           <img src={ image } alt={ name } data-testid="recipe-photo" />
           <button type="button" onClick={ () => handleShare() }>
             <img src={ shareIcon } alt="share icon" data-testid="share-btn" />
@@ -94,7 +97,7 @@ export default function RecipeInProgress() {
               data-testid="favorite-btn"
             />
           </button>
-          <p data-testid="recipe-category">{strCategory}</p>
+          <p data-testid="recipe-category">{strCategory}</p> */}
           <IngredientsCheckList keyInProgress={ key } />
           <p data-testid="instructions">{strInstructions}</p>
           <button

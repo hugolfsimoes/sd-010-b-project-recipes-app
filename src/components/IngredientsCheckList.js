@@ -19,8 +19,8 @@ function IngredientsCheckList({ keyInProgress }) {
   }
 
   useEffect(() => {
-    setListIngredients(createListIngredients(recipes));
-  }, []);
+    setListIngredients(createListIngredients(recipes[0]));
+  }, [recipes]);
 
   useEffect(() => {
     handleDisable(countChecked);

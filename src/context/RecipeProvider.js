@@ -7,25 +7,20 @@ import {
   searchByFirstLetterApi,
   searchByIngredientsApi,
   searchByNameApi,
-  // recipesListApi,
-  categoriesListApi,
-  // filterCategoryApi,
-  searchIngredients,
-  searchAreas,
 } from '../service/api';
 
 export default function RecipeProvider({ children }) {
   const MAX_NUMBER_OF_ITEMS = 12;
-  const MAX_NUMBER_OF_CATEGORIES = 5;
   const textAlert = 'Sinto muito, não encontramos nenhuma receita para esses filtros.';
 
   const { pathname } = useLocation();
+  const [pathMeal, setPathMeal] = useState(pathname.includes('comidas'));
   const [routeFromSearch, setRouteFromSearch] = useState('');
   const [showSearch, setShowSearch] = useState(false);
   const [checkedRadio, setCheckedRadio] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [redirectSearchBar, setRedirectSearchBar] = useState(false);
-  const [recipes, setRecipes] = useState([]);
+  const [recipes, setRecipes] = useState([{}]);
   const [suggestions, setSuggestions] = useState([]);
   const [categories, setCategories] = useState([]);
   const [ingredients, setIngredients] = useState([]);
@@ -33,12 +28,16 @@ export default function RecipeProvider({ children }) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [toggleBtnCategories, setToggleBtnCategories] = useState(false);
   const [searchIngredient, setSearchIngredient] = useState('');
+  const [searchOrigin, setSearchOrigin] = useState(false);
   const [idDetail, setIdDetail] = useState('');
   const [idProgress, setIdProgress] = useState('');
   const [recipeInProgress, setRecipeInProgress] = useState([]);
   const [checkedIngredients, setCheckedIngredients] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
+  const [isRandom, setIsRandom] = useState(false);
+  const [filters, setFilters] = useState([]);
+  const [details, setDetails] = useState([]);
 
   // Render all recipes
   // useEffect(() => {
@@ -55,15 +54,22 @@ export default function RecipeProvider({ children }) {
   // }, [pathname, toggleBtnCategories]);
 
   // Render Categories
+  // useEffect(() => {
+  //   setPathMeal(pathname.includes('comidas'));
+  //   console.log(`pathMeal: ${pathMeal ? 'comidas' : 'bebidas'}`);
+  //   async function requestCategories() {
+  //     const returnCategories = await categoriesListApi(pathname);
+  //     const limitedCategories = returnCategories.slice(0, MAX_NUMBER_OF_CATEGORIES);
+  //     setCategories(limitedCategories);
+  //   }
+  //   if (pathname === '/comidas' || pathname === '/bebidas') {
+  //     requestCategories();
+  //   }
+  // }, [pathname]);
+
   useEffect(() => {
-    async function requestCategories() {
-      const returnCategories = await categoriesListApi(pathname);
-      const limitedCategories = returnCategories.slice(0, MAX_NUMBER_OF_CATEGORIES);
-      setCategories(limitedCategories);
-    }
-    if (pathname === '/comidas' || pathname === '/bebidas') {
-      requestCategories();
-    }
+    setPathMeal(pathname.includes('comidas'));
+    console.log(`pathMeal #2: ${pathMeal ? 'comidas' : 'bebidas'}`);
   }, [pathname]);
 
   // Render filter by category
@@ -83,20 +89,20 @@ export default function RecipeProvider({ children }) {
   // }, [selectedCategory, toggleBtnCategories]);
 
   // search ingredients
-  useEffect(() => {
-    const getIngredients = async () => {
-      setIngredients(await searchIngredients(pathname));
-    };
-    getIngredients();
-  }, [pathname]);
+  // useEffect(() => {
+  //   const getIngredients = async () => {
+  //     setIngredients(await searchIngredients(pathname));
+  //   };
+  //   getIngredients();
+  // }, [pathname]);
 
-  // search areas
-  useEffect(() => {
-    const getAreas = async () => {
-      setAreas(await searchAreas());
-    };
-    getAreas();
-  }, []);
+  // // search areas
+  // useEffect(() => {
+  //   const getAreas = async () => {
+  //     setAreas(await searchAreas());
+  //   };
+  //   getAreas();
+  // }, []);
 
   // render recipes filtered by ingredients
   // useEffect(() => {
@@ -163,9 +169,24 @@ export default function RecipeProvider({ children }) {
     }
   }
 
+  // function redirectDetailPage() {
+  //   const id = routeFromSearch === '/comidas' ? recipes[0].idMeal : recipes[0].idDrink;
+  //   return <Redirect to={ `${routeFromSearch}/${recipes[0][id]}` } />;
+  // }
+
   return (
     <RecipeContext.Provider
       value={ {
+        details,
+        setDetails,
+        filters,
+        setFilters,
+        pathMeal,
+        setPathMeal,
+        searchOrigin,
+        setSearchOrigin,
+        isRandom,
+        setIsRandom,
         isDisable,
         setIsDisable,
         isFavorite,

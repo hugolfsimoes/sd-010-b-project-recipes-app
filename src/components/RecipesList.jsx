@@ -1,27 +1,20 @@
 import React, { useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import RecipeContext from '../context';
 import useFetchRecipesApi from '../utils/useFetchRecipesApi';
 import RecipeCard from './RecipeCard';
 
-function RecipesList({ url }) {
-  const { pathname } = useLocation();
-  const { recipes, searchIngredient } = useContext(RecipeContext);
+function RecipesList() {
+  const { pathMeal, recipes, searchIngredient, searchOrigin } = useContext(RecipeContext);
   const [setRecipeUrl] = useFetchRecipesApi();
-  const SEARCH_MEAL_BY_INGREDIENT = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
-  const SEARCH_DRINK_BY_INGREDIENT = 'https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=';
 
   useEffect(() => {
     if (searchIngredient) {
-      setRecipeUrl(`${url.includes('meal') ? SEARCH_MEAL_BY_INGREDIENT
-        : SEARCH_DRINK_BY_INGREDIENT}${searchIngredient}`);
-      // setSearchIngredient('');
+      setRecipeUrl({ url: pathMeal ? 'mealByIngredient' : 'drinkByIngredient',
+        searchTerm: searchIngredient });
     } else {
-      setRecipeUrl(url);
+      setRecipeUrl({ url: pathMeal ? 'meal' : 'drink' });
     }
-    // console.log(recipes);
-  }, [recipes, pathname]);
+  }, [pathMeal, searchOrigin]);
 
   function keyTransform(recipe) {
     if (recipe.idMeal) {
@@ -52,9 +45,5 @@ function RecipesList({ url }) {
     </div>
   );
 }
-
-RecipesList.propTypes = {
-  url: PropTypes.string.isRequired,
-};
 
 export default RecipesList;

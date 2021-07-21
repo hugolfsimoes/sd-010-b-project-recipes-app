@@ -6,7 +6,7 @@ function IngredientsList() {
   const { recipes } = useContext(RecipeContext);
   return (
     <ul>
-      { createListIngredients(recipes).map((ingredient, index) => (
+      { createListIngredients(recipes[0]).map((ingredient, index) => (
         <li
           key={ ingredient }
           data-testid={ `${index}-ingredient-name-and-measure` }

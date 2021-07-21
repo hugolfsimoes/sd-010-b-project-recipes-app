@@ -1,3 +1,23 @@
+export function handleIsStored(keys) {
+  const { id, storageKey, key } = keys;
+  const storedRecipes = JSON.parse(localStorage.getItem(storageKey));
+
+  if (storedRecipes) {
+    switch (storageKey) {
+    case 'favoriteRecipes':
+    case 'doneRecipes':
+      return storedRecipes.some((recipe) => recipe.id === id);
+    case 'inProgressRecipes':
+      return (
+        storedRecipes[key]
+          ? Object.keys(storedRecipes[key])
+            .some((recipeId) => recipeId === id) : false);
+    default:
+      break;
+    }
+  }
+}
+
 export function handleFavorite({ id, type, area = '', category = '', alcoholicOrNot = '',
   name, image, isFavorite }) {
   const favRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -54,11 +74,10 @@ export function checkListIngredients({ key, checked, index, id, countChecked }) 
   return countChecked - 1;
 }
 
-export function handleDoneRecipes({ id, type, area = '', category = '',
+export function handleDoneRecipes({ id, key, type, area = '', category = '',
   alcoholicOrNot = '', name, image, strTags = '' }) {
-  const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-  const doneRecipeExists = doneRecipes.some((doneId) => doneId.id === id);
-  if (!doneRecipeExists) {
+  if (!handleIsStored({ id, storageKey: 'doneRecipes' })) {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
     const tags = strTags ? strTags.split(',') : [];
     const doneDate = new Date().toLocaleDateString();
     localStorage.setItem('doneRecipes', JSON.stringify(
@@ -66,14 +85,10 @@ export function handleDoneRecipes({ id, type, area = '', category = '',
         { id, type, area, category, alcoholicOrNot, name, image, doneDate, tags },
       ],
     ));
+    const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    delete recipesInProgress[key][id];
+    localStorage.setItem('inProgressRecipes', JSON.stringify(recipesInProgress));
   }
-  // const recipesInProgress = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
-  // const inProgressIndex = recipesInProgress.meals.indexOf(recipesInProgress.meals
-  //   .find((mealId) => mealId === id));
-
-  // const newStorage = [...favRecipes.slice(0, favIndex),
-  //   ...favRecipes.slice(favIndex + 1)];
-  // localStorage.setItem('favoriteRecipes', JSON.stringify(newStorage));
 }
 
 export function handleRecipeInProgress({ id, key }) {

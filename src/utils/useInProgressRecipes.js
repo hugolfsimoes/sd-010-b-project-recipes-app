@@ -7,15 +7,13 @@ const useInProgressRecipes = (key) => {
   const { idProgress, setIdProgress, setCheckedIngredients } = useContext(RecipeContext);
 
   useEffect(() => {
-    console.log('IN_PROGRESS_HOOK');
     const recipesInProgress = JSON.parse(localStorage
       .getItem('inProgressRecipes')) || { cocktails: {}, meals: {} };
-    const storedRecipe = Object.entries(recipesInProgress[key])
-      .find((recipeId) => recipeId[0] === idProgress);
+    const storedRecipe = recipesInProgress[key] ? Object.entries(recipesInProgress[key])
+      .find((recipeId) => recipeId[0] === idProgress) : false;
     if (storedRecipe) {
       setIdProgress(storedRecipe[0]);
       setCheckedIngredients(storedRecipe[1]);
-      console.log(storedRecipe[1].length);
       setCountChecked(storedRecipe[1].length);
     }
   }, [idProgress]);

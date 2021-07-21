@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import profileIcon from '../images/profileIcon.svg';
@@ -7,7 +7,11 @@ import RecipeContext from '../context';
 
 function Header({ title, search }) {
   const history = useHistory();
-  const { showSearch, setShowSearch } = useContext(RecipeContext);
+  const { recipes, showSearch, setShowSearch } = useContext(RecipeContext);
+
+  useEffect(() => {
+    setShowSearch(false);
+  }, [recipes]);
 
   const handleClick = () => {
     history.push('/perfil');

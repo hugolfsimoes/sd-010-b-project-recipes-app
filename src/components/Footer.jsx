@@ -5,7 +5,7 @@ import exploreIcon from '../images/exploreIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
 
 function Footer() {
-  const history = useHistory();
+  const { push } = useHistory();
   const bottomFixed = {
     position: 'fixed',
     bottom: '0px',
@@ -13,13 +13,13 @@ function Footer() {
 
   return (
     <footer data-testid="footer" style={ bottomFixed }>
-      <button type="button" onClick={ () => history.push('/bebidas') }>
+      <button type="button" onClick={ () => push('/bebidas') }>
         <img src={ drinkIcon } alt="drinks-icon" data-testid="drinks-bottom-btn" />
       </button>
-      <button type="button" onClick={ () => history.push('/explorar') }>
+      <button type="button" onClick={ () => push('/explorar') }>
         <img src={ exploreIcon } alt="explore-icon" data-testid="explore-bottom-btn" />
       </button>
-      <button type="button" onClick={ () => history.push('/comidas') }>
+      <button type="button" onClick={ () => push('/comidas') }>
         <img src={ mealIcon } alt="food-icon" data-testid="food-bottom-btn" />
       </button>
     </footer>
