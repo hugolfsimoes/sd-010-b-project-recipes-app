@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ShareButton from './ShareButton';
 import LikeButton from './LikeButton';
-import store, { setLoading } from '../../context/store';
+import store, { setFetchOnDone } from '../../context/store';
 
 import { mealInfo, drinkInfo } from '../../functions';
 
@@ -22,33 +22,44 @@ export default function FavoriteRecipeCard({ recipe, index,
   } = recipe;
 
   return (
-    <div>
+    <div className="fav-card">
       <Link
         to={ `/${type}s/${id}` }
-        onClick={ () => setRecipes(setLoading(true)) }
+        onClick={ () => setRecipes(setFetchOnDone(true)) }
       >
         <img
+          className="fav-image"
           data-testid={ `${index}-horizontal-image` }
           src={ image }
           alt="card"
-          width="150px"
         />
       </Link>
-      { type === 'comida'
-        ? mealInfo(index, area, category)
-        : drinkInfo(index, alcoholicOrNot) }
-      <Link to={ `/${type}s/${id}` }>
-        <p data-testid={ `${index}-horizontal-name` }>{ name }</p>
-      </Link>
-      <ShareButton id={ id } type={ type } index={ index } path />
-      <LikeButton
-        recipe
-        captureFavorited={ () => console.log('nothing') }
-        clickFavBtn={ handleLikeClick }
-        id={ id }
-        favPage
-        index={ index }
-      />
+      <div className="fav-content">
+        <div className="fav-card-text">
+          { type === 'comida'
+            ? mealInfo(index, area, category)
+            : drinkInfo(index, alcoholicOrNot) }
+          <Link to={ `/${type}s/${id}` }>
+            <div
+              className="done-name"
+              data-testid={ `${index}-horizontal-name` }
+            >
+              { name }
+            </div>
+          </Link>
+        </div>
+        <div className="fav-buttons">
+          <ShareButton id={ id } type={ type } index={ index } path />
+          <LikeButton
+            recipe
+            captureFavorited={ () => console.log('nothing') }
+            clickFavBtn={ handleLikeClick }
+            id={ id }
+            favPage
+            index={ index }
+          />
+        </div>
+      </div>
     </div>
   );
 }

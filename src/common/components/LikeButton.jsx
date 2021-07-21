@@ -55,6 +55,7 @@ export default function LikeButton({ recipe,
         alt="favorite-icon"
         data-testid={ favPage ? `${index}-horizontal-favorite-btn` : 'favorite-btn' }
         width="30px"
+        style={ { cursor: 'pointer' } }
       />
     </button>
   );
@@ -69,7 +70,7 @@ LikeButton.propTypes = {
   recipe: PropTypes.objectOf(PropTypes.string).isRequired,
   favPage: PropTypes.bool,
   index: PropTypes.number,
-  id: PropTypes.string,
+  id: PropTypes.number,
   clickFavBtn: PropTypes.func,
 };
 

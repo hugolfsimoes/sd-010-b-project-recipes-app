@@ -1,5 +1,10 @@
-import React, { useContext, useState } from 'react';
-import store, { addRecipes } from '../../context/store';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+
+import store, { addRecipes, setFetchOnDone } from '../../context/store';
 import {
   INGREDIENT_MEALS,
   NAME_MEALS, FIRSTLETTER_MEALS, fetchAPI,
@@ -7,6 +12,7 @@ import {
 } from '../../services';
 
 export default function SearchBar() {
+  const history = useHistory();
   const { recipes, setRecipes } = useContext(store);
   const [searchBar, setSearchBar] = useState({
     input: '',
@@ -26,15 +32,33 @@ export default function SearchBar() {
   // _____________function para fazer map com referencia da pesquisa__________
   function setMeals(response) {
     const { drinks, categoriesMeals, categoriesDrinks } = recipes;
+    if (response.meals === null) {
+      return global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
+    }
     setRecipes(addRecipes(
       response.meals, drinks, categoriesMeals, categoriesDrinks,
     ));
+    if (response.meals.length === 1) {
+      setRecipes(setFetchOnDone(true));
+      history.push(`/comidas/${response.meals[0].idMeal}`);
+    }
   }
   function setDrinks(response) {
     const { meals, categoriesMeals, categoriesDrinks } = recipes;
+    if (response.drinks === null) {
+      return global.alert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
+    }
     setRecipes(addRecipes(
       meals, response.drinks, categoriesMeals, categoriesDrinks,
     ));
+    if (response.drinks.length === 1) {
+      setRecipes(setFetchOnDone(true));
+      history.push(`/bebidas/${response.drinks[0].idDrink}`);
+    }
   }
 
   function setIgredient() {
@@ -89,63 +113,72 @@ export default function SearchBar() {
     if (rate === 'firstLetter') { setFirstLetter(); }
   };
 
+  // ---------------------------------------------------------------------------------------------
+  // CICLOS DE VIDA
+
+  useEffect(() => { Aos.init({ duration: 2000 }); }, []);
+
+  // ---------------------------------------------------------------------------------------------
+
   return (
-
-    <div>
-      <div>
-        <input
-          type="text"
-          name="input"
-          // value={ searchbar }
-          data-testid="search-input"
-          onChange={ handleChange }
-          placeholder="Buscar Receitas"
-        />
-      </div>
-      <label htmlFor="r1">
-        <input
-          type="radio"
-          onChange={ handleChange }
-          data-testid="ingredient-search-radio"
-          id="r1"
-          name="rate"
-          value="ingredient"
-        />
-        Ingrediente
-      </label>
-      <label htmlFor="r2">
-        <input
-          type="radio"
-          onChange={ handleChange }
-          data-testid="name-search-radio"
-          id="r2"
-          name="rate"
-          value="name"
-        />
-        Nome
-      </label>
-      <label htmlFor="r3">
-        <input
-          type="radio"
-          onChange={ handleChange }
-          data-testid="first-letter-search-radio"
-          id="r3"
-          name="rate"
-          value="firstLetter"
-        />
-        primeira letra
-      </label>
-      <div>
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ handleClick }
-        >
-          Buscar
-
-        </button>
+    <div data-aos="fade-down" className="mainContentSearchBar">
+      <div className="searchBar">
+        <div className="searchBarBox">
+          <FaSearch className="searchBarIcon" />
+          <input
+            type="text"
+            name="input"
+            data-testid="search-input"
+            onChange={ handleChange }
+            placeholder="Buscar Receitas"
+            autoComplete="off"
+            className="searchBarInput"
+          />
+        </div>
+        <div>
+          <label htmlFor="r1">
+            <input
+              type="radio"
+              onChange={ handleChange }
+              data-testid="ingredient-search-radio"
+              id="r1"
+              name="rate"
+              value="ingredient"
+            />
+            Ingrediente
+          </label>
+          <label htmlFor="r2">
+            <input
+              type="radio"
+              onChange={ handleChange }
+              data-testid="name-search-radio"
+              id="r2"
+              name="rate"
+              value="name"
+            />
+            Nome
+          </label>
+          <label htmlFor="r3">
+            <input
+              type="radio"
+              onChange={ handleChange }
+              data-testid="first-letter-search-radio"
+              id="r3"
+              name="rate"
+              value="firstLetter"
+            />
+            Primeira letra
+          </label>
+          <button
+            type="button"
+            data-testid="exec-search-btn"
+            className="buttonSearch"
+            onClick={ handleClick }
+          >
+            Buscar
+          </button>
+        </div>
       </div>
     </div>
-
   );
 }

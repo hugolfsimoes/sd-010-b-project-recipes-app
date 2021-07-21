@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AREA_SELECTED, fetchAPI, MEALS } from '../../services/index';
-import store, { setLoading } from '../../context/store';
+import store, { setFetchOnDone } from '../../context/store';
 
 export default function CardMealsArea({ datacard }) {
   const [dataOrigin, setDataOrigin] = useState('');
@@ -26,34 +26,37 @@ export default function CardMealsArea({ datacard }) {
   }, [datacard]);
 
   const handleClick = () => {
-    setRecipes(setLoading(true));
+    setRecipes(setFetchOnDone(true));
   };
 
   return (
     dataOrigin
       ? (
-        <div>
+        <div className="recipes">
           {dataOrigin.slice(0, cardsLimit).map((item, index) => (
             <Link
               to={ `/comidas/${item.idMeal}` }
               key={ item.idMeal }
-              onClick={ handleClick }
             >
-              <div
+              <button
+                type="button"
                 data-testid={ `${index}-recipe-card` }
+                className="recipe"
+                onClick={ handleClick }
               >
-                <div
-                  className="imgContainer"
+                <img
+                  src={ item.strMealThumb }
+                  alt={ item.strMeal }
+                  data-testid={ `${index}-card-img` }
+                  className="recipeImg"
+                />
+                <h4
+                  data-testid={ `${index}-card-name` }
+                  className="recipeTitle"
                 >
-                  <img
-                    src={ item.strMealThumb }
-                    alt={ item.strMeal }
-                    data-testid={ `${index}-card-img` }
-                    width="150px"
-                  />
-                  <span data-testid={ `${index}-card-name` }>{item.strMeal}</span>
-                </div>
-              </div>
+                  {item.strMeal}
+                </h4>
+              </button>
             </Link>
           ))}
         </div>) : <h5>Loading...</h5>

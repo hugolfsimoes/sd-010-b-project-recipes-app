@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import drinkIcon from '../../../images/drinkIcon.svg';
-import exploreIcon from '../../../images/exploreIcon.svg';
-import mealIcon from '../../../images/mealIcon.svg';
-import './footer.css';
+import store, { setFetchOnDone } from '../../context/store';
+import drinkIcon from '../../images/drinkIcon.svg';
+import exploreIcon from '../../images/exploreIcon.svg';
+import mealIcon from '../../images/mealIcon.svg';
 
 export default function Footer() {
+  const { setRecipes } = useContext(store);
   return (
-    <footer data-testid="footer">
-      <Link to="/bebidas">
+    <footer data-testid="footer" className="footer">
+      <Link to="/bebidas" onClick={ () => setRecipes(setFetchOnDone(true)) }>
         <img
           type="image"
           data-testid="drinks-bottom-btn"
@@ -24,7 +25,7 @@ export default function Footer() {
           alt="explorar"
         />
       </Link>
-      <Link to="/comidas">
+      <Link to="/comidas" onClick={ () => setRecipes(setFetchOnDone(true)) }>
         <img
           type="image"
           data-testid="food-bottom-btn"

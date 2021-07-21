@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 
 import { getStorage } from '../../functions';
-// import profileImg from '../../images/profile.jpg';
-import Footer from '../components/Footer/Footer';
-import Header from '../components/Header/Header';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Profile() {
-  const [{ email }] = useState(() => getStorage('user'));
+  const [{ email }] = useState(() => getStorage('user', { email: '' }));
 
   const renderBtnsProfile = () => (
     <div className="buttonsInProfile">
@@ -49,6 +48,7 @@ export default function Profile() {
       <div className="container">
         <div className="card">
           <div className="mainContentProfile">
+            <div className="imageProfile" />
             <h3 className="userName">{ `@${email.split('@')[0]}` }</h3>
             <h3 data-testid="profile-email" className="email">{ email }</h3>
           </div>

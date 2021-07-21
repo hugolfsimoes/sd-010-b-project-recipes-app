@@ -1,57 +1,69 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-import store from '../../context/store';
-
-const foodDrinkButtons = [{ strCategory: 'Food' }, { strCategory: 'Drink' }];
+import RenderButtons from './RenderButtons';
 
 export default function CategoryButton({ clickCategory, foodOrDrink, setState,
   clickAll, path }) { // Desestruturação de props
-  const { recipes: { foods, categoriesMeals,
-    categoriesDrinks, categoriesLimit } } = useContext(store);
+  const [minWidth, setMinWidth] = useState(false);
+  const [iconActive, setActive] = useState(true);
 
-  console.log(path);
+  const checkWidthScreen = () => {
+    const MIN_WIDTH = 576;
+    const screenWidth = window.innerWidth;
+    // https://cursos.alura.com.br/forum/topico-como-executar-uma-funcao-do-javascript-se-a-janela-do-browser-diminuir-de-800px-41605
 
-  const renderButtons = () => {
-    let newCategories;
-    if (path) {
-      newCategories = foodDrinkButtons;
+    if (screenWidth >= MIN_WIDTH) {
+      setMinWidth(true);
     } else {
-      newCategories = (foods) ? (
-        categoriesMeals.slice(0, categoriesLimit)) : (
-        categoriesDrinks.slice(0, categoriesLimit));
+      setMinWidth(false);
     }
-
-    return (
-      newCategories.map((category, index) => (
-        <div key={ index } className="categoriesBtns">
-          <button
-            type="button"
-            data-testid={ path
-              ? `filter-by-${category.strCategory.toLowerCase()}-btn`
-              : `${category.strCategory}-category-filter` }
-            onClick={ path
-              ? (() => foodOrDrink(category.strCategory, path, setState))
-              : (() => clickCategory(category)) }
-          >
-            {category.strCategory}
-          </button>
-        </div>
-      ))
-    );
   };
 
+  // ---------------------------------------------------------------------------------------------
+  // CICLOS DE VIDA
+  useEffect(checkWidthScreen, []);
+  window.addEventListener('resize', () => checkWidthScreen());
+
+  // ---------------------------------------------------------------------------------------------
+  if (path) {
+    return (
+      <div className={ (!minWidth) ? 'categoriesBtnsDone' : 'categoriesBtns' }>
+        <RenderButtons
+          clickCategory={ clickCategory }
+          foodOrDrink={ foodOrDrink }
+          setState={ setState }
+          clickAll={ clickAll }
+          path={ path }
+        />
+      </div>
+    );
+  }
   return (
-    <div className="categoriesBtns">
-      <button
-        type="button"
-        data-testid={ path ? 'filter-by-all-btn' : 'All-category-filter' }
-        onClick={ clickAll }
-      >
-        All
-      </button>
-      {renderButtons()}
-    </div>
+    <section>
+      <div className={ (iconActive) ? 'icon iconActive' : 'icon' }>
+        <button
+          type="button"
+          onClick={ () => setActive(!iconActive) }
+          className="hamburguer"
+        >
+          <div />
+        </button>
+      </div>
+      <div className={ (iconActive || minWidth) ? 'containerBtns' : 'menuClose' }>
+        <div
+          className={ (iconActive || minWidth) ? (
+            'categoriesBtns') : ('menuClose') }
+        >
+          <RenderButtons
+            clickCategory={ clickCategory }
+            foodOrDrink={ foodOrDrink }
+            setState={ setState }
+            clickAll={ clickAll }
+            path={ path }
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 

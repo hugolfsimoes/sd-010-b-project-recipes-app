@@ -4,7 +4,7 @@ import shareBtn from '../../images/shareIcon.svg';
 
 const copy = require('clipboard-copy');
 
-export default function ShareButton({ id, type, index, path }) { // desestruturação de props
+export default function ShareButton({ id, type, index, path, className }) { // desestruturação de props
   const [linkShare, setLinkShare] = useState(false);
 
   const whatToCopy = () => {
@@ -27,12 +27,13 @@ export default function ShareButton({ id, type, index, path }) { // desestrutura
         alt="share-icon"
         data-testid={ path ? `${index}-horizontal-share-btn` : 'share-btn' }
         width="30px"
+        style={ { cursor: 'pointer' } }
       />
     </button>
   );
 
   return (
-    <div>
+    <div className={ className }>
       {renderButtons()}
       <div className={ !linkShare ? 'hideMsg' : 'showMsg' }>Link copiado!</div>
     </div>
@@ -40,10 +41,11 @@ export default function ShareButton({ id, type, index, path }) { // desestrutura
 }
 
 ShareButton.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   type: PropTypes.string,
   path: PropTypes.bool,
   index: PropTypes.number,
+  className: PropTypes.string,
 };
 
 ShareButton.defaultProps = {
@@ -51,4 +53,5 @@ ShareButton.defaultProps = {
   type: '',
   path: false,
   index: 0,
+  className: '',
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import CategoryButton from '../components/CategoryButton';
 import { getStorage, setStorage, handleClickType } from '../../functions';
 import FavoriteRecipeCard from '../components/FavoriteRecipeCard';
@@ -22,20 +22,24 @@ export default function FavoriteRecipes() {
   return (
     <div>
       <Header pageName="Receitas Favoritas" />
-      <CategoryButton
-        foodOrDrink={ handleClickType }
-        setState={ setFavoriteRecipes }
-        clickAll={ handleClickAll }
-        path={ FAVORITE_RECIPES }
-      />
-      { favoriteRecipes.map((recipe, i) => (
-        <FavoriteRecipeCard
-          recipe={ recipe }
-          index={ i }
-          handleLikeClick={ handleLikeClick }
-          key={ i }
+      <div className="fav-recipes">
+        <CategoryButton
+          foodOrDrink={ handleClickType }
+          setState={ setFavoriteRecipes }
+          clickAll={ handleClickAll }
+          path={ FAVORITE_RECIPES }
         />
-      )) }
+        <section className="fav-container">
+          { favoriteRecipes.map((recipe, i) => (
+            <FavoriteRecipeCard
+              recipe={ recipe }
+              index={ i }
+              handleLikeClick={ handleLikeClick }
+              key={ i }
+            />
+          )) }
+        </section>
+      </div>
     </div>
   );
 }
