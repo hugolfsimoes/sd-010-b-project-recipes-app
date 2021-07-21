@@ -25,6 +25,7 @@ function ProviderRecipes({ children }) {
   const [randomFood, setRandomFood] = useState([]);
   const [randomDrink, setRandomDrink] = useState([]);
   const [searchByIngredient, setSearchByIngredient] = useState([]);
+  const [doneRecipesDrinks, setDoneRecipesDrinks] = useState([]);
 
   const fetchFoodRecipes = () => {
     const endpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
@@ -94,6 +95,8 @@ function ProviderRecipes({ children }) {
     setDrinkByArea,
     searchByIngredient,
     setSearchByIngredient,
+    doneRecipesDrinks,
+    setDoneRecipesDrinks,
   };
 
   return (

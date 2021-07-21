@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import './DetailsPage.css';
 import RecommendedFood from './RecommendedFood';
 
 function AllTagsFromDetailsDrinks(drinks) {
-  // console.log(drinks);
+  console.log(drinks);
+  const [star, setStar] = useState(false);
   const listIngredients = Object.keys(drinks.drinks[0])
     .filter((drink) => drink.includes('Ingredient'));
   const ingredients = [];
@@ -47,8 +49,38 @@ function AllTagsFromDetailsDrinks(drinks) {
   //   // urlVideo.push(partUrl[0]);
   //   // urlVideo.push(partUrl2);
   //   // fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
+
+  // Para resolver essa problema do clipboard usei como referência o Link: https://blog.erikfigueiredo.com.br/area-de-transferencia-copiar-e-colar-com-javascript-dica-rapida/.
+
+  const handleFavorited = () => {
+    // const newTag = document.createElement('input');
+    const link = window.location.href;
+
+    // document.body.appendChild(newTag);
+    // newTag.value = link;
+    // newTag.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(newTag);
+    navigator.clipboard.writeText(link);
+    // alert('Link copiado!');
+    const alerta = document.createElement('p');
+    document.querySelector('.section-geral').appendChild(alerta);
+    alerta.innerText = 'Link copiado!';
+  };
+
+  const changeHeart = () => {
+    setStar(!star);
+  };
+  const favorites = [];
+  const verifyFavorited = () => {
+    const getAllFavorites = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    favorites.push(drinks.drinks[0].idDrink);
+    localStorage
+      .setItem('favoriteRecipes', JSON.stringify([...getAllFavorites, ...favorites]));
+  };
+
   return (
-    <section>
+    <section className="section-geral">
       <img
         src={ drinks.drinks[0].strDrinkThumb }
         alt={ drinks.drinks[0].strDrink }
@@ -56,8 +88,16 @@ function AllTagsFromDetailsDrinks(drinks) {
         data-testid="recipe-photo"
       />
       <p data-testid="recipe-title">{ drinks.drinks[0] && drinks.drinks[0].strDrink }</p>
-      <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      <img src={ whiteHeartIcon } alt="Share" data-testid="favorite-btn" />
+      <button type="button" onClick={ handleFavorited }>
+        <img src={ shareIcon } alt="Share" data-testid="share-btn" />
+      </button>
+      <button type="button" onClick={ () => { verifyFavorited(); changeHeart(); } }>
+        <img
+          src={ star === false ? whiteHeartIcon : blackHeartIcon }
+          alt="Share"
+          data-testid="favorite-btn"
+        />
+      </button>
       <p data-testid="recipe-category">{ drinks.drinks[0].strAlcoholic }</p>
       <h3>Ingredientes</h3>
       <ul>

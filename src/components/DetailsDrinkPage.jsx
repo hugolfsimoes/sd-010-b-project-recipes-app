@@ -75,11 +75,6 @@ function DetailsDrinkPage({ match: { params } }) {
 
   return (
     <div>
-      isLoading === true ?
-      {' '}
-      <h1>Carregando...</h1>
-      :
-      {' '}
       <AllTagsFromDetailsDrinks drinks={ drinks } />
       <BtnStartDrinkRecipe id={ id } />
       {/* <Link to={ `/bebidas/${id}/in-progress` }>

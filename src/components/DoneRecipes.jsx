@@ -12,11 +12,11 @@ function DoneRecipes({ history }) {
   }, [setTitle]);
 
   return (
-    <div>
+    <section>
       <Header history={ history } data-testid="page-title" />
       { goSearch && <SBElements history={ history } /> }
       <h4>Aqui vão ficar as receitas feitas</h4>
-    </div>
+    </section>
   );
 }
 
