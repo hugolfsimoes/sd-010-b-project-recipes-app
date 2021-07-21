@@ -12,6 +12,13 @@ function InProgressDrink({ match: { params } }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
   const [isDisable, setIsDisable] = useState(true);
   const [checked, setchecked] = useState({});
+  const [doneRecipesDrinks, setDoneRecipesDrinks] = useState([]);
+  // const [objDrink, setObjDrink] = useState({
+  //   img: '',
+  //   name: '',
+  //   alcoholic: '',
+  //   date: '',
+  // });
   const { id } = params;
 
   const listIngredients = Object.entries(drinks[0] || {})
@@ -44,8 +51,35 @@ function InProgressDrink({ match: { params } }) {
     console.log(isDisable);
   }, [checked]);
 
-  if (drinks[0] === undefined) return <h1>Carregando...</h1>;
+  // let doneRecipesDrinks = [];
 
+
+  const date = new Date();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const fullDate = `${day}/ ${month}/ ${year}`;
+  useEffect(() => {
+    const getAllDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+    localStorage
+      .setItem('doneRecipes', JSON
+        .stringify([...getAllDoneRecipes, ...doneRecipesDrinks]));
+  }, [doneRecipesDrinks]);
+  if (drinks[0] === undefined) return <h1>Carregando...</h1>;
+  const objDrink = {
+    img: drinks[0].strDrinkThumb,
+    name: drinks[0].strDrink,
+    alcoholic: drinks[0].strAlcoholic,
+    date: fullDate,
+  };
+  console.log(objDrink);
+  const saveDoneRecipes = () => {
+    setDoneRecipesDrinks([...doneRecipesDrinks, objDrink]);
+    console.log(doneRecipesDrinks);
+  };
+  // const saveObjDrink = () => {
+  //   saveDoneRecipes();
+  // };
   /* const INDEX_NUMBER = 3;
   const urlVideo = drinks[0].strYoutube.split('/');
   urlVideo.splice(urlVideo.indexOf(INDEX_NUMBER), 1);
@@ -113,6 +147,7 @@ function InProgressDrink({ match: { params } }) {
           disabled={ isDisable }
           data-testid="finish-recipe-btn"
           className="button"
+          onClick={ saveDoneRecipes }
         >
           Finalizar Receita
         </button>

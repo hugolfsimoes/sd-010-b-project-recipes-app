@@ -1,15 +1,17 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import RecommendedDrinks from './RecommendedDrinks';
 import './DetailsPage.css';
 import BtnStartFoodRecipe from './BtnStartFoodRecipe';
 
 function DetailsFoodPage({ match: { params } }) {
   // const [recipesFood, setRecipesFood] = useState([]);
+  const [star, setStar] = useState(false);
   const { recipes, setRecipes } = useContext(ContextRecipes);
   const { id } = params;
   useEffect(() => {
@@ -68,9 +70,30 @@ function DetailsFoodPage({ match: { params } }) {
   fullUrl = `${urlVideo[0]}//${urlVideo[2]}/${urlVideo[3]}/${urlVideo[4]}`;
   // // }, [setRecipes, id]);
   // // console.log(id, recipes);
+  // Para resolver essa problema do clipboard usei como referência os Links: https://stackoverflow.com/questions/49618618/copy-current-url-to-clipboard; https://blog.erikfigueiredo.com.br/area-de-transferencia-copiar-e-colar-com-javascript-dica-rapida/.
+
+  const handleFavorited = () => {
+    // const newTag = document.createElement('input');
+    const link = window.location.href;
+
+    // document.body.appendChild(newTag);
+    // newTag.value = link;
+    // newTag.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(newTag);
+    navigator.clipboard.writeText(link);
+    // alert('Link copiado!');
+    const alerta = document.createElement('p');
+    document.querySelector('.section-geral').appendChild(alerta);
+    alerta.innerText = 'Link copiado!';
+  };
+
+  const changeHeart = () => {
+    setStar(!star);
+  };
 
   return (
-    <section>
+    <section className="section-geral">
       <img
         src={ recipes[0].strMealThumb }
         alt={ recipes[0].strMeal }
@@ -78,8 +101,20 @@ function DetailsFoodPage({ match: { params } }) {
         data-testid="recipe-photo"
       />
       <p data-testid="recipe-title">{ recipes[0] && recipes[0].strMeal }</p>
-      <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      <img src={ whiteHeartIcon } alt="Share" data-testid="favorite-btn" />
+      <button type="button" onClick={ handleFavorited }>
+        <img
+          src={ shareIcon }
+          alt="Share"
+          data-testid="share-btn"
+        />
+      </button>
+      <button type="button" onClick={ changeHeart }>
+        <img
+          src={ star === false ? whiteHeartIcon : blackHeartIcon }
+          alt="Share"
+          data-testid="favorite-btn"
+        />
+      </button>
       <p data-testid="recipe-category">{ recipes[0].strCategory }</p>
       <h3>Ingredientes</h3>
       <ul>
