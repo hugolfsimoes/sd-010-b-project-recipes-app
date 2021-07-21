@@ -50,7 +50,7 @@
 .page-title-div h1 {
   color: var(--crl-Secondary);
   font-family: Damion , cursive;
-  font-size: 2.2rem;
+  font-size: 7vw;
   font-weight: 700;
   position: relative;
 }
@@ -65,8 +65,10 @@
 .page-title-div {
   align-items: center;
   justify-content: center;
+  overflow-wrap: break-word;
   position: fixed;
   text-align: center;
+  width: 10rem;
 }
 
 .profile-div {

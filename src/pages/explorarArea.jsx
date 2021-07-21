@@ -37,7 +37,7 @@ class ExplorarArea extends Component {
         <Header location={ location } />
         <section className="ex-area-content">
           <select
-            className='select'
+            className="select"
             onChange={ this.handleChange }
             data-testid="explore-by-area-dropdown"
           >
