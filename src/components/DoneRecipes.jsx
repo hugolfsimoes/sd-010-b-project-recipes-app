@@ -8,6 +8,7 @@ import { CgPentagonRight } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import Modal from './Modal';
+import Group26 from '../images/Group26.svg';
 import { isLink } from '../action/details';
 import '../css/doneRecipes.css';
 
@@ -82,76 +83,84 @@ class DoneRecipes extends Component {
             Drinks
           </button>
         </section>
-        {
-          doneRecipes.map(({
-            type, name, id, image, area, category, alcoholicOrNot, doneDate, tags,
-          }, index) => (
-            <Card key={ name } className="done-card">
-              <Link to={ `${type}s/${id}` }>
-                <div className="img-content">
-                  <Card.Img
-                    className="done-card-img"
-                    data-testid={ `${index}-horizontal-image` }
-                    src={ image }
-                  />
-                </div>
-              </Link>
-              <Card.Body className="done-card-body">
+        <section className="cards-content">
+          {
+            doneRecipes.map(({
+              type, name, id, image, area, category, alcoholicOrNot, doneDate, tags,
+            }, index) => (
+              <Card key={ name } className="done-card">
                 <Link to={ `${type}s/${id}` }>
-                  <Card.Subtitle
-                    data-testid={ `${index}-horizontal-top-text` }
-                    className="done-card-subtitle"
-                  >
-                    {
-                      (type === 'comida') ? `${area} - ${category}`
-                        : alcoholicOrNot
-                    }
-                  </Card.Subtitle>
-                  <Card.Title
-                    className="done-card-title"
-                    data-testid={ `${index}-horizontal-name` }
-                  >
-                    { name }
-                  </Card.Title>
+                  <div className="image-content">
+                    <img className="group-26" src={ Group26 } alt={ Group26 } />
+                    <di className="done-shadow">
+                      <Card.Img
+                        className="done-card-img"
+                        data-testid={ `${index}-horizontal-image` }
+                        src={ image }
+                      />
+                    </di>
+                  </div>
                 </Link>
-                <section className="done-buttons">
-                  <button
-                    type="button"
-                    className="done-btn-share"
-                    onClick={ () => copy(`http://localhost:3000/${type}s/${id}`)
-                      .then(() => islink(true)) }
-                  >
-                    <img
-                      className="img-share"
-                      data-testid={ `${index}-horizontal-share-btn` }
-                      src={ shareIcon }
-                      alt={ shareIcon }
-                    />
-                  </button>
-                </section>
-                <Card.Text
-                  className="done-date"
-                  data-testid={ `${index}-horizontal-done-date` }
-                >
-                  {doneDate}
-                </Card.Text>
-                {
-                  tags !== '' && tags.map((el) => (
-                    <Card.Text
-                      className="tag-content"
-                      key={ el }
-                      data-testid={ `${index}-${el}-horizontal-tag` }
+                <Card.Body className="done-card-body">
+                  <Link to={ `${type}s/${id}` }>
+                    <Card.Subtitle
+                      data-testid={ `${index}-horizontal-top-text` }
+                      className="done-card-subtitle"
                     >
-                      <div className="done-tag">
-                        <CgPentagonRight />
-                        {el}
-                      </div>
-                    </Card.Text>))
-                }
-              </Card.Body>
-            </Card>
-          ))
-        }
+                      {
+                        (type === 'comida') ? `${area} - ${category}`
+                          : alcoholicOrNot
+                      }
+                    </Card.Subtitle>
+                    <Card.Title
+                      className="done-card-title"
+                      data-testid={ `${index}-horizontal-name` }
+                    >
+                      { name }
+                    </Card.Title>
+                  </Link>
+                  <section className="done-buttons">
+                    <button
+                      type="button"
+                      className="done-btn-share"
+                      onClick={ () => copy(`http://localhost:3000/${type}s/${id}`)
+                        .then(() => islink(true)) }
+                    >
+                      <img
+                        className="img-share"
+                        data-testid={ `${index}-horizontal-share-btn` }
+                        src={ shareIcon }
+                        alt={ shareIcon }
+                      />
+                    </button>
+                  </section>
+                  <div className="tag-content">
+                    {
+                      tags !== '' && tags.map((el) => (
+                        <Card.Text
+                          key={ el }
+                          data-testid={ `${index}-${el}-horizontal-tag` }
+                        >
+                          <div className="done-tag">
+                            <CgPentagonRight />
+                            {el}
+                          </div>
+                        </Card.Text>))
+                    }
+                  </div>
+                  <div className="date-content">
+                    <Card.Text
+                      className="done-date"
+                      data-testid={ `${index}-horizontal-done-date` }
+                    >
+                      {doneDate}
+                    </Card.Text>
+                  </div>
+                </Card.Body>
+              </Card>
+            ))
+          }
+        </section>
       </section>
     );
   }

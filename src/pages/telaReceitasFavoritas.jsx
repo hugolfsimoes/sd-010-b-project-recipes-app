@@ -11,13 +11,15 @@ import '../css/TelaDeFavoritas.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import Group26 from '../images/Group26.svg';
+import Modal from '../components/Modal';
+import { isLink } from '../action/details';
 
 class TelaReceitasFavoritas extends Component {
   constructor(props) {
     super(props);
     this.state = {
       favIconColor: blackHeartIcon,
-      link: false,
       favoriteList: [],
     };
 
@@ -46,78 +48,70 @@ class TelaReceitasFavoritas extends Component {
   }
 
   render() {
-    const { location } = this.props;
-    const { favIconColor, link, favoriteList } = this.state;
+    const { location, link, history, islink } = this.props;
+    const { favIconColor, favoriteList } = this.state;
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     return (
       <section>
         <Header location={ location } />
-        <section>
-          <button
-            type="button"
-            data-testid="filter-by-all-btn"
-            onClick={ () => this.setState({ favoriteList: favoriteRecipes }) }
-          >
-            All
-          </button>
-          <button
-            type="button"
-            data-testid="filter-by-food-btn"
-            onClick={ () => {
-              this.setState({ favoriteList: favoriteRecipes
-                .filter((recipe) => recipe.type === 'comida') });
-            } }
-          >
-            Food
-          </button>
-          <button
-            type="button"
-            data-testid="filter-by-drink-btn"
-            onClick={ () => {
-              this.setState({ favoriteList: favoriteRecipes
-                .filter((recipe) => recipe.type === 'bebida') });
-            } }
-          >
-            Drinks
-          </button>
-        </section>
-        <section>
-          {
-            favoriteList.map(({
-              type, name, id, image, area, category, alcoholicOrNot,
-            }, index) => (
-              <Card key={ name } className="favorite-card">
-                <Link to={ `${type}s/${id}` }>
-                  <Card.Img
-                    className="favorite-card-img"
-                    data-testid={ `${index}-horizontal-image` }
-                    src={ image }
-                  />
-                </Link>
-                <Card.Body className="favorite-card-body">
+        {link && <Modal history={ history }><p>Link copiado!</p></Modal>}
+        <section className="favorite-recipes-main">
+          <section className="list-filter-btn">
+            <button
+              className="favorite-filters"
+              type="button"
+              data-testid="filter-by-all-btn"
+              onClick={ () => this.setState({ favoriteList: favoriteRecipes }) }
+            >
+              All
+            </button>
+            <button
+              className="favorite-filters"
+              type="button"
+              data-testid="filter-by-food-btn"
+              onClick={ () => {
+                this.setState({ favoriteList: favoriteRecipes
+                  .filter((recipe) => recipe.type === 'comida') });
+              } }
+            >
+              Food
+            </button>
+            <button
+              className="favorite-filters"
+              type="button"
+              data-testid="filter-by-drink-btn"
+              onClick={ () => {
+                this.setState({ favoriteList: favoriteRecipes
+                  .filter((recipe) => recipe.type === 'bebida') });
+              } }
+            >
+              Drinks
+            </button>
+          </section>
+          <section className="cards-content">
+            {
+              favoriteList.map(({
+                type, name, id, image, area, category, alcoholicOrNot,
+              }, index) => (
+                <Card key={ name } className="favorite-card">
                   <Link to={ `${type}s/${id}` }>
-                    <Card.Subtitle
-                      data-testid={ `${index}-horizontal-top-text` }
-                      className="favorite-card-subtitle"
-                    >
-                      {
-                        (type === 'comida') ? `${area} - ${category}`
-                          : alcoholicOrNot
-                      }
-                    </Card.Subtitle>
-                    <Card.Title
-                      className="favorite-card-title"
-                      data-testid={ `${index}-horizontal-name` }
-                    >
-                      { name }
-                    </Card.Title>
+                    <div className="image-content">
+                      <img className="group-26" src={ Group26 } alt={ Group26 } />
+                      <div className="img-shadow">
+                        <Card.Img
+                          className="favorite-card-img"
+                          data-testid={ `${index}-horizontal-image` }
+                          src={ image }
+                        />
+                      </div>
+                    </div>
                   </Link>
                   <section className="favorite-buttons">
                     <button
                       type="button"
-                      className="favorite-btn-share"
+                      className="details-btn favorite-btn-share"
                       onClick={ () => copy(`http://localhost:3000/${type}s/${id}`)
-                        .then(() => this.setState({ link: !link })) }
+                        .then(() => islink(true)) }
                     >
                       <img
                         data-testid={ `${index}-horizontal-share-btn` }
@@ -125,10 +119,9 @@ class TelaReceitasFavoritas extends Component {
                         alt={ shareIcon }
                       />
                     </button>
-                    {link && <p>Link copiado!</p>}
                     <button
                       type="button"
-                      className="favorite-btn"
+                      className="details-btn favorite-btn"
                       onClick={ () => this.isFavorite(id) }
                     >
                       <img
@@ -138,10 +131,29 @@ class TelaReceitasFavoritas extends Component {
                       />
                     </button>
                   </section>
-                </Card.Body>
-              </Card>
-            ))
-          }
+                  <Card.Body className="favorite-card-body">
+                    <Link to={ `${type}s/${id}` }>
+                      <Card.Title
+                        className="favorite-card-title"
+                        data-testid={ `${index}-horizontal-name` }
+                      >
+                        { name }
+                      </Card.Title>
+                      <Card.Subtitle
+                        data-testid={ `${index}-horizontal-top-text` }
+                        className="favorite-card-subtitle"
+                      >
+                        {
+                          (type === 'comida') ? `${area} - ${category}`
+                            : alcoholicOrNot
+                        }
+                      </Card.Subtitle>
+                    </Link>
+                  </Card.Body>
+                </Card>
+              ))
+            }
+          </section>
         </section>
       </section>
     );
@@ -149,11 +161,18 @@ class TelaReceitasFavoritas extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   hasSearchBar: (e) => dispatch(getSearchBarResponse(e)),
+  islink: (bool) => dispatch(isLink(bool)),
+});
+
+const mapStateToProps = (state) => ({
+  link: state.recipeDetails.link,
 });
 
 TelaReceitasFavoritas.propTypes = {
-  hasSearchBar: PropTypes.func.isRequired,
+  hasSearchBar: PropTypes.func,
+  islink: PropTypes.func,
   location: PropTypes.shape,
+  link: PropTypes.bool,
 }.isRequired;
 
-export default connect(null, mapDispatchToProps)(TelaReceitasFavoritas);
+export default connect(mapStateToProps, mapDispatchToProps)(TelaReceitasFavoritas);
