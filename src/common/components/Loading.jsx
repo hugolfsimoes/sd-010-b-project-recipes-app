@@ -25,11 +25,21 @@ const doneAnimation = {
 
 export default function Loading({ loading }) {
   return (
-    <div style={ { marginTop: '10rem' } }>
+    <div>
       {!loading ? (
-        <Lottie options={ loadingAnimation } height={ 420 } width={ 420 } />
+        <Lottie
+          options={ loadingAnimation }
+          height={ 420 }
+          width={ 420 }
+          style={ { marginTop: '8rem' } }
+        />
       ) : (
-        <Lottie options={ doneAnimation } height={ 120 } width={ 120 } />
+        <Lottie
+          options={ doneAnimation }
+          height={ 120 }
+          width={ 120 }
+          style={ { marginTop: '16rem' } }
+        />
       )}
     </div>
   );
