@@ -80,6 +80,14 @@ export default function RecipesMade() {
                     ? item.alcoholicOrNot : `${item.area} - ${item.category}`}
                 </p>
                 <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
+                { item.tags.length === null ? <p>nada</p> : item.tags.map((tag) => (
+                  <p
+                    key={ tag }
+                    data-testid={ `${index}-${tag}-horizontal-tag` }
+                  >
+                    {tag}
+                  </p>
+                ))}
                 <button
                   type="button"
                   className="btn-search"
@@ -93,9 +101,7 @@ export default function RecipesMade() {
                   {copy && <p className="textos">Link copiado!</p>}
                 </button>
               </div>
-              { item.tags.length === null ? <p>nada</p> : item.tags.map((tag) => (
-                <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
-              ))}
+
             </div>
           </div>
         ))}
