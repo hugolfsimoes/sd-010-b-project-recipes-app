@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import clipboard from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
-import profileIcon from '../images/profileIcon.svg';
 import '../styles/Done.css';
 import Header from '../Components/Header';
 
@@ -55,14 +54,13 @@ export default function RecipesMade() {
       <main className="items-list">
         {DoneRecipes.map((item, index) => (
           <div className="card" key={ `${item}${index}` }>
-            <div className="card-body">
+            <div className="card-feito">
               <Link
                 to={ `/${item.type}s/${item.id}` }
               >
                 <img
                   id={ index }
                   alt={ item.name }
-                  width="100"
                   src={ item.image }
                   data-testid={ `${index}-horizontal-image` }
                 />

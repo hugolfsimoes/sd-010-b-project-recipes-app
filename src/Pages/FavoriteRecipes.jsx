@@ -5,7 +5,6 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
-import Copiado from '../Components/Copiado';
 
 function FavoriteRecipes() {
   const recipeSave = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -63,7 +62,7 @@ function FavoriteRecipes() {
       <div className="items-list">
         {favoriteRecipes.map((recipe, index) => (
           <div className="card" key={ recipe.id }>
-            <div className="card-body">
+            <div className="card-feito">
               <Link
                 to={ `/${recipe.type}s/${recipe.id}` }
               >
@@ -75,7 +74,6 @@ function FavoriteRecipes() {
               </Link>
               <div className="btns-f-c">
                 <p
-                  className=""
                   data-testid={ `${index}-horizontal-top-text` }
                 >
                   <Link
@@ -99,7 +97,7 @@ function FavoriteRecipes() {
                     alt="Share Button"
                     data-testid={ `${index}-horizontal-share-btn` }
                   />
-                  {copy && <Copiado />}
+                  {copy && <p>Link Copiado!</p>}
                 </button>
 
                 <button
