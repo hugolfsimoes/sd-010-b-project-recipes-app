@@ -1,6 +1,43 @@
 .food-header {
   align-items: center;
+  background-color: #f47500;
   display: flex;
+  height: 60px;
   justify-content: space-between;
+  padding: 2px;
   text-align: center;
+}
+
+.food-header input {
+  margin: 5px;
+  width: 30px;
+}
+
+.search-bar {
+  background-color: #f8e9dd;
+  border-top: solid 3px #460205;
+  box-shadow: 0 6px 8px #61616173;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+
+.search-bar label {
+  margin-left: 2px;
+}
+
+.search-bar button {
+  background-color: #f47500;
+  border: none;
+  border-bottom: 4px solid #460205;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.input-search {
+  margin-right: 5px;
+  width: 200px;
 }

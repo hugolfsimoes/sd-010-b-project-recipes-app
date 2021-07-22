@@ -1,5 +1,12 @@
 .scroll {
   display: flex;
+  margin-bottom: 20px;
   overflow-x: scroll;
   width: 80%;
+}
+
+.drink-name {
+  color: #d1091d;
+  font-weight: 700;
+  text-align: center;
 }

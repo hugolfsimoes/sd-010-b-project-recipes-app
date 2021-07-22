@@ -5,6 +5,7 @@ import Header from './Header';
 import SBElements from './SBElements';
 import Footer from './Footer';
 import ContextRecipes from '../context/contextRecipes';
+import './FoodAndDrinkPage.css';
 
 function ExploreDrinks({ history }) {
   const { goSearch, setTitle, randomDrink, setRandomDrink } = useContext(ContextRecipes);
@@ -38,9 +39,12 @@ function ExploreDrinks({ history }) {
     <div>
       <Header history={ history } />
       { goSearch && <SBElements history={ history } /> }
-      <h1>Explorar Bebidas</h1>
       <Link to="/explorar/bebidas/ingredientes">
-        <button type="button" data-testid="explore-by-ingredient">
+        <button
+          type="button"
+          data-testid="explore-by-ingredient"
+          className="category-buttons"
+        >
           Por Ingredientes
         </button>
       </Link>
@@ -48,6 +52,7 @@ function ExploreDrinks({ history }) {
         type="button"
         data-testid="explore-surprise"
         onClick={ handleClick }
+        className="category-buttons"
       >
         Me Surpreenda!
       </button>

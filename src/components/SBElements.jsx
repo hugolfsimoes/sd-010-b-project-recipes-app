@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ContextRecipes from '../context/contextRecipes';
+import './header.css';
 
 function SBElements({ history }) {
   const {
@@ -131,15 +132,8 @@ function SBElements({ history }) {
 
   return (
     <div className="search-bar">
-      <input
-        id="searchInput"
-        name="name"
-        type="text"
-        data-testid="search-input"
-        onChange={ setFunctions }
-      />
       <label
-        htmlFor="ingredientes"
+        htmlFor="ingredient-search-radio"
       >
         {'Ingredientes '}
         <input
@@ -152,7 +146,7 @@ function SBElements({ history }) {
         />
       </label>
       <label
-        htmlFor="recipe"
+        htmlFor="name-search-radio"
       >
         {'Receita '}
         <input
@@ -165,7 +159,7 @@ function SBElements({ history }) {
         />
       </label>
       <label
-        htmlFor="firstLetter"
+        htmlFor="first-letter-search-radio"
       >
         {'Primeira letra '}
       </label>
@@ -175,6 +169,14 @@ function SBElements({ history }) {
         value="Primeira letra"
         type="radio"
         data-testid="first-letter-search-radio"
+        onChange={ setFunctions }
+      />
+      <input
+        id="searchInput"
+        name="name"
+        type="text"
+        data-testid="search-input"
+        className="input-search"
         onChange={ setFunctions }
       />
       <button

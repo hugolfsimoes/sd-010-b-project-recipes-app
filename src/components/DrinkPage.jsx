@@ -6,6 +6,7 @@ import Footer from './Footer';
 import SBElements from './SBElements';
 import ContextRecipes from '../context/contextRecipes';
 import DrinkCategoryButtons from './DrinkCategoryButtons';
+import './FoodAndDrinkPage.css';
 
 function DrinkPage({ history }) {
   const { goSearch, setTitle, drinks } = useContext(ContextRecipes);
@@ -22,7 +23,7 @@ function DrinkPage({ history }) {
       <Header history={ history } show />
       { goSearch && <SBElements history={ history } /> }
       <DrinkCategoryButtons history={ history } />
-      <section>
+      <section className="section-container">
         {/* { drinks.length === 1
           ? history.push(`/bebidas/${drinks[0].idDrink}`) : null } */}
         { drinks && drinks
@@ -32,6 +33,7 @@ function DrinkPage({ history }) {
               <article
                 key={ `${index}-${strDrink}` }
                 data-testid={ `${index}-recipe-card` }
+                className="recipe-card"
               >
                 <img
                   src={ strDrinkThumb }

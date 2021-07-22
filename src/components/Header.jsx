@@ -22,7 +22,11 @@ function Header({ history, show }) {
         alt="Profile Icon"
         width="45"
       />
-      <h2 data-testid="page-title">{ title }</h2>
+      <h2
+        data-testid="page-title"
+      >
+        { title }
+      </h2>
       { show && <input
         type="image"
         id="search-top-btn"

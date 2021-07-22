@@ -65,62 +65,85 @@ function DetailsFoodPage({ match: { params } }) {
       <img
         src={ recipes[0].strMealThumb }
         alt={ recipes[0].strMeal }
-        width="250px"
+        width="320px"
         data-testid="recipe-photo"
       />
-      <p data-testid="recipe-title">{ recipes[0] && recipes[0].strMeal }</p>
-      <button type="button" onClick={ handleFavorited }>
-        <img
-          src={ shareIcon }
-          alt="Share"
-          data-testid="share-btn"
-        />
-      </button>
-      <button type="button" onClick={ changeHeart }>
-        <img
-          src={ star === false ? whiteHeartIcon : blackHeartIcon }
-          alt="Share"
-          data-testid="favorite-btn"
-        />
-      </button>
+      <p
+        data-testid="recipe-title"
+        className="recipe-name"
+      >
+        { recipes[0] && recipes[0].strMeal }
+
+      </p>
       <p data-testid="recipe-category">{ recipes[0].strCategory }</p>
-      <h3>Ingredientes</h3>
-      <ul>
-        { ingredientsFinal
-          .map((ing, i) => ((
-            <li
-              data-testid={ `${i}-ingredient-name-and-measure` }
-              key={ i }
-            >
-              { ing }
-              {' '}
-              -
-              { ' ' }
-              { measuresFinal.map((mea, ind) => i === ind && (mea)) }
-            </li>
-          ))) }
-      </ul>
-      <h3>Instruções</h3>
-      <p data-testid="instructions">{ recipes[0].strInstructions }</p>
-      <iframe
-        width="560"
-        height="315"
-        src={ fullUrl }
-        title="YouTube video player"
-        data-testid="video"
-      />
-      <h3>Recomendadas</h3>
-      <RecommendedDrinks />
-      <BtnStartFoodRecipe id={ id } />
-      {/* <Link to={ `/comidas/${id}/in-progress` }>
+      <div>
         <button
           type="button"
-          data-testid="start-recipe-btn"
-          className="button"
+          onClick={ handleFavorited }
+          className="share-favorite-btn"
         >
-          Iniciar Receita
+          <img
+            src={ shareIcon }
+            alt="Share"
+            data-testid="share-btn"
+          />
+        </button>
+        <button
+          type="button"
+          onClick={ changeHeart }
+          className="share-favorite-btn"
+        >
+          <img
+            src={ star === false ? whiteHeartIcon : blackHeartIcon }
+            alt="Share"
+            data-testid="favorite-btn"
+          />
+        </button>
+      </div>
+      <div>
+        <h3>Ingredientes</h3>
+        <ul>
+          { ingredientsFinal
+            .map((ing, i) => ((
+              <li
+                data-testid={ `${i}-ingredient-name-and-measure` }
+                key={ i }
+              >
+                { ing }
+                {' '}
+                -
+                { ' ' }
+                { measuresFinal.map((mea, ind) => i === ind && (mea)) }
+              </li>
+            ))) }
+        </ul>
+        <h3>Instruções</h3>
+        <p
+          data-testid="instructions"
+          className="recipe-instructions"
+        >
+          { recipes[0].strInstructions }
+        </p>
+        <iframe
+          width="300"
+          height="300"
+          src={ fullUrl }
+          title="YouTube video player"
+          data-testid="video"
+        />
+        <h3>Recomendadas</h3>
+      </div>
+      <RecommendedDrinks />
+      {/* <Link to={ `/comidas/${id}/in-progress` }>
+        <button
+        type="button"
+        data-testid="start-recipe-btn"
+        className="button"
+        >
+        Iniciar Receita
         </button>
       </Link> */}
+      <BtnStartFoodRecipe id={ id } />
     </section>);
 }
 

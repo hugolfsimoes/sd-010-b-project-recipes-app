@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import ContextRecipes from '../context/contextRecipes';
+import './FoodAndDrinkPage.css';
 
 function FoodCategoryButtons() {
   const { setRecipes,
@@ -53,6 +54,7 @@ function FoodCategoryButtons() {
         type="button"
         onClick={ handleClickAll }
         data-testid="All-category-filter"
+        className="category-buttons"
       >
         All
       </button>
@@ -62,6 +64,7 @@ function FoodCategoryButtons() {
           type="button"
           data-testid={ `${strCategory}-category-filter` }
           onClick={ () => handleClick(strCategory) }
+          className="category-buttons"
         >
           {strCategory}
         </button>

@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import SBElements from './SBElements';
 import ContextRecipes from '../context/contextRecipes';
+import './FoodAndDrinkPage.css';
 
 function ExplorePage({ history }) {
   const { goSearch, setTitle } = useContext(ContextRecipes);
@@ -18,12 +19,20 @@ function ExplorePage({ history }) {
       <Header history={ history } />
       { goSearch && <SBElements history={ history } /> }
       <Link to="/explorar/comidas">
-        <button type="button" data-testid="explore-food">
+        <button
+          type="button"
+          data-testid="explore-food"
+          className="category-buttons"
+        >
           Explorar Comidas
         </button>
       </Link>
       <Link to="/explorar/bebidas">
-        <button type="button" data-testid="explore-drinks">
+        <button
+          type="button"
+          data-testid="explore-drinks"
+          className="category-buttons"
+        >
           Explorar Bebidas
         </button>
       </Link>

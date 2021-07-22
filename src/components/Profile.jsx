@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 import SBElements from './SBElements';
 import ContextRecipes from '../context/contextRecipes';
+import './FoodAndDrinkPage.css';
 
 function Profile({ history }) {
   const { goSearch, setTitle } = useContext(ContextRecipes);
@@ -30,28 +31,38 @@ function Profile({ history }) {
     <div>
       <Header history={ history } data-testid="page-title" />
       { goSearch && <SBElements history={ history } /> }
-      <h2 data-testid="profile-email">{email}</h2>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ goDone }
+      <h2
+        data-testid="profile-email"
+        className="user-email"
       >
-        Receitas Feitas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ goFavorite }
-      >
-        Receitas Favoritas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ handleClick }
-      >
-        Sair
-      </button>
+        {email}
+      </h2>
+      <div className="profile-buttons-container">
+        <button
+          type="button"
+          data-testid="profile-done-btn"
+          onClick={ goDone }
+          className="category-buttons"
+        >
+          Receitas Feitas
+        </button>
+        <button
+          type="button"
+          data-testid="profile-favorite-btn"
+          onClick={ goFavorite }
+          className="category-buttons"
+        >
+          Receitas Favoritas
+        </button>
+        <button
+          type="button"
+          data-testid="profile-logout-btn"
+          onClick={ handleClick }
+          className="category-buttons"
+        >
+          Sair
+        </button>
+      </div>
       <Footer history={ history } />
     </div>
   );

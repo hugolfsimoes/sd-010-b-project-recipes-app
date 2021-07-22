@@ -1,8 +1,42 @@
 .button {
+  background-color: #d1091d;
+  border: 0;
+  border-bottom: 2px solid #460205;
+  border-radius: 10px;
   bottom: 0;
+  color: white;
+  font-weight: 700;
+  height: 35px;
   position: fixed;
+  width: 160px;
 }
 
 .section-geral {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   padding: 0;
+}
+
+.section-geral h3 {
+  color: #d1091d;
+}
+
+.recipe-name {
+  background-color: #d1091d;
+  color: white;
+  font-size: 32px;
+  text-align: center;
+  width: 320px;
+}
+
+.recipe-instructions {
+  text-align: justify;
+  width: 300px;
+}
+
+.share-favorite-btn {
+  background-color: white;
+  border: 0;
+  margin: 10px;
 }

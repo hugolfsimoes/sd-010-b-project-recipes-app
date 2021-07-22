@@ -9,8 +9,15 @@ footer {
 }
 
 .footer-container {
-  align-self: flex-end;
+  align-items: center;
+  background-color: #f47500;
   display: flex;
   justify-content: space-between;
+  padding: 2px;
   text-align: center;
+}
+
+.footer-container input {
+  margin: 5px;
+  width: 30px;
 }

@@ -1,6 +1,10 @@
 .meals {
   align-items: center;
   background: #0fa36b;
+  background-image: url('./images/bg_login.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 170vh;
   color: #464646;
   display: flex;
   flex-direction: column;
@@ -10,10 +14,10 @@
   width: 100%;
 }
 
-.rocksGlass {
+/* .rocksGlass {
   animation: shake 1s infinite ease;
   max-height: 80vh;
-}
+} */
 
 /*
 #iceLeft {
@@ -30,11 +34,14 @@
 */
 
 .meals > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
+
+  /* animation: shake 1.5s infinite ease; */
+  color: #d1091d;
   font-family: Montserrat , sans-serif;
   font-size: 3em;
   font-weight: 900;
+  text-align: center;
+  -webkit-text-stroke: 1px #460205;
 }
 
 @keyframes shake {
@@ -89,3 +96,30 @@ footer {
 .share {
   display: none;
 }
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-inputs input {
+  border: 2px solid #460205;
+  border-radius: 10px;
+  height: 45px;
+  margin-top: 10px;
+}
+
+.login-inputs button {
+  background-color: #d1091d;
+  border-bottom: 4px solid #460205;
+  border-radius: 10px;
+  color: white;
+  font-weight: 700;
+  height: 45px;
+  margin-top: 10px;
+}
+
+.login-inputs button:hover {
+  background-color: #f47500;
+}
+

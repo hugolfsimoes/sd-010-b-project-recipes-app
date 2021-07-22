@@ -1,0 +1,51 @@
+.section-container {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.category-buttons {
+  background-color: #d1091d;
+  border: 0;
+  border-bottom: solid 3px #460205;
+  border-radius: 10px;
+  color: white;
+  height: 35px;
+  margin: 5px;
+  width: 150px;
+}
+
+.recipe-card {
+  align-items: center;
+  border: solid 1px #d1091d81;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 14px;
+}
+
+.recipe-card img {
+  border-radius: 10px 10px 0 0;
+  width: 130px;
+}
+
+.recipe-card p {
+  color: #d1091d;
+  font-weight: 900;
+  margin: 5px;
+  text-align: center;
+  width: 120px;
+}
+
+.user-email {
+  color: #d1091d;
+  text-align: center;
+}
+
+.profile-buttons-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

@@ -84,40 +84,62 @@ function AllTagsFromDetailsDrinks(drinks) {
       <img
         src={ drinks.drinks[0].strDrinkThumb }
         alt={ drinks.drinks[0].strDrink }
-        width="250px"
+        width="320px"
         data-testid="recipe-photo"
       />
-      <p data-testid="recipe-title">{ drinks.drinks[0] && drinks.drinks[0].strDrink }</p>
-      <button type="button" onClick={ handleFavorited }>
-        <img src={ shareIcon } alt="Share" data-testid="share-btn" />
-      </button>
-      <button type="button" onClick={ () => { verifyFavorited(); changeHeart(); } }>
-        <img
-          src={ star === false ? whiteHeartIcon : blackHeartIcon }
-          alt="Share"
-          data-testid="favorite-btn"
-        />
-      </button>
+      <p
+        data-testid="recipe-title"
+        className="recipe-name"
+      >
+        { drinks.drinks[0] && drinks.drinks[0].strDrink }
+      </p>
       <p data-testid="recipe-category">{ drinks.drinks[0].strAlcoholic }</p>
-      <h3>Ingredientes</h3>
-      <ul>
-        { ingredientsFinal
-          .map((ing, i) => ((
-            <li
-              data-testid={ `${i}-ingredient-name-and-measure` }
-              key={ i }
-            >
-              { ing }
-              {' '}
-              -
-              { ' ' }
-              { measuresFinal.map((mea, ind) => i === ind && (mea)) }
-            </li>
-          ))) }
-      </ul>
-      <h3>Instruções</h3>
-      <p data-testid="instructions">{ drinks.drinks[0].strInstructions }</p>
-      <h3>Recomendadas</h3>
+      <div>
+        <button
+          type="button"
+          onClick={ handleFavorited }
+          className="share-favorite-btn"
+        >
+          <img src={ shareIcon } alt="Share" data-testid="share-btn" />
+        </button>
+        <button
+          type="button"
+          onClick={ () => { verifyFavorited(); changeHeart(); } }
+          className="share-favorite-btn"
+        >
+          <img
+            src={ star === false ? whiteHeartIcon : blackHeartIcon }
+            alt="Share"
+            data-testid="favorite-btn"
+          />
+        </button>
+      </div>
+      <div>
+        <h3>Ingredientes</h3>
+        <ul>
+          { ingredientsFinal
+            .map((ing, i) => ((
+              <li
+                data-testid={ `${i}-ingredient-name-and-measure` }
+                key={ i }
+              >
+                { ing }
+                {' '}
+                -
+                { ' ' }
+                { measuresFinal.map((mea, ind) => i === ind && (mea)) }
+              </li>
+            ))) }
+        </ul>
+        <h3>Instruções</h3>
+        <p
+          data-testid="instructions"
+          className="recipe-instructions"
+        >
+          { drinks.drinks[0].strInstructions }
+        </p>
+        <h3>Recomendadas</h3>
+      </div>
       <RecommendedFood />
     </section>);
 }

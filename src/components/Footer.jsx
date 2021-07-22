@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
+import './footer.css';
 // import ContextRecipes from '../context/contextRecipes';
 
 import '../App.css';
-import './footer.css';
+
 // import ContextRecipes from '../context/contextRecipes';
 
 function Footer({ history }) {

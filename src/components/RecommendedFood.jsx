@@ -23,7 +23,12 @@ function RecommendedDrinks() {
                   width="150px"
                   data-testid="recipe-photo"
                 />
-                <p data-testid={ `${index}-recomendation-title` }>{ strMeal }</p>
+                <p
+                  data-testid={ `${index}-recomendation-title` }
+                  className="drink-name"
+                >
+                  { strMeal }
+                </p>
               </div>)) }
     </section>
   );

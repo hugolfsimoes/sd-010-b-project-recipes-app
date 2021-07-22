@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import rockGlass from '../images/rockGlass.svg';
+// import rockGlass from '../images/rockGlass.svg';
 // import ContextRecipes from '../context/contextRecipes';
 
 function Login({ history }) {
@@ -42,39 +42,41 @@ function Login({ history }) {
   };
 
   return (
-    <div className="meals">
-      <span className="logo">TRYBE</span>
-      <object
+    <main className="login-main">
+      <div className="meals">
+        <span className="logo">Sapori del Mondo</span>
+        {/* <object
         className="rocksGlass"
         type="image/svg+xml"
         data={ rockGlass }
       >
         Glass
-      </object>
-      <form>
-        <input
-          type="email"
-          name="email-input"
-          placeholder="Email"
-          data-testid="email-input"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          data-testid="password-input"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-        <button
-          type="button"
-          data-testid="login-submit-btn"
-          disabled={ isDisable }
-          onClick={ isRedirect }
-        >
-          Entrar
-        </button>
-      </form>
-    </div>
+      </object> */}
+        <form className="login-inputs">
+          <input
+            type="email"
+            name="email-input"
+            placeholder="Email"
+            data-testid="email-input"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            data-testid="password-input"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+          <button
+            type="button"
+            data-testid="login-submit-btn"
+            disabled={ isDisable }
+            onClick={ isRedirect }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
+    </main>
   );
 }
 
