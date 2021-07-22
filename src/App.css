@@ -429,6 +429,12 @@ body {
 }
 
 /* Tela de Loading */
+.body-loading {
+  background: linear-gradient(45deg, #ff4763, #ff4763, #ff3f29);
+  height: 100vh;
+  width: 100vw;
+}
+
 .tela-loading {
   background: linear-gradient(45deg, white, #f7ecf7, #efe6ef, #e7dae7);
   border-radius: 100px;
