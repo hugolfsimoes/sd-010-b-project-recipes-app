@@ -5,6 +5,7 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
+import Copiado from '../Components/Copiado';
 
 function FavoriteRecipes() {
   const recipeSave = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
@@ -98,7 +99,7 @@ function FavoriteRecipes() {
                     alt="Share Button"
                     data-testid={ `${index}-horizontal-share-btn` }
                   />
-                  {copy && <p>Link copiado!</p>}
+                  {copy && <Copiado />}
                 </button>
 
                 <button

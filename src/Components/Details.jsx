@@ -24,7 +24,6 @@ export default function Details(props) {
   const youtube = () => (
     item.strYoutube !== undefined
       ? item.strYoutube.split('watch?v=').join('embed/') : '');
-
   return (
     <div className="tela-details">
       <div className="img-principal">
@@ -78,6 +77,8 @@ export default function Details(props) {
       </div>
       <div className="video">
         <iframe
+          width="100%"
+          height="100%"
           data-testid="video"
           src={ youtube() }
           title={ item.strMeal }

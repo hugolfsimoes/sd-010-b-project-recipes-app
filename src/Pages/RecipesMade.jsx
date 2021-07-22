@@ -4,6 +4,7 @@ import clipboard from 'clipboard-copy';
 import shareIcon from '../images/shareIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
 import '../styles/Done.css';
+import Header from '../Components/Header';
 
 export default function RecipesMade() {
   const [copy, setCopy] = useState(false);
@@ -23,20 +24,12 @@ export default function RecipesMade() {
   }
   // return DoneRecipes.length === 0 ? <div> loading... </div> : (
   return (
-    <>
-      <header className="header-container">
-        <div>
-          <Link to="/perfil">
-            <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-          </Link>
-        </div>
-        <div>
-          <h1 data-testid="page-title">Receitas Feitas</h1>
-        </div>
-      </header>
-      <section className="Done-Recipes">
+    <div className="tela-profile">
+      <Header title="Receitas Feitas" />
+      <section className="menu-favorites">
         <button
           type="button"
+          className="btn-favorites"
           data-testid="filter-by-all-btn"
           onClick={ () => filterRecipes('') }
         >
@@ -44,6 +37,7 @@ export default function RecipesMade() {
         </button>
         <button
           type="button"
+          className="btn-favorites"
           data-testid="filter-by-food-btn"
           onClick={ () => filterRecipes('comida') }
         >
@@ -51,55 +45,62 @@ export default function RecipesMade() {
         </button>
         <button
           type="button"
+          className="btn-favorites"
           data-testid="filter-by-drink-btn"
           onClick={ () => filterRecipes('bebida') }
         >
           Drink
         </button>
       </section>
-      <main>
+      <main className="items-list">
         {DoneRecipes.map((item, index) => (
-          <>
-            <Link
-              to={ `/${item.type}s/${item.id}` }
-            >
-              <img
-                id={ index }
-                alt={ item.name }
-                width="100"
-                src={ item.image }
-                data-testid={ `${index}-horizontal-image` }
-              />
-            </Link>
-            <p data-testid={ `${index}-horizontal-top-text` }>
-              { item.type === 'bebida'
-                ? item.alcoholicOrNot : `${item.area} - ${item.category}`}
-            </p>
-            <Link
-              to={ `/${item.type}s/${item.id}` }
-              data-testid={ `${index}-horizontal-name` }
-            >
-              {item.name}
-            </Link>
-            <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
-            <button
-              type="button"
-              onClick={ () => copyLinkRecipe(item) }
-            >
-              <img
-                src={ shareIcon }
-                alt="Share Button"
-                data-testid={ `${index}-horizontal-share-btn` }
-              />
-              {copy && <p>Link copiado!</p>}
-            </button>
-            { item.tags.length === null ? <p>nada</p> : item.tags.map((tag) => (
-              <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
-            ))}
-          </>
+          <div className="card" key={ `${item}${index}` }>
+            <div className="card-body">
+              <Link
+                to={ `/${item.type}s/${item.id}` }
+              >
+                <img
+                  id={ index }
+                  alt={ item.name }
+                  width="100"
+                  src={ item.image }
+                  data-testid={ `${index}-horizontal-image` }
+                />
+              </Link>
+              <div className="btns-f-c">
+                <Link
+                  className="titulos titulo-favorites"
+                  to={ `/${item.type}s/${item.id}` }
+                  data-testid={ `${index}-horizontal-name` }
+                >
+                  {item.name}
+                </Link>
+                <p data-testid={ `${index}-horizontal-top-text` }>
+                  { item.type === 'bebida'
+                    ? item.alcoholicOrNot : `${item.area} - ${item.category}`}
+                </p>
+                <p data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</p>
+                <button
+                  type="button"
+                  className="btn-search"
+                  onClick={ () => copyLinkRecipe(item) }
+                >
+                  <img
+                    src={ shareIcon }
+                    alt="Share Button"
+                    data-testid={ `${index}-horizontal-share-btn` }
+                  />
+                  {copy && <p className="textos">Link copiado!</p>}
+                </button>
+              </div>
+              { item.tags.length === null ? <p>nada</p> : item.tags.map((tag) => (
+                <p key={ tag } data-testid={ `${index}-${tag}-horizontal-tag` }>{tag}</p>
+              ))}
+            </div>
+          </div>
         ))}
       </main>
 
-    </>
+    </div>
   );
 }
