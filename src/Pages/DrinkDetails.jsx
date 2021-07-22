@@ -7,6 +7,7 @@ import { setProgressItem } from '../services/services';
 import { GetRecipesDetails, getDrinks } from '../redux/actions';
 import Details from '../Components/Details';
 import CarroselComidas from '../Components/CarroselComidas';
+import '../styles/Card.css';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
 import Loading from '../Components/Loading';
@@ -66,7 +67,7 @@ const DrinkDetails = (props) => {
 DrinkDetails.propTypes = {
   id: PropTypes.any,
   drinkById: PropTypes.any,
-}.isRiquered;
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   drink: state.details.item,

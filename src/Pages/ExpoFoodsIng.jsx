@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import HeadBar from '../Components/HeadBar';
 import Footer from '../Components/Footer';
 import IngredientsFoodsTab from '../Components/IngredientsFoodsTab';
 import { getIngredient } from '../redux/actions';
 import MealRecipesAPI from '../services/MealRecipesAPI';
 import Loading from '../Components/Loading';
+import HeadBar from '../Components/HeadBar';
 
 function ExpoFoodsIng(props) {
   const { ingredientsCatcher, ingredients } = props;

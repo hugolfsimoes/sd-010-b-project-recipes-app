@@ -127,3 +127,47 @@ export function setValue(params) {
     });
   }
 }
+
+export function setDoneRecipes(done, type) {
+  const {
+    idDrink,
+    idMeal,
+    strArea,
+    strCategory,
+    strAlcoholic,
+    strDrink,
+    strMeal,
+    strDrinkThumb,
+    strMealThumb,
+    dateModified,
+    strTags,
+  } = done;
+  let tag = [];
+  if (strTags) {
+    tag = strTags.split(',');
+  } else { tag = []; }
+  const doneRecipes = {
+    id: idDrink || idMeal,
+    type,
+    area: strArea || '',
+    category: strCategory,
+    alcoholicOrNot: strAlcoholic || '',
+    name: strDrink || strMeal,
+    image: strDrinkThumb || strMealThumb,
+    doneDate: dateModified,
+    tags: tag || [],
+  };
+
+  const localRecipes = localStorage.getItem('doneRecipes');
+  if (localRecipes === null) {
+    localStorage.setItem('doneRecipes', JSON.stringify([doneRecipes]));
+  } else {
+    localStorage.setItem(
+      'doneRecipes',
+      JSON.stringify([
+        ...JSON.parse(localStorage.getItem('doneRecipes')),
+        doneRecipes,
+      ]),
+    );
+  }
+}

@@ -272,6 +272,8 @@ body {
   background: linear-gradient(45deg, #ff4763, #ff4763, #ff3f29);
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .tela-details {
@@ -308,6 +310,15 @@ body {
 
 .receita-details p {
   text-align: center;
+}
+
+.video {
+  text-align: center;
+}
+
+.video iframe {
+  border-radius: 25px;
+  width: 90%;
 }
 
 .carousel {

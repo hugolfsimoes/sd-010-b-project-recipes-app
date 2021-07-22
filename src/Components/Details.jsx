@@ -10,7 +10,8 @@ import Copiado from './Copiado';
 
 export default function Details(props) {
   const { id, item, type } = props;
-  const clipboard = new ClipboardJS('.share');
+  // const clipboard = new ClipboardJS('.share');
+  const clipboard = new ClipboardJS(`.${type}`);
   const tipo = type === 'Meal' ? 'comida' : 'bebida';
 
   const [isCopy, setIsCopy] = React.useState(false);
@@ -20,6 +21,10 @@ export default function Details(props) {
     console.log(clipboard.info);
     setIsCopy(true);
   }
+  const youtube = () => (
+    item.strYoutube !== undefined
+      ? item.strYoutube.split('watch?v=').join('embed/') : '');
+
   return (
     <div className="tela-details">
       <div className="img-principal">
@@ -32,7 +37,7 @@ export default function Details(props) {
       <button
         type="button"
         data-testid="share-btn"
-        className="btn-img btn-search"
+        className={ `.${type} btn-img btn-search` }
         data-clipboard-text={ window.location.href }
         onClick={ copyLink }
       >
@@ -71,18 +76,17 @@ export default function Details(props) {
         </ul>
         <p className="textos" data-testid="instructions">{item.strInstructions}</p>
       </div>
-      <div data-testid="video" />
-
-      {/* <embed
-              width="560"
-              height="315"
-              src={ item.strVideo }
-              title={ item.strMeal }
-              frameBorder="0"
-              allow="accelerometer; autoplay;
-              clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            /> */}
+      <div className="video">
+        <iframe
+          data-testid="video"
+          src={ youtube() }
+          title={ item.strMeal }
+          frameBorder="0"
+          allow="accelerometer; autoplay;
+          clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import clipboard from 'clipboard-copy';
 import { Link } from 'react-router-dom';
-import Header from '../Components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Footer from '../Components/Footer';
+import Header from '../Components/Header';
 
 function FavoriteRecipes() {
   const recipeSave = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];

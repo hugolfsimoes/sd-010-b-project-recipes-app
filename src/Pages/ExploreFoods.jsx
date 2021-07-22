@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import HeadBar from '../Components/HeadBar';
 import Footer from '../Components/Footer';
 import { getRandom } from '../redux/actions';
 import MealRecipes from '../services/MealRecipesAPI';
+import HeadBar from '../Components/HeadBar';
 
 function ExploreFoods(props) {
   const { surpriseFood, shouldRedirect, food } = props;

@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import HeadBar from '../Components/HeadBar';
 import Footer from '../Components/Footer';
 import { getIngredient, getRandom } from '../redux/actions';
 import BeverageAPI from '../services/BeverageRecipesAPI';
+import HeadBar from '../Components/HeadBar';
 
 function ExploreDrinks(props) {
   const { ingredientsCatcher, surpriseDrink, shouldRedirect, drink } = props;
