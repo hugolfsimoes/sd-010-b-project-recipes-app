@@ -7,12 +7,20 @@ import { setProgressItem } from '../services/services';
 import { GetRecipesDetails, getDrinks } from '../redux/actions';
 import Details from '../Components/Details';
 import CarroselComidas from '../Components/CarroselComidas';
+// import BeverageAPI from '../services/BeverageRecipesAPI';
+// import MealRecipesAPI from '../services/MealRecipesAPI';
+// import Share from '../images/shareIcon.svg';
+// import FavoriteWhite from '../images/whiteHeartIcon.svg';
+// import FavoriteBlack from '../images/blackHeartIcon.svg';
+import '../styles/Card.css';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
 
 const DrinkDetails = (props) => {
   const { match: { params: { id } } } = props;
   const [item, setItem] = useState({});
+  // const [visible, setVisible] = useState('hidden');
+  // const [favoriteBtn, setFavoriteBtn] = useState(true);
   const [loading, setLoading] = useState(true);
   const inProgressItems = JSON.parse(localStorage.getItem('inProgressRecipes')) || {};
   const inProgressItemsIDs = Object.keys(inProgressItems.cocktails || {});
@@ -36,6 +44,31 @@ const DrinkDetails = (props) => {
           .then(() => setLoading(false)));
     }
   }, []);
+
+  // function checkBtnReceita() {
+  //   const getReceitaStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+  //   getReceitaStorage.forEach((receita) => {
+  //     if (receita === id) {
+  //       setVisible('');
+  //     }
+  //   });
+  // }
+
+  // function iniciarReceita() {
+  //   const valueStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+  //   localStorage.setItem('doneRecipes', JSON.stringify([...valueStorage, id]));
+  //   checkBtnReceita();
+  // }
+
+  // function favoriteChanger() {
+  //   setFavoriteBtn(!favoriteBtn);
+  // }
+
+  // function Checker() {
+  //   console.log(drink[0]);
+  // }
+
+  // const copy = require('clipboard-copy')
 
   return !redirect ? <h3>Loading</h3>
     : (
@@ -65,7 +98,7 @@ const DrinkDetails = (props) => {
 DrinkDetails.propTypes = {
   id: PropTypes.any,
   drinkById: PropTypes.any,
-}.isRiquered;
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   drink: state.details.item,

@@ -9,7 +9,8 @@ import blackHeart from '../images/blackHeartIcon.svg';
 
 export default function Details(props) {
   const { id, item, type } = props;
-  const clipboard = new ClipboardJS('.share');
+  // const clipboard = new ClipboardJS('.share');
+  const clipboard = new ClipboardJS(`.${type}`);
   const tipo = type === 'Meal' ? 'comida' : 'bebida';
 
   const [isCopy, setIsCopy] = React.useState(false);
@@ -26,7 +27,7 @@ export default function Details(props) {
       <button
         type="button"
         data-testid="share-btn"
-        className="share"
+        className={ `.${type}` }
         data-clipboard-text={ window.location.href }
         onClick={ copyLink }
       >
