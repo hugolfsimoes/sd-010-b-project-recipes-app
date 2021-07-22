@@ -58,6 +58,7 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
 
       <div className="icones">
         <p
+          className="title-repice"
           data-testid="recipe-title"
         >
           { typeRecipe === 'food' ? list.strMeal : list.strDrink }
@@ -100,7 +101,8 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
       >
         {list.strInstructions}
       </p>
-      <ul className="parts">
+      <p className="ingredients-p">Ingredients:</p>
+      <ul className="ingredients-details parts">
         {leng.map((ing, index) => (
           <li
             className="instruction"
@@ -127,7 +129,10 @@ function RecipeDetail({ idRecipe, typeRecipe }) {
         clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />}
-      <div className="recipe-list parts">
+
+      <p className="recomendacoes">Recomendações</p>
+      <div className="recipe-list parts recomendacoes-list">
+
         { reco.map((item, index) => (
           <div
             data-testid={ `${index}-recomendation-card` }

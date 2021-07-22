@@ -64,8 +64,13 @@
 .lista {
   margin-top: 30px;
   margin-left: 20%;
-  padding-bottom: 50px;
+  padding-bottom: 70px;
 }
+
+.checkbox-input {
+  margin-right: 10px;
+}
+
 
 .icones {
   display: flex;
@@ -394,11 +399,10 @@
 }
 
 .start-recipe {
-  margin-left: 90px;
+  margin-left: 110px;
   margin-right: 110px;
-  margin-bottom: 5px;
   background-color: teal !important;
-  bottom: 0;
+  bottom: 5px;
   position: fixed;
 }
 
@@ -626,6 +630,36 @@
 
 .heart-share {
   width: 25px;
+}
+
+.recomendacoes {
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.recomendacoes-list {
+  margin-top: 0;
+}
+
+.ingredients-details {
+  margin-top: 0;
+}
+
+.ingredients-p {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 900;
+
+}
+
+.title-repice {
+  font-size: 25px;
+  font-weight: 900;
 }
 
 @keyframes shake {

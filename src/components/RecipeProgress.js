@@ -54,7 +54,7 @@ export default function RecipeProgress({ idRecipe, typeRecipe }) {
       <div className="icones">
         <p
           data-testid="recipe-title"
-          className="instruction"
+          className="title-repice instruction"
         >
           { typeRecipe === 'food' ? list.strMeal : list.strDrink }
 
@@ -90,6 +90,7 @@ export default function RecipeProgress({ idRecipe, typeRecipe }) {
       <p className="instruction" data-testid="instructions">{list.strInstructions}</p>
 
       <div className="lista-ingredientes">
+        <p className="ingredients-p">Ingredients:</p>
         <ul className="lista">
           {leng.map((ing, index) => (
             <li
@@ -98,6 +99,8 @@ export default function RecipeProgress({ idRecipe, typeRecipe }) {
               data-testid={ `${index}-ingredient-step` }
             >
               <input
+                id={ list[ing] }
+                className="checkbox-input"
                 onChange={ ({ target }) => changeList({ target },
                   { typeRecipe, objectStart, idRecipe, setDetail, detail, setStatus }) }
                 type="checkbox"
