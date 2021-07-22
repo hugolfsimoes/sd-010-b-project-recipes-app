@@ -16,7 +16,7 @@ function VideoPlayer({ videoLink, testID, recipeTitle }) {
         frameBorder="0"
         width="853"
         height="480"
-        src={ videoLink }
+        src={ videoLink.replace('watch?v=', 'embed/') }
         title={ recipeTitle }
       />
     </div>

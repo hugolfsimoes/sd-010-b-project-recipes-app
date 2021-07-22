@@ -24,18 +24,15 @@ export default function InProgress() {
     : ['thecocktaildb', 'drinks', 'strDrinkThumb', 'strDrink'];
 
   useEffect(() => {
-    function getApiData() {
-      getDataById(domain, id).then((res) => {
-        setRenderer(res[firstKey]);
+    getDataById(domain, id).then((res) => {
+      setRenderer(res[firstKey]);
 
-        const list = Object.entries(res[firstKey][0]).filter((el) => (
-          (el[0].includes('Ingredient')
+      const list = Object.entries(res[firstKey][0]).filter((el) => (
+        (el[0].includes('Ingredient')
           || el[0].includes('Measure')) && el[1]) && el[1] !== ' ');
 
-        setIngridientsList(list);
-      });
-    }
-    getApiData();
+      setIngridientsList(list);
+    });
   }, [id, domain, firstKey]);
 
   function handleIngredientsData() {

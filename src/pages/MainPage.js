@@ -111,6 +111,7 @@ export default function MainPage() {
       : (
         <section className="container-mainPaige">
           <Header />
+
           <section className="container-buttons">
             {categoriesList.map((category) => (
               <Button
@@ -119,7 +120,7 @@ export default function MainPage() {
                 key={ category.strCategory }
                 onClick={ () => handleCategoryFilter(category.strCategory) }
               >
-                {category.strCategory.replace(/\W/g, ' ')}
+                {category.strCategory.split(/\W/g)[0]}
               </Button>))}
             <Button
               className="category-buttons"
@@ -127,21 +128,26 @@ export default function MainPage() {
               onClick={ handleAllClick }
             >
               All
-
             </Button>
           </section>
 
           {isLoadingCat ? (<OtherLoader category={ categorySelected } />)
-            : (renderer.map((item, i) => (
-              <Link
-                className="link-card"
-                key={ i }
-                to={ `${path}/${item[searchId]}` }
-              >
-                <Card mealOrDrink={ item } index={ i } testId="recipe" />
-              </Link>)))}
+            : (
 
-          <button type="button" onClick={ handleMoreCards }>More Recipes</button>
+              <>
+                {renderer.map((item, i) => (
+                  <Link
+                    className="link-card"
+                    key={ i }
+                    to={ `${path}/${item[searchId]}` }
+                  >
+                    <Card mealOrDrink={ item } index={ i } testId="recipe" />
+                  </Link>))}
+                <button type="button" onClick={ handleMoreCards }>More Recipes</button>
+              </>
+
+            )}
+
           <Footer />
         </section>
       )
