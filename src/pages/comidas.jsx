@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import { fetchApiFoodCategories,
   fetchFilterFoodByCategories,
@@ -19,12 +21,10 @@ class Comidas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // checked: false,
       isRedirect: false,
     };
 
     this.categories = this.categories.bind(this);
-    // this.redirect = this.redirect.bind(this);
     this.updateState = this.updateState.bind(this);
   }
 
@@ -37,17 +37,9 @@ class Comidas extends Component {
     }
 
     apiFoodCategories();
-    // await apiFoodCategories().then((data) => console.log(data));
   }
 
   componentDidUpdate() {
-    // const { meals } = this.props;
-    // console.log(meals.idMeal);
-    // const check = meals.some((el) => el.idMeal);
-    // console.log(check);
-    // if (meals.length === 1 && !check) {
-    //   this.updateState();
-    // }
     const { meals } = this.props;
     const check = meals.some((el) => el.idMeal === '52968');
     if (meals.length === 1 && !check) {
@@ -61,8 +53,6 @@ class Comidas extends Component {
 
   categories() {
     const { getFoodCategories } = this.props;
-    // const teste = getFoodCategories.map((elem) => elem);
-    // console.log(getFoodCategories);
     return (
       <div>
         { getFoodCategories.map((elem, index) => (
@@ -86,7 +76,14 @@ class Comidas extends Component {
       match,
     } = this.props;
     return (
-      <section className="food-wrap">
+      <motion.section
+        className="food-wrap"
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
         <main className="food-main">
           <ButtonCategories
@@ -112,7 +109,7 @@ class Comidas extends Component {
         </main>
         { isRedirect === true && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
         <Footer />
-      </section>
+      </motion.section>
     );
   }
 }

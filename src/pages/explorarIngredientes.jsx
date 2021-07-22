@@ -9,7 +9,7 @@ import { fetchByIngredient,
 import Footer from '../components/footer';
 import Header from '../components/header';
 
-export class explorarIngredientes extends Component {
+class explorarIngredientes extends Component {
   componentDidMount() {
     const { fetchApi, location, hasSearchBar } = this.props;
     hasSearchBar(false);

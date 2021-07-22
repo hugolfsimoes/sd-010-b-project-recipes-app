@@ -1,15 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowBack, IoMdHome } from 'react-icons/io';
 
 import '../css/DetailsHeader.css';
 import identification from '../helper/dictionaryApi';
 import SharedFavorites from './SharedFavorites';
 
 class DetailsHeader extends Component {
+  headerContainer() {
+    const { data, isDrink, page, id } = this.props;
+    const keyName = identification(data);
+    return (
+      <section className="header-container">
+        <div className="title-container">
+          <h2 className="recipe-title" data-testid="recipe-title">
+            {data[keyName.Name]}
+          </h2>
+          <span
+            className="recipe-category"
+            data-testid="recipe-category"
+          >
+            { isDrink ? data[keyName.Alcoholic] : data[keyName.Category] }
+          </span>
+        </div>
+        <div className="shared-favorite-content">
+          <SharedFavorites id={ id } page={ page } />
+        </div>
+      </section>
+    );
+  }
+
   render() {
-    const { data, isDrink, history, page, id } = this.props;
+    const { data, history } = this.props;
     const keyName = identification(data);
     return (
       <section>
@@ -21,20 +44,7 @@ class DetailsHeader extends Component {
             alt={ data[keyName.Name] }
           />
           <section className="recipe-header-content">
-            <div className="title-container">
-              <h2 className="recipe-title" data-testid="recipe-title">
-                {data[keyName.Name]}
-              </h2>
-              <span
-                className="recipe-category"
-                data-testid="recipe-category"
-              >
-                { isDrink ? data[keyName.Alcoholic] : data[keyName.Category] }
-              </span>
-            </div>
-            <div className="shared-favorite-content">
-              <SharedFavorites id={ id } page={ page } />
-            </div>
+            {this.headerContainer()}
           </section>
         </section>
         <button
@@ -43,6 +53,13 @@ class DetailsHeader extends Component {
           onClick={ () => history.goBack() }
         >
           <IoIosArrowBack />
+        </button>
+        <button
+          type="button"
+          className="goHome"
+          onClick={ () => history.push('/comidas') }
+        >
+          <IoMdHome />
         </button>
       </section>
     );

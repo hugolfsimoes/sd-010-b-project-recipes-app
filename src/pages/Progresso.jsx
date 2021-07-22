@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 import { fetchDrinkDetails, fetchFoodDetails, startRecipe } from '../action';
 import Ingredients from '../components/Ingredients';
 import '../css/Details.css';
@@ -73,8 +74,8 @@ class Progresso extends Component {
   onClick(param, element, boolean) {
     const { allIngredients } = this.state;
     if (allIngredients.includes(param) && boolean === 'checked') {
-      console.log(element);
       element.classList.remove('riscado');
+      console.log(element);
 
       return this.setState({
         allIngredients: allIngredients.filter((el) => el !== param),
@@ -146,7 +147,7 @@ class Progresso extends Component {
   }
 
   finishRecipe() {
-    const { match: { params: { id, page } } } = this.props;
+    const { match: { params: { id, page } }, history } = this.props;
     if (localStorage.inProgressRecipes) {
       const inProgress = JSON.parse(localStorage.getItem('inProgressRecipes')) || [];
 
@@ -160,6 +161,7 @@ class Progresso extends Component {
       }
     }
     this.saveDoneRecipes();
+    history.push('/receitas-feitas');
   }
 
   countRecipesAllLength() {
@@ -183,7 +185,14 @@ class Progresso extends Component {
     const { allIngredients, count, recipesLength } = this.state;
 
     return (
-      <section className="page-progress">
+      <motion.section
+        className="page-progress"
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         { details.strIngredient1 !== undefined && this.test() }
         {link && <Modal history={ history }><p>Link copiado!</p></Modal>}
         <DetailsHeader data={ details } page={ page } id={ id } history={ history } />
@@ -204,7 +213,7 @@ class Progresso extends Component {
               <Instructions data={ details } />
             </span>
           </section>
-          <Link to="/receitas-feitas">
+          <section className="details-btn-content">
             <button
               className={ count !== recipesLength
                 ? 'details-btn-startRecipe disabled' : 'details-btn-startRecipe' }
@@ -217,9 +226,9 @@ class Progresso extends Component {
             >
               Finalizar Receita
             </button>
-          </Link>
+          </section>
         </section>
-      </section>
+      </motion.section>
     );
   }
 }

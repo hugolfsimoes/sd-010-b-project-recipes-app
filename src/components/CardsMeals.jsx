@@ -20,7 +20,7 @@ class CardsMeals extends Component {
     const max = 6;
     const sliceMeals = meals.slice(0, max);
     return (
-      <section>
+      <section className="slider">
         <Slider { ...settings }>
           {
             sliceMeals.map((measl, index) => (

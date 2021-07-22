@@ -14,7 +14,6 @@
   font-size: var(--font-size-p2);
   font-weight: 500;
   justify-content: flex-start;
-  margin: 1rem;
 }
 
 .ingredients-measures {
@@ -23,15 +22,14 @@
 
 /* código retirado do link https://codepen.io/avstorm/pen/vYYBxRM?editors=1100 */
 .ingredients-check {
-  z-index: 0;
+  opacity: 0;
+  position: absolute;
 }
 
 .checkbox {
-  background-color: white;
+  align-items: center;
   cursor: pointer;
   display: flex;
-  left: 28px;
-  position: absolute;
 }
 
 .checkbox span {

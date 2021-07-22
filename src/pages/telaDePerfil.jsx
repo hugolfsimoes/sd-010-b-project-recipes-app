@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { getSearchBarResponse } from '../action';
@@ -32,7 +34,13 @@ export class TelaDePerfil extends Component {
 
   buttonsRender() {
     return (
-      <section>
+      <motion.section
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Link to="/receitas-feitas">
           <button
             type="button"
@@ -63,7 +71,7 @@ export class TelaDePerfil extends Component {
           </button>
         </Link>
 
-      </section>
+      </motion.section>
     );
   }
 

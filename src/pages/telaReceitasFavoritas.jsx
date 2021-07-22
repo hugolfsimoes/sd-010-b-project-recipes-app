@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import copy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import { getSearchBarResponse } from '../action/index';
 
@@ -52,7 +54,13 @@ class TelaReceitasFavoritas extends Component {
     const { favIconColor, favoriteList } = this.state;
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
     return (
-      <section>
+      <motion.section
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
         {link && <Modal history={ history }><p>Link copiado!</p></Modal>}
         <section className="favorite-recipes-main">
@@ -155,7 +163,7 @@ class TelaReceitasFavoritas extends Component {
             }
           </section>
         </section>
-      </section>
+      </motion.section>
     );
   }
 }

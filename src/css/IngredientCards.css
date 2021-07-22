@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 80px 0;
+  margin: 80px 0 112px;
   width: 100vw;
 }
 

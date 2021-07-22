@@ -33,6 +33,7 @@ class Header extends Component {
     return (
       <button className="btn-search-bar search-bar" type="button" onClick={ this.verify }>
         <img
+          className="search-top-btn"
           data-testid="search-top-btn"
           src={ searchIcon }
           alt="search"

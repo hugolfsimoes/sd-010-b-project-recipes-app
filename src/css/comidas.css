@@ -1,44 +1,10 @@
-:root {
-
-  /* COLOR STYLES */
-
-  --crl-Primary: #1fcc79;
-
-  --crl-Secondary: #ff6464;
-
-  --crl-Main-Text: #2e3e5c;
-
-  --crl-Secondary-Text: #9fa5c0;
-
-  --crl-Outline: #d0dbea;
-
-  --crl-form: #f4f5f7;
-
-  --crl-White: white;
-
-  /* FONT STYLES */
-
-  --font-size-h1: 1.37rem;
-
-  --font-size-h2: 1.06rem;
-
-  --font-size-h3: 0.93rem;
-
-  --font-size-p1: 1.06rem;
-
-  --font-size-p2: 0.93rem;
-
-  --font-size-s: 0.75rem;
-
-}
-
 .food-main {
   align-items: center;
   display: flex;
   flex-direction: column;
   font-family: Inter , sans-serif;
   justify-content: center;
-  margin-bottom: 150px;
+  margin-bottom: 182px;
   position: relative;
   top: 80px;
 }
@@ -48,6 +14,5 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  padding: 0.5rem;
   width: 100vw;
 }

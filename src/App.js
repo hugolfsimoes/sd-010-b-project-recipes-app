@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import login from './pages/login';
 import Comidas from './pages/comidas';
 import Bebidas from './pages/bebidas';
@@ -18,7 +19,7 @@ import Receitas from './pages/ReceitasFeitas';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <AnimatePresence exitBeforeEnter>
         <Switch>
           <Route path="/explorar/bebidas/area" component={ NotFound } />
           <Route path="/explorar/comidas/area" component={ explorarArea } />
@@ -42,7 +43,7 @@ class App extends Component {
           <Route path="/comidas" component={ Comidas } />
           <Route exact path="/" component={ login } />
         </Switch>
-      </BrowserRouter>
+      </AnimatePresence>
     );
   }
 }

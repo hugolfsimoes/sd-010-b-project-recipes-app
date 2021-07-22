@@ -34,7 +34,6 @@ class SearchBar extends Component {
       fetchApiDrinks, fetchApiDrinksByingredient,
       fetchApiDrinksByFirstLetter } = this.props;
     const { location } = this.props;
-    // console.log(fetchApiDrinksByFirstLetter);
 
     if (location === '/comidas') {
       return this.handleFoodAndDrink(fetchApi,

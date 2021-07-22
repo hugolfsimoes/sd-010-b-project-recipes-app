@@ -12,7 +12,7 @@ class Footer extends Component {
     return (
       <section className="footer-main">
         <footer data-testid="footer" className="footer">
-          <Link to="/bebidas">
+          <Link className="footer-btn" to="/bebidas">
             <div className="footer-btn">
               <img
                 className="footer-icon"
@@ -26,7 +26,7 @@ class Footer extends Component {
           <Link className="footer-btn" to="/explorar">
             <div className="btn-explorer">
               <img
-                className="footer-icon"
+                className="footer-icon explorer-icon"
                 src={ exploreIcon }
                 alt="explorar"
                 data-testid="explore-bottom-btn"
