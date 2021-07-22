@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 
 import '../css/Details.css';
 import Instructions from '../components/Instructions';
@@ -103,7 +105,7 @@ class Detalhes extends Component {
 
   btnStartRecipes() {
     return (
-      <section>
+      <section className="details-btn-content">
         <button
           className="details-btn-startRecipe"
           type="button"
@@ -120,7 +122,7 @@ class Detalhes extends Component {
 
   btnContinueRecipe() {
     return (
-      <section>
+      <section className="details-btn-content">
         <button
           className="details-btn-startRecipe"
           type="button"
@@ -145,7 +147,14 @@ class Detalhes extends Component {
       link,
     } = this.props;
     return (
-      <section className="page-details">
+      <motion.section
+        className="page-details"
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         {
           link && <Modal history={ history }><p>Link copiado!</p></Modal>
         }
@@ -153,15 +162,15 @@ class Detalhes extends Component {
         <section className="details-content">
           <section>
             <h3 className="details-title">Ingredients</h3>
-            <span className="details-ingredients">
+            <div className="details-ingredients">
               <Ingredients data={ details } />
-            </span>
+            </div>
           </section>
           <section className="details-instruction-content" data-testid="instructions">
             <h3 className="details-title">Instructions</h3>
-            <span className="details-intructions">
+            <div className="details-intructions">
               <Instructions data={ details } />
-            </span>
+            </div>
           </section>
           {
             isDrink === false && (
@@ -180,7 +189,7 @@ class Detalhes extends Component {
         </section>
         { finishedRecipe ? null : this.btnStartRecipes() }
         { startedRecipe ? this.btnContinueRecipe() : null }
-      </section>
+      </motion.section>
     );
   }
 }

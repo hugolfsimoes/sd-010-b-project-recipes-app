@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import { connect } from 'react-redux';
 import { HiOutlineMail, HiOutlineLockClosed } from 'react-icons/hi';
 import { BiCheckCircle } from 'react-icons/bi';
@@ -60,72 +61,81 @@ class login extends Component {
   render() {
     const { userEmail, userPassword, btnDisable, errors, validate } = this.state;
     return (
-      <section className="main-form">
-        <form className="form-login">
-          <h1>Bem Vindo!</h1>
-          <span className="form-subtitle">Por favor insira sua conta aqui</span>
-          <section className="sec-email-password">
-            <HiOutlineMail className="icon" />
-            <input
-              className="login-input"
-              data-testid="email-input"
-              type="email"
-              name="userEmail"
-              placeholder="Email"
-              value={ userEmail }
-              onFocus={ () => this.setState({ validate: true }) }
-              onChange={ (e) => this.handleChange(e) }
-            />
+      <section className="form-main">
+        <section className="form-container">
+          <section className="logo-container">
+            <span className="logo">Larica</span>
           </section>
-          <section className="sec-email-password">
-            <HiOutlineLockClosed className="icon" />
-            <input
-              className="login-input"
-              data-testid="password-input"
-              type="password"
-              name="userPassword"
-              placeholder="Senha"
-              value={ userPassword }
-              onChange={ (e) => this.handleChange(e) }
-            />
-          </section>
-          {
-            validate && (
-              <section className="form-validate">
-                <span className="validate-title">Validação</span>
-                <div>
-                  <BiCheckCircle
-                    className={ errors.errorEmail ? 'error-check' : 'error-checked' }
-                  />
-                  <span
-                    className={ errors.errorEmail ? 'check-true' : 'check-false' }
-                  >
-                    Insira um email válido
-                  </span>
-                </div>
-                <div>
-                  <BiCheckCircle
-                    className={ errors.errorPassword ? 'error-check' : 'error-checked' }
-                  />
-                  <span
-                    className={ errors.errorPassword ? 'check-true' : 'check-false' }
-                  >
-                    Insira uma senha com mais de 6 caracteres
-                  </span>
-                </div>
-              </section>
-            )
-          }
-          <button
-            className={ btnDisable ? 'form-btn-disable' : 'form-btn-enable' }
-            data-testid="login-submit-btn"
-            type="button"
-            disabled={ btnDisable }
-            onClick={ () => this.handleClick() }
-          >
-            Entrar
-          </button>
-        </form>
+          <form className="form-login">
+            <h1>Bem Vindo!</h1>
+            <span className="form-subtitle">Por favor insira sua conta aqui</span>
+            <section className="sec-email-password">
+              <HiOutlineMail className="icon" />
+              <input
+                className="login-input"
+                data-testid="email-input"
+                type="email"
+                name="userEmail"
+                placeholder="Email"
+                value={ userEmail }
+                onFocus={ () => this.setState({ validate: true }) }
+                onChange={ (e) => this.handleChange(e) }
+              />
+            </section>
+            <section className="sec-email-password">
+              <HiOutlineLockClosed className="icon" />
+              <input
+                className="login-input"
+                data-testid="password-input"
+                type="password"
+                name="userPassword"
+                placeholder="Senha"
+                value={ userPassword }
+                onChange={ (e) => this.handleChange(e) }
+              />
+            </section>
+            {
+              validate && (
+                <motion.section
+                  className="form-validate"
+                  initial={ { opacity: 0 } }
+                  animate={ { opacity: 1 } }
+                >
+                  <span className="validate-title">Validação</span>
+                  <div>
+                    <BiCheckCircle
+                      className={ errors.errorEmail ? 'error-check' : 'error-checked' }
+                    />
+                    <span
+                      className={ errors.errorEmail ? 'check-true' : 'check-false' }
+                    >
+                      Insira um email válido
+                    </span>
+                  </div>
+                  <div>
+                    <BiCheckCircle
+                      className={ errors.errorPassword ? 'error-check' : 'error-checked' }
+                    />
+                    <span
+                      className={ errors.errorPassword ? 'check-true' : 'check-false' }
+                    >
+                      Insira uma senha com mais de 6 caracteres
+                    </span>
+                  </div>
+                </motion.section>
+              )
+            }
+            <button
+              className={ btnDisable ? 'form-btn-disable' : 'form-btn-enable' }
+              data-testid="login-submit-btn"
+              type="button"
+              disabled={ btnDisable }
+              onClick={ () => this.handleClick() }
+            >
+              Entrar
+            </button>
+          </form>
+        </section>
       </section>
     );
   }

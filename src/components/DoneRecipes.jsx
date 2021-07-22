@@ -7,7 +7,6 @@ import copy from 'clipboard-copy';
 import { CgPentagonRight } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
-import Modal from './Modal';
 import Group26 from '../images/Group26.svg';
 import { isLink } from '../action/details';
 import '../css/doneRecipes.css';
@@ -51,12 +50,9 @@ class DoneRecipes extends Component {
 
   render() {
     const { doneRecipes } = this.state;
-    const { history, link, islink } = this.props;
+    const { islink } = this.props;
     return (
       <section className="done-recipes-main">
-        {
-          link && <Modal history={ history }><p>Link copiado!</p></Modal>
-        }
         <section className="list-btn">
           <button
             className="filter-btn"
@@ -170,14 +166,8 @@ const mapDispatchToProps = (dispatch) => ({
   islink: (bool) => dispatch(isLink(bool)),
 });
 
-const mapStateToProps = (state) => ({
-  link: state.recipeDetails.link,
-});
-
 DoneRecipes.propTypes = {
-  link: PropTypes.bool.isRequired,
-  history: PropTypes.shape.isRequired,
   islink: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DoneRecipes);
+export default connect(null, mapDispatchToProps)(DoneRecipes);

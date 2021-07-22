@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { getSearchBarResponse } from '../action/index';
@@ -19,7 +21,13 @@ export class TelaDeExplorar extends Component {
     const { location } = this.props;
 
     return (
-      <section>
+      <motion.section
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
         <section className="explorer-screen-main">
           <Link to="/explorar/comidas">
@@ -44,7 +52,7 @@ export class TelaDeExplorar extends Component {
           </Link>
         </section>
         <Footer />
-      </section>
+      </motion.section>
     );
   }
 }

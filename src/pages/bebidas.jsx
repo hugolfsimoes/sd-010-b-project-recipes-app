@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import ButtonCategories from '../components/ButtonCategories';
 import Cards from '../components/cards';
@@ -57,9 +59,15 @@ class Bebidas extends Component {
       dispatchDrinks,
       match,
     } = this.props;
-    console.log(match.path);
     return (
-      <div>
+      <motion.section
+        className="food-wrap"
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
         <main className="drink-main">
           <ButtonCategories
@@ -85,7 +93,7 @@ class Bebidas extends Component {
           { isRedirect === true && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
         </main>
         <Footer />
-      </div>
+      </motion.section>
     );
   }
 }

@@ -1,10 +1,29 @@
-.main-form {
+.form-main {
   align-items: center;
   background-color: var(--crl-White);
   display: flex;
   height: 100vh;
   justify-content: center;
   width: 100vw;
+}
+
+.form-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.logo-container {
+  margin: 2rem;
+}
+
+.logo {
+  color: var(--crl-Secondary);
+  font-family: Damion , cursive;
+  font-size: 4.5em;
+  font-weight: 700;
 }
 
 .form-login {
@@ -65,7 +84,7 @@
 }
 
 .form-validate {
-  margin: 0.75rem 0;
+  margin: 1.5rem 0;
 }
 
 .validate-title {
@@ -115,7 +134,7 @@
   font-size: var(--font-size-p2);
   font-weight: 700;
   height: 3.5rem;
-  margin-top: 2.5rem;
+  margin-top: 0.5rem;
   outline: none;
   transition: background-color 500ms ease-in-out;
   transition-delay: 500ms;
@@ -130,7 +149,7 @@
   font-size: var(--font-size-p2);
   font-weight: 700;
   height: 3.5rem;
-  margin-top: 2.5rem;
+  margin-top: 0.5rem;
   outline: none;
   width: 20.43rem;
 }

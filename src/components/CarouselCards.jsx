@@ -17,7 +17,6 @@ export default function CarouselCards({ id, img, title, index, url, subTitle }) 
     <Card
       className="carousel-card-content "
       data-testid={ `${index}-recomendation-card` }
-      onClick={ redirectRecipe }
     >
       <div className="carousel-img-content">
         <img className="group-26" src={ Group26 } alt={ Group26 } />
@@ -30,7 +29,7 @@ export default function CarouselCards({ id, img, title, index, url, subTitle }) 
           />
         </div>
       </div>
-      <Card.Body>
+      <Card.Body onClick={ redirectRecipe }>
         <Card.Title
           className="carousel-title"
           data-testid={ `${index}-recomendation-title` }

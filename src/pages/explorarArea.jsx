@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
+import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Cards from '../components/cards';
@@ -33,7 +35,13 @@ class ExplorarArea extends Component {
   render() {
     const { location, country, meals } = this.props;
     return (
-      <div>
+      <motion.div
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
         <section className="ex-area-content">
           <select
@@ -64,7 +72,7 @@ class ExplorarArea extends Component {
           </section>
         </section>
         <Footer />
-      </div>
+      </motion.div>
     );
   }
 }
