@@ -19,7 +19,7 @@ function ProviderRecipes({ children }) {
   const [isLoading, setIsLoading] = useState(true);
   const [drinksRec, setDrinksRec] = useState([]);
   const [foodRec, setFoodRec] = useState([]);
-  const [toggleFood, setToggleFood] = useState(false);
+  const [toggleFood, setToggleFood] = useState(true);
   const [randomFood, setRandomFood] = useState([]);
   const [randomDrink, setRandomDrink] = useState([]);
   const [searchByIngredient, setSearchByIngredient] = useState([]);

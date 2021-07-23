@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ContextRecipes from '../context/contextRecipes';
 
 function DrinkCategoryButtons() {
   const { setDrinks,
     drinkCategoryName, setDrinkCategoryName, setToggleFood,
     toggleFood } = useContext(ContextRecipes);
+  const [buttonSelected, setbuttonSelected] = useState('All');
   const maxLength = 4;
 
   const fetchDrinkCategories = (category) => {
@@ -23,13 +24,18 @@ function DrinkCategoryButtons() {
   };
 
   const handleClick = (category) => {
-    if (toggleFood === false) {
+    if (category === 'All') {
+      return fetchDrinkRecipes();
+    }
+    if (toggleFood === false || category !== buttonSelected) {
       fetchDrinkCategories(category);
+      setbuttonSelected(category);
       setToggleFood(true);
     } else {
-      setToggleFood(false);
+      setbuttonSelected('All');
       fetchDrinkRecipes();
     }
+    console.log(toggleFood);
   };
 
   const fetchDrinkCategoryName = () => {
@@ -42,16 +48,11 @@ function DrinkCategoryButtons() {
   useEffect(() => {
     fetchDrinkCategoryName();
   });
-
-  const handleClickAll = () => {
-    fetchDrinkRecipes();
-  };
-
   return (
     <div>
       <button
         type="button"
-        onClick={ handleClickAll }
+        onClick={ () => handleClick('All') }
         data-testid="All-category-filter"
       >
         All
