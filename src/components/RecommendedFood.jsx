@@ -9,7 +9,7 @@ function RecommendedDrinks() {
       .then((response) => response.json())
       .then((response) => setFoodRec(response.meals));
   }, [setFoodRec]);
-  console.log(foodRec);
+
   const MAGIC_NUMBER = 6;
 
   return (

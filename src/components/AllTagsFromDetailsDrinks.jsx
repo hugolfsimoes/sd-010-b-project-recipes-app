@@ -7,7 +7,6 @@ import './DetailsPage.css';
 import RecommendedFood from './RecommendedFood';
 
 function AllTagsFromDetailsDrinks(drinks) {
-  console.log(drinks);
   const [star, setStar] = useState(false);
   const listIngredients = Object.keys(drinks.drinks[0])
     .filter((drink) => drink.includes('Ingredient'));
