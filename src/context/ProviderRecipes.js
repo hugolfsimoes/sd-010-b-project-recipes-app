@@ -15,9 +15,7 @@ function ProviderRecipes({ children }) {
   const [areas, setAreas] = useState(['']);
   const [foodByArea, setFoodByArea] = useState([]);
   const [drinkByArea, setDrinkByArea] = useState([]);
-  const [searchInput, setsearchInput] = useState({
-    // name: '',
-  });
+  const [searchInput, setsearchInput] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [drinksRec, setDrinksRec] = useState([]);
   const [foodRec, setFoodRec] = useState([]);
@@ -43,7 +41,6 @@ function ProviderRecipes({ children }) {
 
   useEffect(() => {
     fetchFoodRecipes();
-    // fetchDrinkRecipes();
   }, []);
 
   useEffect(() => {
