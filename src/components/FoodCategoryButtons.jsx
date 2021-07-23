@@ -3,8 +3,7 @@ import ContextRecipes from '../context/contextRecipes';
 
 function FoodCategoryButtons() {
   const { setRecipes,
-    foodCategoryName, setFoodCategoryName,
-    toggleFood, setToggleFood } = useContext(ContextRecipes);
+    foodCategoryName, setFoodCategoryName } = useContext(ContextRecipes);
   const maxLength = 4;
 
   const fetchFoodCategories = (category) => {
@@ -23,12 +22,10 @@ function FoodCategoryButtons() {
   };
 
   const handleClick = (category) => {
-    if (toggleFood === false) {
-      fetchFoodCategories(category);
-      setToggleFood(true);
-    } else {
-      setToggleFood(false);
+    if (category === 'All') {
       fetchFoodRecipes();
+    } else {
+      fetchFoodCategories(category);
     }
   };
 
@@ -43,15 +40,11 @@ function FoodCategoryButtons() {
     fetchFoodCategoryName();
   });
 
-  const handleClickAll = () => {
-    fetchFoodRecipes();
-  };
-
   return (
     <div>
       <button
         type="button"
-        onClick={ handleClickAll }
+        onClick={ () => handleClick('All') }
         data-testid="All-category-filter"
       >
         All

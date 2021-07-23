@@ -3,8 +3,7 @@ import ContextRecipes from '../context/contextRecipes';
 
 function DrinkCategoryButtons() {
   const { setDrinks,
-    drinkCategoryName, setDrinkCategoryName, setToggleFood,
-    toggleFood } = useContext(ContextRecipes);
+    drinkCategoryName, setDrinkCategoryName } = useContext(ContextRecipes);
   const maxLength = 4;
 
   const fetchDrinkCategories = (category) => {
@@ -23,12 +22,10 @@ function DrinkCategoryButtons() {
   };
 
   const handleClick = (category) => {
-    if (toggleFood === false) {
-      fetchDrinkCategories(category);
-      setToggleFood(true);
-    } else {
-      setToggleFood(false);
+    if (category === 'All') {
       fetchDrinkRecipes();
+    } else {
+      fetchDrinkCategories(category);
     }
   };
 
@@ -43,15 +40,11 @@ function DrinkCategoryButtons() {
     fetchDrinkCategoryName();
   });
 
-  const handleClickAll = () => {
-    fetchDrinkRecipes();
-  };
-
   return (
     <div>
       <button
         type="button"
-        onClick={ handleClickAll }
+        onClick={ () => handleClick('All') }
         data-testid="All-category-filter"
       >
         All
