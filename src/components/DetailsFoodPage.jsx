@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';

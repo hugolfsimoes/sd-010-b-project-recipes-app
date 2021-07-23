@@ -1,9 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
-// import shareIcon from '../images/shareIcon.svg';
-// import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import AllTagsFromDetailsDrinks from './AllTagsFromDetailsDrinks';
 import BtnStartDrinkRecipe from './BtnStartDrinkRecipe';
 
@@ -19,7 +16,7 @@ function DetailsDrinkPage({ match: { params } }) {
     };
     getRecipes();
   }, [id, setDrinks, setIsLoading]);
-  console.log('Estou aqui', drinks);
+
   if (!drinks || drinks[0] === undefined) return <h1>Carregando...</h1>;
 
   return (
