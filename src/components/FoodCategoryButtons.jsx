@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ContextRecipes from '../context/contextRecipes';
 
 function FoodCategoryButtons() {
   const { setRecipes,
-    foodCategoryName, setFoodCategoryName } = useContext(ContextRecipes);
+    foodCategoryName, setFoodCategoryName, setToggleFood,
+    toggleFood } = useContext(ContextRecipes);
+  const [buttonSelected, setbuttonSelected] = useState('All');
   const maxLength = 4;
 
   const fetchFoodCategories = (category) => {
@@ -23,10 +25,17 @@ function FoodCategoryButtons() {
 
   const handleClick = (category) => {
     if (category === 'All') {
-      fetchFoodRecipes();
-    } else {
-      fetchFoodCategories(category);
+      return fetchFoodRecipes();
     }
+    if (toggleFood === false || category !== buttonSelected) {
+      fetchFoodCategories(category);
+      setbuttonSelected(category);
+      setToggleFood(true);
+    } else {
+      setbuttonSelected('All');
+      fetchFoodRecipes();
+    }
+    console.log(toggleFood, buttonSelected);
   };
 
   const fetchFoodCategoryName = () => {
