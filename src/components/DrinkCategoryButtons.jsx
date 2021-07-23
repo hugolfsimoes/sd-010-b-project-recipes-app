@@ -25,7 +25,7 @@ function DrinkCategoryButtons() {
 
   const handleClick = (category) => {
     if (category === 'All') {
-      return fetchFoodRecipes();
+      return fetchDrinkRecipes();
     }
     if (toggleFood === false || category !== buttonSelected) {
       fetchDrinkCategories(category);
