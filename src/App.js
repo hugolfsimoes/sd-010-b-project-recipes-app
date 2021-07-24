@@ -19,6 +19,7 @@ import Progress from './Pages/Progress';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
+// import './desktop.css';
 
 import Loading from './Components/Loading';
 

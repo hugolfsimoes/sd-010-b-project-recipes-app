@@ -11,6 +11,7 @@ import '../styles/Card.css';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
 import Loading from '../Components/Loading';
+import BtnVoltar from '../Components/BtnVoltar';
 
 const DrinkDetails = (props) => {
   const { match: { params: { id } } } = props;
@@ -41,6 +42,7 @@ const DrinkDetails = (props) => {
   return !redirect ? <Loading />
     : (
       <div className="card-details">
+        <BtnVoltar />
         { (drink || []).map((drinkItem, index) => (
           <React.Fragment key={ index }>
             <Details id={ id } item={ drinkItem } type="Drink" />

@@ -1,3 +1,5 @@
+/* @media screen and ( max-width : 414px ) { */
+
 /* Apicação no geral */
 body {
   margin: 0;
@@ -599,3 +601,15 @@ body {
   transform: translateX(-50%);
 }
 
+.btn-voltar {
+  background: linear-gradient(45deg, white, #f7ecf7, #efe6ef, #e7dae7);
+  border-radius: 25px;
+  box-shadow: 0 0 2px 1px black;
+  height: 50px;
+  left: 10px;
+  position: fixed;
+  top: 10px;
+  width: 50px;
+}
+
+/* } */

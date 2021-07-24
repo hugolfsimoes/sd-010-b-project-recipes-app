@@ -8,6 +8,7 @@ import { GetRecipesDone } from '../redux/actions';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
 import { setDoneRecipes } from '../services/services';
+import BtnVoltar from '../Components/BtnVoltar';
 
 function Progress(props) {
   const { match: { params: { id } } } = props;
@@ -34,6 +35,7 @@ function Progress(props) {
 
   return (
     <div className="tela-progress">
+      <BtnVoltar />
       <DetailsProgress
         id={ id }
         fetchAPI={ API }
