@@ -1,76 +1,106 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import Header from './Header';
 import SBElements from './SBElements';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
+import './DetailsPage.css';
 import '../App.css';
 
 function FavRecipes({ history }) {
   const { goSearch, setTitle } = useContext(ContextRecipes);
-  const [shareOrNot, setshareOrNot] = useState(true);
-  const favoriteRecipes = [
-    {
-      id: '52771',
-      type: 'comida',
-      area: 'Italian',
-      category: 'Vegetarian',
-      alcoholicOrNot: '',
-      name: 'Spicy Arrabiata Penne',
-      image: 'https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg',
-    },
-    {
-      id: '178319',
-      type: 'bebida',
-      area: '',
-      category: 'Cocktail',
-      alcoholicOrNot: 'Alcoholic',
-      name: 'Aquamarine',
-      image: 'https://www.thecocktaildb.com/images/media/drink/zvsre31572902738.jpg',
-    },
-  ];
-
+  const getAllFavoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const [favoriteRecipes, setfavoriteRecipes] = useState(getAllFavoriteRecipes);
+  const [buttonSelected, setbuttonSelected] = useState('All');
+  const [buttontoggle, setbuttontoggle] = useState(true);
   useEffect(() => {
     setTitle('Receitas Favoritas');
   }, [setTitle]);
 
-  const urlToClipBoard = () => {
-    if (shareOrNot === true) {
-      const url = window.location.href.toString();
-      navigator.clipboard.writeText(url);
-      setshareOrNot(false);
+  const handleShare = (type, id) => {
+    let link = '';
+    if (type === 'comida') {
+      link = `http://localhost:3000/comidas/${id}`;
+    } else {
+      link = `http://localhost:3000/bebidas/${id}`;
+    }
+    navigator.clipboard.writeText(link);
+    const alerta = document.createElement('p');
+    document.querySelector('.section-geral').appendChild(alerta);
+    alerta.innerText = 'Link copiado!';
+  };
+
+  const categoryButton = [
+    { strCategory: 'Food', dataTestid: 'food' },
+    { strCategory: 'Drink', dataTestid: 'drink' },
+    { strCategory: 'All', dataTestid: 'all' },
+  ];
+  const handlefilter = (strCategory) => {
+    if (strCategory === 'All') {
+      return setfavoriteRecipes(getAllFavoriteRecipes);
+    }
+    if (buttontoggle === false || strCategory !== buttonSelected) {
+      if (strCategory === 'Food') {
+        const filtered = favoriteRecipes.filter((recipe) => recipe.type === 'comida');
+        setfavoriteRecipes(filtered);
+        setbuttonSelected(strCategory);
+        setbuttontoggle(true);
+      } else if (strCategory === 'Drink') {
+        const filtered = favoriteRecipes.filter((recipe) => recipe.type === 'bebida');
+        setfavoriteRecipes(filtered);
+        setbuttonSelected(strCategory);
+        setbuttontoggle(true);
+      }
     }
   };
 
   return (
-    <div>
+    <div className="section-geral">
       <Header history={ history } data-testid="page-title" />
       { goSearch && <SBElements history={ history } /> }
-      <button type="button" data-testid="filter-by-all-btn">All</button>
-      <button type="button" data-testid="filter-by-food-btn">Fodd</button>
-      <button type="button" data-testid="filter-by-drink-btn">Drink</button>
-      {favoriteRecipes.map((item, index) => (
+      {categoryButton
+        .map(({ strCategory, dataTestid }, index) => (
+          <button
+            key={ index }
+            type="button"
+            data-testid={ `filter-by-${dataTestid}-btn` }
+            onClick={ () => handlefilter(strCategory) }
+          >
+            {strCategory}
+          </button>))}
+      {favoriteRecipes && favoriteRecipes.map((item, index) => (
         <section key={ item.id }>
-          <img src={ item.image } alt=" " data-testid={ `${index}-horizontal-image` } />
+          <Link
+            to={ (item.type === 'comida')
+              ? `/comidas/${item.id}`
+              : `/bebidas/${item.id}` }
+          >
+            <img
+              src={ item.image }
+              alt={ item.name }
+              data-testid={ `${index}-horizontal-image` }
+              width="100px"
+            />
+            <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
+          </Link>
           <p data-testid={ `${index}-horizontal-top-text` }>
             {(item.type === 'comida')
               ? `${item.area} - ${item.category}`
               : item.alcoholicOrNot}
           </p>
-          <p data-testid={ `${index}-horizontal-name` }>{item.name}</p>
-          <button type="button" onClick={ urlToClipBoard }>
+          <button type="button" onClick={ () => handleShare(item.type, item.id) }>
             <img
               src={ shareIcon }
-              alt=" "
+              alt={ item.name }
               data-testid={ `${index}-horizontal-share-btn` }
             />
           </button>
-          <p className={ shareOrNot ? 'share' : 'nada' }>Link copiado!</p>
           <button type="button">
             <img
               src={ blackHeartIcon }
-              alt=" "
+              alt={ item.name }
               data-testid={ `${index}-horizontal-favorite-btn` }
             />
           </button>

@@ -35,7 +35,7 @@ function FoodCategoryButtons() {
       setbuttonSelected('All');
       fetchFoodRecipes();
     }
-    console.log(toggleFood, buttonSelected);
+    // console.log(toggleFood, buttonSelected);
   };
 
   const fetchFoodCategoryName = () => {
