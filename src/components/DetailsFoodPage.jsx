@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import ContextRecipes from '../context/contextRecipes';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
@@ -56,8 +55,22 @@ function DetailsFoodPage({ match: { params } }) {
     alerta.innerText = 'Link copiado!';
   };
 
+  const objRecipes = {
+    id: recipes[0].idMeal,
+    type: 'comida',
+    area: recipes[0].strArea,
+    category: recipes[0].strCategory,
+    alcoholicOrNot: '',
+    name: recipes[0].strMeal,
+    image: recipes[0].strMealThumb,
+  };
+
+  const getAllFavoriteItens = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
   const changeHeart = () => {
     setStar(!star);
+    localStorage
+      .setItem('favoriteRecipes', JSON.stringify([...getAllFavoriteItens, objRecipes]));
   };
 
   return (

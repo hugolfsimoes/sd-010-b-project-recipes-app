@@ -7,7 +7,6 @@ import './DetailsPage.css';
 import RecommendedFood from './RecommendedFood';
 
 function AllTagsFromDetailsDrinks(drinks) {
-  console.log(drinks);
   const [star, setStar] = useState(false);
   const listIngredients = Object.keys(drinks.drinks[0])
     .filter((drink) => drink.includes('Ingredient'));
@@ -68,8 +67,22 @@ function AllTagsFromDetailsDrinks(drinks) {
     alerta.innerText = 'Link copiado!';
   };
 
+  const objRecipes = {
+    id: drinks.drinks[0].idDrink,
+    type: 'bebida',
+    area: '',
+    category: drinks.drinks[0].strCategory,
+    alcoholicOrNot: drinks.drinks[0].strAlcoholic,
+    name: drinks.drinks[0].strDrink,
+    image: drinks.drinks[0].strDrinkThumb,
+  };
+
+  const getAllFavoriteItens = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
   const changeHeart = () => {
     setStar(!star);
+    localStorage
+      .setItem('favoriteRecipes', JSON.stringify([...getAllFavoriteItens, objRecipes]));
   };
   const favorites = [];
   const verifyFavorited = () => {
