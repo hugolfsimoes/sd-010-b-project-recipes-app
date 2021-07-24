@@ -8,6 +8,7 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import RecommendedDrinks from './RecommendedDrinks';
 import './DetailsPage.css';
 import BtnStartFoodRecipe from './BtnStartFoodRecipe';
+import FavoriteFoodBtn from './FavoriteFoodBtn';
 
 function DetailsFoodPage({ match: { params } }) {
   // const [recipesFood, setRecipesFood] = useState([]);
@@ -62,6 +63,7 @@ function DetailsFoodPage({ match: { params } }) {
 
   return (
     <section className="section-geral">
+      <FavoriteFoodBtn recipe={ recipes[0] } />
       <img
         src={ recipes[0].strMealThumb }
         alt={ recipes[0].strMeal }

@@ -6,6 +6,7 @@ import ContextRecipes from '../context/contextRecipes';
 // import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import AllTagsFromDetailsDrinks from './AllTagsFromDetailsDrinks';
 import BtnStartDrinkRecipe from './BtnStartDrinkRecipe';
+import FavoriteFoodBtn from './FavoriteFoodBtn';
 
 function DetailsDrinkPage({ match: { params } }) {
   const { drinks, setDrinks, setIsLoading } = useContext(ContextRecipes);
