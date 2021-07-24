@@ -6,3 +6,7 @@
 .section-geral {
   padding: 0;
 }
+
+.tags {
+  display: flex;
+}

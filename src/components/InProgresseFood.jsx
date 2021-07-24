@@ -45,6 +45,35 @@ function InProgressFood({ match: { params } }) {
 
   if (recipes[0] === undefined) return <h1>Loading...</h1>;
 
+  const date = new Date();
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  const fullDate = `${day}/ ${month}/ ${year}`;
+  const getAllDoneRecipes = JSON.parse(localStorage.getItem('doneRecipes')) || [];
+  console.log(getAllDoneRecipes);
+  const allTags = recipes[0].strTags.split(',');
+  console.log(allTags);
+
+  const objDrink = {
+    alcoholicOrNot: '',
+    area: recipes[0].strArea,
+    category: recipes[0].strCategory,
+    doneDate: fullDate,
+    id: recipes[0].idMeal,
+    image: recipes[0].strMealThumb,
+    name: recipes[0].strMeal,
+    tags: allTags,
+    type: 'comida',
+  };
+
+  console.log(objDrink);
+  const saveDoneRecipes = () => {
+    localStorage
+      .setItem('doneRecipes', JSON
+        .stringify([...getAllDoneRecipes, objDrink]));
+  };
+
   const INDEX_NUMBER = 3;
   const urlVideo = recipes[0].strYoutube.split('/');
   urlVideo.splice(urlVideo.indexOf(INDEX_NUMBER), 1);
@@ -112,6 +141,7 @@ function InProgressFood({ match: { params } }) {
           data-testid="finish-recipe-btn"
           disabled={ isDisable }
           className="button"
+          onClick={ saveDoneRecipes }
         >
           Finalizar Receita
         </button>

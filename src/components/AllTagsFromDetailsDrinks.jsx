@@ -52,9 +52,9 @@ function AllTagsFromDetailsDrinks(drinks) {
 
   // Para resolver essa problema do clipboard usei como referência o Link: https://blog.erikfigueiredo.com.br/area-de-transferencia-copiar-e-colar-com-javascript-dica-rapida/.
 
+  const link = window.location.href;
   const handleFavorited = () => {
     // const newTag = document.createElement('input');
-    const link = window.location.href;
 
     // document.body.appendChild(newTag);
     // newTag.value = link;
