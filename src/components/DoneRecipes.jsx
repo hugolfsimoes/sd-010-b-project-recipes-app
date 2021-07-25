@@ -89,7 +89,7 @@ function DoneRecipes({ history }) {
       >
         Drinks
       </button>
-      { itemsFromStorage
+      { itemsFromStorage && itemsFromStorage
         .map((item, index) => (item.type === 'bebida'
           ? (
             <div key={ index }>
