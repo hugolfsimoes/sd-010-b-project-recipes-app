@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { getFoods } from '../../redux/actions';
 import MealAPI from '../../services/MealRecipesAPI';
 import BeverageAPI from '../../services/BeverageRecipesAPI';
-import CarroselBebidas from '../../Components/CarroselBebidas';
-// import Share from '../images/shareIcon.svg';
-// import Favorite from '../images/whiteHeartIcon.svg';
 
 class FoodDetails extends React.Component {
   constructor(props) {
@@ -109,7 +106,6 @@ class FoodDetails extends React.Component {
               </ul>
               <p data-testid="instructions">{food.strInstructions}</p>
               <img data-testid="video" src={ food.strVideo } alt="video" />
-              <CarroselBebidas recomendations={ recomendations } />
             </>
           ))}
           <button

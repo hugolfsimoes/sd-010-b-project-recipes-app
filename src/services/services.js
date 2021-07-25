@@ -170,4 +170,5 @@ export function setDoneRecipes(done, type) {
       ]),
     );
   }
+  localStorage.removeItem('inProgressRecipes');
 }

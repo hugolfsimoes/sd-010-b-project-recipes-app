@@ -33,7 +33,7 @@ function Progress(props) {
   }, []);
 
   return (
-    <>
+    <div className="tela-progress">
       <DetailsProgress
         id={ id }
         fetchAPI={ API }
@@ -50,7 +50,7 @@ function Progress(props) {
           Finalizar receita
         </button>
       </Link>
-    </>
+    </div>
   );
 }
 

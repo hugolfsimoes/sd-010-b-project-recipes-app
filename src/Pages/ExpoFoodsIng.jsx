@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
+import HeadBar from '../Components/Header';
 import Footer from '../Components/Footer';
 import IngredientsFoodsTab from '../Components/IngredientsFoodsTab';
 import { getIngredient } from '../redux/actions';
 import MealRecipesAPI from '../services/MealRecipesAPI';
-import '../styles/Explore.css';
+import Loading from '../Components/Loading';
 
 function ExpoFoodsIng(props) {
   const { ingredientsCatcher, ingredients } = props;
@@ -20,18 +19,9 @@ function ExpoFoodsIng(props) {
     }
   }, [ingredientsCatcher, setLoading, loading]);
 
-  return loading ? <h3>Loading...</h3> : (
-    <div>
-      <header className="header-container">
-        <div>
-          <Link to="/perfil">
-            <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-          </Link>
-        </div>
-        <div>
-          <h1 data-testid="page-title">Explorar Ingredientes</h1>
-        </div>
-      </header>
+  return loading ? <Loading /> : (
+    <div className="tela-explore">
+      <HeadBar title="Ingredientes" />
       <IngredientsFoodsTab ingredients={ ingredients } />
       <Footer />
     </div>

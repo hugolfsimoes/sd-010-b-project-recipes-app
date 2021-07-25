@@ -9,7 +9,7 @@ import { setArea, getAreas } from '../redux/actions';
 import fetchByArea from '../services/fetchByArea';
 import api from '../services/MealRecipesAPI';
 import Footer from '../Components/Footer';
-import '../styles/Card.css';
+import Loading from '../Components/Loading';
 
 function ExpoFoodArea(props) {
   const { localsReceived, locals = [], infoFoods, foods } = props;
@@ -30,20 +30,21 @@ function ExpoFoodArea(props) {
   async function handlechange({ target: { value } }) {
     /* if (value === 'All') {
       api.getByDefault()
-        .then((res) => setListFood(res));
     } */
     await infoFoods(value, api.foodsArea);
   }
-  return locals.length === 0 ? <div> loading... </div> : (
-    <div>
+  return locals.length === 0 ? <Loading /> : (
+    <div className="tela-explore">
       <Header title="Explorar Origem" />
-      <select
-        data-testid="explore-by-area-dropdown"
-        onChange={ handlechange }
-      >
-        <option value="All" data-testid="All-option">All</option>
+      <div className="div-select">
+        <select
+          data-testid="explore-by-area-dropdown"
+          onChange={ handlechange }
+          className="select-area"
+        >
+          <option data-testid="All-option">All</option>
 
-        {locals.length !== 0
+          {locals.length !== 0
         && locals.map((local) => (
           <option
             key={ local.strArea }
@@ -53,7 +54,8 @@ function ExpoFoodArea(props) {
             {local.strArea}
           </option>
         ))}
-      </select>
+        </select>
+      </div>
       <div className="items-list">
         {setList12(listFood).map((food, index) => (
           <Card title="comidas" key={ index } index={ index } item={ food } type="meal" />

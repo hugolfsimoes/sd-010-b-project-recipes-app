@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { getDrinks } from '../redux/actions';
 import API from '../services/BeverageRecipesAPI';
-import '../styles/Explore.css';
 
 function IngredientsDrinksTab(props) {
   const { getSelectedIng, ingredients } = props;
@@ -16,28 +15,28 @@ function IngredientsDrinksTab(props) {
   };
 
   return shouldRedirect ? <Redirect to="/bebidas" /> : (
-    <div className="ingredientTab">
+    <div className="items-list">
       {ingredients.map((ingredient, index) => {
         if (index < maxTwelve) {
           return (
-            <div
-              key={ index }
-              className="ingredientScreen"
-              data-testid={ `${index}-ingredient-card` }
-              onClickCapture={ () => itemCatcher(ingredient.strIngredient1) }
-            >
-              <img
-                data-testid={ `${index}-card-img` }
-                width="100px"
-                alt={ ingredient.strIngredient1 }
-                className="ingredientImage"
-                src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
-              />
+            <div className="card">
               <div
-                className="ingredientName"
-                data-testid={ `${index}-card-name` }
+                key={ index }
+                className="card-body"
+                data-testid={ `${index}-ingredient-card` }
+                onClickCapture={ () => itemCatcher(ingredient.strIngredient1) }
               >
-                {ingredient.strIngredient1}
+                <img
+                  data-testid={ `${index}-card-img` }
+                  alt={ ingredient.strIngredient1 }
+                  src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` }
+                />
+                <div
+                  className="card-subtitle"
+                  data-testid={ `${index}-card-name` }
+                >
+                  {ingredient.strIngredient1}
+                </div>
               </div>
             </div>
           );

@@ -1,8 +1,7 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Footer from '../Components/Footer';
-import profileIcon from '../images/profileIcon.svg';
+import Header from '../Components/Header';
 
 const clickLogout = () => {
   localStorage.clear();
@@ -13,32 +12,41 @@ const Profile = () => {
     ? JSON.parse(localStorage.getItem('user')).email
     : '';
   return (
-    <div>
-      <header className="header-container">
-        <div>
-          <Link to="/perfil">
-            <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-          </Link>
-        </div>
-        <div>
-          <h1 data-testid="page-title">Perfil</h1>
-        </div>
-      </header>
-      <h3 data-testid="profile-email">{email}</h3>
-      <Link to="/receitas-feitas">
-        <Button data-testid="profile-done-btn">Receitas Feitas</Button>
-      </Link>
-      <Link to="/receitas-favoritas">
-        <Button data-testid="profile-favorite-btn">Receitas Favoritas</Button>
-      </Link>
-      <Link to="/">
-        <Button
-          data-testid="profile-logout-btn"
-          onClick={ () => clickLogout() }
-        >
-          Sair
-        </Button>
-      </Link>
+    <div className="tela-profile">
+      <Header title="Perfil" />
+      <div className="menu-profile">
+        <h3 data-testid="profile-email">{email}</h3>
+        <Link to="/receitas-feitas">
+          <button
+            type="button"
+            data-testid="profile-done-btn"
+            className="btn-menu"
+          >
+            Receitas Feitas
+
+          </button>
+        </Link>
+        <Link to="/receitas-favoritas">
+          <button
+            type="button"
+            data-testid="profile-favorite-btn"
+            className="btn-menu"
+          >
+            Receitas Favoritas
+
+          </button>
+        </Link>
+        <Link to="/">
+          <button
+            type="button"
+            className="btn-menu"
+            data-testid="profile-logout-btn"
+            onClick={ () => clickLogout() }
+          >
+            Sair
+          </button>
+        </Link>
+      </div>
       <Footer />
     </div>
   );

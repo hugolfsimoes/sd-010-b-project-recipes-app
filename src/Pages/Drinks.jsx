@@ -8,7 +8,7 @@ import Card from '../Components/Card';
 import CategoryButtons from '../Components/CategoryButtons';
 import BeverageAPI from '../services/BeverageRecipesAPI';
 import { setList12 } from '../services/services';
-import '../styles/Card.css';
+import Loading from '../Components/Loading';
 
 function Drinks(props) {
   const { getByDefault, getByCategory } = BeverageAPI;
@@ -34,24 +34,26 @@ function Drinks(props) {
     }
   }, [drinks]);
 
-  return loading ? <div>Loading...</div> : (
-    <div className="foodScreen">
+  return loading ? <Loading /> : (
+    <div className="tela-drink">
       <HeadBar title="Bebidas" />
       <CategoryButtons
         setMainDrinks={ (list) => setMainDrinks(setList12(list)) }
         type="cocktail"
         categories={ categories.map((category) => category.strCategory) }
       />
-      <div className="items-list">
-        {mainDrinks.map((drink, index) => (
-          <Card
-            title="bebidas"
-            key={ index }
-            index={ index }
-            item={ drink }
-            type="drinks"
-          />
-        ))}
+      <div className="tela-cards">
+        <div className="items-list">
+          {mainDrinks.map((drink, index) => (
+            <Card
+              title="bebidas"
+              key={ index }
+              index={ index }
+              item={ drink }
+              type="drinks"
+            />
+          ))}
+        </div>
       </div>
       <Footer />
     </div>

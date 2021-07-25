@@ -15,6 +15,7 @@ import CarroselComidas from '../Components/CarroselComidas';
 import '../styles/Card.css';
 import DrinkApi from '../services/BeverageRecipesAPI';
 import MealAPI from '../services/MealRecipesAPI';
+import Loading from '../Components/Loading';
 
 const DrinkDetails = (props) => {
   const { match: { params: { id } } } = props;
@@ -29,6 +30,7 @@ const DrinkDetails = (props) => {
     drink,
     redirect,
   } = props;
+
   async function resultDrink() {
     const listRecomendations = await MealAPI.getByDefault();
     await DrinkApi.getDrinkById(id);
@@ -36,8 +38,6 @@ const DrinkDetails = (props) => {
   }
 
   useEffect(() => {
-    // DrinkApi.getDrinkById(id)
-    //   .then((res) => localStorage.setItem('itemDetails', JSON.stringify(res[0])));
     if (loading) {
       setDrinkDetails(id)
         .then(() => resultDrink()
@@ -45,37 +45,13 @@ const DrinkDetails = (props) => {
     }
   }, []);
 
-  // function checkBtnReceita() {
-  //   const getReceitaStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-  //   getReceitaStorage.forEach((receita) => {
-  //     if (receita === id) {
-  //       setVisible('');
-  //     }
-  //   });
-  // }
-
-  // function iniciarReceita() {
-  //   const valueStorage = JSON.parse(localStorage.getItem('doneRecipes')) || [];
-  //   localStorage.setItem('doneRecipes', JSON.stringify([...valueStorage, id]));
-  //   checkBtnReceita();
-  // }
-
-  // function favoriteChanger() {
-  //   setFavoriteBtn(!favoriteBtn);
-  // }
-
-  // function Checker() {
-  //   console.log(drink[0]);
-  // }
-
-  // const copy = require('clipboard-copy')
-
-  return !redirect ? <h3>Loading</h3>
+  return !redirect ? <Loading />
     : (
       <div className="card-details">
         { (drink || []).map((drinkItem, index) => (
           <React.Fragment key={ index }>
             <Details id={ id } item={ drinkItem } type="Drink" />
+            <h1 className="font-media recomendado">Foods Recommended</h1>
             <CarroselComidas recomendations={ item.listRecomendations || [] } />
             <Link to={ `/bebidas/${id}/in-progress` }>
               <button

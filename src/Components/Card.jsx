@@ -10,22 +10,20 @@ export default function Card(props) {
     <Link
       to={ `/${title}/${item[`id${dbType}`]}` }
       className="card"
-      style={ { width: '7rem', height: '5rem' } }
     >
       <div className="card-body" data-testid={ `${index}-recipe-card` }>
+        <img
+          src={ item[`str${dbType}Thumb`] }
+          alt={ `${dbType}` }
+          data-testid={ `${index}-card-img` }
+        />
         <div
-          className="card-subtitle"
+          className="card-subtitle titulos"
           data-testid={ `${index}-card-name` }
         >
           {item[`str${dbType}`]}
 
         </div>
-        <img
-          src={ item[`str${dbType}Thumb`] }
-          alt={ `${dbType}` }
-          data-testid={ `${index}-card-img` }
-          height="30px"
-        />
         {' '}
         <br />
       </div>

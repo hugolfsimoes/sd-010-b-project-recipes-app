@@ -2,53 +2,44 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
-import profileIcon from '../images/profileIcon.svg';
+import HeadBar from '../Components/Header';
 import Footer from '../Components/Footer';
 import { getRandom } from '../redux/actions';
 import MealRecipes from '../services/MealRecipesAPI';
-import '../styles/Explore.css';
 
 function ExploreFoods(props) {
-  const { surpriseFood, shouldRedirect, food, margato } = props;
-  console.log(margato);
+  const { surpriseFood, shouldRedirect, food } = props;
 
   return shouldRedirect ? <Redirect to={ `/comidas/${food[0].idMeal}` } /> : (
-    <>
-      <header className="header-container">
-        <div>
-          <Link to="/perfil">
-            <img src={ profileIcon } alt="profile" data-testid="profile-top-btn" />
-          </Link>
-        </div>
-        <div>
-          <h1 data-testid="page-title">Explorar Comidas</h1>
-        </div>
-      </header>
-      <Link
-        to="/explorar/comidas/ingredientes"
-        data-testid="explore-by-ingredient"
-        className="btn-explore"
-      >
-        Por Ingredientes
-      </Link>
-      <Link
-        to="/explorar/comidas/area"
-        data-testid="explore-by-area"
-        className="btn-explore"
-      >
-        Por Local de Origem
-      </Link>
-      <button
-        type="button"
-        to="/explorar/comidas/suprise"
-        data-testid="explore-surprise"
-        className="btn-explore"
-        onClick={ surpriseFood }
-      >
-        Me Surpreenda!
-      </button>
+    <div className="tela-explore">
+      <HeadBar title="Explorar" />
+      <div className="foodScreen">
+        <Link
+          to="/explorar/comidas/ingredientes"
+          data-testid="explore-by-ingredient"
+          className="btn-explore"
+        >
+          Por Ingredientes
+        </Link>
+        <Link
+          to="/explorar/comidas/area"
+          data-testid="explore-by-area"
+          className="btn-explore"
+        >
+          Por Local de Origem
+        </Link>
+        <button
+          type="button"
+          to="/explorar/comidas/suprise"
+          data-testid="explore-surprise"
+          className="btn-explore"
+          onClick={ surpriseFood }
+        >
+          Me Surpreenda!
+        </button>
+      </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
