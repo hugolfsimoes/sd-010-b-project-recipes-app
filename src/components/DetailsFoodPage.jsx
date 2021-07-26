@@ -47,8 +47,8 @@ function DetailsFoodPage({ match: { params } }) {
 
   // Para resolver essa problema do clipboard usei como referência os Links: https://stackoverflow.com/questions/49618618/copy-current-url-to-clipboard; https://blog.erikfigueiredo.com.br/area-de-transferencia-copiar-e-colar-com-javascript-dica-rapida/.
 
+  const link = window.location.href;
   const handleFavorited = () => {
-    const link = window.location.href;
     navigator.clipboard.writeText(link);
     const alerta = document.createElement('p');
     document.querySelector('.section-geral').appendChild(alerta);
