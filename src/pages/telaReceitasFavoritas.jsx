@@ -38,6 +38,7 @@ class TelaReceitasFavoritas extends Component {
   getFavoriteRecipes() {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes')) || [];
     this.setState({ favoriteList: favoriteRecipes });
+    console.log(favoriteRecipes);
   }
 
   isFavorite(id) {
