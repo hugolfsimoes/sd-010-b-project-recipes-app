@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 import ScrollLock from 'react-scrolllock';
 import Smile from '../images/image8.png';
 import { isLink } from '../action/details';
 
 import '../css/Modal.css';
+import { animationModal, transition } from '../animations';
 
 function Modal({ children, history, link }) {
   const handleOutsideClick = (e) => {
@@ -21,7 +23,12 @@ function Modal({ children, history, link }) {
       role="presentation"
     >
       <ScrollLock isActive={ link !== true } />
-      <div className="modal-container">
+      <motion.div
+        className="modal-container"
+        animate="in"
+        variants={ animationModal }
+        transition={ transition }
+      >
         <img className="modal-img" src={ Smile } alt="smile" />
         <div className="modal-content">{children}</div>
         <button
@@ -34,7 +41,7 @@ function Modal({ children, history, link }) {
         >
           Back to Home
         </button>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { animationScreen, transition } from '../animations';
+import { animationScreen, container, transition } from '../animations';
 import Header from '../components/header';
 import { fetchApiFoodCategories,
   fetchFilterFoodByCategories,
@@ -93,7 +93,12 @@ class Comidas extends Component {
             filter={ foodByCategories }
             filterAll={ dispatchFoodRecipes }
           />
-          <section className="cards-content">
+          <motion.section
+            className="cards-content"
+            variants={ container }
+            initial="hidden"
+            animate="visible"
+          >
             {
               meals.map((measl, index) => (
                 <Cards
@@ -106,7 +111,7 @@ class Comidas extends Component {
                 />
               ))
             }
-          </section>
+          </motion.section>
         </main>
         { isRedirect === true && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
         <Footer />

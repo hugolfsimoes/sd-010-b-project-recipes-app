@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import { animationScreen, transition } from '../animations';
+import { animationScreen, container, transition } from '../animations';
 import Header from '../components/header';
 import ButtonCategories from '../components/ButtonCategories';
 import Cards from '../components/cards';
@@ -77,7 +77,12 @@ class Bebidas extends Component {
             filter={ drinkByCategories }
             filterAll={ dispatchDrinks }
           />
-          <section className="cards-content">
+          <motion.section
+            className="cards-content"
+            variants={ container }
+            initial="hidden"
+            animate="visible"
+          >
             {
               drinks.map((drink, index) => (
                 <Cards
@@ -90,7 +95,7 @@ class Bebidas extends Component {
                 />
               ))
             }
-          </section>
+          </motion.section>
           { isRedirect === true && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
         </main>
         <Footer />

@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { motion } from 'framer-motion';
 import IngredientCards from '../components/ingredientCards';
 import { fetchByIngredient,
   fetchFoodRecipesByIngredients, fetchFoodRecipes, getSearchBarResponse,
   fetchDrinksRecipesByIngredient } from '../action/index';
 import Footer from '../components/footer';
 import Header from '../components/header';
+import { container } from '../animations';
 
 class explorarIngredientes extends Component {
   componentDidMount() {
@@ -36,7 +37,7 @@ class explorarIngredientes extends Component {
           title={ el.strIngredient }
           index={ index }
           details={ fetchApiByIngredient }
-          item={ meals }
+          items={ meals }
         />
       ));
     }
@@ -48,7 +49,7 @@ class explorarIngredientes extends Component {
         title={ el.strIngredient1 }
         index={ index }
         details={ fetchApiDrinksByingredient }
-        item={ drinks }
+        items={ drinks }
       />
     ));
   }
@@ -59,9 +60,14 @@ class explorarIngredientes extends Component {
     return (
       <div>
         <Header location={ location } />
-        <section className="ingredient-container">
+        <motion.section
+          className="ingredient-container"
+          variants={ container }
+          initial="hidden"
+          animate="visible"
+        >
           { getApiIngredient.length !== 0 && this.renderElements(getApiIngredient)}
-        </section>
+        </motion.section>
         <Footer />
       </div>
     );
