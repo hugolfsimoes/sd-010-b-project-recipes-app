@@ -71,3 +71,37 @@
     margin-left: 1rem;
   }
 }
+
+/* TABLE SCREEN */
+
+@media only screen and ( min-width : 767px ) {
+
+  .profile-main {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .perfil-btn {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+
+  .buttons-perfil {
+    margin: 0.2rem;
+  }
+
+}
+
+/* TABLET SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 1023px ) and ( orientation : landscape ) {
+
+  .profile-main {
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+}

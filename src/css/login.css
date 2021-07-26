@@ -172,3 +172,17 @@
   }
 
 }
+
+/* TABLET SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 1024px ) and ( orientation : landscape ) {
+
+  .form-container {
+    margin-top: 80px;
+  }
+
+  .logo-container {
+    margin: 0;
+
+  }
+}
