@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
-import { getSearchBarResponse } from '../action/index';
+import { getSearchBarResponse, isLink } from '../action/action';
 
 import '../css/TelaDeFavoritas.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,7 +15,6 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Group26 from '../images/Group26.svg';
 import Modal from '../components/Modal';
-import { isLink } from '../action/details';
 
 class TelaReceitasFavoritas extends Component {
   constructor(props) {

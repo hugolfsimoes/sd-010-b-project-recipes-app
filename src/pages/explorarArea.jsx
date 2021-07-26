@@ -6,7 +6,8 @@ import { animationScreen, container, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Cards from '../components/cards';
-import { fetchArea, fetchFoodRecipes, getSearchBarResponse } from '../action';
+import { fetchFoodRecipes } from '../action';
+import { fetchArea, getSearchBarResponse } from '../action/action';
 import fetchFoodRecipesByArea from '../services/servicesApi';
 
 import '../css/ExplorarArea.css';

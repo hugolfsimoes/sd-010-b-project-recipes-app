@@ -8,13 +8,14 @@ import Header from '../components/header';
 import ButtonCategories from '../components/ButtonCategories';
 import Cards from '../components/cards';
 import Footer from '../components/footer';
+import { fetchDrinksRecipes } from '../action/index';
 import {
   fetchApiDrinkCategories,
-  fetchDrinksRecipes,
   fetchFilterDrinkByCategories,
   getSearchBarResponse,
-} from '../action/index';
+} from '../action/action';
 import '../css/bebidas.css';
+import Loader from '../components/Loader';
 
 class Bebidas extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class Bebidas extends Component {
       drinkByCategories,
       dispatchDrinks,
       match,
+      loader,
     } = this.props;
     return (
       <motion.section
@@ -70,34 +72,42 @@ class Bebidas extends Component {
         transition={ transition }
       >
         <Header location={ location } />
-        <main className="drink-main">
-          <ButtonCategories
-            btnClass="btn-filterDrinks-cards"
-            getCategories={ drinksCategories }
-            filter={ drinkByCategories }
-            filterAll={ dispatchDrinks }
-          />
-          <motion.section
-            className="cards-content"
-            variants={ container }
-            initial="hidden"
-            animate="visible"
-          >
-            {
-              drinks.map((drink, index) => (
-                <Cards
-                  url={ match.path }
-                  id={ drink.idDrink }
-                  key={ index }
-                  img={ drink.strDrinkThumb }
-                  title={ drink.strDrink }
-                  index={ index }
-                />
-              ))
-            }
-          </motion.section>
-          { isRedirect === true && <Redirect to={ `/bebidas/${drinks[0].idDrink}` } />}
-        </main>
+        { loader
+          ? <Loader />
+          : (
+            <main className="drink-main">
+              <ButtonCategories
+                btnClass="btn-filterDrinks-cards"
+                getCategories={ drinksCategories }
+                filter={ drinkByCategories }
+                filterAll={ dispatchDrinks }
+              />
+              <motion.section
+                className="cards-content"
+                variants={ container }
+                initial="hidden"
+                animate="visible"
+              >
+                {
+                  drinks.map((drink, index) => (
+                    <Cards
+                      url={ match.path }
+                      id={ drink.idDrink }
+                      key={ index }
+                      img={ drink.strDrinkThumb }
+                      title={ drink.strDrink }
+                      index={ index }
+                    />
+                  ))
+                }
+              </motion.section>
+              { isRedirect === true && <Redirect
+                to={
+                  `/bebidas/${drinks[0].idDrink}`
+                }
+              />}
+            </main>
+          )}
         <Footer />
       </motion.section>
     );
@@ -114,6 +124,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   drinks: state.drinkCategories.drinks,
   drinksCategories: state.drinkCategories.allDrinkCategories,
+  loader: state.foodCategories.loader,
 });
 
 Bebidas.propTypes = {
@@ -125,6 +136,7 @@ Bebidas.propTypes = {
   match: PropTypes.shape.isRequired,
   hasSearchBar: PropTypes.func.isRequired,
   drinkByCategories: PropTypes.func.isRequired,
+  loader: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Bebidas);

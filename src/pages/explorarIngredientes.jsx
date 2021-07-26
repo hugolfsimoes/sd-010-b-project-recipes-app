@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
 import IngredientCards from '../components/ingredientCards';
-import { fetchByIngredient,
-  fetchFoodRecipesByIngredients, fetchFoodRecipes, getSearchBarResponse,
-  fetchDrinksRecipesByIngredient } from '../action/index';
+import { fetchByIngredient, getSearchBarResponse } from '../action/action';
+import { fetchFoodRecipes,
+  fetchDrinksRecipesByIngredient,
+  fetchFoodRecipesByIngredients } from '../action/index';
 import Footer from '../components/footer';
 import Header from '../components/header';
 import { container } from '../animations';

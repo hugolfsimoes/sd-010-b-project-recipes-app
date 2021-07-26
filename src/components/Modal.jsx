@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
 import ScrollLock from 'react-scrolllock';
 import Smile from '../images/image8.png';
-import { isLink } from '../action/details';
+import { isLink } from '../action/action';
 
 import '../css/Modal.css';
 import { animationModal, transition } from '../animations';

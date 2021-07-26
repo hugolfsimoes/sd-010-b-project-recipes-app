@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchFilterFoodByCategories } from '../action';
+import { fetchFilterFoodByCategories } from '../action/action';
 import '../css/buttonCategories.css';
 
 class ButtonCategories extends Component {

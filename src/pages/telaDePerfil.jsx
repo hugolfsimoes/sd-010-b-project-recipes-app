@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { getSearchBarResponse } from '../action';
+import { getSearchBarResponse } from '../action/action';
 import '../css/telaDePerfil.css';
 
 export class TelaDePerfil extends Component {

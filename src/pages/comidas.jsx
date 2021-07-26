@@ -5,17 +5,18 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { animationScreen, container, transition } from '../animations';
 import Header from '../components/header';
+import { fetchFoodRecipes } from '../action';
 import { fetchApiFoodCategories,
   fetchFilterFoodByCategories,
-  fetchFoodRecipes,
   getSearchBarResponse,
-} from '../action/index';
+} from '../action/action';
 import Cards from '../components/cards';
 import Footer from '../components/footer';
 
 import '../css/comidas.css';
 import '../App.css';
 import ButtonCategories from '../components/ButtonCategories';
+import Loader from '../components/Loader';
 
 class Comidas extends Component {
   constructor(props) {
@@ -74,6 +75,7 @@ class Comidas extends Component {
       dispatchFoodRecipes,
       foodByCategories,
       match,
+      loader,
     } = this.props;
     return (
       <motion.section
@@ -86,33 +88,37 @@ class Comidas extends Component {
         transition={ transition }
       >
         <Header location={ location } />
-        <main className="food-main">
-          <ButtonCategories
-            btnClass="btn-filterMeasls-cards"
-            getCategories={ getFoodCategories }
-            filter={ foodByCategories }
-            filterAll={ dispatchFoodRecipes }
-          />
-          <motion.section
-            className="cards-content"
-            variants={ container }
-            initial="hidden"
-            animate="visible"
-          >
-            {
-              meals.map((measl, index) => (
-                <Cards
-                  url={ match.path }
-                  id={ measl.idMeal }
-                  key={ measl.idMeal }
-                  img={ measl.strMealThumb }
-                  title={ measl.strMeal }
-                  index={ index }
-                />
-              ))
-            }
-          </motion.section>
-        </main>
+        { loader
+          ? <Loader />
+          : (
+            <main className="food-main">
+              <ButtonCategories
+                btnClass="btn-filterMeasls-cards"
+                getCategories={ getFoodCategories }
+                filter={ foodByCategories }
+                filterAll={ dispatchFoodRecipes }
+              />
+              <motion.section
+                className="cards-content"
+                variants={ container }
+                initial="hidden"
+                animate="visible"
+              >
+                {
+                  meals.map((measl, index) => (
+                    <Cards
+                      url={ match.path }
+                      id={ measl.idMeal }
+                      key={ measl.idMeal }
+                      img={ measl.strMealThumb }
+                      title={ measl.strMeal }
+                      index={ index }
+                    />
+                  ))
+                }
+              </motion.section>
+            </main>
+          ) }
         { isRedirect === true && <Redirect to={ `/comidas/${meals[0].idMeal}` } />}
         <Footer />
       </motion.section>
@@ -130,6 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   getFoodCategories: state.foodCategories.allFoodCategories,
   meals: state.foodCategories.meals,
+  loader: state.foodCategories.loader,
 });
 
 Comidas.propTypes = {

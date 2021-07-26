@@ -7,7 +7,7 @@ import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import '../css/SharedFavorites.css';
-import { isLink } from '../action/details';
+import { isLink } from '../action/action';
 
 class SharedFavorites extends Component {
   constructor(props) {

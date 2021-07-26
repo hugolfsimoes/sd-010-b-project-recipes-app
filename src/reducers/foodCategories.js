@@ -1,14 +1,15 @@
 import {
-  ALL_FOOD_CATEGORIES,
   IS_LOADING,
   ALL_FOOD_RECIPES,
   FOOD_BY_CATEGORIES,
 } from '../action';
+import { ALL_FOOD_CATEGORIES } from '../action/action';
 
 const INITIAL_STATE = {
   allFoodCategories: [],
   meals: [],
   recipeDetails: [],
+  loader: false,
 };
 
 const foodCategories = (state = INITIAL_STATE, action) => {
@@ -16,6 +17,7 @@ const foodCategories = (state = INITIAL_STATE, action) => {
   case IS_LOADING:
     return {
       ...state,
+      loader: action.loader,
     };
   case ALL_FOOD_CATEGORIES:
     return {

@@ -9,8 +9,13 @@ import Instructions from '../components/Instructions';
 import Ingredients from '../components/Ingredients';
 import DetailsHeader from '../components/DetailsHeader';
 
-import { fetchDrinkDetails, fetchFoodDetails,
-  startRecipe, getFoodDetails, fetchDrinksRecipes, fetchFoodRecipes } from '../action';
+import { fetchDrinksRecipes, fetchFoodRecipes } from '../action/index';
+import {
+  startRecipe,
+  fetchDrinkDetails,
+  fetchFoodDetails,
+  getFoodDetails,
+} from '../action/action';
 import CardMeals from '../components/CardsMeals';
 import CardsDrinks from '../components/CardsDrinks';
 import InstrutionVideo from '../components/InstrutionVideo';

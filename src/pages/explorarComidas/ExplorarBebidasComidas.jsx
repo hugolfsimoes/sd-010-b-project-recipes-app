@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import { fetchRamdomRecipe, getSearchBarResponse } from '../../action';
+import { fetchRamdomRecipe, getSearchBarResponse } from '../../action/action';
 
 import '../../css/TelaDeExplorar.css';
 

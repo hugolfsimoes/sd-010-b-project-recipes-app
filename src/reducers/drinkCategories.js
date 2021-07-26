@@ -1,12 +1,11 @@
-import {
-  ALL_DRINK_CATEGORIES,
-  IS_LOADING,
-  ALL_DRINKS_RECIPES, DRINK_BY_CATEGORIES,
+import { IS_LOADING, ALL_DRINKS_RECIPES, DRINK_BY_CATEGORIES,
 } from '../action';
+import { ALL_DRINK_CATEGORIES } from '../action/action';
 
 const INITIAL_STATE = {
   allDrinkCategories: [],
   drinks: [],
+  loader: false,
 };
 
 const drinkCategories = (state = INITIAL_STATE, action) => {
@@ -14,6 +13,7 @@ const drinkCategories = (state = INITIAL_STATE, action) => {
   case IS_LOADING:
     return {
       ...state,
+      loader: action.loader,
     };
   case ALL_DRINK_CATEGORIES:
     return {
