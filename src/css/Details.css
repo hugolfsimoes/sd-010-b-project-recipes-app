@@ -98,3 +98,26 @@
 .invisible {
   display: none;
 }
+
+/* MOBILE SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 600px ) and ( orientation : landscape ) {
+
+  .page-details {
+    background-color: var(--crl-form);
+  }
+
+  .details-content {
+    background-color: white;
+    width: 22.5rem;
+  }
+
+  .details-intructions {
+    width: 20.43rem;
+  }
+
+  .details-Recommended {
+    margin-bottom:1rem;
+  }
+
+}

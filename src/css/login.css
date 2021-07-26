@@ -153,3 +153,22 @@
   outline: none;
   width: 20.43rem;
 }
+
+/* MOBILE SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 600px ) and ( orientation : landscape ) {
+
+  .form-container {
+    margin-top: 250px;
+  }
+
+  .logo-container {
+    margin: 0;
+
+  }
+
+  .form-login {
+    margin-bottom: 16px;
+  }
+
+}

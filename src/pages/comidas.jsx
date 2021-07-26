@@ -77,6 +77,7 @@ class Comidas extends Component {
     } = this.props;
     return (
       <motion.section
+        id="top"
         className="food-wrap"
         initial="out"
         animate="end"

@@ -32,12 +32,14 @@ class Header extends Component {
   searchBarTrue() {
     return (
       <button className="btn-search-bar search-bar" type="button" onClick={ this.verify }>
-        <img
-          className="search-top-btn"
-          data-testid="search-top-btn"
-          src={ searchIcon }
-          alt="search"
-        />
+        <a href="#top">
+          <img
+            className="search-top-btn"
+            data-testid="search-top-btn"
+            src={ searchIcon }
+            alt="search"
+          />
+        </a>
       </button>
     );
   }

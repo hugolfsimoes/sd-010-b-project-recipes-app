@@ -148,6 +148,7 @@ class Detalhes extends Component {
     } = this.props;
     return (
       <motion.section
+        id="top"
         className="page-details"
         initial="out"
         animate="end"
@@ -155,9 +156,6 @@ class Detalhes extends Component {
         variants={ animationScreen }
         transition={ transition }
       >
-        {
-          link && <Modal history={ history }><p>Link copiado!</p></Modal>
-        }
         <DetailsHeader data={ details } page={ page } id={ id } history={ history } />
         <section className="details-content">
           <section>
@@ -189,6 +187,9 @@ class Detalhes extends Component {
         </section>
         { finishedRecipe ? null : this.btnStartRecipes() }
         { startedRecipe ? this.btnContinueRecipe() : null }
+        {
+          link && <Modal history={ history }><p>Link copiado!</p></Modal>
+        }
       </motion.section>
     );
   }

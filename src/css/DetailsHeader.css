@@ -79,3 +79,25 @@
   font-size: var(--font-size-p2);
   font-weight: 500;
 }
+
+/* MOBILE SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 600px ) and ( orientation : landscape ) {
+
+  .recipe-img {
+    width: 22.5rem;
+  }
+
+  .recipe-header-content {
+    width: 22.5rem;
+  }
+
+  .goBack {
+    background-color: rgba(31, 204, 121, 0.3);
+  }
+
+  .goHome {
+    background-color: rgba(31, 204, 121, 0.3);
+  }
+
+}

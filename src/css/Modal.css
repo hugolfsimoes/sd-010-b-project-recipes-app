@@ -49,3 +49,20 @@
   outline: none;
   width: 14.43rem;
 }
+
+@media only screen and ( min-width : 600px ) and ( orientation : landscape ) {
+
+  .modal-container {
+    height: 18rem;
+  }
+
+  .modal-img {
+    height: 8rem;
+    margin-bottom: 1rem;
+    width: 8rem;
+  }
+
+  .modal-content {
+    margin-bottom: 1rem;
+  }
+}

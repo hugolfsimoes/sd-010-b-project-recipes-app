@@ -34,13 +34,7 @@ export class TelaDePerfil extends Component {
 
   buttonsRender() {
     return (
-      <motion.section
-        initial="out"
-        animate="end"
-        exit="out"
-        variants={ animationScreen }
-        transition={ transition }
-      >
+      <section className="perfil-btn">
         <Link to="/receitas-feitas">
           <button
             type="button"
@@ -70,8 +64,7 @@ export class TelaDePerfil extends Component {
             Sair
           </button>
         </Link>
-
-      </motion.section>
+      </section>
     );
   }
 
@@ -84,17 +77,24 @@ export class TelaDePerfil extends Component {
     const { email } = this.state;
 
     return (
-      <div className="profile-screen-btn">
+      <motion.section
+        className="profile-screen-btn"
+        initial="out"
+        animate="end"
+        exit="out"
+        variants={ animationScreen }
+        transition={ transition }
+      >
         <Header location={ location } />
-        <main className="profile-main">
-          <img className="profile-img" src="https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg" alt="icon" />
-
-          <h1 data-testid="profile-email" className="email">{email}</h1>
+        <section className="profile-main">
+          <section className="perfil-avatar">
+            <img className="profile-img" src="https://i.pinimg.com/736x/64/81/22/6481225432795d8cdf48f0f85800cf66.jpg" alt="icon" />
+            <h1 data-testid="profile-email" className="email">{email}</h1>
+          </section>
           {this.buttonsRender()}
-        </main>
+        </section>
         <Footer />
-      </div>
-
+      </motion.section>
     );
   }
 }

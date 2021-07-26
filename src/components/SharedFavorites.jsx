@@ -83,7 +83,10 @@ class SharedFavorites extends Component {
           className="details-btn btn-share"
           type="button"
           onClick={ () => copy(`http://localhost:3000/${page}/${id}`)
-            .then(() => link(true)) }
+            .then(() => {
+              window.scrollTo(0, 0);
+              link(true);
+            }) }
         >
           <img
             className="img-share"
