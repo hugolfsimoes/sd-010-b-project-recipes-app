@@ -117,7 +117,9 @@ a:hover {
 .tag-content {
   display: flex;
   flex-wrap: wrap;
+  height: 100%;
   justify-content: center;
+  overflow: hidden;
 }
 
 .done-tag {

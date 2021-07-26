@@ -1,4 +1,4 @@
-import { getAllFoodRecipes, isLoading, ERROR } from '../action';
+import { isLoading, ERROR, getAllFoodRecipes } from '../action';
 import invokeAlert from '../helper/alertMsg';
 
 const fetchFoodRecipesByArea = (country = '') => (dispatch) => {

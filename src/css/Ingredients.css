@@ -22,7 +22,7 @@
 
 /* código retirado do link https://codepen.io/avstorm/pen/vYYBxRM?editors=1100 */
 .ingredients-check {
-  opacity: 0;
+  left: 30px;
   position: absolute;
 }
 

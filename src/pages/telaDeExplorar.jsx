@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { animationScreen, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { getSearchBarResponse } from '../action/index';
+import { getSearchBarResponse } from '../action/action';
 
 import '../css/TelaDeExplorar.css';
 
@@ -29,27 +29,29 @@ export class TelaDeExplorar extends Component {
         transition={ transition }
       >
         <Header location={ location } />
-        <section className="explorer-screen-main">
-          <Link to="/explorar/comidas">
-            <button
-              className="explorer-screen-btn"
-              data-testid="explore-food"
-              name="comidas"
-              type="button"
-            >
-              Explorar Comidas
-            </button>
-          </Link>
-          <Link to="/explorar/bebidas">
-            <button
-              className="explorer-screen-btn"
-              data-testid="explore-drinks"
-              name="bebidas"
-              type="button"
-            >
-              Explorar Bebidas
-            </button>
-          </Link>
+        <section className="explorer-page">
+          <section className="explorer-screen-main">
+            <Link to="/explorar/comidas">
+              <button
+                className="explorer-screen-btn"
+                data-testid="explore-food"
+                name="comidas"
+                type="button"
+              >
+                Explorar Comidas
+              </button>
+            </Link>
+            <Link to="/explorar/bebidas">
+              <button
+                className="explorer-screen-btn"
+                data-testid="explore-drinks"
+                name="bebidas"
+                type="button"
+              >
+                Explorar Bebidas
+              </button>
+            </Link>
+          </section>
         </section>
         <Footer />
       </motion.section>

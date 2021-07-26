@@ -79,3 +79,70 @@
   font-size: var(--font-size-p2);
   font-weight: 500;
 }
+
+/* MOBILE SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 600px ) and ( orientation : landscape ) {
+
+  .recipe-img {
+    width: 22.5rem;
+  }
+
+  .recipe-header-content {
+    width: 22.5rem;
+  }
+
+  .goBack {
+    background-color: rgba(31, 204, 121, 0.3);
+  }
+
+  .goHome {
+    background-color: rgba(31, 204, 121, 0.3);
+  }
+
+}
+
+/* TABLE SCREEN */
+
+@media only screen and ( min-width : 767px ) {
+
+  .recipe-img {
+    width: 22.5rem;
+  }
+
+  .recipe-header-content {
+    width: 22.5rem;
+  }
+
+  .goBack {
+    left: 224px;
+  }
+
+  .goHome {
+    right: 224px;
+  }
+
+}
+
+/* TABLET SCREEN IN LANDSCAPE POSITION */
+
+@media only screen and ( min-width : 1023px ) and ( orientation : landscape ) {
+
+  .recipe-img {
+    width: 22.5rem;
+  }
+
+  .recipe-header-content {
+    width: 22.5rem;
+  }
+
+  .goBack {
+    background-color: rgba(255, 255, 255, 0.3);
+    left: 354px;
+  }
+
+  .goHome {
+    background-color: rgba(255, 255, 255, 0.3);
+    right: 354px;
+  }
+}

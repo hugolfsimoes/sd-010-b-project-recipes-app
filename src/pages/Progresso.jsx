@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
 import { animationScreen, transition } from '../animations';
-import { fetchDrinkDetails, fetchFoodDetails, startRecipe } from '../action';
+import { startRecipe, fetchDrinkDetails, fetchFoodDetails } from '../action/action';
 import Ingredients from '../components/Ingredients';
 import '../css/Details.css';
 import '../css/progress.css';
@@ -75,7 +75,6 @@ class Progresso extends Component {
     const { allIngredients } = this.state;
     if (allIngredients.includes(param) && boolean === 'checked') {
       element.classList.remove('riscado');
-      console.log(element);
 
       return this.setState({
         allIngredients: allIngredients.filter((el) => el !== param),
@@ -98,7 +97,6 @@ class Progresso extends Component {
       return this.setState({ allIngredients: recovery.meals[id],
         count: recovery.meals[id].length });
     }
-
     if (recovery.cocktails[id] !== undefined) {
       return this.setState({ allIngredients: recovery.cocktails[id],
         count: recovery.cocktails[id].length,
@@ -141,7 +139,6 @@ class Progresso extends Component {
       doneDate: `${currentDate}`,
       tags: details[keyName.Tags] ? details[keyName.Tags].split(',') : '',
     };
-
     doneRecipes.push(recipe);
     localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
   }
@@ -167,12 +164,10 @@ class Progresso extends Component {
   countRecipesAllLength() {
     const { details } = this.props;
     const dictionary = identification(details);
-    console.log('funciono', dictionary);
     const total = [];
     dictionary.Ingredients.map((ingredient) => {
       if (details[ingredient[0]] !== null && details[ingredient[0]] !== '') {
         total.push(details[ingredient[0]]);
-        console.log(details[ingredient[0]]);
       }
       return this.setState({
         recipesLength: total.length,
@@ -183,7 +178,6 @@ class Progresso extends Component {
   render() {
     const { details, match: { params: { page, id } }, history, link } = this.props;
     const { allIngredients, count, recipesLength } = this.state;
-
     return (
       <motion.section
         className="page-progress"
@@ -219,9 +213,7 @@ class Progresso extends Component {
                 ? 'details-btn-startRecipe disabled' : 'details-btn-startRecipe' }
               type="button"
               data-testid="finish-recipe-btn"
-              onClick={ () => {
-                this.finishRecipe();
-              } }
+              onClick={ () => this.finishRecipe() }
               disabled={ count !== recipesLength }
             >
               Finalizar Receita

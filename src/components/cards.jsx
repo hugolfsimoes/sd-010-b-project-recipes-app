@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Group26 from '../images/Group26.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/cards.css';
+import { item } from '../animations';
 
 export default function Cards({ id, img, title, index, url }) {
   return (
     <Link to={ `${url}/${id}` }>
-      <Card
+      <motion.div
         className="principal-card-content"
+        variants={ item }
         data-testid={ `${index}-recipe-card` }
       >
         <div className="img-content">
@@ -33,7 +36,7 @@ export default function Cards({ id, img, title, index, url }) {
             { title }
           </Card.Title>
         </Card.Body>
-      </Card>
+      </motion.div>
     </Link>
   );
 }

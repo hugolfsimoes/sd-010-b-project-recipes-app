@@ -8,7 +8,7 @@ import { CgPentagonRight } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import Group26 from '../images/Group26.svg';
-import { isLink } from '../action/details';
+import { isLink } from '../action/action';
 import '../css/doneRecipes.css';
 
 class DoneRecipes extends Component {

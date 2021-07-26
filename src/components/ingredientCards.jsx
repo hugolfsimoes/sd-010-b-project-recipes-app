@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import Card from 'react-bootstrap/Card';
 import { Redirect } from 'react-router';
 import Group26 from '../images/Group26.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/IngredientCards.css';
+import { item } from '../animations';
 
 class IngredientCards extends Component {
   constructor(props) {
@@ -35,10 +37,10 @@ class IngredientCards extends Component {
   }
 
   updateState() {
-    const { item } = this.props;
+    const { items } = this.props;
     const { id } = this.state;
 
-    if (item.length !== 0 && id.length !== 0) {
+    if (items.length !== 0 && id.length !== 0) {
       console.log('pão');
       return this.setState({ isRedirect: true });
     }
@@ -62,9 +64,10 @@ class IngredientCards extends Component {
     const { isRedirect, type } = this.state;
     return (
       <section>
-        <Card
+        <motion.div
           className="ingredient-card"
           data-testid={ `${index}-ingredient-card` }
+          variants={ item }
           onClick={ this.handleApi }
         >
           <div className="img-content">
@@ -76,7 +79,7 @@ class IngredientCards extends Component {
           <Card.Title className="card-name" data-testid={ `${index}-card-name` }>
             { title }
           </Card.Title>
-        </Card>
+        </motion.div>
         { type !== undefined && this.updateState()}
         { isRedirect && <Redirect to={ url } />}
       </section>
@@ -90,7 +93,7 @@ IngredientCards.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   details: PropTypes.func.isRequired,
-  item: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default IngredientCards;

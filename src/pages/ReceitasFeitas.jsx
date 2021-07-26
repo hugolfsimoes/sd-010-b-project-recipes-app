@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Modal from '../components/Modal';
 import Header from '../components/header';
 import { animationScreen, transition } from '../animations';
-import { getSearchBarResponse } from '../action/index';
+import { getSearchBarResponse } from '../action/action';
 import DoneRecipes from '../components/DoneRecipes';
 
 class ReceitasFeitas extends Component {

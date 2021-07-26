@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
-import { animationScreen, transition } from '../animations';
+import { animationScreen, container, transition } from '../animations';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import Cards from '../components/cards';
-import { fetchArea, fetchFoodRecipes, getSearchBarResponse } from '../action';
+import { fetchFoodRecipes } from '../action';
+import { fetchArea, getSearchBarResponse } from '../action/action';
 import fetchFoodRecipesByArea from '../services/servicesApi';
 
 import '../css/ExplorarArea.css';
@@ -57,7 +58,12 @@ class ExplorarArea extends Component {
                 {el.strArea}
               </option>))}
           </select>
-          <section className="ex-area-cards">
+          <motion.section
+            className="ex-area-cards"
+            variants={ container }
+            initial="hidden"
+            animate="visible"
+          >
             { meals.length !== 0
                 && meals.map((measl, index) => (
                   <Cards
@@ -69,7 +75,7 @@ class ExplorarArea extends Component {
                     index={ index }
                   />
                 ))}
-          </section>
+          </motion.section>
         </section>
         <Footer />
       </motion.div>

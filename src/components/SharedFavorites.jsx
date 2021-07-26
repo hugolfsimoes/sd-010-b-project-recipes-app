@@ -7,7 +7,7 @@ import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import '../css/SharedFavorites.css';
-import { isLink } from '../action/details';
+import { isLink } from '../action/action';
 
 class SharedFavorites extends Component {
   constructor(props) {
@@ -83,7 +83,10 @@ class SharedFavorites extends Component {
           className="details-btn btn-share"
           type="button"
           onClick={ () => copy(`http://localhost:3000/${page}/${id}`)
-            .then(() => link(true)) }
+            .then(() => {
+              window.scrollTo(0, 0);
+              link(true);
+            }) }
         >
           <img
             className="img-share"
