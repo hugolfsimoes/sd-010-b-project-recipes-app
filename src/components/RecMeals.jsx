@@ -4,7 +4,7 @@ import { getFoodRecipes } from '../services';
 import './css/recomendations.css';
 
 const SIX = 6;
-
+// xxx
 function RecMeals() {
   const [recFoods, setRecFoods] = useState([]);
   const [indexCarousel, setIndexCarousel] = useState(2);
