@@ -9,6 +9,7 @@ import {
   updateLocalStorage,
   saveDoneRecipes,
 } from '../services/localStorageManager';
+import './css/inProgress.css';
 
 function RecipeInProgress({ match, history, savesFinished }) {
   const { id } = match.params;
@@ -48,67 +49,83 @@ function RecipeInProgress({ match, history, savesFinished }) {
   // const measures = strMeasure.filter((el) => el[1] !== '' && el[1] !== null);
 
   return (
-    <section>
-      <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
-      <img
-        src={ strMealThumb || strDrinkThumb }
-        alt="Imagem ilustrativa do prato "
-        data-testid="recipe-photo"
-      />
-
-      <ShareBtn
-        showCopiedMsg={ setWasCopied }
-        testId="share-btn"
-        id={ id }
-        type={ recipeType === 'meals' ? 'comidas' : 'bebidas' }
-        route={ `${recipeType === 'meals' ? 'comidas' : 'bebidas'}/${id}/in-progress` }
-      />
-      <FavoriteBtn
-        id={ id }
-        type={ recipeType === 'meals' }
-        currentRecipe={ recipeInProgress }
-        testId="favorite-btn"
-      />
-
-      <span data-testid="recipe-category">{strCategory}</span>
+    <section id="inProgress">
+      <section id="header-inProgress">
+        <h2 data-testid="recipe-title">{strMeal || strDrink}</h2>
+        <img
+          src={ strMealThumb || strDrinkThumb }
+          alt="Imagem ilustrativa do prato "
+          data-testid="recipe-photo"
+        />
+        <section>
+          <ShareBtn
+            showCopiedMsg={ setWasCopied }
+            testId="share-btn"
+            id={ id }
+            type={ recipeType === 'meals' ? 'comidas' : 'bebidas' }
+            route={ `${recipeType === 'meals' ? 'comidas' : 'bebidas'}/${id}/in-progress` }
+          />
+          <FavoriteBtn
+            id={ id }
+            type={ recipeType === 'meals' }
+            currentRecipe={ recipeInProgress }
+            testId="favorite-btn"
+          />
+        </section>
+        <span
+          data-testid="recipe-category"
+          id="category-inProgress"
+        >
+          {strCategory}
+        </span>
+      </section>
       {wasCopied && <span>Link copiado!</span>}
+      <section>
 
-      <ul>
-        {ingredients.map((recp, idx, arr) => (
-          <li
-            key={ idx }
-            data-testid={ `${idx}-ingredient-step` }
-          >
-            <label htmlFor="ingredient">
-              <input
-                type="checkbox"
-                id="ingredient"
-                data-testid={ `${idx}-ingredient-name-and-measure` }
-                onChange={ () => updateLocalStorage(
-                  {
-                    idx, recipeType, id, setIsBtnDisable, arr,
-                  },
-                ) }
-                defaultChecked={ checkLocalStorage(id, idx, recipeType) }
-              />
-              {`${recp[1]}`}
-            </label>
+        <ul>
+          {ingredients.map((recp, idx, arr) => (
+            <li
+              key={ idx }
+              data-testid={ `${idx}-ingredient-step` }
+            >
+              <label htmlFor="ingredient">
+                <input
+                  type="checkbox"
+                  id="ingredientCheck"
+                  data-testid={ `${idx}-ingredient-name-and-measure` }
+                  onChange={ () => updateLocalStorage(
+                    {
+                      idx, recipeType, id, setIsBtnDisable, arr,
+                    },
+                  ) }
+                  defaultChecked={ checkLocalStorage(id, idx, recipeType) }
+                />
+                {`${recp[1]}`}
+              </label>
 
-          </li>))}
-      </ul>
-      <span data-testid="instructions">{strInstructions}</span>
-      <button
-        type="button"
-        data-testid="finish-recipe-btn"
-        disabled={ isBtnDisable }
-        onClick={ () => {
-          savesFinished(recipeInProgress);
-          saveDoneRecipes(id, recipeType, recipeInProgress);
-          history.push('/receitas-feitas');
-        } }
-      >
-        Finalizar receita
-      </button>
+            </li>))}
+        </ul>
+        <span
+          data-testid="instructions"
+          id="instructionsInProgress"
+        >
+          {strInstructions}
+        </span>
+      </section>
+      <section id="finalizeContainer">
+        <button
+          type="button"
+          data-testid="finish-recipe-btn"
+          disabled={ isBtnDisable }
+          onClick={ () => {
+            savesFinished(recipeInProgress);
+            saveDoneRecipes(id, recipeType, recipeInProgress);
+            history.push('/receitas-feitas');
+          } }
+        >
+          Finalizar receita
+        </button>
+      </section>
 
     </section>
   );

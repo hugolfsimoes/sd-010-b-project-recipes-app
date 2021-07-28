@@ -69,6 +69,7 @@ function Login() {
           name="email"
           onChange={ handleChange }
           placeholder="example@email.com"
+          autoComplete="off"
         />
       </label>
       <label htmlFor="password">
