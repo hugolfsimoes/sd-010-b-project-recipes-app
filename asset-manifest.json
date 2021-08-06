@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/thegodcooker/static/css/main.4cc9bdc5.chunk.css",
+    "main.js": "/thegodcooker/static/js/main.f1b24673.chunk.js",
+    "main.js.map": "/thegodcooker/static/js/main.f1b24673.chunk.js.map",
+    "runtime-main.js": "/thegodcooker/static/js/runtime-main.703e8719.js",
+    "runtime-main.js.map": "/thegodcooker/static/js/runtime-main.703e8719.js.map",
+    "static/css/2.95258f03.chunk.css": "/thegodcooker/static/css/2.95258f03.chunk.css",
+    "static/js/2.b3f8b66f.chunk.js": "/thegodcooker/static/js/2.b3f8b66f.chunk.js",
+    "static/js/2.b3f8b66f.chunk.js.map": "/thegodcooker/static/js/2.b3f8b66f.chunk.js.map",
+    "index.html": "/thegodcooker/index.html",
+    "precache-manifest.86d3233cc5840f412c5edfaaaa57df32.js": "/thegodcooker/precache-manifest.86d3233cc5840f412c5edfaaaa57df32.js",
+    "service-worker.js": "/thegodcooker/service-worker.js",
+    "static/css/2.95258f03.chunk.css.map": "/thegodcooker/static/css/2.95258f03.chunk.css.map",
+    "static/css/main.4cc9bdc5.chunk.css.map": "/thegodcooker/static/css/main.4cc9bdc5.chunk.css.map",
+    "static/js/2.b3f8b66f.chunk.js.LICENSE.txt": "/thegodcooker/static/js/2.b3f8b66f.chunk.js.LICENSE.txt",
+    "static/media/blackHeartIcon.svg": "/thegodcooker/static/media/blackHeartIcon.b8913346.svg",
+    "static/media/drinkIcon.svg": "/thegodcooker/static/media/drinkIcon.f87c47c3.svg",
+    "static/media/explore.png": "/thegodcooker/static/media/explore.194f75f8.png",
+    "static/media/exploreIcon.svg": "/thegodcooker/static/media/exploreIcon.157945ff.svg",
+    "static/media/logo.png": "/thegodcooker/static/media/logo.0b4d4c30.png",
+    "static/media/mealIcon.svg": "/thegodcooker/static/media/mealIcon.b27ba19e.svg",
+    "static/media/profileIcon.svg": "/thegodcooker/static/media/profileIcon.74e487e5.svg",
+    "static/media/searchIcon.svg": "/thegodcooker/static/media/searchIcon.db812135.svg",
+    "static/media/shareIcon.svg": "/thegodcooker/static/media/shareIcon.06215ed4.svg",
+    "static/media/whiteHeartIcon.svg": "/thegodcooker/static/media/whiteHeartIcon.ea3b6ba8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.703e8719.js",
+    "static/css/2.95258f03.chunk.css",
+    "static/js/2.b3f8b66f.chunk.js",
+    "static/css/main.4cc9bdc5.chunk.css",
+    "static/js/main.f1b24673.chunk.js"
+  ]
+}
