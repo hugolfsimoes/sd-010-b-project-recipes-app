@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "cc5c73d4abce6330a5f0ed116d6fc9fe",
+    "revision": "8f4f8cc5c39578c6759244d215385341",
     "url": "/thegodcooker/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thegodcooker/static/css/2.95258f03.chunk.css"
   },
   {
-    "revision": "8c9e1fe11e8570477c36",
+    "revision": "f9dbdbe95ff01767d9f2",
     "url": "/thegodcooker/static/css/main.4cc9bdc5.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/thegodcooker/static/js/2.b3f8b66f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8c9e1fe11e8570477c36",
-    "url": "/thegodcooker/static/js/main.f1b24673.chunk.js"
+    "revision": "f9dbdbe95ff01767d9f2",
+    "url": "/thegodcooker/static/js/main.e65b571b.chunk.js"
   },
   {
     "revision": "75bd18e24cd2b2f24c9e",
